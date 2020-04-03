@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ad542c72-03a8-4253-b8b2-e4df0841fb7b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -21,6 +46,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/webApp" />
+      <recent name="$PROJECT_DIR$/webApp/venv" />
+      <recent name="$PROJECT_DIR$/webApp/mvc" />
+      <recent name="$PROJECT_DIR$/example NRL" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -63,26 +96,74 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1343" height="275" key="GridCell.Tab.0.bottom" timestamp="1585749786683">
+    <state x="552" y="266" width="251" height="270" key="#Notifications" timestamp="1585903246127">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1343" height="275" key="GridCell.Tab.0.bottom/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585749786683" />
-    <state width="1343" height="275" key="GridCell.Tab.0.center" timestamp="1585749786683">
-      <screen x="0" y="27" width="1366" height="741" />
-    </state>
-    <state width="1343" height="275" key="GridCell.Tab.0.center/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585749786683" />
-    <state width="1343" height="275" key="GridCell.Tab.0.left" timestamp="1585749786683">
-      <screen x="0" y="27" width="1366" height="741" />
-    </state>
-    <state width="1343" height="275" key="GridCell.Tab.0.left/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585749786683" />
-    <state width="1343" height="275" key="GridCell.Tab.0.right" timestamp="1585749786683">
-      <screen x="0" y="27" width="1366" height="741" />
-    </state>
-    <state width="1343" height="275" key="GridCell.Tab.0.right/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585749786683" />
-    <state x="1815" y="175" width="1022" height="737" key="SettingsEditor" timestamp="1585727412521">
+    <state x="552" y="266" width="251" height="270" key="#Notifications/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585903246127" />
+    <state x="2119" y="298" key="#xdebugger.evaluate" timestamp="1585935694146">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
-    <state x="1815" y="175" width="1022" height="737" key="SettingsEditor/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1585727412521" />
+    <state x="2119" y="298" key="#xdebugger.evaluate/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1585935694146" />
+    <state width="1827" height="275" key="GridCell.Tab.0.bottom" timestamp="1585937214751">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1343" height="275" key="GridCell.Tab.0.bottom/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585927896730" />
+    <state width="1827" height="275" key="GridCell.Tab.0.bottom/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1585937214751" />
+    <state width="1827" height="275" key="GridCell.Tab.0.center" timestamp="1585937214751">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1343" height="275" key="GridCell.Tab.0.center/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585927896729" />
+    <state width="1827" height="275" key="GridCell.Tab.0.center/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1585937214751" />
+    <state width="1827" height="275" key="GridCell.Tab.0.left" timestamp="1585937214751">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1343" height="275" key="GridCell.Tab.0.left/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585927896729" />
+    <state width="1827" height="275" key="GridCell.Tab.0.left/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1585937214751" />
+    <state width="1827" height="275" key="GridCell.Tab.0.right" timestamp="1585937214751">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1343" height="275" key="GridCell.Tab.0.right/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585927896730" />
+    <state width="1827" height="275" key="GridCell.Tab.0.right/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1585937214751" />
+    <state width="1827" height="339" key="GridCell.Tab.1.bottom" timestamp="1585936728234">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1343" height="215" key="GridCell.Tab.1.bottom/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585857380863" />
+    <state width="1827" height="339" key="GridCell.Tab.1.bottom/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1585936728234" />
+    <state width="1827" height="339" key="GridCell.Tab.1.center" timestamp="1585936728234">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1343" height="215" key="GridCell.Tab.1.center/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585857380863" />
+    <state width="1827" height="339" key="GridCell.Tab.1.center/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1585936728234" />
+    <state width="1827" height="339" key="GridCell.Tab.1.left" timestamp="1585936728234">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1343" height="215" key="GridCell.Tab.1.left/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585857380863" />
+    <state width="1827" height="339" key="GridCell.Tab.1.left/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1585936728234" />
+    <state width="1827" height="339" key="GridCell.Tab.1.right" timestamp="1585936728234">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1343" height="215" key="GridCell.Tab.1.right/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585857380863" />
+    <state width="1827" height="339" key="GridCell.Tab.1.right/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1585936728234" />
+    <state x="1815" y="175" width="900" height="741" key="SettingsEditor" timestamp="1585934202782">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="319" y="27" width="900" height="741" key="SettingsEditor/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585903679066" />
+    <state x="1815" y="175" width="1022" height="737" key="SettingsEditor/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1585934202782" />
+    <state x="408" y="311" width="540" height="179" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1585902676499">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="408" y="311" width="540" height="179" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585902676499" />
   </component>
 </project>

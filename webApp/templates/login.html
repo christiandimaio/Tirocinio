@@ -19,18 +19,45 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     
     <!-- Material UI -->
-    <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js" crossorigin></script>
-    
+   <link href="//cdn.muicss.com/mui-0.10.1/css/mui.min.css" rel="stylesheet" type="text/css" media="screen" />
    
+   <!-- axios -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+   <!-- Semantic ui -->
+   <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+
+    
 </head>
-<body>
-    <div id="root" class="container-fluid" >
+<body id="r">
+    
+    <div id="root" class="container h-100">
+        
     </div>
+    
     <!-- React Bootstrap -->
     <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script> 
     <script src="static/js/login.js" type="text/babel"></script>
+    <script src="static/js/three.r95.min.js"></script>
+        <script src="static/js/vanta.rings.min.js"></script>
+        <script>
+        VANTA.RINGS({
+        el: "#r",
+        mouseControls: true,
+        touchControls: true,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        backgroundColor: 0x32475c,
+        color: 0x7d92d4
+        })
+        </script>
 </body>
 </html>
 

@@ -13,7 +13,7 @@ myStation.set_channel("HHZ","",-38.22918,147.274075,26,0,90,0,250,p_sensor=a,p_d
 myStation.make_xml(p_file_name="nrl_test.xml")
 myStation.make_xml(p_file_name="nrl_test.xml")
 myStation = None
-myStation = JsonToStationXML(open("station.json","r"))
+myStation = JsonToStationXML(open("../webApp/station.json", "r"))
 myStation.make_xml(p_file_name="json-test.xml")
 
 

@@ -1,9 +1,7 @@
-html, body{
-    height: 100%;
-    background-image: url("../images/login/login_wallpaper.jpg");
+body{
+    /* background-image: url("../images/login/login_wallpaper.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
 }
-#root{
-    height: 100%;
-}
+
+
