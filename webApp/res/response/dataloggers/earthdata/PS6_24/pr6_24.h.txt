@@ -1,0 +1,90 @@
+[Main]
+question = "Select the sample rate in samples per second for this channel"
+
+[1]
+resp = "RESP.XX.NE003..LHZ.PS6_24.H.1"
+description = "PR6-24, High gain, 1 sps"
+
+[2]
+resp = "RESP.XX.NE006..MHZ.PS6_24.H.2"
+description = "PR6-24, High gain, 2 sps"
+
+[4]
+resp = "RESP.XX.NE009..MHZ.PS6_24.H.4"
+description = "PR6-24, High gain, 4 sps"
+
+[5]
+resp = "RESP.XX.NE012..MHZ.PS6_24.H.5"
+description = "PR6-24, High gain, 5 sps"
+
+[10]
+resp = "RESP.XX.NE015..BHZ.PS6_24.H.10"
+description = "PR6-24, High gain, 10 sps"
+
+[20]
+resp = "RESP.XX.NE018..BHZ.PS6_24.H.20"
+description = "PR6-24, High gain, 20 sps"
+
+[25]
+resp = "RESP.XX.NE021..BHZ.PS6_24.H.25"
+description = "PR6-24, High gain, 25 sps"
+
+[40]
+resp = "RESP.XX.NE024..BHZ.PS6_24.H.40"
+description = "PR6-24, High gain, 40 sps"
+
+[50]
+resp = "RESP.XX.NE027..BHZ.PS6_24.H.50"
+description = "PR6-24, High gain, 50 sps"
+
+[75]
+resp = "RESP.XX.NE030..BHZ.PS6_24.H.75"
+description = "PR6-24, High gain, 75 sps"
+
+[100]
+resp = "RESP.XX.NE033..HHZ.PS6_24.H.100"
+description = "PR6-24, High gain, 100 sps"
+
+[120]
+resp = "RESP.XX.NE036..HHZ.PS6_24.H.120"
+description = "PR6-24, High gain, 120 sps"
+
+[125]
+resp = "RESP.XX.NE039..HHZ.PS6_24.H.125"
+description = "PR6-24, High gain, 125 sps"
+
+[150]
+resp = "RESP.XX.NE042..HHZ.PS6_24.H.150"
+description = "PR6-24, High gain, 150 sps"
+
+[200]
+resp = "RESP.XX.NE045..HHZ.PS6_24.H.200"
+description = "PR6-24, High gain, 200 sps"
+
+[250]
+resp = "RESP.XX.NE048..HHZ.PS6_24.H.250"
+description = "PR6-24, High gain, 250 sps"
+
+[300]
+resp = "RESP.XX.NE051..HHZ.PS6_24.H.300"
+description = "PR6-24, High gain, 300 sps"
+
+[375]
+resp = "RESP.XX.NE054..HHZ.PS6_24.H.375"
+description = "PR6-24, High gain, 375 sps"
+
+[500]
+resp = "RESP.XX.NE057..HHZ.PS6_24.H.500"
+description = "PR6-24, High gain, 500 sps"
+
+[600]
+resp = "RESP.XX.NE060..HHZ.PS6_24.H.600"
+description = "PR6-24, High gain, 600 sps"
+
+[750]
+resp = "RESP.XX.NE063..HHZ.PS6_24.H.750"
+description = "PR6-24, High gain, 750 sps"
+
+[1000]
+resp = "RESP.XX.NE066..HHZ.PS6_24.H.1000"
+description = "PR6-24, High gain, 1000 sps"

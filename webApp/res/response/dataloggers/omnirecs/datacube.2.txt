@@ -1,0 +1,22 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[50]
+description = "Datacube, gain 2, 50 sps"
+resp = "RESP.XX.NM002..BHZ.DATACUBE.2.50"
+
+[100]
+description = "Datacube, gain 2, 100 sps"
+resp = "RESP.XX.NM009..HHZ.DATACUBE.2.100"
+
+[200]
+description = "Datacube, gain 2, 200 sps"
+resp = "RESP.XX.NM016..HHZ.DATACUBE.2.200"
+
+[400]
+description = "Datacube, gain 2, 400 sps"
+resp = "RESP.XX.NM023..CHZ.DATACUBE.2.400"
+
+[800]
+description = "Datacube, gain 2, 800 sps"
+resp = "RESP.XX.NM030..CHZ.DATACUBE.2.800"

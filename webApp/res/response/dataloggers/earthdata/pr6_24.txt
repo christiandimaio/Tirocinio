@@ -1,0 +1,12 @@
+[Main]
+question = "Select the preamplifier gain setting"
+detail = "PS6_24/earthdata_PS6_24_dataloggers-details.html"
+
+[Very Low]
+path = "PS6_24/pr6_24.vl.txt"
+
+[Low (default)]
+path = "PS6_24/pr6_24.l.txt"
+
+[High]
+path = "PS6_24/pr6_24.h.txt"

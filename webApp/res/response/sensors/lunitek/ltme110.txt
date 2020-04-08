@@ -1,0 +1,10 @@
+[Main]
+question = "Select the LTME110 clip level"
+
+[2g]
+description = "LTME110, DC to 1150 Hz, 2.7Vp single-ended full scale voltage, 2g clip level"
+resp = "RESP.XX.NS676..BNZ.LTME110.DC_1150.2_7VSE.2G"
+
+[3g]
+description = "LTME110, DC to 550 Hz, 2.7Vp single-ended full scale voltage, 3g clip level"
+resp = "RESP.XX.NS677..BNZ.LTME110.DC_550.2_7VSE.3G"

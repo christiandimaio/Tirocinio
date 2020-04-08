@@ -1,0 +1,10 @@
+[Main]
+question = "Select the phase of the final FIR filter"
+
+[Linear]
+description = "ATLAS, gain 1, 0.625 Vpp, 100 sps, Linear Phase filter"
+resp = "RESP.XX.LD037..HHZ.ATLAS.1.0_625.100.LP"
+
+[Minimum]
+description = "ATLAS, gain 1, 0.625 Vpp, 100 sps, Minimum Phase filter"
+resp = "RESP.XX.LD038..HHZ.ATLAS.1.0_625.100.MP"

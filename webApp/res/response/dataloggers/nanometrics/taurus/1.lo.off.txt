@@ -1,0 +1,46 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[10]
+description="Taurus Family, 16 vpp (gain 1), 10 sps, low impedance, DC removal filter off"
+resp = "RESP.XX.NN107..BHZ.TAURUS.1.10.LO.OFF"
+
+[20]
+description="Taurus Family, 16 vpp (gain 1), 20 sps, low impedance, DC removal filter off"
+resp = "RESP.XX.NN127..BHZ.TAURUS.1.20.LO.OFF"
+
+[40]
+description="Taurus Family, 16 vpp (gain 1), 40 sps, low impedance, DC removal filter off"
+resp = "RESP.XX.NN147..BHZ.TAURUS.1.40.LO.OFF"
+
+[50]
+description="Taurus Family, 16 vpp (gain 1), 50 sps, low impedance, DC removal filter off"
+resp = "RESP.XX.NN167..BHZ.TAURUS.1.50.LO.OFF"
+
+[80]
+description="Taurus Family, 16 vpp (gain 1), 80 sps, low impedance, DC removal filter off"
+resp = "RESP.XX.NN187..BHZ.TAURUS.1.80.LO.OFF"
+
+[100]
+description="Taurus Family, 16 vpp (gain 1), 100 sps, low impedance, DC removal filter off"
+resp = "RESP.XX.NN207..HHZ.TAURUS.1.100.LO.OFF"
+
+[120]
+description="Taurus Family, 16 vpp (gain 1), 120 sps, low impedance, DC removal filter off"
+resp = "RESP.XX.NN227..HHZ.TAURUS.1.120.LO.OFF"
+
+[200]
+description="Taurus Family, 16 vpp (gain 1), 200 sps, low impedance, DC removal filter off"
+resp = "RESP.XX.NN247..HHZ.TAURUS.1.200.LO.OFF"
+
+[250]
+description="Taurus Family, 16 vpp (gain 1), 250 sps, low impedance, DC removal filter off"
+resp = "RESP.XX.NN267..HHZ.TAURUS.1.250.LO.OFF"
+
+[500]
+description="Taurus Family, 16 vpp (gain 1), 500 sps, low impedance, DC removal filter off"
+resp = "RESP.XX.NN287..HHZ.TAURUS.1.500.LO.OFF"
+
+[1000]
+description="Taurus Family, 16 vpp (gain 1), 1000 sps, low impedance, DC removal filter off"
+resp = "RESP.XX.NN307..HHZ.TAURUS.1.1000.LO.OFF"

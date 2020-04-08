@@ -1,0 +1,18 @@
+[Main]
+question = "Select the sensor sensitivity in V/m/s"
+
+[2000]
+description = "CMG-6T, 2s-100Hz, 2000 V/m/s"
+resp = "RESP.XX.NS074..SHZ.CMG6T.2_100.2000"
+
+[2400]
+description = "CMG-6T, 2s-100Hz, 2400 V/m/s"
+resp = "RESP.XX.NS075..SHZ.CMG6T.2_100.2400"
+
+[4000]
+description = "CMG-6T, 2s-100Hz, 4000 V/m/s"
+resp = "RESP.XX.NS076..SHZ.CMG6T.2_100.4000"
+
+[20000]
+description = "CMG-6T, 2s-100Hz, 20000 V/m/s"
+resp = "RESP.XX.NS077..SHZ.CMG6T.2_100.20000"

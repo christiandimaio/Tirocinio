@@ -1,0 +1,6 @@
+[Main]
+question = "Select the OSOP datalogger model"
+detail = "osop_dataloggers-details.html"
+
+[Raspberry Shake 1D]
+path = "rshake.txt"

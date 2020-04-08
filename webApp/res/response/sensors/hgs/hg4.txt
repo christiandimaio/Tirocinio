@@ -1,0 +1,39 @@
+[Main]
+question = "Select the corner frequency for this HG-4:"
+detail = "hgs_hgx_sensors-details.html"
+
+[8 Hz (Rc=375 ohms, Rs=None)]
+description="HG-4, 8 Hz, 28.8 V/m/s, Rc=375, Rs=None"
+resp = "RESP.XX.NS549..SLZ.HG4.375.NONE.8.28_8"
+
+[8 Hz (Rc=375 ohms, Rs=1600 ohms)]
+description="HG-4, 8 Hz, 23.33 V/m/s, Rc=375, Rs=1600 Ohms"
+resp = "RESP.XX.NS550..SLZ.HG4.375.1600.8.23_3"
+
+[8 Hz (Rc=375 ohms, Rs=2257 ohms)]
+description="HG-4, 8 Hz, 24.7 V/m/s, Rc=375, Rs=2257 Ohms"
+resp = "RESP.XX.NS551..SLZ.HG4.375.2257.8.24_7"
+
+[10 Hz (Rc=375 ohms, Rs=None)]
+description="HG-4, 10 Hz, 28.8 V/m/s, Rc=375, Rs=None"
+resp = "RESP.XX.NS552..SLZ.HG4.375.NONE.10.28_8"
+
+[10 Hz (Rc=375 ohms, Rs=1339 ohms)]
+description="HG-4, 10 Hz, 22.5 V/m/s, Rc=375, Rs=1339 Ohms"
+resp = "RESP.XX.NS553..SLZ.HG4.375.1339.10.22_5"
+
+[10 Hz (Rc=375 ohms, Rs=1000 ohms)]
+description="HG-4, 10 Hz, 20.95 V/m/s, Rc=375, Rs=1000 Ohms"
+resp = "RESP.XX.NS554..SLZ.HG4.375.1000.10.20_95"
+
+[14 Hz (Rc=375 ohms, Rs=None)]
+description="HG-4, 14 Hz, 28.8 V/m/s, Rc=375, Rs=None"
+resp = "RESP.XX.NS555..SLZ.HG4.375.NONE.14.28_8"
+
+[14 Hz (Rc=375 ohms, Rs=645 ohms)]
+description="HG-4, 14 Hz, 18.21 V/m/s, Rc=375, Rs=645 Ohms"
+resp = "RESP.XX.NS556..SLZ.HG4.375.645.14.18_21"
+
+[14 Hz (Rc=375 ohms, Rs=430 ohms)]
+description="HG-4, 14 Hz, 15.38 V/m/s, Rc=375, Rs=430 Ohms"
+resp = "RESP.XX.NS557..SLZ.HG4.375.430.14.15_38"

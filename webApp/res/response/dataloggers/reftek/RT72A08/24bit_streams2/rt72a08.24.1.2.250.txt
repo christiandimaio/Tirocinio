@@ -1,0 +1,5 @@
+[Main]
+question = "Select the sample rate of the higher rate stream in samples per second"
+
+[500]
+path = "rt72a08.24.1.2.250_500.txt"

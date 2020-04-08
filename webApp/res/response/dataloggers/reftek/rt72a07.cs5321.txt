@@ -1,0 +1,8 @@
+[Main]
+question = "Select the preamplifier gain setting"
+
+[1]
+path = "rt72a07.cs5321.1.txt"
+
+[32]
+path = "rt72a07.cs5321.32.txt"

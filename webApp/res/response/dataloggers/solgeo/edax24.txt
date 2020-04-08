@@ -1,0 +1,20 @@
+[Main]
+question = "Select the preamplifier gain setting"
+
+[0.5]
+path = "edax24.0_5.txt"
+
+[1]
+path = "edax24.1.txt"
+
+[2]
+path = "edax24.2.txt"
+
+[4]
+path = "edax24.4.txt"
+
+[10]
+path = "edax24.10.txt"
+
+[100]
+path = "edax24.100.txt"

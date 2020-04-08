@@ -1,0 +1,32 @@
+[Main]
+question = "Select this channel's tap table lookup number"
+
+[51]
+path = "64_t51_60.51.txt"
+
+[52]
+path = "64_t51_60.52.txt"
+
+[53]
+path = "64_t51_60.53.txt"
+
+[54]
+path = "64_t51_60.54.txt"
+
+[55]
+path = "64_t51_60.55.txt"
+
+[56]
+path = "64_t51_60.56.txt"
+
+[57]
+path = "64_t51_60.57.txt"
+
+[58]
+path = "64_t51_60.58.txt"
+
+[59]
+path = "64_t51_60.59.txt"
+
+[60]
+path = "64_t51_60.60.txt"

@@ -1,0 +1,18 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[200]
+description = "DM-24 Mk2 Differential, gain 1, 200 sps, tap id 56, (200 100 25 and 5 Hz)"
+resp = "mk2/RESP.XX.NG072..HHZ.CMG_DM24_MK2_DF.1..200"
+
+[100]
+description = "DM-24 Mk2 Differential, gain 1, 100 sps, tap id 56, (200 100 25 and 5 Hz)"
+resp = "mk2/RESP.XX.NG073..HHZ.CMG_DM24_MK2_DF.1.200.100"
+
+[25]
+description = "DM-24 Mk2 Differential, gain 1, 25 sps, tap id 56, (200 100 25 and 5 Hz)"
+resp = "mk2/RESP.XX.NG080..BHZ.CMG_DM24_MK2_DF.1.200_100.25"
+
+[5]
+description = "DM-24 Mk2 Differential, gain 1, 5 sps, tap id 56, (200 100 25 and 5 Hz)"
+resp = "mk2/RESP.XX.NG103..MHZ.CMG_DM24_MK2_DF.1.200_100_25.5"

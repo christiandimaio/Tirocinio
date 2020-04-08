@@ -1,0 +1,8 @@
+[Main]
+question = "Select whether the data was decimated from 20 sps by a factor of 2 or 5"
+
+[2]
+resp = "RESP.XX.NQ307..UHZ.Qx80.1.0_01.920812N"
+
+[5]
+resp = "RESP.XX.NQ317..UHZ.Qx80.1.0_01.920812N.GSN"

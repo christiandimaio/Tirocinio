@@ -1,0 +1,8 @@
+[Main]
+question = "Select the firmware version for your Q330S+"
+
+[Prior to 10/01/2012]
+path = "32.500.old.txt"
+
+[After 10/01/2012]
+path = "32.500.new.txt"

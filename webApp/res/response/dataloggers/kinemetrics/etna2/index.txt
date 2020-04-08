@@ -1,0 +1,26 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[1]
+path = "./1.txt"
+
+[10]
+path = "./10.txt"
+
+[20]
+path = "./20.txt"
+
+[50]
+path = "./50.txt"
+
+[100]
+path = "./100.txt"
+
+[200]
+path = "./200.txt"
+
+[250]
+path = "./250.txt"
+
+[500]
+path = "./500.txt"

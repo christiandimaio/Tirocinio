@@ -1,0 +1,202 @@
+#               << RESP_VER	RESP.XX.NQ358..HHZ.Q330Splus.8.500.all	2014.091	NEW	 >>
+#		<< IRIS SEED Reader, Release 4.8 >>
+#
+#
+#		======== CHANNEL RESPONSE DATA ========
+B050F03     Station:     NQ358
+B050F16     Network:     XX
+B052F03     Location:    ??
+B052F04     Channel:     HHZ
+B052F22     Start date:  2006,001,00:00:00.0000
+B052F23     End date:    No Ending Time
+#		=======================================
+#		+               +--------------------------------------------+                +
+#		+               |   Response (Poles & Zeros), NQ358 ch HHZ   |                +
+#		+               +--------------------------------------------+                +
+#
+B053F03     Transfer function type:                A [Laplace Transform (Rad/sec)]
+B053F04     Stage sequence number:                 1
+B053F05     Response in units lookup:              M/S - Velocity in Meters Per Second
+B053F06     Response out units lookup:             V - Volts
+B053F07     A0 normalization factor:               1.000000E+00
+B053F08     Normalization frequency:               1.000000E+00
+B053F09     Number of zeroes:                      0
+B053F14     Number of poles:                       0
+#		Complex zeroes:
+#		  i  real          imag          real_error    imag_error
+#		Complex poles:
+#		  i  real          imag          real_error    imag_error
+#		
+#		+                  +---------------------------------------+                  +
+#		+                  |       Channel Gain, NQ358 ch HHZ      |                  +
+#		+                  +---------------------------------------+                  +
+#		
+B058F03     Stage sequence number:                 1
+B058F04     Gain:                                  1.000000e+00
+B058F05     Frequency of gain:                     5.000000e-02 HZ
+B058F06     Number of calibrations:                0
+#		
+#		+                  +---------------------------------------+                  +
+#		+                  |       Channel Gain, NQ358 ch HHZ      |                  +
+#		+                  +---------------------------------------+                  +
+#		
+B058F03     Stage sequence number:                 2
+B058F04     Gain:                                  8.000000e+00
+B058F05     Frequency of gain:                     5.000000e-02 HZ
+B058F06     Number of calibrations:                0
+#		
+#		+               +-------------------------------------------+                 +
+#		+               |   Response (Coefficients), NQ358 ch HHZ   |                 +
+#		+               +-------------------------------------------+                 +
+#		
+B054F03     Transfer function type:                D
+B054F04     Stage sequence number:                 3
+B054F05     Response in units lookup:              V - Volts
+B054F06     Response out units lookup:             COUNTS - Digital Counts
+B054F07     Number of numerators:                  1
+B054F10     Number of denominators:                0
+#		Numerator coefficients:
+#		  i, coefficient,  error
+B054F08-09    0  1.000000e+00  0.000000E+00
+#		
+#		+                      +------------------------------+                       +
+#		+                      |   Decimation, NQ358 ch HHZ   |                       +
+#		+                      +------------------------------+                       +
+#		
+B057F03     Stage sequence number:                 3
+B057F04     Input sample rate:                     5.000000e+02
+B057F05     Decimation factor:                     1
+B057F06     Decimation offset:                     0
+B057F07     Estimated delay (seconds):             0.000000E+00
+B057F08     Correction applied (seconds):          0.000000E+00
+#		
+#		+                  +---------------------------------------+                  +
+#		+                  |       Channel Gain, NQ358 ch HHZ      |                  +
+#		+                  +---------------------------------------+                  +
+#		
+B058F03     Stage sequence number:                 3
+B058F04     Gain:                                  4.194300e+05
+B058F05     Frequency of gain:                     5.000000e-02 HZ
+B058F06     Number of calibrations:                0
+#		
+#		+               +-------------------------------------------+                 +
+#		+               |   Response (Coefficients), NQ358 ch HHZ   |                 +
+#		+               +-------------------------------------------+                 +
+#		
+B054F03     Transfer function type:                D
+B054F04     Stage sequence number:                 4
+B054F05     Response in units lookup:              COUNTS - Digital Counts
+B054F06     Response out units lookup:             COUNTS - Digital Counts
+B054F07     Number of numerators:                  79
+B054F10     Number of denominators:                0
+#		Numerator coefficients:
+#		  i, coefficient,  error
+B054F08-09    0 -1.406970e-16  0.000000E+00
+B054F08-09    1  1.365050e-13  0.000000E+00
+B054F08-09    2  2.419310e-10  0.000000E+00
+B054F08-09    3 -9.112460e-09  0.000000E+00
+B054F08-09    4 -3.365450e-08  0.000000E+00
+B054F08-09    5  2.832270e-08  0.000000E+00
+B054F08-09    6 -1.660910e-08  0.000000E+00
+B054F08-09    7 -2.268780e-08  0.000000E+00
+B054F08-09    8  7.763440e-08  0.000000E+00
+B054F08-09    9 -1.456810e-07  0.000000E+00
+B054F08-09   10  2.259050e-07  0.000000E+00
+B054F08-09   11 -2.134440e-07  0.000000E+00
+B054F08-09   12  1.298310e-07  0.000000E+00
+B054F08-09   13 -1.429830e-08  0.000000E+00
+B054F08-09   14 -4.460540e-07  0.000000E+00
+B054F08-09   15 -1.263460e-05  0.000000E+00
+B054F08-09   16 -2.854310e-04  0.000000E+00
+B054F08-09   17 -2.453460e-04  0.000000E+00
+B054F08-09   18  4.894140e-04  0.000000E+00
+B054F08-09   19 -7.134430e-04  0.000000E+00
+B054F08-09   20  7.236580e-04  0.000000E+00
+B054F08-09   21 -3.045260e-04  0.000000E+00
+B054F08-09   22 -6.797140e-04  0.000000E+00
+B054F08-09   23  2.185620e-03  0.000000E+00
+B054F08-09   24 -3.913540e-03  0.000000E+00
+B054F08-09   25  5.293510e-03  0.000000E+00
+B054F08-09   26 -5.567570e-03  0.000000E+00
+B054F08-09   27  4.035240e-03  0.000000E+00
+B054F08-09   28  5.422260e-05  0.000000E+00
+B054F08-09   29 -6.469650e-03  0.000000E+00
+B054F08-09   30  1.455390e-02  0.000000E+00
+B054F08-09   31 -2.272870e-02  0.000000E+00
+B054F08-09   32  2.866190e-02  0.000000E+00
+B054F08-09   33 -2.950620e-02  0.000000E+00
+B054F08-09   34  2.221470e-02  0.000000E+00
+B054F08-09   35 -3.724390e-03  0.000000E+00
+B054F08-09   36 -2.947980e-02  0.000000E+00
+B054F08-09   37  8.401600e-02  0.000000E+00
+B054F08-09   38 -1.834790e-01  0.000000E+00
+B054F08-09   39  5.170200e-01  0.000000E+00
+B054F08-09   40  7.126940e-01  0.000000E+00
+B054F08-09   41 -1.323170e-01  0.000000E+00
+B054F08-09   42  2.459670e-02  0.000000E+00
+B054F08-09   43  2.071640e-02  0.000000E+00
+B054F08-09   44 -4.009520e-02  0.000000E+00
+B054F08-09   45  4.419370e-02  0.000000E+00
+B054F08-09   46 -3.881640e-02  0.000000E+00
+B054F08-09   47  2.836610e-02  0.000000E+00
+B054F08-09   48 -1.641210e-02  0.000000E+00
+B054F08-09   49  5.620390e-03  0.000000E+00
+B054F08-09   50  2.374280e-03  0.000000E+00
+B054F08-09   51 -6.964530e-03  0.000000E+00
+B054F08-09   52  8.455270e-03  0.000000E+00
+B054F08-09   53 -7.459850e-03  0.000000E+00
+B054F08-09   54  5.276430e-03  0.000000E+00
+B054F08-09   55 -2.781990e-03  0.000000E+00
+B054F08-09   56  6.885160e-04  0.000000E+00
+B054F08-09   57  6.474010e-04  0.000000E+00
+B054F08-09   58 -1.194620e-03  0.000000E+00
+B054F08-09   59  1.143870e-03  0.000000E+00
+B054F08-09   60 -7.785020e-04  0.000000E+00
+B054F08-09   61  3.605780e-04  0.000000E+00
+B054F08-09   62 -4.228340e-05  0.000000E+00
+B054F08-09   63 -3.703860e-04  0.000000E+00
+B054F08-09   64 -3.829940e-05  0.000000E+00
+B054F08-09   65  1.354780e-07  0.000000E+00
+B054F08-09   66 -2.714230e-07  0.000000E+00
+B054F08-09   67  3.740470e-07  0.000000E+00
+B054F08-09   68 -2.878110e-07  0.000000E+00
+B054F08-09   69  2.260800e-07  0.000000E+00
+B054F08-09   70 -1.148130e-07  0.000000E+00
+B054F08-09   71  1.801590e-08  0.000000E+00
+B054F08-09   72  2.488760e-08  0.000000E+00
+B054F08-09   73 -4.324830e-08  0.000000E+00
+B054F08-09   74  4.004990e-08  0.000000E+00
+B054F08-09   75 -2.862730e-08  0.000000E+00
+B054F08-09   76 -1.619690e-08  0.000000E+00
+B054F08-09   77  2.083560e-10  0.000000E+00
+B054F08-09   78 -5.240530e-13  0.000000E+00
+#		
+#		+                      +------------------------------+                       +
+#		+                      |   Decimation, NQ358 ch HHZ   |                       +
+#		+                      +------------------------------+                       +
+#		
+B057F03     Stage sequence number:                 4
+B057F04     Input sample rate:                     5.000000e+02
+B057F05     Decimation factor:                     1
+B057F06     Decimation offset:                     0
+B057F07     Estimated delay (seconds):             5.200000E-02
+B057F08     Correction applied (seconds):          5.200000E-02
+#		
+#		+                  +---------------------------------------+                  +
+#		+                  |       Channel Gain, NQ358 ch HHZ      |                  +
+#		+                  +---------------------------------------+                  +
+#		
+B058F03     Stage sequence number:                 4
+B058F04     Gain:                                  1.000000e+00
+B058F05     Frequency of gain:                     5.000000e-02 HZ
+B058F06     Number of calibrations:                0
+#		
+#		+                  +---------------------------------------+                  +
+#		+                  |       Channel Gain, NQ358 ch HHZ      |                  +
+#		+                  +---------------------------------------+                  +
+#		
+B058F03     Stage sequence number:                 0
+B058F04     Sensitivity:                           3.355440e+06
+B058F05     Frequency of sensitivity:              5.000000e-02 HZ
+B058F06     Number of calibrations:                0
+#		

@@ -1,0 +1,6 @@
+[Main]
+question = "Select the fundamental frequency for this L-10AR:"
+detail = "sercel_l10_sensors-details.html"
+
+[14 Hz]
+path = "l10.ar.14.txt"

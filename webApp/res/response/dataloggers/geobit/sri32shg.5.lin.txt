@@ -1,0 +1,22 @@
+[Main]
+question = "Select the sample rate in samples per second for this channel"
+
+[100]
+description = "SRi32S High Gain, 5 Vpp, 100 sps, Linear phase"
+resp = "RESP.XX.GB071..HHZ.SRI32SHG.8.5.100.LIN"
+
+[200]
+description = "SRi32S High Gain, 5 Vpp, 200 sps, Linear phase"
+resp = "RESP.XX.GB075..HHZ.SRI32SHG.8.5.200.LIN"
+
+[250]
+description = "SRi32S High Gain, 5 Vpp, 250 sps, Linear phase"
+resp = "RESP.XX.GB077..CHZ.SRI32SHG.8.5.250.LIN"
+
+[500]
+description = "SRi32S High Gain, 5 Vpp, 500 sps, Linear phase"
+resp = "RESP.XX.GB079..CHZ.SRI32SHG.8.5.500.LIN"
+
+[1000]
+description = "SRi32S High Gain, 5 Vpp, 1000 sps, Linear phase"
+resp = "RESP.XX.GB073..FHZ.SRI32SHG.8.5.1000.LIN"

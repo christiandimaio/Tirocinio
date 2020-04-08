@@ -1,0 +1,66 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[1]
+description="Centaur, 0.25 vpp (gain 160), 1 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN507..LHZ.CENTAUR.160.1.OFF.LP"
+
+[2]
+description="Centaur, 0.25 vpp (gain 160), 2 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN515..MHZ.CENTAUR.160.2.OFF.LP"
+
+[5]
+description="Centaur, 0.25 vpp (gain 160), 5 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN523..MHZ.CENTAUR.160.5.OFF.LP"
+
+[10]
+description="Centaur, 0.25 vpp (gain 160), 10 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN531..BHZ.CENTAUR.160.10.OFF.LP"
+
+[20]
+description="Centaur, 0.25 vpp (gain 160), 20 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN539..BHZ.CENTAUR.160.20.OFF.LP"
+
+[40]
+description="Centaur, 0.25 vpp (gain 160), 40 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN547..BHZ.CENTAUR.160.40.OFF.LP"
+
+[50]
+description="Centaur, 0.25 vpp (gain 160), 50 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN555..BHZ.CENTAUR.160.50.OFF.LP"
+
+[80]
+description="Centaur, 0.25 vpp (gain 160), 80 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN563..HHZ.CENTAUR.160.80.OFF.LP"
+
+[100]
+description="Centaur, 0.25 vpp (gain 160), 100 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN571..HHZ.CENTAUR.160.100.OFF.LP"
+
+[125]
+description="Centaur, 0.25 vpp (gain 160), 125 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN636..HHZ.CENTAUR.160.125.OFF.LP"
+
+[200]
+description="Centaur, 0.25 vpp (gain 160), 200 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN579..HHZ.CENTAUR.160.200.OFF.LP"
+
+[250]
+description="Centaur, 0.25 vpp (gain 160), 250 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN587..CHZ.CENTAUR.160.250.OFF.LP"
+
+[500]
+description="Centaur, 0.25 vpp (gain 160), 500 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN595..CHZ.CENTAUR.160.500.OFF.LP"
+
+[1000]
+description="Centaur, 0.25 vpp (gain 160), 1000 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN603..FHZ.CENTAUR.160.1000.OFF.LP"
+
+[2000]
+description="Centaur, 0.25 vpp (gain 160), 2000 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN611..FHZ.CENTAUR.160.2000.OFF.LP"
+
+[5000]
+description="Centaur, 0.25 vpp (gain 160), 5000 sps, DC removal filter off, Linear phase"
+resp = "RESP.XX.NN619..FHZ.CENTAUR.160.5000.OFF.LP"

@@ -1,0 +1,11 @@
+[Main]
+question = "Select the shunt (damping) resistance for this OMNI-2400:"
+detail = "oyo_geospace_hs1_sensors-details.html"
+
+[none]
+description = "OMNI-2400, 15 Hz, 52 V/m/s, Rc=2400 Ohms"
+resp = "RESP.XX.NS476..SLZ.OMNI2400.2400.NONE.15.52"
+
+[11800 Ohms]
+description = "OMNI-2400, 15 Hz, 52 V/m/s, Rc=2400 Ohms, Rs=11800 Ohms"
+resp = "RESP.XX.NS477..SLZ.OMNI2400.2400.11800.15.43_2"

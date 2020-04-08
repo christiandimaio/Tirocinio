@@ -1,0 +1,6 @@
+[Main]
+question = "Select whether your DM24 Mk2 uses single-ended or differential output"
+detail = "guralp_CMG_DM24_mk1_dataloggers-details.html"
+
+[Standalone]
+path = "mk2.se.txt"

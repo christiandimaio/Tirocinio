@@ -1,0 +1,8 @@
+[Main]
+question = "Select the low-frequency corner of this DT-SOLO geophone"
+
+[5 Hz]
+path = "5.txt"
+
+[10 Hz]
+path = "10.txt"

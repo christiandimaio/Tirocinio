@@ -1,0 +1,22 @@
+[Main]
+question = "Select the AC-73 clip level"
+
+[0.5g]
+description = "GeoSig AC-73, DC to 100 Hz, +/-10V differential full scale voltage, 0.5g clip level"
+resp = "RESP.XX.NS685..BNZ.AC73.DC_100.10VDF.0_5G"
+
+[1g]
+description = "GeoSig AC-73, DC to 100 Hz, +/-10V differential full scale voltage, 1g clip level"
+resp = "RESP.XX.NS686..BNZ.AC73.DC_100.10VDF.1G"
+
+[2g]
+description = "GeoSig AC-73, DC to 100 Hz, +/-10V differential full scale voltage, 2g clip level"
+resp = "RESP.XX.NS525..BNZ.AC73.DC_100.10VDF.2G"
+
+[3g]
+description = "GeoSig AC-73, DC to 100 Hz, +/-10V differential full scale voltage, 3g clip level"
+resp = "RESP.XX.NS687..BNZ.AC73.DC_100.10VDF.3G"
+
+[4g]
+description = "GeoSig AC-73, DC to 100 Hz, +/-10V differential full scale voltage, 4g clip level"
+resp = "RESP.XX.NS688..BNZ.AC73.DC_100.10VDF.4G"

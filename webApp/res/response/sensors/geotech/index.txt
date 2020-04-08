@@ -1,0 +1,14 @@
+[Main]
+question = "Select the Geotech sensor model"
+
+[Short-period sensors (GS-13, S-13, S-13J)]
+path = "x13.txt"
+
+[BB-13]
+path = "x13.txt"
+
+[KS2000]
+path = "ks2000.txt"
+
+[Accelerometers (S-230, PA-23 and PA-23BH)]
+path = "pa23.txt"

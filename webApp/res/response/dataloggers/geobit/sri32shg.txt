@@ -1,0 +1,17 @@
+[Main]
+question = "Select the input range"
+
+[6.8 Vpp]
+path = "sri32shg.6_8.txt"
+
+[5 Vpp]
+path = "sri32shg.5.txt"
+
+[2.5 Vpp]
+path = "sri32shg.2_5.txt"
+
+[1.25 Vpp]
+path = "sri32shg.1_25.txt"
+
+[0.625 Vpp]
+path = "sri32shg.0_625.txt"

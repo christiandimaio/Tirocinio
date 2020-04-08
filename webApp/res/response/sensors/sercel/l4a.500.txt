@@ -1,0 +1,6 @@
+[Main]
+question = "Select the shunt resistance for this L-4A:"
+
+[810 Ohms]
+description = "L-4A, 2 Hz, 51.5 V/m/s, Rc=500 Ohms, Rs=810 Ohms"
+resp = "RESP.XX.NS150..SHZ.L4A.500.810.2.51_5"

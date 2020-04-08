@@ -1,0 +1,17 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[250]
+path = "64.250.txt"
+
+[500]
+path = "64.500.txt"
+
+[1000]
+path = "64.1000.txt"
+
+[2000]
+path = "64.2000.txt"
+
+[4000]
+path = "64.4000.txt"

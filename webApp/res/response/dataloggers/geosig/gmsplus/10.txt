@@ -1,0 +1,30 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[40]
+description = "GMSplus,+/-10 V Full Scale Input Range, 40 sps"
+resp = "RESP.XX.GS002..BNZ.GMSPLUS.10.40"
+
+[50]
+description = "GMSplus,+/-10 V Full Scale Input Range, 50 sps"
+resp = "RESP.XX.GS004..BNZ.GMSPLUS.10.50"
+
+[100]
+description = "GMSplus,+/-10 V Full Scale Input Range, 100 sps"
+resp = "RESP.XX.GS006..HNZ.GMSPLUS.10.100"
+
+[200]
+description = "GMSplus,+/-10 V Full Scale Input Range, 200 sps"
+resp = "RESP.XX.GS008..HNZ.GMSPLUS.10.200"
+
+[250]
+description = "GMSplus,+/-10 V Full Scale Input Range, 250 sps"
+resp = "RESP.XX.GS010..CNZ.GMSPLUS.10.250"
+
+[500]
+description = "GMSplus,+/-10 V Full Scale Input Range, 500 sps"
+resp = "RESP.XX.GS012..CNZ.GMSPLUS.10.500"
+
+[1000]
+description = "GMSplus,+/-10 V Full Scale Input Range, 1000 sps"
+resp = "RESP.XX.GS014..FNZ.GMSPLUS.10.1000"

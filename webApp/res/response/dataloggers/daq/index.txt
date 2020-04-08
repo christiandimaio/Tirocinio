@@ -1,0 +1,15 @@
+[Main]
+question = "Select the DAQ Systems (NetDAS) model"
+detail = "daq_dataloggers-details.html"
+
+[DAQ24USB-4]
+path = "cs5532.4.lo.txt"
+
+[DAQ24USB-4CH]
+path = "cs5532.4ch.txt"
+
+[DAQ24USB-5V]
+path = "cs5532.5v.txt"
+
+[DAQ24USB-XR]
+path = "ads1255.txt"

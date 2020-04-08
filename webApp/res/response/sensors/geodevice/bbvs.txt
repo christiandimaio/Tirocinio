@@ -1,0 +1,10 @@
+[Main]
+question = "Select the natural period in seconds for this sensor"
+
+[60 seconds]
+description = "BBVS, 60s-40Hz, 1000 V/m/s"
+resp = "RESP.XX.NS367..BHZ.BBVS.60.1000"
+
+[120 seconds]
+description = "BBVS, 120s-40Hz, 1000 V/m/s"
+resp = "RESP.XX.NS368..BHZ.BBVS.120.1000"

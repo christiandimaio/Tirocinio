@@ -1,0 +1,46 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[10]
+description="Taurus, 40 Vpp (gain 0.4), 10 sps, high impedance, DC removal filter on (1 mHz)"
+resp = "RESP.XX.NN102..BHZ.TAURUS.0_4.10.HI.0_001"
+
+[20]
+description="Taurus, 40 Vpp (gain 0.4), 20 sps, high impedance, DC removal filter on (1 mHz)"
+resp = "RESP.XX.NN122..BHZ.TAURUS.0_4.20.HI.0_001"
+
+[40]
+description="Taurus, 40 Vpp (gain 0.4), 40 sps, high impedance, DC removal filter on (1 mHz)"
+resp = "RESP.XX.NN142..BHZ.TAURUS.0_4.40.HI.0_001"
+
+[50]
+description="Taurus, 40 Vpp (gain 0.4), 50 sps, high impedance, DC removal filter on (1 mHz)"
+resp = "RESP.XX.NN162..BHZ.TAURUS.0_4.50.HI.0_001"
+
+[80]
+description="Taurus, 40 Vpp (gain 0.4), 80 sps, high impedance, DC removal filter on (1 mHz)"
+resp = "RESP.XX.NN182..BHZ.TAURUS.0_4.80.HI.0_001"
+
+[100]
+description="Taurus, 40 Vpp (gain 0.4), 100 sps, high impedance, DC removal filter on (1 mHz)"
+resp = "RESP.XX.NN202..HHZ.TAURUS.0_4.100.HI.0_001"
+
+[120]
+description="Taurus, 40 Vpp (gain 0.4), 120 sps, high impedance, DC removal filter on (1 mHz)"
+resp = "RESP.XX.NN222..HHZ.TAURUS.0_4.120.HI.0_001"
+
+[200]
+description="Taurus, 40 Vpp (gain 0.4), 200 sps, high impedance, DC removal filter on (1 mHz)"
+resp = "RESP.XX.NN242..HHZ.TAURUS.0_4.200.HI.0_001"
+
+[250]
+description="Taurus, 40 Vpp (gain 0.4), 250 sps, high impedance, DC removal filter on (1 mHz)"
+resp = "RESP.XX.NN262..HHZ.TAURUS.0_4.250.HI.0_001"
+
+[500]
+description="Taurus, 40 Vpp (gain 0.4), 500 sps, high impedance, DC removal filter on (1 mHz)"
+resp = "RESP.XX.NN282..HHZ.TAURUS.0_4.500.HI.0_001"
+
+[1000]
+description="Taurus, 40 Vpp (gain 0.4), 1000 sps, high impedance, DC removal filter on (1 mHz)"
+resp = "RESP.XX.NN302..HHZ.TAURUS.0_4.1000.HI.0_001"

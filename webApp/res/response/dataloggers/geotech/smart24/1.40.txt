@@ -1,0 +1,45 @@
+[Main]
+question = "Select the primary sample rate in samples per second"
+detail = "geotech_smart24_dataloggers-details.html"
+
+[1]
+path = "1.40.1.txt"
+
+[5]
+path = "1.40.5.txt"
+
+[10]
+path = "1.40.10.txt"
+
+[20]
+path = "1.40.20.txt"
+
+[25]
+path = "1.40.25.txt"
+
+[40]
+path = "1.40.40.txt"
+
+[50]
+path = "1.40.50.txt"
+
+[100]
+path = "1.40.100.txt"
+
+[125]
+path = "1.40.125.txt"
+
+[200]
+path = "1.40.200.txt"
+
+[250]
+path = "1.40.250.txt"
+
+[500]
+path = "1.40.500.txt"
+
+[1000]
+path = "1.40.1000.txt"
+
+[2000]
+path = "1.40.2000.txt"

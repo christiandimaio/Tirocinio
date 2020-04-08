@@ -1,0 +1,9 @@
+[Main]
+question = "Select the onboard sensor for this channel"
+detail = "./lunitek_sentinel_dataloggers-details.html"
+
+[MEMS Accelerometer (10 Vpp)]
+path = "sentinel.mems.txt"
+
+[Geophone]
+path = "sentinel.geo.txt"

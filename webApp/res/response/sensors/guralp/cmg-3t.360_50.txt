@@ -1,0 +1,14 @@
+[Main]
+question = "Select the sensor sensitivity in V/m/s"
+
+[1500]
+resp = "RESP.XX.NS001..BHZ.CMG3T.360.1500"
+description = "CMG-3T, 360s to 50Hz, 1500 V/m/s"
+
+[2000]
+resp = "RESP.XX.NS002..BHZ.CMG3T.360.2000"
+description = "CMG-3T, 360s to 50Hz, 2000 V/m/s"
+
+[20000]
+resp = "RESP.XX.NS003..BHZ.CMG3T.360.20000"
+description = "CMG-3T, 360s to 50Hz, 20000 V/m/s"

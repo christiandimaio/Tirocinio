@@ -1,0 +1,10 @@
+[Main]
+question = "Select the R-Sensors CME-3211 sensor component"
+
+[Horizontal]
+description = "CME-3211, Horizontal component, 1-50 Hz, 2000 V/m/s"
+resp = "RESP.XX.NS625..BHN.CME3211.1.2000"
+
+[Vertical]
+description = "CME-3211, Vertical component, 1-50 Hz, 2000 V/m/s"
+resp = "RESP.XX.NS626..BHZ.CME3211.1.2000"

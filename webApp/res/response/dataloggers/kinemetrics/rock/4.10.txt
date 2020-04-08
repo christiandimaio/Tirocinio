@@ -1,0 +1,8 @@
+[Main]
+question = "Select the final filter type"
+
+[Causal]
+path = "4.10.C.txt"
+
+[Non-causal]
+path = "4.10.NonC.txt"

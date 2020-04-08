@@ -1,0 +1,10 @@
+[Main]
+question = "Select the final sample rate of this channel"
+
+[1]
+description = "NDAS-8226, gain 1, 1 sps decimated from 1000 sps"
+resp = "RESP.XX.RS101..LHZ.NDAS8226.1.1000.1"
+
+[1000]
+description = "NDAS-8226, gain 1, 1000 sps"
+resp = "RESP.XX.RS096..FHZ.NDAS8226.1.1000.NONE"

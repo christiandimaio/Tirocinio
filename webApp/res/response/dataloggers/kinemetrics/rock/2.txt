@@ -1,0 +1,11 @@
+[Main]
+question = "Select the Input Range in Vpp"
+
+[40]
+path = "2.40.txt"
+
+[10]
+path = "2.10.txt"
+
+[5]
+path = "2.5.txt"

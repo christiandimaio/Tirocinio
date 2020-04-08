@@ -1,0 +1,6 @@
+[Main]
+question = "Select the fundamental frequency for this HS-1-LT:"
+
+[2 Hz]
+description = "HS-1-LT Mini, 2 Hz, 62.1 V/m/s, Rc=2500 Ohms"
+resp = "RESP.XX.NS270..SHZ.HS1LT.2500.NONE.2.62"

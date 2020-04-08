@@ -1,0 +1,32 @@
+[Main]
+question = "Select this channel's tap table lookup number"
+
+[1]
+path = "1_t1_10.1.txt"
+
+[2]
+path = "1_t1_10.2.txt"
+
+[3]
+path = "1_t1_10.3.txt"
+
+[4]
+path = "1_t1_10.4.txt"
+
+[5]
+path = "1_t1_10.5.txt"
+
+[6]
+path = "1_t1_10.6.txt"
+
+[7]
+path = "1_t1_10.7.txt"
+
+[8]
+path = "1_t1_10.8.txt"
+
+[9]
+path = "1_t1_10.9.txt"
+
+[10]
+path = "1_t1_10.10.txt"

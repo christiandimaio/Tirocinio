@@ -1,0 +1,16 @@
+[Main]
+question = "Select the Silicon Audio sensor model"
+
+[Ultra Low Noise Accelerometer]
+path = "lownoise.acc.txt"
+
+[Ultra Low Noise Velocity Sensor]
+description = "Ultra Low Noise Velocity Sensor, 40s, 750 V/M/S"
+resp = "RESP.XX.NS678..BHZ.OmniTilt.10.590"
+
+[OmniTilt Accelerometer]
+path = "omnitilt.acc.txt"
+
+[OmniTilt Velocity Sensor]
+description = "OmniTilt Velocity Sensor, 10s, 590 V/M/S"
+resp = "RESP.XX.NS679..BHZ.LowNoise.40.750"

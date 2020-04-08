@@ -1,0 +1,38 @@
+[Main]
+question = "Select the sample rate (in samples/second) for this data stream"
+
+[31.25]
+resp = "RESP.XX.SG004..BHZ.4.31_25"
+description = "EDAX24, gain 4, 31.25 sps"
+
+[50]
+resp = "RESP.XX.SG010..BHZ.4.50"
+description = "EDAX24, gain 4, 50 sps"
+
+[62.5]
+resp = "RESP.XX.SG016..BHZ.4.62_5"
+description = "EDAX24, gain 4, 62.5 sps"
+
+[100]
+resp = "RESP.XX.SG022..HHZ.4.100"
+description = "EDAX24, gain 4, 100 sps"
+
+[125]
+resp = "RESP.XX.SG028..HHZ.4.125"
+description = "EDAX24, gain 4, 125 sps"
+
+[200]
+resp = "RESP.XX.SG034..HHZ.4.200"
+description = "EDAX24, gain 4, 200 sps"
+
+[250]
+resp = "RESP.XX.SG040..HHZ.4.250"
+description = "EDAX24, gain 4, 250 sps"
+
+[400]
+resp = "RESP.XX.SG046..HHZ.4.400"
+description = "EDAX24, gain 4, 400 sps"
+
+[500]
+resp = "RESP.XX.SG052..HHZ.4.500"
+description = "EDAX24, gain 4, 500 sps"

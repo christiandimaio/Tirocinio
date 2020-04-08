@@ -1,0 +1,9 @@
+[Main]
+question = "Select the sensor port (QAP) recording this channel: port A (chans 1-3) = HR A/D; port B (chans 4-6) = SR A/D"
+detail = "quanterra_Q330HR_dataloggers-details.html"
+
+[A]
+path = "q330hr.a.txt"
+
+[B]
+path = "q330hr.b.txt"

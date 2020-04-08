@@ -1,0 +1,18 @@
+[MAIN]
+question = "Select this channel's sample rate in samples per second"
+
+[1000]
+description = "CD24, gain 1, 1000 sps, tap id 1 (1000 500 250 125 Hz)"
+resp = "RESP.XX.G3500..HHZ.CMG_CD24.1.1000.1000"
+
+[500]
+description = "CD24, gain 1, 500 sps, tap id 1 (1000 500 250 125 Hz)"
+resp = "RESP.XX.G3502..HHZ.CMG_CD24.1.1000_500.500"
+
+[250]
+description = "CD24, gain 1, 250 sps, tap id 1 (1000 500 250 125 Hz)"
+resp = "RESP.XX.G3508..HHZ.CMG_CD24.1.1000_500_250.250"
+
+[125]
+description = "CD24, gain 1, 125 sps, tap id 1 (1000 500 250 125 Hz)"
+resp = "RESP.XX.G3525..HHZ.CMG_CD24.1.1000_500_250_125.125"

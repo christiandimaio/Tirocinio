@@ -1,0 +1,23 @@
+[Main]
+question = "Select the Clip Value (full scale range)"
+detail = "kinemetrics_episensor_sensors-details.html"
+
+[0.25g]
+description = "Episensor 2, DC to >200 Hz,  5V differential full scale voltage, 0.25g clip level"
+resp = "RESP.XX.NS467..BNZ.Episensor2.DC_200.20VDF.0_25G"
+
+[0.5g]
+description = "Episensor 2, DC to >200 Hz,  5V differential full scale voltage, 0.5g clip level"
+resp = "RESP.XX.NS468..BNZ.Episensor2.DC_200.20VDF.0_5G"
+
+[1g]
+description = "Episensor 2, DC to >200 Hz,  5V differential full scale voltage, 1g clip level"
+resp = "RESP.XX.NS469..BNZ.Episensor2.DC_200.20VDF.1G"
+
+[2g]
+description = "Episensor 2, DC to >200 Hz,  5V differential full scale voltage, 2g clip level"
+resp = "RESP.XX.NS470..BNZ.Episensor2.DC_200.20VDF.2G"
+
+[4g]
+description = "Episensor 2, DC to >200 Hz,  5V differential full scale voltage, 4g clip level"
+resp = "RESP.XX.NS471..BNZ.Episensor2.DC_200.20VDF.4G"

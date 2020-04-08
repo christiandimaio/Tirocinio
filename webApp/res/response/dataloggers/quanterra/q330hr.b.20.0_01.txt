@@ -1,0 +1,14 @@
+[Main]
+question = "Select the linear filter setting for this channel"
+
+[LINEAR AT ALL SPS]
+path = "q330hr.b.20.0_01.all.txt"
+
+[LINEAR BELOW 100 SPS]
+path = "q330hr.b.20.0_01.below100.txt"
+
+[LINEAR BELOW 40 SPS]
+path = "q330hr.b.20.0_01.below40.txt"
+
+[LINEAR BELOW 20 SPS]
+path = "q330hr.b.20.0_01.below20.txt"

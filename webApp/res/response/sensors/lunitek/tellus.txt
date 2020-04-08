@@ -1,0 +1,22 @@
+[Main]
+question = "Select the Tellus corner period"
+
+[1s]
+description = "TELLUS, 1s, 400 V/m/s"
+resp = "RESP.XX.NS479..SHZ.TELLUS.1.400"
+
+[5s]
+description = "TELLUS, 5s, 400 V/m/s"
+resp = "RESP.XX.NS496..SHZ.TELLUS.5.400"
+
+[30s]
+description = "TELLUS, 30s, 2000 V/m/s"
+resp = "RESP.XX.NS497..BHZ.TELLUS.30.2000"
+
+[60s]
+description = "TELLUS, 60s, 2000 V/m/s"
+resp = "RESP.XX.NS498..BHZ.TELLUS.60.2000"
+
+[120s]
+description = "TELLUS, 120s, 2000 V/m/s"
+resp = "RESP.XX.NS499..BHZ.TELLUS.120.2000"

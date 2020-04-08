@@ -1,0 +1,22 @@
+[Main]
+question = "Select the sample rate in samples per second for this channel"
+
+[100]
+description = "C100 v1 SRi32S, 100 sps, Minimum phase"
+resp = "RESP.XX.GB082..HHZ.C100SRI32S_V1.100.MIN"
+
+[200]
+description = "C100 v1 SRi32S, 200 sps, Minimum phase"
+resp = "RESP.XX.GB084..HHZ.C100SRI32S_V1.200.MIN"
+
+[250]
+description = "C100 v1 SRi32S, 250 sps, Minimum phase"
+resp = "RESP.XX.GB086..CHZ.C100SRI32S_V1.250.MIN"
+
+[500]
+description = "C100 v1 SRi32S, 500 sps, Minimum phase"
+resp = "RESP.XX.GB088..CHZ.C100SRI32S_V1.500.MIN"
+
+[1000]
+description = "C100 v1 SRi32S, 1000 sps, Minimum phase"
+resp = "RESP.XX.GB090..FHZ.C100SRI32S_V1.1000.MIN"

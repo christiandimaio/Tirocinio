@@ -1,0 +1,11 @@
+[Main]
+question = "Select the Meridian sensor long-period corner"
+detail = "nanometrics_meridian_sensors-details.html"
+
+[Meridian Compact Posthole 20 s]
+description = "Meridian Compact Posthole, 20 s, 753 V/m/s"
+resp = "RESP.XX.NS348..BHZ.TrilliumCompact20.20.753"
+
+[Meridian Compact Posthole 120 s]
+description = "Meridian Compact Posthole, 120 s, 754 V/m/s"
+resp = "RESP.XX.NS124..BHZ.TrilliumCompact120.120.754"

@@ -1,0 +1,66 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[1]
+description = "RT125A, gain 256, 1 sps"
+resp = "RESP.XX.NR249..LLZ.125A.256.1"
+
+[2]
+description = "RT125A, gain 256, 2 sps"
+resp = "RESP.XX.NR256..MLZ.125A.256.2"
+
+[4]
+description = "RT125A, gain 256, 4 sps"
+resp = "RESP.XX.NR263..MLZ.125A.256.4"
+
+[5]
+description = "RT125A, gain 256, 5 sps"
+resp = "RESP.XX.NR270..MLZ.125A.256.5"
+
+[8]
+description = "RT125A, gain 256, 8 sps"
+resp = "RESP.XX.NR277..MLZ.125A.256.8"
+
+[10]
+description = "RT125A, gain 256, 10 sps"
+resp = "RESP.XX.NR284..SLZ.125A.256.10"
+
+[20]
+description = "RT125A, gain 256, 20 sps"
+resp = "RESP.XX.NR291..SLZ.125A.256.20"
+
+[25]
+description = "RT125A, gain 256, 25 sps"
+resp = "RESP.XX.NR298..SLZ.125A.256.25"
+
+[40]
+description = "RT125A, gain 256, 40 sps"
+resp = "RESP.XX.NR305..SLZ.125A.256.40"
+
+[50]
+description = "RT125A, gain 256, 50 sps"
+resp = "RESP.XX.NR312..SLZ.125A.256.50"
+
+[100]
+description = "RT125A, gain 256, 100 sps"
+resp = "RESP.XX.NR319..ELZ.125A.256.100"
+
+[125]
+description = "RT125A, gain 256, 125 sps"
+resp = "RESP.XX.NR326..ELZ.125A.256.125"
+
+[200]
+description = "RT125A, gain 256, 200 sps"
+resp = "RESP.XX.NR333..ELZ.125A.256.200"
+
+[250]
+description = "RT125A, gain 256, 250 sps"
+resp = "RESP.XX.NR340..DLZ.125A.256.250"
+
+[500]
+description = "RT125A, gain 256, 500 sps"
+resp = "RESP.XX.NR347..DLZ.125A.256.500"
+
+[1000]
+description = "RT125A, gain 256, 1000 sps"
+resp = "RESP.XX.NR354..GLZ.125A.256.1000"

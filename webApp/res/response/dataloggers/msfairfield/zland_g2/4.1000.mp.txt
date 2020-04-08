@@ -1,0 +1,11 @@
+[Main]
+question = "Select the IIR Low Cut Filter setting"
+detail = "msfairfield_zland_g2_dataloggers-details.html"
+
+[Off]
+description = "ZLand 1C,3C, 12 dB gain, 1000 sps, minimum phase final filters, low cut off"
+rresp = "RESP.XX.MF067..GPZ.ZLAND_1C3C.4.1000.MP.OFF"
+
+[1 Hz]
+description = "ZLand 1C,3C, 12 dB gain, 1000 sps, minimum phase final filters, 1 Hz low cut"
+rresp = "RESP.XX.MF068..GPZ.ZLAND_1C3C.4.1000.MP.1"

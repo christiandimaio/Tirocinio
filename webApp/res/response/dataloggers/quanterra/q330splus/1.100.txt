@@ -1,0 +1,18 @@
+[Main]
+question = "Select the linear filter setting for this channel"
+
+[LINEAR AT ALL SPS]
+description = "Q330S+, gain 1, 100 sps, linear filters for all sample rates"
+resp = "RESP.XX.NQ345..HHZ.Q330Splus.1.100.all"
+
+[LINEAR BELOW 100 SPS]
+description = "Q330S+, gain 1, 100 sps, linear filters below 100 sps"
+resp = "RESP.XX.NQ375..HHZ.Q330Splus.1.100.below100"
+
+[LINEAR BELOW 40 SPS]
+description = "Q330S+, gain 1, 100 sps, linear filters below 40 sps"
+resp = "RESP.XX.NQ405..HHZ.Q330Splus.1.100.below40"
+
+[LINEAR BELOW 20 SPS]
+description = "Q330S+, gain 1, 100 sps, linear filters below 20 sps"
+resp = "RESP.XX.NQ435..HHZ.Q330Splus.1.100.below20"

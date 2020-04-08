@@ -1,0 +1,90 @@
+[Main]
+question = "Select the sample rate in samples per second for this channel"
+
+[1]
+resp = "RESP.XX.NE002..LHZ.PS6_24.L.1"
+description = "EDR-209, Low (default) gain, 1 sps"
+
+[2]
+resp = "RESP.XX.NE005..MHZ.PS6_24.L.2"
+description = "EDR-209, Low (default) gain, 2 sps"
+
+[4]
+resp = "RESP.XX.NE008..MHZ.PS6_24.L.4"
+description = "EDR-209, Low (default) gain, 4 sps"
+
+[5]
+resp = "RESP.XX.NE011..MHZ.PS6_24.L.5"
+description = "EDR-209, Low (default) gain, 5 sps"
+
+[10]
+resp = "RESP.XX.NE014..BHZ.PS6_24.L.10"
+description = "EDR-209, Low (default) gain, 10 sps"
+
+[20]
+resp = "RESP.XX.NE017..BHZ.PS6_24.L.20"
+description = "EDR-209, Low (default) gain, 20 sps"
+
+[25]
+resp = "RESP.XX.NE020..BHZ.PS6_24.L.25"
+description = "EDR-209, Low (default) gain, 25 sps"
+
+[40]
+resp = "RESP.XX.NE023..BHZ.PS6_24.L.40"
+description = "EDR-209, Low (default) gain, 40 sps"
+
+[50]
+resp = "RESP.XX.NE026..BHZ.PS6_24.L.50"
+description = "EDR-209, Low (default) gain, 50 sps"
+
+[75]
+resp = "RESP.XX.NE029..BHZ.PS6_24.L.75"
+description = "EDR-209, Low (default) gain, 75 sps"
+
+[100]
+resp = "RESP.XX.NE032..HHZ.PS6_24.L.100"
+description = "EDR-209, Low (default) gain, 100 sps"
+
+[120]
+resp = "RESP.XX.NE035..HHZ.PS6_24.L.120"
+description = "EDR-209, Low (default) gain, 120 sps"
+
+[125]
+resp = "RESP.XX.NE038..HHZ.PS6_24.L.125"
+description = "EDR-209, Low (default) gain, 125 sps"
+
+[150]
+resp = "RESP.XX.NE041..HHZ.PS6_24.L.150"
+description = "EDR-209, Low (default) gain, 150 sps"
+
+[200]
+resp = "RESP.XX.NE044..HHZ.PS6_24.L.200"
+description = "EDR-209, Low (default) gain, 200 sps"
+
+[250]
+resp = "RESP.XX.NE047..HHZ.PS6_24.L.250"
+description = "EDR-209, Low (default) gain, 250 sps"
+
+[300]
+resp = "RESP.XX.NE050..HHZ.PS6_24.L.300"
+description = "EDR-209, Low (default) gain, 300 sps"
+
+[375]
+resp = "RESP.XX.NE053..HHZ.PS6_24.L.375"
+description = "EDR-209, Low (default) gain, 375 sps"
+
+[500]
+resp = "RESP.XX.NE056..HHZ.PS6_24.L.500"
+description = "EDR-209, Low (default) gain, 500 sps"
+
+[600]
+resp = "RESP.XX.NE059..HHZ.PS6_24.L.600"
+description = "EDR-209, Low (default) gain, 600 sps"
+
+[750]
+resp = "RESP.XX.NE062..HHZ.PS6_24.L.750"
+description = "EDR-209, Low (default) gain, 750 sps"
+
+[1000]
+resp = "RESP.XX.NE065..HHZ.PS6_24.L.1000"
+description = "EDR-209, Low (default) gain, 1000 sps"

@@ -1,0 +1,98 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[1]
+description = "Affinity, gain 4, 1 sps"
+resp = "RESP.XX.NA003..LHZ.AFFINITY.4.1"
+
+[2]
+description = "Affinity, gain 4, 2 sps"
+resp = "RESP.XX.NA010..MHZ.AFFINITY.4.2"
+
+[4]
+description = "Affinity, gain 4, 4 sps"
+resp = "RESP.XX.NA017..MHZ.AFFINITY.4.4"
+
+[5]
+description = "Affinity, gain 4, 5 sps"
+resp = "RESP.XX.NA024..MHZ.AFFINITY.4.5"
+
+[8]
+description = "Affinity, gain 4, 8 sps"
+resp = "RESP.XX.NA031..MHZ.AFFINITY.4.8"
+
+[10]
+description = "Affinity, gain 4, 10 sps"
+resp = "RESP.XX.NA038..BHZ.AFFINITY.4.10"
+
+[16]
+description = "Affinity, gain 4, 16 sps"
+resp = "RESP.XX.NA045..BHZ.AFFINITY.4.16"
+
+[20]
+description = "Affinity, gain 4, 20 sps"
+resp = "RESP.XX.NA052..BHZ.AFFINITY.4.20"
+
+[25]
+description = "Affinity, gain 4, 25 sps"
+resp = "RESP.XX.NA059..BHZ.AFFINITY.4.25"
+
+[32]
+description = "Affinity, gain 4, 32 sps"
+resp = "RESP.XX.NA066..BHZ.AFFINITY.4.32"
+
+[40]
+description = "Affinity, gain 4, 40 sps"
+resp = "RESP.XX.NA073..BHZ.AFFINITY.4.40"
+
+[50]
+description = "Affinity, gain 4, 50 sps"
+resp = "RESP.XX.NA080..BHZ.AFFINITY.4.50"
+
+[80]
+description = "Affinity, gain 4, 80 sps"
+resp = "RESP.XX.NA087..BHZ.AFFINITY.4.80"
+
+[100]
+description = "Affinity, gain 4, 100 sps"
+resp = "RESP.XX.NA094..HHZ.AFFINITY.4.100"
+
+[125]
+description = "Affinity, gain 4, 125 sps"
+resp = "RESP.XX.NA101..HHZ.AFFINITY.4.125"
+
+[160]
+description = "Affinity, gain 4, 160 sps"
+resp = "RESP.XX.NA108..HHZ.AFFINITY.4.160"
+
+[200]
+description = "Affinity, gain 4, 200 sps"
+resp = "RESP.XX.NA115..HHZ.AFFINITY.4.200"
+
+[250]
+description = "Affinity, gain 4, 250 sps"
+resp = "RESP.XX.NA122..CHZ.AFFINITY.4.250"
+
+[400]
+description = "Affinity, gain 4, 400 sps"
+resp = "RESP.XX.NA129..CHZ.AFFINITY.4.400"
+
+[500]
+description = "Affinity, gain 4, 500 sps"
+resp = "RESP.XX.NA136..CHZ.AFFINITY.4.500"
+
+[800]
+description = "Affinity, gain 4, 800 sps"
+resp = "RESP.XX.NA143..CHZ.AFFINITY.4.800"
+
+[1000]
+description = "Affinity, gain 4, 1000 sps"
+resp = "RESP.XX.NA150..FHZ.AFFINITY.4.1000"
+
+[2000]
+description = "Affinity, gain 4, 2000 sps"
+resp = "RESP.XX.NA157..FHZ.AFFINITY.4.2000"
+
+[4000]
+description = "Affinity, gain 4, 4000 sps"
+resp = "RESP.XX.NA164..FHZ.AFFINITY.4.4000"

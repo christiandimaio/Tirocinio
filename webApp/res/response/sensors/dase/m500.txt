@@ -1,0 +1,8 @@
+[Main]
+question = "Select the CP HM- or ZM-500 corner frequency in seconds"
+
+[1]
+path = "m500.1.txt"
+
+[2]
+path = "m500.2.txt"

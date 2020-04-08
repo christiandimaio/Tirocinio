@@ -1,0 +1,6 @@
+[Main]
+question = "Select the LaHusen infrasound sensor model"
+
+[VDP-10]
+description = "VDP-10 (Infrasound), 0.8-157 Hz, 1.003 V/Pa"
+resp = "RESP.XX.IS004..BDF.VDP10.0_01"

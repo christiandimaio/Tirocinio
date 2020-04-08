@@ -1,0 +1,6 @@
+[Main]
+question = "Select the SP-400 corner frequency in seconds"
+
+[15]
+description = "SP-400, 15 s, 2000 V/m/s"
+resp = "RESP.XX.NS180..BHZ.SP400.15.2000"

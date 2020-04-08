@@ -1,0 +1,26 @@
+[Main]
+question = "Select the low-frequency corner period of this KS2000 in seconds:"
+
+[120]
+description = "KS2000, 120 s, 2000 V/m/s"
+resp = "RESP.XX.NS190..BHZ.KS2000.120.2000"
+
+[100]
+description = "KS2000, 100 s, 2000 V/m/s"
+resp = "RESP.XX.NS191..BHZ.KS2000.100.2000"
+
+[60]
+description = "KS2000, 60 s, 2000 V/m/s"
+resp = "RESP.XX.NS192..BHZ.KS2000.60.2000"
+
+[50]
+description = "KS2000, 50 s, 2000 V/m/s"
+resp = "RESP.XX.NS193..BHZ.KS2000.50.2000"
+
+[40]
+description = "KS2000, 40 s, 2000 V/m/s"
+resp = "RESP.XX.NS194..BHZ.KS2000.40.2000"
+
+[30]
+description = "KS2000, 30 s, 2000 V/m/s"
+resp = "RESP.XX.NS195..BHZ.KS2000.30.2000"

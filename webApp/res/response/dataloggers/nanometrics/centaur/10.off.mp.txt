@@ -1,0 +1,58 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[1]
+description="Centaur, 4 vpp (gain 10), 1 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN864..LHZ.CENTAUR.10.1.OFF.MP"
+
+[2]
+description="Centaur, 4 vpp (gain 10), 2 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN886..MHZ.CENTAUR.10.2.OFF.MP"
+
+[5]
+description="Centaur, 4 vpp (gain 10), 5 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN888..MHZ.CENTAUR.10.5.OFF.MP"
+
+[10]
+description="Centaur, 4 vpp (gain 10), 10 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN650..BHZ.CENTAUR.10.10.OFF.MP"
+
+[20]
+description="Centaur, 4 vpp (gain 10), 20 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN652..BHZ.CENTAUR.10.20.OFF.MP"
+
+[40]
+description="Centaur, 4 vpp (gain 10), 40 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN654..BHZ.CENTAUR.10.40.OFF.MP"
+
+[50]
+description="Centaur, 4 vpp (gain 10), 50 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN656..BHZ.CENTAUR.10.50.OFF.MP"
+
+[100]
+description="Centaur, 4 vpp (gain 10), 100 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN808..HHZ.CENTAUR.10.100.OFF.MP"
+
+[125]
+description="Centaur, 4 vpp (gain 10), 125 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN810..HHZ.CENTAUR.10.125.OFF.MP"
+
+[200]
+description="Centaur, 4 vpp (gain 10), 200 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN812..HHZ.CENTAUR.10.200.OFF.MP"
+
+[250]
+description="Centaur, 4 vpp (gain 10), 250 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN726..CHZ.CENTAUR.10.250.OFF.MP"
+
+[500]
+description="Centaur, 4 vpp (gain 10), 500 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN728..CHZ.CENTAUR.10.500.OFF.MP"
+
+[1000]
+description="Centaur, 4 vpp (gain 10), 1000 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN766..FHZ.CENTAUR.10.1000.OFF.MP"
+
+[5000]
+description="Centaur, 4 vpp (gain 10), 5000 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN768..FHZ.CENTAUR.10.5000.OFF.MP"

@@ -1,9 +1,9 @@
 import os
 import shutil
 import json
+from webApp.bin.NrlWrap import NRLWrap
 
-config_path = "C:\\Users\\dima9\\OneDrive - studenti.unisa.it\\Desktop\\TIROCINIO\\webApp\\cfg\\configuration.json"
-config = json.load((open(config_path, "r")))
+
 
 
 def copy_folders(src, dst):
@@ -17,10 +17,19 @@ def custom_bar(current, total, width=80):
 
 
 def retrieve_config_value(search_keys):
-    temp_config = config
-    for key in search_keys:
-        try:
-            temp_config = temp_config[key]
-        except Exception:
-            raise Exception("key not found")
+    with open(os.path.join("/home/christian/Documenti/GitHub/Tirocinio/webApp/cfg","configuration.json"),"r") as config_file:
+        config = json.load(config_file)
+        temp_config = config
+        for key in search_keys:
+            try:
+                temp_config = temp_config[key]
+            except Exception:
+                raise Exception("key not found")
     return temp_config
+
+
+def update_nrl_structure():
+    """
+    Call update local library procedure inside NRLWrap file
+    """
+    NRLWrap.update_local_library()

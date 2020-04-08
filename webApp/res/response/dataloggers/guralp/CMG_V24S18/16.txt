@@ -1,0 +1,54 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[32]
+description = "V24S18, gain 16, 32 sps"
+resp = "RESP.XX.NGV05..BHZ.CMG_V24S18.16.32"
+
+[40]
+description = "V24S18, gain 16, 40 sps"
+resp = "RESP.XX.NGV12..BHZ.CMG_V24S18.16.40"
+
+[50]
+description = "V24S18, gain 16, 50 sps"
+resp = "RESP.XX.NGV19..BHZ.CMG_V24S18.16.50"
+
+[80]
+description = "V24S18, gain 16, 80 sps"
+resp = "RESP.XX.NGV26..BHZ.CMG_V24S18.16.80"
+
+[100]
+description = "V24S18, gain 16, 100 sps"
+resp = "RESP.XX.NGV33..HHZ.CMG_V24S18.16.100"
+
+[125]
+description = "V24S18, gain 16, 125 sps"
+resp = "RESP.XX.NGV40..HHZ.CMG_V24S18.16.125"
+
+[160]
+description = "V24S18, gain 16, 160 sps"
+resp = "RESP.XX.NGV47..HHZ.CMG_V24S18.16.160"
+
+[200]
+description = "V24S18, gain 16, 200 sps"
+resp = "RESP.XX.NGV54..HHZ.CMG_V24S18.16.200"
+
+[250]
+description = "V24S18, gain 16, 250 sps"
+resp = "RESP.XX.NGV61..CHZ.CMG_V24S18.16.250"
+
+[400]
+description = "V24S18, gain 16, 400 sps"
+resp = "RESP.XX.NGV68..CHZ.CMG_V24S18.16.400"
+
+[500]
+description = "V24S18, gain 16, 500 sps"
+resp = "RESP.XX.NGV75..CHZ.CMG_V24S18.16.500"
+
+[1000]
+description = "V24S18, gain 16, 1000 sps"
+resp = "RESP.XX.NGV82..FHZ.CMG_V24S18.16.1000"
+
+[2000]
+description = "V24S18, gain 16, 2000 sps"
+resp = "RESP.XX.NGV89..FHZ.CMG_V24S18.16.2000"

@@ -1,0 +1,50 @@
+[Main]
+question = "Select the sample rate in samples/second for this channel"
+
+[1]
+resp = "RESP.XX.N0316..LHZ.72A08_24b.32.1.1"
+
+[2]
+resp = "RESP.XX.N0317..MHZ.72A08_24b.32.2.2"
+
+[4]
+resp = "RESP.XX.N0318..MHZ.72A08_24b.32.4.4"
+
+[5]
+resp = "RESP.XX.N0319..MHZ.72A08_24b.32.5.5"
+
+[8]
+resp = "RESP.XX.N0320..MHZ.72A08_24b.32.8.8"
+
+[10]
+resp = "RESP.XX.N0321..BHZ.72A08_24b.32.10.10"
+
+[20]
+resp = "RESP.XX.N0322..BHZ.72A08_24b.32.20.20"
+
+[25]
+resp = "RESP.XX.N0323..BHZ.72A08_24b.32.25.25"
+
+[40]
+resp = "RESP.XX.N0324..BHZ.72A08_24b.32.40.40"
+
+[50]
+resp = "RESP.XX.N0325..BHZ.72A08_24b.32.50.50"
+
+[100]
+resp = "RESP.XX.N0326..HHZ.72A08_24b.32.100.100"
+
+[125]
+resp = "RESP.XX.N0327..HHZ.72A08_24b.32.125.125"
+
+[200]
+resp = "RESP.XX.N0328..HHZ.72A08_24b.32.200.200"
+
+[250]
+resp = "RESP.XX.N0329..HHZ.72A08_24b.32.250.250"
+
+[500]
+resp = "RESP.XX.N0330..HHZ.72A08_24b.32.500.500"
+
+[1000]
+resp = "RESP.XX.N0331..HHZ.72A08_24b.32.1000.1000"

@@ -1,0 +1,27 @@
+[Main]
+question = "Select the coil and shunt resistances"
+detail = "sercel_l28lb_sensors-details.html"
+
+[395 Ohm and No Shunt]
+description = "L-28LB, 4.5 Hz, 31.3 V/m/s, Rc=395 Ohms, Rs=none"
+resp = "RESP.XX.NS382..SHZ.L28LB.395.NONE.4_5.31_3"
+
+[395 Ohm and 2490 Ohms]
+description = "L-28LB, 4.5 Hz, 27.0 V/m/s, Rc=395 Ohms, Rs=2490 Ohms"
+resp = "RESP.XX.NS361..SHZ.L28LB.395.2490.4_5.27"
+
+[630 Ohm and No Shunt]
+description = "L-28LB, 4.5 Hz, 27 V/m/s, Rc=630 Ohms, Rs=none"
+resp = "RESP.XX.NS383..SHZ.L28LB.630.NONE.4_5.39_5"
+
+[630 Ohm and 3971 Ohms]
+description = "L-28LB, 4.5 Hz, 27 V/m/s, Rc=630 Ohms, Rs=3971 Ohms"
+resp = "RESP.XX.NS384..SHZ.L28LB.630.3971.4_5.34_1"
+
+[630 Ohm and 6097 Ohms]
+description = "L-28LB, 4.5 Hz, 27 V/m/s, Rc=630 Ohms, Rs=6097 Ohms"
+resp = "RESP.XX.NS385..SHZ.L28LB.630.6097.4_5.35_8"
+
+[630 Ohm and 11874 Ohms]
+description = "L-28LB, 4.5 Hz, 27 V/m/s, Rc=630 Ohms, Rs=11874 Ohms"
+resp = "RESP.XX.NS386..SHZ.L28LB.630.11874.4_5.37_5"

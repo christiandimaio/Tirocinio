@@ -1,0 +1,16 @@
+[Main]
+question = "Select the CEA-DASE sensor model"
+
+[CP H/ZM-500 short period]
+path = "m500.txt"
+
+[LPH/ZA long period]
+path = "lpa.txt"
+
+[MB2000 Microbarometer (infrasound)]
+description = "MB2000 (Infrasound), 0.02-4 Hz, 0.02 V/Pa"
+resp = "RESP.XX.NS343..BDF.MB2000.0_25.0_02"
+
+[MB3a Microbarometer (infrasound)]
+description = "MB3a (Infrasound), 0.01-28 Hz, 0.02 V/Pa"
+resp = "RESP.XX.NS548..BDF.MB3A.0_04.100"

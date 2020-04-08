@@ -1,0 +1,14 @@
+[Main]
+question = "Select the Earth Data model"
+
+[PR6-24]
+path = "pr6_24.txt"
+
+[PS6-24]
+path = "ps6_24.txt"
+
+[EDR-209]
+path = "edr_209.txt"
+
+[EDR-210]
+path = "edr_210.txt"

@@ -1,0 +1,14 @@
+[Main]
+question = "Select the sample rate in samples per second of this channel"
+
+[1]
+resp = "RESP.XX.N1225..LHZ.72A08_24b.32.1_50_125.1"
+description = "RT72A-08, gain 32, 1 sps, 24-bit A/D, 1-50-125 sps streams"
+
+[50]
+resp = "RESP.XX.N1226..BHZ.72A08_24b.32.1_50_125.50"
+description = "RT72A-08, gain 32, 50 sps, 24-bit A/D, 1-50-125 sps streams"
+
+[125]
+resp = "RESP.XX.N1227..HHZ.72A08_24b.32.1_50_125.125"
+description = "RT72A-08, gain 32, 125 sps, 24-bit A/D, 1-50-125 sps streams"

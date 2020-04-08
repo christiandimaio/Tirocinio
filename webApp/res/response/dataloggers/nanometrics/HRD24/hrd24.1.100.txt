@@ -1,0 +1,10 @@
+[Main]
+question = "Select whether the DC removal filter is on (corner at 1 mHz) or off"
+
+[Off]
+description="HRD-24, gain 1, 100 sps, DC removal filter off"
+resp = "RESP.XX.NN011..HHZ.HRD24.1.100.OFF"
+
+[1 mHz]
+description="HRD-24, gain 1, 100 sps, DC removal filter on - corner frequency 1 mHz"
+resp = "RESP.XX.NN012..HHZ.HRD24.1.100.0_001"

@@ -1,0 +1,16 @@
+[Main]
+question = "Select the shunt resistance for this L-10B:"
+detail = "sercel_l10_sensors-details.html"
+
+[3285 Ohms]
+resp = "RESP.XX.NS339..SHZ.L10B.374.3285.4_5.28"
+description = "L-10B, 4.5 Hz, 28 V/m/s, Rc=374 Ohms, Rs=3285 Ohms"
+
+[5363 Ohms]
+resp = "RESP.XX.NS340..SHZ.L10B.374.5363.4_5.29_1"
+description = "L-10B, 4.5 Hz, 29.1 V/m/s, Rc=374 Ohms, Rs=5363 Ohms"
+
+[13287 Ohms]
+resp = "RESP.XX.NS341..SHZ.L10B.374.13287.4_5.30_3"
+description = "L-10B, 4.5 Hz, 30.3 V/m/s, Rc=374 Ohms, Rs=13287 Ohms"
+

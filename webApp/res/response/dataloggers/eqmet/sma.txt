@@ -1,0 +1,23 @@
+[Main]
+question = "Select the sample rate in samples per second"
+detail = "./eqmet_sma_dataloggers-details.html"
+
+[50]
+description = "SMA, gain 1, 50 sps"
+resp = "RESP.XX.EM001..BHZ.SMA.1.50"
+
+[100]
+description = "SMA, gain 1, 100 sps"
+resp = "RESP.XX.EM002..HHZ.SMA.1.100"
+
+[200]
+description = "SMA, gain 1, 200 sps"
+resp = "RESP.XX.EM003..HHZ.SMA.1.200"
+
+[250]
+description = "SMA, gain 1, 250 sps"
+resp = "RESP.XX.EM004..CHZ.SMA.1.250"
+
+[500]
+description = "SMA, gain 1, 500 sps"
+resp = "RESP.XX.EM005..CHZ.SMA.1.500"

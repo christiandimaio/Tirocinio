@@ -1,0 +1,5 @@
+[Main]
+question = "Select the natural period in seconds for this sensor"
+
+[30]
+path = "cmg-edut.30.txt"

@@ -1,0 +1,267 @@
+<html>
+
+    <head>
+        <meta name=Title content="Quanterra Nominal Seismic Datalogger Responses: Qx80">
+        <title>Quanterra Nominal Seismic Datalogger Responses: Qx80</title>
+    </head>
+
+    <body>
+	<p>
+        <h2>Quanterra Qx80 Dataloggers</h2>
+	</p>
+
+	<h3>Qx80 Models</h3>
+	<p>The Qx80 series dataloggers are named according to the number of 
+	   channels available (e.g. Q380, Q680, etc.).  Each of these models 
+	   have the same instrument responses.
+	</p>
+
+	<h3>FIR Filters</h3>
+	<p>Two version of FIR filters were used by the Qx80 series digital signal 
+	   processor (DSP).  The first (tagged 900616 after the firmware version 
+	   released February 1990) had non-normalized FIR coefficients. Each stage's 
+	   gain varied slightly from 1, though the gain of the cascade as a whole was 
+	   unity.  The second version (tagged and released 920812N) had normalized FIR filters.  
+	   The LOG channel notes the firmware version in use at the time of recording.
+	</p>
+
+	<p>Typically, decimation for sample rates 1 Hz and higher took place in the 
+	   Qx80's digital signal processor (DSP).  Subsequent decimation to 0.1 and 
+	   0.01 Hz streams took place in the datalogger's M680x0 processor. The fir 
+	   filter that decimated 1 Hz to 0.1 Hz has a gain factor of 4.
+	</p>
+
+	<p>A know exception to the typical cascade was used in the GSN network.  
+	   GSN responses for sample rates from 20 to 80 Hz are identical, but 
+	   for slower sample rates the cascades differ.  Responses for GSN 
+	   channels sampled at 1 Hz or lower are listed in the last section.
+
+	<h3>FIR Delays</h3>
+	<p>Under the original Ultrashear system software, Qx80 systems corrected 
+	   data time stamps for standard FIR filter delays, but did not include a small 
+	   delay associated with data buffering.  Qx80 systems running the newer 
+	   Multishear software had time stamps that were corrected for both delays.
+	</p>
+	<p>The responses below describe Multishear data in that the "Estimated Delay" 
+	   (Blockette 57, field 7) represents the delay related to the FIR filters 
+	   and the "Correction applied" (Blockette 57, field 8) is the delay due to the 
+	   FIR filters <i>and</i> additional buffering effects.  To modify these responses 
+	   for Ultrashear data, set the B057F07 "Estimated delay" to the B057F8 "Correction 
+	   applied" value.  (Both fields should have the same value.)
+	</p>
+
+	<h3>Typical FIR Cascades</h3>
+	<p>
+	   <table>
+	      <tr valign=top><td><b>Manufacturer</b></td>
+	          <td><b>Model</b></td>
+	          <td><b>Preamp Gain</b></td>
+	          <td><b>Sample Rate</b></td>
+	          <td><b>Firmware Version</b></td>
+		  <td><b>RESP Filename</b></td>
+		  <td><b>Source</b></td>
+	          <td><b>Comments</b></td>
+	      </tr>
+	      <tr valign=top><td bgcolor=#E0E0E0>Quanterra</td>
+	          <td bgcolor=#E0E0E0>Qx80</td>
+	          <td bgcolor=#E0E0E0>1</td>
+	          <td bgcolor=#E0E0E0>0.01 Hz</td>
+	          <td bgcolor=#E0E0E0>900616</td>
+		  <td bgcolor=#E0E0E0><a href="./RESP.XX.NQ300..UHZ.Qx80.1.0_01.900616">RESP.XX.NQ300..UHZ.Qx80.1.0_01.900616</a></td>
+	          <td bgcolor=#E0E0E0>Quanterra/UCB/ASL</td>
+	          <td bgcolor=#E0E0E0> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>0.1 Hz</td>
+	          <td>900616</td>
+		  <td><a href="./RESP.XX.NQ301..VHZ.Qx80.1.0_1.900616">RESP.XX.NQ301..VHZ.Qx80.1.0_1.900616</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>1 Hz</td>
+	          <td>900616</td>
+		  <td><a href="./RESP.XX.NQ302..LHZ.Qx80.1.1.900616">RESP.XX.NQ302..LHZ.Qx80.1.1.900616</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>10 Hz</td>
+	          <td>900616</td>
+		  <td><a href="./RESP.XX.NQ303..BHZ.Qx80.1.10.900616">RESP.XX.NQ303..BHZ.Qx80.1.10.900616</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>20 Hz</td>
+	          <td>900616</td>
+		  <td><a href="./RESP.XX.NQ304..BHZ.Qx80.1.20.900616">RESP.XX.NQ304..BHZ.Qx80.1.20.900616</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>40 Hz</td>
+	          <td>900616</td>
+		  <td><a href="./RESP.XX.NQ305..BHZ.Qx80.1.40.900616">RESP.XX.NQ305..BHZ.Qx80.1.40.900616</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>80 Hz</td>
+	          <td>900616</td>
+		  <td><a href="./RESP.XX.NQ306..BHZ.Qx80.1.80.900616">RESP.XX.NQ306..BHZ.Qx80.1.80.900616</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td bgcolor=#E0E0E0>Quanterra</td>
+	          <td bgcolor=#E0E0E0>Qx80</td>
+	          <td bgcolor=#E0E0E0>1</td>
+	          <td bgcolor=#E0E0E0>0.01 Hz</td>
+	          <td bgcolor=#E0E0E0>920812N</td>
+		  <td bgcolor=#E0E0E0><a href="./RESP.XX.NQ307..UHZ.Qx80.1.0_01.920812N">RESP.XX.NQ307..UHZ.Qx80.1.0_01.920812N</a></td>
+	          <td bgcolor=#E0E0E0>Quanterra/UCB/ASL</td>
+	          <td bgcolor=#E0E0E0> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>0.1 Hz</td>
+	          <td>920812N</td>
+		  <td><a href="./RESP.XX.NQ308..VHZ.Qx80.1.0_1.920812N">RESP.XX.NQ308..VHZ.Qx80.1.0_1.920812N</a></td>
+	          <td>Quanterra/USB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>1 Hz</td>
+	          <td>920812N</td>
+		  <td><a href="./RESP.XX.NQ309..LHZ.Qx80.1.1.920812N">RESP.XX.NQ309..LHZ.Qx80.1.1.920812N</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>10 Hz</td>
+	          <td>920812N</td>
+		  <td><a href="./RESP.XX.NQ310..BHZ.Qx80.1.10.920812N">RESP.XX.NQ310..BHZ.Qx80.1.10.920812N</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>20 Hz</td>
+	          <td>920812N</td>
+		  <td><a href="./RESP.XX.NQ311..BHZ.Qx80.1.20.920812N">RESP.XX.NQ311..BHZ.Qx80.1.20.920812N</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>40 Hz</td>
+	          <td>920812N</td>
+		  <td><a href="./RESP.XX.NQ312..BHZ.Qx80.1.40.920812N">RESP.XX.NQ312..BHZ.Qx80.1.40.920812N</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>80 Hz</td>
+	          <td>920812N</td>
+		  <td><a href="./RESP.XX.NQ313..BHZ.Qx80.1.80.920812N">RESP.XX.NQ313..BHZ.Qx80.1.80.920812N</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	   </table>
+	</p>
+
+	<h3>GSN FIR Cascades</h3>
+	<p>
+	   <table>
+	      <tr valign=top><td><b>Manufacturer</b></td>
+	          <td><b>Model</b></td>
+	          <td><b>Preamp Gain</b></td>
+	          <td><b>Sample Rate</b></td>
+	          <td><b>Firmware Version</b></td>
+		  <td><b>RESP Filename</b></td>
+		  <td><b>Source</b></td>
+	          <td><b>Comments</b></td>
+	      </tr>
+	      <tr valign=top><td bgcolor=#E0E0E0>Quanterra</td>
+	          <td bgcolor=#E0E0E0>Qx80</td>
+	          <td bgcolor=#E0E0E0>1</td>
+	          <td bgcolor=#E0E0E0>0.01 Hz</td>
+	          <td bgcolor=#E0E0E0>900616</td>
+		  <td bgcolor=#E0E0E0><a href="./RESP.XX.NQ314..UHZ.Qx80.1.0_01.900616.GSN">RESP.XX.NQ314..UHZ.Qx80.1.0_01.900616.GSN</a></td>
+	          <td bgcolor=#E0E0E0>Quanterra/UCB/ASL</td>
+	          <td bgcolor=#E0E0E0> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>0.1 Hz</td>
+	          <td>900616</td>
+		  <td><a href="./RESP.XX.NQ315..VHZ.Qx80.1.0_1.900616.GSN">RESP.XX.NQ315..VHZ.Qx80.1.0_1.900616.GSN</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>1 Hz</td>
+	          <td>900616</td>
+		  <td><a href="./RESP.XX.NQ316..LHZ.Qx80.1.1.900616.GSN">RESP.XX.NQ316..LHZ.Qx80.1.1.900616.GSN</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td bgcolor=#E0E0E0>Quanterra</td>
+	          <td bgcolor=#E0E0E0>Qx80</td>
+	          <td bgcolor=#E0E0E0>1</td>
+	          <td bgcolor=#E0E0E0>0.01 Hz</td>
+	          <td bgcolor=#E0E0E0>920812N</td>
+		  <td bgcolor=#E0E0E0><a href="./RESP.XX.NQ317..UHZ.Qx80.1.0_01.920812N.GSN">RESP.XX.NQ317..UHZ.Qx80.1.0_01.920812N.GSN</a></td>
+	          <td bgcolor=#E0E0E0>Quanterra/UCB/ASL</td>
+	          <td bgcolor=#E0E0E0> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>0.1 Hz</td>
+	          <td>920812N</td>
+		  <td><a href="./RESP.XX.NQ318..VHZ.Qx80.1.0_1.920812N.GSN">RESP.XX.NQ318..VHZ.Qx80.1.0_1.920812N.GSN.GSN</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	      <tr valign=top><td>Quanterra</td>
+	          <td>Qx80</td>
+	          <td>1</td>
+	          <td>1 Hz</td>
+	          <td>920812N</td>
+		  <td><a href="./RESP.XX.NQ319..LHZ.Qx80.1.1.920812N.GSN">RESP.XX.NQ319..LHZ.Qx80.1.1.920812N.GSN</a></td>
+	          <td>Quanterra/UCB/ASL</td>
+	          <td> </td>
+	      </tr>
+	   </table>
+	</p>
+
+        <p><i>Mary Templeton 3/25/2010</i></p>
+
+    </body>
+
+</html>

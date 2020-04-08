@@ -1,0 +1,9 @@
+[Main]
+question = "Select the QEP channel number"
+detail = "quanterra_QEP_dataloggers-details.html"
+
+[1]
+path = "1.txt"
+
+[2 or 3]
+path = "2.txt"

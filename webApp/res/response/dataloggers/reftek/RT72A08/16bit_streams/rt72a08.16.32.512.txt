@@ -1,0 +1,66 @@
+[Main]
+question = "Select the sample rate (in samples/second) for this data stream"
+
+[1]
+resp = "RESP.XX.N0145..LHZ.72A08_16b.512.32.1"
+description = "RT72A-08, gain 512, 1 sps, 16-bit A/D, 32-bit words"
+
+[2]
+resp = "RESP.XX.N0146..MHZ.72A08_16b.512.32.2"
+description = "RT72A-08, gain 512, 2 sps, 16-bit A/D, 32-bit words"
+
+[4]
+resp = "RESP.XX.N0147..MHZ.72A08_16b.512.32.4"
+description = "RT72A-08, gain 512, 4 sps, 16-bit A/D, 32-bit words"
+
+[5]
+resp = "RESP.XX.N0148..MHZ.72A08_16b.512.32.5"
+description = "RT72A-08, gain 512, 5 sps, 16-bit A/D, 32-bit words"
+
+[8]
+resp = "RESP.XX.N0149..MHZ.72A08_16b.512.32.8"
+description = "RT72A-08, gain 512, 8 sps, 16-bit A/D, 32-bit words"
+
+[10]
+resp = "RESP.XX.N0150..BHZ.72A08_16b.512.32.10"
+description = "RT72A-08, gain 512, 10 sps, 16-bit A/D, 32-bit words"
+
+[20]
+resp = "RESP.XX.N0151..BHZ.72A08_16b.512.32.20"
+description = "RT72A-08, gain 512, 20 sps, 16-bit A/D, 32-bit words"
+
+[25]
+resp = "RESP.XX.N0152..BHZ.72A08_16b.512.32.25"
+description = "RT72A-08, gain 512, 25 sps, 16-bit A/D, 32-bit words"
+
+[40]
+resp = "RESP.XX.N0153..BHZ.72A08_16b.512.32.40"
+description = "RT72A-08, gain 512, 40 sps, 16-bit A/D, 32-bit words"
+
+[50]
+resp = "RESP.XX.N0154..BHZ.72A08_16b.512.32.50"
+description = "RT72A-08, gain 512, 40 sps, 16-bit A/D, 32-bit words"
+
+[100]
+resp = "RESP.XX.N0155..HHZ.72A08_16b.512.32.100"
+description = "RT72A-08, gain 512, 100 sps, 16-bit A/D, 32-bit words"
+
+[125]
+resp = "RESP.XX.N0156..HHZ.72A08_16b.512.32.125"
+description = "RT72A-08, gain 512, 125 sps, 16-bit A/D, 32-bit words"
+
+[200]
+resp = "RESP.XX.N0157..HHZ.72A08_16b.512.32.200"
+description = "RT72A-08, gain 512, 200 sps, 16-bit A/D, 32-bit words"
+
+[250]
+resp = "RESP.XX.N0158..HHZ.72A08_16b.512.32.250"
+description = "RT72A-08, gain 512, 250 sps, 16-bit A/D, 32-bit words"
+
+[500]
+resp = "RESP.XX.N0159..HHZ.72A08_16b.512.32.500"
+description = "RT72A-08, gain 512, 500 sps, 16-bit A/D, 32-bit words"
+
+[1000]
+resp = "RESP.XX.N0160..HHZ.72A08_16b.512.32.1000"
+description = "RT72A-08, gain 512, 1000 sps, 16-bit A/D, 32-bit words"

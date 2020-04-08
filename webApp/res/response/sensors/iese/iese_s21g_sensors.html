@@ -1,0 +1,81 @@
+<html>
+
+    <head>
+        <meta name=Title content="IESE Nominal S21g Sensor Responses">
+        <title>IESE Nominal S21g Sensor Responses</title>
+    </head>
+
+    <body>
+
+	<h2>IESE S21g Sensor Responses</h2>
+
+	<p>Coil and shunt resistance values affect the sensitivity, damping and pole
+	   values. To calculate poles, zeros and sensitivities for S21g built with 
+	   other resistor values, click <a href="../sercel/passive_responses.html">here</a>.
+	</p>
+
+	<h3>Note:</h3>
+	<p>IESE does not list current damping or shunt resistor information, so response for 
+	   the S21g is given with a calculated shunt resistance that assumes a total damping 
+	   of 0.7071 critical.  Additional parameters needed to customize this response using 
+	   the link above are as follows:
+	   <table>
+	      <tr><td><b>Fundamental Frequency</b></td>
+	          <td><b>Mass</b></td>
+	          <td><b>Open Circuit Damping</b></td>
+	          <td><b>Intrinsic Sensitivity</b></td>
+	      </tr>
+	      <tr><td>2.0 Hz</td>
+	          <td>0.023 Kg</td>
+	          <td>0.61</td>
+	          <td>78.7 V/M/S</td>
+	      </tr>
+	   </table>
+	</p>
+	<p>This nominal responses is valid when the input resistance of the attached
+	   amplifier or datalogger is at least 2 orders of magnitude larger than the 
+	   total resistance of the disconnected sensor.  If this is not the case, total 
+	   damping will not be 0.7071*critical and the poles will not describe the system 
+	   accurately.  Note that the response for the S21g 2 Hz sensor is the same as for 
+	   the S31f 2 Hz and G88 2 Hz sensors.
+	</p>
+
+	<table>
+ 	  <tr>
+	      <td><b>Manufacturer</b></td>
+  	      <td><b>Model</b></td>
+  	      <td><b>Frequency / Period</b></td>
+  	      <td><b>Coil Resistance</b></td>
+  	      <td><b>Shunt Resistance</b></td>
+  	      <td><b>Sensitivity</b></td>
+  	      <td><b>RESP Filename</b></td>
+  	      <td><b>Source</b></td>
+	      <td><b>Comments</b></td>
+ 	  </tr>
+ 	<tr><td>IESE</td>
+  	    <td>S21g</td>
+  	    <td>2.0 Hz / 0.22 s</td>
+  	    <td>3810 Ohms</td>
+  	    <td>106661 Ohms</td>
+  	    <td>76.0 V/M/S</td>
+  	    <td><a href="./RESP.XX.NS376..SHZ.G88.3180.106651.2.76">RESP.XX.NS376..SHZ.G88.3180.106651.2.76</a></td>
+  	    <td>IESE</td>
+  	    <td> </td>
+ 	</tr>
+ 	<tr><td>IESE</td>
+  	    <td>S31f</td>
+  	    <td>2.0 Hz / 0.22 s</td>
+  	    <td>3810 Ohms</td>
+  	    <td>106661 Ohms</td>
+  	    <td>76.0 V/M/S</td>
+  	    <td><a href="./RESP.XX.NS376..SHZ.G88.3180.106651.2.76">RESP.XX.NS376..SHZ.G88.3180.106651.2.76</a></td>
+  	    <td>IESE</td>
+  	    <td> </td>
+ 	</tr>
+    </table>
+
+    <p><i>Mary Templeton 1/9/2018</i></p>
+
+    </body>
+
+</html>

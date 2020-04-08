@@ -1,0 +1,9 @@
+[Main]
+question = "Select the A/D chip model for for this datalogger"
+detail = "reftek_72A07_dataloggers-details.html"
+
+[CS5321 (installed <mid-1993)]
+path = "rt72a07.cs5321.txt"
+
+[CS5323 (installed >mid-1993)]
+path = "rt72a07.cs5323.txt"

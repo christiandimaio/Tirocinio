@@ -1,0 +1,26 @@
+[Main]
+question = "Select this channel's sample rate in samples per second"
+
+[400]
+description = "DM-24 Mk3 Fixed Gain, gain 1, 400 sps, tap id 62, (400 200 50 10 2 and 1 Hz)"
+resp = "RESP.XX.G0145..HHZ.CMG_DM24_MK3_FIX.1..400"
+
+[200]
+description = "DM-24 Mk3 Fixed Gain, gain 1, 200 sps, tap id 62, (400 200 50 10 2 and 1 Hz)"
+resp = "RESP.XX.G0151..HHZ.CMG_DM24_MK3_FIX.1.400.200"
+
+[50]
+description = "DM-24 Mk3 Fixed Gain, gain 1, 50 sps, tap id 62, (400 200 50 10 2 and 1 Hz)"
+resp = "RESP.XX.G0167..BHZ.CMG_DM24_MK3_FIX.1.400_200.50"
+
+[10]
+description = "DM-24 Mk3 Fixed Gain, gain 1, 10 sps, tap id 62, (400 200 50 10 2 and 1 Hz)"
+resp = "RESP.XX.G0202..BHZ.CMG_DM24_MK3_FIX.1.400_200_50.10"
+
+[2]
+description = "DM-24 Mk3 Fixed Gain, gain 1, 2 sps, tap id 62, (400 200 50 10 2 and 1 Hz)"
+resp = "RESP.XX.G0264..MHZ.CMG_DM24_MK3_FIX.1.400_200_50_10.2"
+
+[1]
+description = "DM-24 Mk3 Fixed Gain, gain 1, 1 sps, tap id 62, (400 200 50 10 2 and 1 Hz)"
+resp = "RESP.XX.G0354..LHZ.CMG_DM24_MK3_FIX.1.400_200_50_10_2.1"

@@ -1,0 +1,51 @@
+<html>
+
+    <head>
+        <meta name=Title content="OYO Geospace (formerly Mark Products) Sensor Response Calculations">
+        <title>OYO Geospace (formerly Mark Products) Sensor Response Calculations</title>
+    </head>
+
+    <body>
+
+	<h2>Calculating Response Information for OYO Geospace Sensors Given Datalogger Input Impedance</h2>
+
+	<p>A datalogger or preamplifier attached to a geophone acts as an additional resistance across the 
+	   signal coil.  This changes the damping, which in turn changes the pole values.  The larger the 
+	   impedance contrast between the sensor and datalogger, the smaller the effect.  The larger the 
+	   preamp gain setting, the larger the impedance tends to be.  
+	   <a href="../../dataloggers/datalogger_impedance.html">Here</a> is a partial list of some 
+	   common datalogger impedances.</p>
+
+	<p>The effect of the datalogger impedance on damping is </p>
+
+	<ul><li>bt = total damping = bo + (damping constant / (Rc + Zd))</li>
+	</ul>
+
+	where (the numbers below are specific to an HS-1-LT MINI with a 2500 ohm coil):
+
+	<ul><li>bo = open circuit damping = 0.61</li>
+	    <li>Rc = coil resistance = 2500 ohms</li>
+	    <li>Zd = datalogger input impedance</li>
+	    <li>damping constant = 6694 ohms</li>
+	    <li>p1, p2 = (-2 * pi * f0 * bt) +/- j * ( 2 * pi * f0 * sqrt(1 - bt**2) )</li>
+	</ul>
+
+	The poles are then 
+
+	<ul>
+	    <li>p1, p2 = (-2 * pi * f0 * bt) +/- j * ( 2 * pi * f0 * sqrt(1 - bt**2) )</li>
+	</ul>
+
+	<p>where</p>
+
+	<ul><li>bo = open circuit damping</li>
+	    <li>f0 = fundamental frequency</li>
+	    <li>p1,p2 = poles</li>
+	    <li>z1,z2 = zeros</li>
+	</ul>
+
+    <p><i>Mary Templeton 2/5/2010</i></p>
+
+    </body>
+
+</html>

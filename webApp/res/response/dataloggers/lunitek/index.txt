@@ -1,0 +1,8 @@
+[Main]
+question = "Select the Lunitek model"
+
+[ATLAS]
+path = "atlas.txt"
+
+[Sentinel]
+path = "sentinel.txt"

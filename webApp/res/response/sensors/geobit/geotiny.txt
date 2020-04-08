@@ -1,0 +1,10 @@
+[Main]
+question = "Select the GEOtiny sensor corner"
+
+[10 seconds]
+description = "GEObit GEOtiny, 10 s, 195 V/M/S"
+resp = "RESP.XX.NS546..CHZ.GEOTINY.10.195"
+
+[4.5 Hz]
+description = "GEObit GEOtiny, 4.5 Hz, 28.8 V/M/S"
+resp = "RESP.XX.NS547..HLZ.GEOTINY.4_5.28_8"

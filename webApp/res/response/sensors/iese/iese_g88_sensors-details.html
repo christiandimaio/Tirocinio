@@ -1,0 +1,34 @@
+	<p>Coil and shunt resistance values affect the sensitivity, damping and pole
+	   values. To calculate poles, zeros and sensitivities for G88s built with 
+	   other resistor values, click <a href="../sercel/passive_responses.html">here</a>.
+	</p>
+
+	<h3>Note:</h3>
+	<p>IESE does not list current damping or shunt resistor information, so responses 
+	   the G88 are given with a calculated shunt resistance that assumes a total damping 
+	   of 0.7071 critical.  Additional parameters needed to customize these responses using 
+	   the link above are as follows:
+	   <table>
+	      <tr><td><b>Fundamental Frequency</b></td>
+	          <td><b>Mass</b></td>
+	          <td><b>Open Circuit Damping</b></td>
+	          <td><b>Intrinsic Sensitivity</b></td>
+	      </tr>
+	      <tr><td>4.5 Hz</td>
+	          <td>0.023 Kg</td>
+	          <td>0.27</td>
+	          <td>78.74 V/M/S</td>
+	      </tr>
+	      <tr><td>2.0 Hz</td>
+	          <td>0.023 Kg</td>
+	          <td>0.61</td>
+	          <td>78.7 V/M/S</td>
+	      </tr>
+	   </table>
+	</p>
+	<p>These nominal responses are valid when the input resistance of the attached
+	   amplifier or datalogger is at least 2 orders of magnitude larger than the 
+	   total resistance of the disconnected sensor.  If this is not the case, total 
+	   damping will not be 0.7071*critical and the poles will not describe the system 
+	   accurately.
+	</p>

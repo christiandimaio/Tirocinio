@@ -1,0 +1,34 @@
+[MAIN]
+question = "Select this channel's sample rate in samples per second"
+
+[800]
+description = "CD24, gain 1, 800 sps, tap id 193 (800 160 80 40 20 10 2 1 Hz)"
+resp = "RESP.XX.G3501..HHZ.CMG_CD24.1.800.800"
+
+[160]
+description = "CD24, gain 1, 160 sps, tap id 193 (800 160 80 40 20 10 2 1 Hz)"
+resp = "RESP.XX.G3507..HHZ.CMG_CD24.1.800_160.160"
+
+[80]
+description = "CD24, gain 1, 80 sps, tap id 193 (800 160 80 40 20 10 2 1 Hz)"
+resp = "RESP.XX.G3522..HHZ.CMG_CD24.1.800_160_80.80"
+
+[40]
+description = "CD24, gain 1, 40 sps, tap id 193 (800 160 80 40 20 10 2 1 Hz)"
+resp = "RESP.XX.G3559..BHZ.CMG_CD24.1.800_160_80_40.40"
+
+[20]
+description = "CD24, gain 1, 20 sps, tap id 193 (800 160 80 40 20 10 2 1 Hz)"
+resp = "RESP.XX.G3635..BHZ.CMG_CD24.1.800_160_80_40_20.20"
+
+[10]
+description = "CD24, gain 1, 10 sps, tap id 193 (800 160 80 40 20 10 2 1 Hz)"
+resp = "RESP.XX.G3757..BHZ.CMG_CD24.1.800_160_80_40_20_10.10"
+
+[2]
+description = "CD24, gain 1, 2 sps, tap id 193 (800 160 80 40 20 10 2 1 Hz)"
+resp = "RESP.XX.G3866..MHZ.CMG_CD24.1.800_160_80_40_20_10_2.2"
+
+[1]
+description = "CD24, gain 1, 1 sps, tap id 193 (800 160 80 40 20 10 2 1 Hz)"
+resp = "RESP.XX.G3907..LHZ.CMG_CD24.1.800_160_80_40_20_10_2_1.1"

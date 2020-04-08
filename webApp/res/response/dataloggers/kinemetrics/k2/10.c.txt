@@ -1,0 +1,26 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[20]
+description = "K2, gain 10, 20 sps, causal filter"
+resp = "RESP.XX.NK025..BHZ.K2.10.20.C"
+
+[40]
+description = "K2, gain 10, 40 sps, causal filter"
+resp = "RESP.XX.NK027..BHZ.K2.10.40.C"
+
+[50]
+description = "K2, gain 10, 20 sps, causal filter"
+resp = "RESP.XX.NK029..BHZ.K2.10.50.C"
+
+[100]
+description = "K2, gain 10, 100 sps, causal filter"
+resp = "RESP.XX.NK031..HHZ.K2.10.100.C"
+
+[200]
+description = "K2, gain 10, 200 sps, causal filter"
+resp = "RESP.XX.NK033..HHZ.K2.10.200.C"
+
+[250]
+description = "K2, gain 10, 250 sps, causal filter"
+resp = "RESP.XX.NK035..HHZ.K2.10.250.C"

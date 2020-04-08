@@ -1,0 +1,8 @@
+[Main]
+question = "Select the A/D full scale voltage"
+
+[2.5]
+path = "1ds.2_5.txt"
+
+[20]
+path = "1ds.20.txt"

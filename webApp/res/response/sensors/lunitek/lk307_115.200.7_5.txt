@@ -1,0 +1,18 @@
+[Main]
+question = "Select the LK-307-115 clip level"
+
+[0.5g]
+description = "LK-307-115, DC to 200 Hz, 7.5Vp single-ended full scale voltage, 0.5g clip level"
+resp = "RESP.XX.NS665..BNZ.LK307_115.DC_200.7_5VSE.0_5G"
+
+[1g]
+description = "LK-307-115, DC to 200 Hz, 7.5Vp single-ended full scale voltage, 1g clip level"
+resp = "RESP.XX.NS667..BNZ.LK307_115.DC_200.7_5VSE.1G"
+
+[2g]
+description = "LK-307-115, DC to 200 Hz, 7.5Vp single-ended full scale voltage, 2g clip level"
+resp = "RESP.XX.NS669..BNZ.LK307_115.DC_200.7_5VSE.2G"
+
+[4g]
+description = "LK-307-115, DC to 200 Hz, 7.5Vp single-ended full scale voltage, 4g clip level"
+resp = "RESP.XX.NS671..BNZ.LK307_115.DC_200.7_5VSE.4G"

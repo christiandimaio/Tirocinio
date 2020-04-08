@@ -1,0 +1,6 @@
+[Main]
+question = "Select the coil resistance for this L-10B:"
+detail = "sercel_l10_sensors-details.html"
+
+[374 Ohms]
+path = "l10.b.374.txt"

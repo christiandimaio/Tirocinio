@@ -1,0 +1,82 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[6.5]
+description = "DAQ24USB-5V, High sens., gain 2, 6.5 sps"
+resp = "RESP.XX.ND261..MHZ.CS5532.5V.2.HI.6_25"
+
+[7.5]
+description = "DAQ24USB-5V, High sens., gain 2, 7.5 sps"
+resp = "RESP.XX.ND262..MHZ.CS5532.5V.2.HI.7_5"
+
+[12.5]
+description = "DAQ24USB-5V, High sens., gain 2, 12.5 sps"
+resp = "RESP.XX.ND263..BHZ.CS5532.5V.2.HI.12_5"
+
+[15]
+description = "DAQ24USB-5V, High sens., gain 2, 15 sps"
+resp = "RESP.XX.ND264..BHZ.CS5532.5V.2.HI.15"
+
+[25]
+description = "DAQ24USB-5V, High sens., gain 2, 25 sps"
+resp = "RESP.XX.ND265..BHZ.CS5532.5V.2.HI.25"
+
+[30]
+description = "DAQ24USB-5V, High sens., gain 2, 30 sps"
+resp = "RESP.XX.ND266..BHZ.CS5532.5V.2.HI.30"
+
+[50]
+description = "DAQ24USB-5V, High sens., gain 2, 50 sps"
+resp = "RESP.XX.ND267..BHZ.CS5532.5V.2.HI.50"
+
+[60]
+description = "DAQ24USB-5V, High sens., gain 2, 60 sps"
+resp = "RESP.XX.ND268..BHZ.CS5532.5V.2.HI.60"
+
+[100]
+description = "DAQ24USB-5V, High sens., gain 2, 100 sps"
+resp = "RESP.XX.ND269..HHZ.CS5532.5V.2.HI.100"
+
+[120]
+description = "DAQ24USB-5V, High sens., gain 2, 120 sps"
+resp = "RESP.XX.ND270..HHZ.CS5532.5V.2.HI.120"
+
+[200]
+description = "DAQ24USB-5V, High sens., gain 2, 200 sps"
+resp = "RESP.XX.ND271..HHZ.CS5532.5V.2.HI.200"
+
+[240]
+description = "DAQ24USB-5V, High sens., gain 2, 240 sps"
+resp = "RESP.XX.ND272..HHZ.CS5532.5V.2.HI.240"
+
+[400]
+description = "DAQ24USB-5V, High sens., gain 2, 400 sps"
+resp = "RESP.XX.ND273..CHZ.CS5532.5V.2.HI.400"
+
+[480]
+description = "DAQ24USB-5V, High sens., gain 2, 480 sps"
+resp = "RESP.XX.ND274..CHZ.CS5532.5V.2.HI.480"
+
+[800]
+description = "DAQ24USB-5V, High sens., gain 2, 800 sps"
+resp = "RESP.XX.ND275..CHZ.CS5532.5V.2.HI.800"
+
+[960]
+description = "DAQ24USB-5V, High sens., gain 2, 960 sps"
+resp = "RESP.XX.ND276..CHZ.CS5532.5V.2.HI.960"
+
+[1600]
+description = "DAQ24USB-5V, High sens., gain 2, 1600 sps"
+resp = "RESP.XX.ND277..FHZ.CS5532.5V.2.HI.1600"
+
+[1920]
+description = "DAQ24USB-5V, High sens., gain 2, 1920 sps"
+resp = "RESP.XX.ND278..FHZ.CS5532.5V.2.HI.1920"
+
+[3200]
+description = "DAQ24USB-5V, High sens., gain 2, 3200 sps"
+resp = "RESP.XX.ND279..FHZ.CS5532.5V.2.HI.3200"
+
+[3840]
+description = "DAQ24USB-5V, High sens., gain 2, 3840 sps"
+resp = "RESP.XX.ND280..FHZ.CS5532.5V.2.HI.3840"

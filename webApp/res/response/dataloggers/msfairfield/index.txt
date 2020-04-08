@@ -1,0 +1,5 @@
+[Main]
+question = "Select the Magseis Fairfield datalogger model"
+
+[Zland 1C or 3C]
+path = "zland_g2/index.txt"

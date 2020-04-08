@@ -1,0 +1,10 @@
+[Main]
+question = "Select the resistor values of this geophone"
+
+[Rc=1850, Rs=430000]
+description = "DT-SOLO geophone, 5 Hz, Rc=1850 Ohms, Rs=43000 Ohms, 76.6 V/m/s"
+resp = "RESP.XX.NS680..SPZ.DTSOLO.5.1850.43000.76_6"
+
+[Rc=1850, Rs=None]
+description = "DT-SOLO geophone, 5 Hz, Rc=1850 Ohms, Rs=None, 80 V/m/s"
+resp = "RESP.XX.NS681..SPZ.DTSOLO.5.1850.NONE.80"

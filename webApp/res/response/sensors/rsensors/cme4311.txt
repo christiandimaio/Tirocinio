@@ -1,0 +1,15 @@
+[Main]
+question = "Select the R-Sensors CME-4311 sensor corner frequency"
+
+[1 second]
+path = "cme4311.1.txt"
+
+[10 second]
+path = "cme4311.10.txt"
+
+[60 second]
+path = "cme4311.60.txt"
+
+[120 second]
+path = "cme4311.120.txt"
+

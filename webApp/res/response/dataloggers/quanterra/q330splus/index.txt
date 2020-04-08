@@ -1,0 +1,11 @@
+[Main]
+question = "Select the preamplifier gain setting"
+
+[1]
+path = "1.txt"
+
+[8]
+path = "8.txt"
+
+[32]
+path = "32.txt"

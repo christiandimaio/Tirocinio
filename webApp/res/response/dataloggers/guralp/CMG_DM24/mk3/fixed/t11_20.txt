@@ -1,0 +1,32 @@
+[Main]
+question = "Select this channel's tap table lookup number"
+
+[11]
+path = "t11_20.11.txt"
+
+[12]
+path = "t11_20.12.txt"
+
+[13]
+path = "t11_20.13.txt"
+
+[14]
+path = "t11_20.14.txt"
+
+[15]
+path = "t11_20.15.txt"
+
+[16]
+path = "t11_20.16.txt"
+
+[17]
+path = "t11_20.17.txt"
+
+[18]
+path = "t11_20.18.txt"
+
+[19]
+path = "t11_20.19.txt"
+
+[20]
+path = "t11_20.20.txt"

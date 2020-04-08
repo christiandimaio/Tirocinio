@@ -1,0 +1,11 @@
+[Main]
+question = "Select the MTSS-1031A full scale voltage"
+detail = "./rsensors_mtss1031A_sensors-details.html"
+
+[+/-7.5V Single-ended]
+description = "MTSS-1031A, 120 Hz, +/-7.5V Single-ended full scale voltage, 3g"
+resp = "RESP.XX.NS617..BNZ.MTSS1031A.10_120.7_5VSE.3G"
+
+[+/-15V Differential]
+description = "MTSS-1031A, 120 Hz, +/-15V Differential full scale voltage, 3g"
+resp = "RESP.XX.NS618..BNZ.MTSS1031A.10_120.15VDF.3G"

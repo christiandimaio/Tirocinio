@@ -1,0 +1,90 @@
+[Main]
+question = "Select the sample rate in samples per second for this channel"
+
+[1]
+resp = "RESP.XX.NE500..LHZ.EDR_209.VH.1"
+description = "EDR-210, Very High gain, 1 sps"
+
+[2]
+resp = "RESP.XX.NE501..MHZ.EDR_209.VH.2"
+description = "EDR-210, Very High gain, 2 sps"
+
+[4]
+resp = "RESP.XX.NE502..MHZ.EDR_209.VH.4"
+description = "EDR-210, Very High gain, 4 sps"
+
+[5]
+resp = "RESP.XX.NE503..MHZ.EDR_209.VH.5"
+description = "EDR-210, Very High gain, 5 sps"
+
+[10]
+resp = "RESP.XX.NE504..BHZ.EDR_209.VH.10"
+description = "EDR-210, Very High gain, 10 sps"
+
+[20]
+resp = "RESP.XX.NE505..BHZ.EDR_209.VH.20"
+description = "EDR-210, Very High gain, 20 sps"
+
+[25]
+resp = "RESP.XX.NE506..BHZ.EDR_209.VH.25"
+description = "EDR-210, Very High gain, 25 sps"
+
+[40]
+resp = "RESP.XX.NE507..BHZ.EDR_209.VH.40"
+description = "EDR-210, Very High gain, 40 sps"
+
+[50]
+resp = "RESP.XX.NE508..BHZ.EDR_209.VH.50"
+description = "EDR-210, Very High gain, 50 sps"
+
+[75]
+resp = "RESP.XX.NE509..BHZ.EDR_209.VH.75"
+description = "EDR-210, Very High gain, 75 sps"
+
+[100]
+resp = "RESP.XX.NE510..HHZ.EDR_209.VH.100"
+description = "EDR-210, Very High gain, 100 sps"
+
+[120]
+resp = "RESP.XX.NE511..HHZ.EDR_209.VH.120"
+description = "EDR-210, Very High gain, 120 sps"
+
+[125]
+resp = "RESP.XX.NE512..HHZ.EDR_209.VH.125"
+description = "EDR-210, Very High gain, 125 sps"
+
+[150]
+resp = "RESP.XX.NE513..HHZ.EDR_209.VH.150"
+description = "EDR-210, Very High gain, 150 sps"
+
+[200]
+resp = "RESP.XX.NE514..HHZ.EDR_209.VH.200"
+description = "EDR-210, Very High gain, 200 sps"
+
+[250]
+resp = "RESP.XX.NE515..HHZ.EDR_209.VH.250"
+description = "EDR-210, Very High gain, 250 sps"
+
+[300]
+resp = "RESP.XX.NE516..HHZ.EDR_209.VH.300"
+description = "EDR-210, Very High gain, 300 sps"
+
+[375]
+resp = "RESP.XX.NE517..HHZ.EDR_209.VH.375"
+description = "EDR-210, Very High gain, 375 sps"
+
+[500]
+resp = "RESP.XX.NE518..HHZ.EDR_209.VH.500"
+description = "EDR-210, Very High gain, 500 sps"
+
+[600]
+resp = "RESP.XX.NE519..HHZ.EDR_209.VH.600"
+description = "EDR-210, Very High gain, 600 sps"
+
+[750]
+resp = "RESP.XX.NE520..HHZ.EDR_209.VH.750"
+description = "EDR-210, Very High gain, 750 sps"
+
+[1000]
+resp = "RESP.XX.NE521..HHZ.EDR_209.VH.1000"
+description = "EDR-210, Very High gain, 1000 sps"

@@ -1,0 +1,5 @@
+[Main]
+question = "Select the Seismic Source datalogger  model"
+
+[DAQ3-3, Sigma 3 or Sigma 4]
+path = "ads1282.txt"

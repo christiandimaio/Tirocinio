@@ -1,0 +1,11 @@
+[Main]
+question = "Select the accelerometer model number"
+detail = "./reftek_rt147_sensors-details.html"
+
+[147]
+description = "RT147, DC to >150 Hz, +/-4g clip level, +/-10V full scale voltage"
+resp = "RESP.XX.NS137..BNZ.RT147.DC_150.4G.10V"
+
+[147A]
+description = "RT147A, DC to >160 Hz, +/-4g clip level, +/-10V full scale voltage"
+resp = "RESP.XX.NS381..BNZ.RT147A.DC_160.4G.10V"

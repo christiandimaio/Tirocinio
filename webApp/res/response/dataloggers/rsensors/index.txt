@@ -1,0 +1,5 @@
+[Main]
+question = "Select the R-Sensors model"
+
+[NDAS-8226]
+path = "ndas8226.txt"

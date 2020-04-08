@@ -1,0 +1,7 @@
+[Main]
+question = "Select the shunt resistance for this SGHT-15:"
+detail = "sercel_sght15_sensors-details.html"
+
+[0 Ohms]
+description = "SGHT-15, 15 Hz, 52 V/m/s, Rc=2350 Ohms, Rs=none"
+resp = "RESP.XX.NS536..SLZ.SGHT15.2350.0.2.52"

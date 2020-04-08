@@ -1,0 +1,11 @@
+[Main]
+question = "Select the corner period mode for this STS-1"
+detail = "./streckeisen_sts1_sensors-details.html"
+
+[20 seconds]
+description = "STS-1, 20 s mode, 2400 V/m/s"
+resp = "RESP.XX.NS087..BHZ.STS1.20.2400"
+
+[360 seconds]
+description = "STS-1, 360 s mode, 2400 V/m/s"
+resp = "RESP.XX.NS088..BHZ.STS1.360.2400"

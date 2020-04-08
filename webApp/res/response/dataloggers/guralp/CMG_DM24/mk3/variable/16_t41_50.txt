@@ -1,0 +1,32 @@
+[Main]
+question = "Select this channel's tap table lookup number"
+
+[41]
+path = "16_t41_50.41.txt"
+
+[42]
+path = "16_t41_50.42.txt"
+
+[43]
+path = "16_t41_50.43.txt"
+
+[44]
+path = "16_t41_50.44.txt"
+
+[45]
+path = "16_t41_50.45.txt"
+
+[46]
+path = "16_t41_50.46.txt"
+
+[47]
+path = "16_t41_50.47.txt"
+
+[48]
+path = "16_t41_50.48.txt"
+
+[49]
+path = "16_t41_50.49.txt"
+
+[40]
+path = "16_t41_50.50.txt"

@@ -1,0 +1,6 @@
+[Main]
+question = "Select the preamplifier gain"
+detail = "nanometrics_HRD24_dataloggers-details.html"
+
+[1]
+path="hrd24.1.txt"

@@ -1,0 +1,6 @@
+[Main]
+question = "Select the Chaparral Physics infrasound sensor model"
+
+[IFS-4000]
+description = "IFS-4000 (Infrasound), 150 s, 0.02 V/Pa"
+resp = "RESP.XX.IS003..BDF.IFS4000.150.0_02"

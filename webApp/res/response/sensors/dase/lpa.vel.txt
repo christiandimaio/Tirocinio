@@ -1,0 +1,10 @@
+[Main]
+question = "Select the component type"
+
+[Vertical]
+description = "LPZA, 12 Hz, 10000 V/m/s, Velocity board"
+resp = "RESP.XX.NS260..BHZ.LPZA.12.10000.VEL"
+
+[Horizontal]
+description = "LPHA, 12 Hz, 10000 V/m/s Velocity board"
+resp = "RESP.XX.NS261..BHE.LPHA.12.10000.VEL"

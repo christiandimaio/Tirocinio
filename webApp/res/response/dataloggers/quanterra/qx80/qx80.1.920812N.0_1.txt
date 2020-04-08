@@ -1,0 +1,10 @@
+[Main]
+question = "Select whether the data was decimated from 20 sps by a factor of 2 or 5"
+
+[2]
+resp = "RESP.XX.NQ308..VHZ.Qx80.1.0_1.920812N"
+description = "Qx80, gain 1, 0.1 sps, filter version 920812N, standard cascade"
+
+[5]
+resp = "RESP.XX.NQ318..VHZ.Qx80.1.0_1.920812N.GSN"
+description = "Qx80, gain 1, 0.1 sps, filter version 920812N, GSN cascade"

@@ -1,0 +1,11 @@
+[Main]
+question = "Select the input range in Vpp"
+
+[5]
+path = "64.5.txt"
+
+[20]
+path = "64.20.txt"
+
+[40]
+path = "64.40.txt"

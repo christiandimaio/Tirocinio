@@ -1,0 +1,14 @@
+[Main]
+question = "Select the sensitivity in V/m/s"
+detail = "nanometrics_trillium_sensors-details.html"
+
+[1201-1203 V/m/s]
+path = "trillium120Q.1200.txt"
+
+[1500 V/m/s]
+description = "Trillium 120Q/QA, 120 s, 1500 V/m/s"
+resp = "RESP.XX.NS539..BHZ.Trillium120Q.120.1500"
+
+[2013 V/m/s]
+description = "Trillium 120Q/QA, 120 s, 2013 V/m/s"
+resp = "RESP.XX.NS540..BHZ.Trillium120Q.120.2013"

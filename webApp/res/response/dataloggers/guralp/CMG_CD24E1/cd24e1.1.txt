@@ -1,0 +1,11 @@
+[Main]
+question = "Select the fastest of the four sample rates (taps) that you selected when configuring the datalogger"
+
+[8]
+path = "cd24e1.1.8.txt"
+
+[20]
+path = "cd24e1.1.20.txt"
+
+[40]
+path = "cd24e1.1.40.txt"

@@ -1,0 +1,18 @@
+[Main]
+question = "Select the sample rate for the current channel"
+
+[2]
+description = "CD24-E1, gain 1, 2 sps, tap id 176 (40 8 4 and 2 Hz)"
+resp = "RESP.XX.NGC14..MHZ.CMG_CD24E1.1.2.522"
+
+[4]
+description = "CD24-E1, gain 1, 4 sps, tap id 176 (40 8 4 and 2 Hz)"
+resp = "RESP.XX.NGC16..MHZ.CMG_CD24E1.1.4.52"
+
+[8]
+description = "CD24-E1, gain 1, 8 sps, tap id 176 (40 8 4 and 2 Hz)"
+resp = "RESP.XX.NGC20..MHZ.CMG_CD24E1.1.8.5"
+
+[40]
+description = "CD24-E1, gain 1, 40 sps, tap id 176 (40 8 4 and 2 Hz)"
+resp = "RESP.XX.NGC24..BHZ.CMG_CD24E1.1.40.1"

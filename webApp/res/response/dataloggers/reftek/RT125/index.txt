@@ -1,0 +1,8 @@
+[Main]
+question = "Select the RT125 family model"
+
+[RT125 - fixed preamp gain]
+path = "125.txt"
+
+[RT125A - variable preamp gain]
+path = "125a.txt"

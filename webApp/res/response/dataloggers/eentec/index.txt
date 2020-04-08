@@ -1,0 +1,5 @@
+[Main]
+question = "Select the Eentec model"
+
+[DR4000]
+path = "DR4000/1ds.txt"

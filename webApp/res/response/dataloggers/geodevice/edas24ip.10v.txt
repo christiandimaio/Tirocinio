@@ -1,0 +1,8 @@
+[Main]
+question = "Select the FIR filter phase type"
+
+[Linear]
+path = "edas24ip.10v.l.txt"
+
+[Mixed]
+path = "edas24ip.10v.m.txt"

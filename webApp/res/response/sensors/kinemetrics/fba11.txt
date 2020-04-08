@@ -1,0 +1,7 @@
+[Main]
+question = "Select the FBA-11 clip level"
+detail="kinemetrics_fba11_sensors-details.html"
+
+[1g]
+description = "FBA-11, DC to 50 Hz, 2.5V full scale voltage, 1g clip level"
+resp = "RESP.XX.NS235..BNZ.FBA11.DC_50.2_5V.1G"

@@ -1,0 +1,5 @@
+[Main]
+question = "Select the Sercel datalogger  model"
+
+[Slimwave]
+path = "slimwave.txt"

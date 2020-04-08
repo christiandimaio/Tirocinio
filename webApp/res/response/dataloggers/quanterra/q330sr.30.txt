@@ -1,0 +1,29 @@
+[Main]
+question = "Select the sample rate in samples per second for this channel"
+
+[0.01]
+path = "q330sr.30.0_01.txt"
+
+[0.1]
+path = "q330sr.30.0_1.txt"
+
+[1]
+path = "q330sr.30.1.txt"
+
+[10]
+path = "q330sr.30.10.txt"
+
+[20]
+path = "q330sr.30.20.txt"
+
+[40]
+path = "q330sr.30.40.txt"
+
+[50]
+path = "q330sr.30.50.txt"
+
+[100]
+path = "q330sr.30.100.txt"
+
+[200]
+path = "q330sr.30.200.txt"

@@ -1,0 +1,5 @@
+[Main]
+question = "Select the GeoSIG datalogger model"
+
+[GMSplus]
+path = "gmsplus/index.txt"

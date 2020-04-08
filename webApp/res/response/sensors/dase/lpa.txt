@@ -1,0 +1,8 @@
+[Main]
+question = "Select the effective transducer type"
+
+[Acceleration]
+path = "lpa.acc.txt"
+
+[Velocity]
+path = "lpa.vel.txt"
