@@ -1,0 +1,15 @@
+[Main]
+question = "Select the shunt resistance for this 4.5 Hz GS-11D with Rc=380:"
+detail = "oyo_geospace_hs1_sensors-details.html"
+
+[None]
+description = "GS-11D, 4.5 Hz, 32 V/m/s, Rc=380 Ohms, No Rs"
+resp = "RESP.XX.NS387..SHZ.GS11D.4_5.380.NONE.32"
+
+[1740 Ohms]
+description = "GS-11D, 4.5 Hz, 26.2 V/m/s, Rc=380 Ohms, Rs=1740"
+resp = "RESP.XX.NS388..SHZ.GS11D.4_5.380.1740.26_2"
+
+[4420 Ohms]
+description = "GS-11D, 4.5 Hz, 29.4 V/m/s, Rc=380 Ohms, Rs=4420"
+resp = "RESP.XX.NS389..SHZ.GS11D.4_5.380.4420.29_4"

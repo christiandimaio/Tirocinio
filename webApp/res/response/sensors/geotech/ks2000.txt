@@ -1,0 +1,6 @@
+[Main]
+question = "Select the sensitivity of this KS2000 in V/m/s:"
+detail = "geotech_ks2000_sensors-details.html"
+
+[2000]
+path = "ks2000.2000.txt"

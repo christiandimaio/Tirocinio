@@ -1,0 +1,15 @@
+[Main]
+question = "Select the IIR Low Cut Filter setting"
+detail = "dtcc_igu16_dataloggers-details.html"
+
+[Off]
+description = "SmartSolo IGU-16, 30 dB gain, 1000 sps, minimum phase final filters, low cut off"
+resp = "RESP.XX.DT118..GPZ.SSOLO_IGU16.32.1000.MP.OFF"
+
+[DC Removal]
+description = "SmartSolo IGU-16, 30 dB gain, 1000 sps, minimum phase final filters, DC removal on"
+resp = "RESP.XX.DT119..GPZ.SSOLO_IGU16.32.1000.MP.DC"
+
+[1 Hz]
+description = "SmartSolo IGU-16, 30 dB gain, 1000 sps, minimum phase final filters, 1 Hz low cut"
+resp = "RESP.XX.DT120..GPZ.SSOLO_IGU16.32.1000.MP.1"

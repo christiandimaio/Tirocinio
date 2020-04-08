@@ -1,0 +1,8 @@
+[Main]
+question = "Select the sample rate of this channel in samples per second"
+
+[4]
+resp = "RESP.XX.N0470..MHZ.72A08_24b.32.4_40.4"
+
+[40]
+resp = "RESP.XX.N0471..BHZ.72A08_24b.32.4_40.40"

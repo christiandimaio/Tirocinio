@@ -1,0 +1,12 @@
+	<h3>Tap Table Lookups Numbers</h3>
+
+	<p>The DM24 generates sample rates for each channel by cascading decimation filters 
+	   to create up to 6 successive "taps" or sample rates.  Some or all of these sample 
+	   rates may be output.</p>  
+
+	<p>The FIR filters used for a given sample rate is determined by the tap sequence 
+	   programmed into the datalogger at startup time.  Each unique combination of taps 
+	   is referenced by a "Tap Table Lookup (TTL) Number".  Knowning this number is necessary 
+	   to locate the correct instrument response, since a single sample rate can be 
+	   generated in a variety of ways.  The TTL can be found in the GCF header of the DM24 
+	   native format trace data.</p>

@@ -1,0 +1,27 @@
+[Main]
+question = "Select the clip level for this accelerometer"
+detail = "nanometrics_titan_sensors-details.html"
+
+[0.125g]
+description = "Titan, DC to 430 Hz, 20V differential full scale voltage, 0.125g clip level"
+resp = "RESP.XX.NS349..BNZ.Titan.DC_430.20V.0_125G"
+
+[0.25g]
+description = "Titan, DC to 430 Hz, 20V differential full scale voltage, 0.25g clip level"
+resp = "RESP.XX.NS125..BNZ.Titan.DC_430.20V.0_25G"
+
+[0.5g]
+description = "Titan, DC to 430 Hz, 20V differential full scale voltage, 0.5g clip level"
+resp = "RESP.XX.NS126..BNZ.Titan.DC_430.20V.0_5G"
+
+[1g]
+description = "Titan, DC to 430 Hz, 20V differential full scale voltage, 1g clip level"
+resp = "RESP.XX.NS127..BNZ.Titan.DC_430.20V.1G"
+
+[2g]
+description = "Titan, DC to 430 Hz, 20V differential full scale voltage, 2g clip level"
+resp = "RESP.XX.NS128..BNZ.Titan.DC_430.20V.2G"
+
+[4g]
+description = "Titan, DC to 430 Hz, 20V differential full scale voltage, 4g clip level"
+resp = "RESP.XX.NS129..BNZ.Titan.DC_430.20V.4G"

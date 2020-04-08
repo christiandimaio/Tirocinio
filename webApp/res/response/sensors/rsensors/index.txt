@@ -1,0 +1,11 @@
+[Main]
+question = "Select the R-Sensors sensor type"
+
+[Acclerometer]
+path = "accelerometer.txt"
+
+[Geophone]
+path = "geophone.txt"
+
+[CME Sensor]
+path = "cme.txt"

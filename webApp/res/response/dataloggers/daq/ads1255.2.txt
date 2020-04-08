@@ -1,0 +1,66 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[2.5]
+description = "DAQ24USB-XR, gain 2, 2.5 sps"
+resp = "RESP.XX.ND552..MHZ.ADS1255.2.2_5"
+
+[5]
+description = "DAQ24USB-XR, gain 2, 5 sps"
+resp = "RESP.XX.ND551..MHZ.ADS1255.2.5"
+
+[10]
+description = "DAQ24USB-XR, gain 2, 10 sps"
+resp = "RESP.XX.ND550..BHZ.ADS1255.2.10"
+
+[15]
+description = "DAQ24USB-XR, gain 2, 15 sps"
+resp = "RESP.XX.ND549..BHZ.ADS1255.2.15"
+
+[25]
+description = "DAQ24USB-XR, gain 2, 25 sps"
+resp = "RESP.XX.ND548..BHZ.ADS1255.2.25"
+
+[30]
+description = "DAQ24USB-XR, gain 2, 30 sps"
+resp = "RESP.XX.ND547..BHZ.ADS1255.2.30"
+
+[50]
+description = "DAQ24USB-XR, gain 2, 50 sps"
+resp = "RESP.XX.ND546..BHZ.ADS1255.2.50"
+
+[60]
+description = "DAQ24USB-XR, gain 2, 60 sps"
+resp = "RESP.XX.ND545..BHZ.ADS1255.2.60"
+
+[100]
+description = "DAQ24USB-XR, gain 2, 100 sps"
+resp = "RESP.XX.ND544..HHZ.ADS1255.2.100"
+
+[500]
+description = "DAQ24USB-XR, gain 2, 500 sps"
+resp = "RESP.XX.ND543..CHZ.ADS1255.2.500"
+
+[1000]
+description = "DAQ24USB-XR, gain 2, 1000 sps"
+resp = "RESP.XX.ND542..FHZ.ADS1255.2.1000"
+
+[2000]
+description = "DAQ24USB-XR, gain 2, 2000 sps"
+resp = "RESP.XX.ND541..FHZ.ADS1255.2.2000"
+
+[3750]
+description = "DAQ24USB-XR, gain 2, 3750 sps"
+resp = "RESP.XX.ND540..FHZ.ADS1255.2.3750"
+
+[7500]
+description = "DAQ24USB-XR, gain 2, 7500 sps"
+resp = "RESP.XX.ND539..FHZ.ADS1255.2.7500"
+
+[15000]
+description = "DAQ24USB-XR, gain 2, 15000 sps"
+resp = "RESP.XX.ND538..FHZ.ADS1255.2.15000"
+
+[30000]
+description = "DAQ24USB-XR, gain 2, 30000 sps"
+resp = "RESP.XX.ND537..FHZ.ADS1255.2.30000"

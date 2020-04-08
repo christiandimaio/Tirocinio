@@ -1,0 +1,82 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[6.5]
+description = "DAQ24USB-5V, Low sens., gain 32, 6.5 sps"
+resp = "RESP.XX.ND201..MHZ.CS5532.ALL.32.LO.6_25"
+
+[7.5]
+description = "DAQ24USB-5V, Low sens., gain 32, 7.5 sps"
+resp = "RESP.XX.ND202..MHZ.CS5532.ALL.32.LO.7_5"
+
+[12.5]
+description = "DAQ24USB-5V, Low sens., gain 32, 12.5 sps"
+resp = "RESP.XX.ND203..BHZ.CS5532.ALL.32.LO.12_5"
+
+[15]
+description = "DAQ24USB-5V, Low sens., gain 32, 15 sps"
+resp = "RESP.XX.ND204..BHZ.CS5532.ALL.32.LO.15"
+
+[25]
+description = "DAQ24USB-5V, Low sens., gain 32, 25 sps"
+resp = "RESP.XX.ND205..BHZ.CS5532.ALL.32.LO.25"
+
+[30]
+description = "DAQ24USB-5V, Low sens., gain 32, 30 sps"
+resp = "RESP.XX.ND206..BHZ.CS5532.ALL.32.LO.30"
+
+[50]
+description = "DAQ24USB-5V, Low sens., gain 32, 50 sps"
+resp = "RESP.XX.ND207..BHZ.CS5532.ALL.32.LO.50"
+
+[60]
+description = "DAQ24USB-5V, Low sens., gain 32, 60 sps"
+resp = "RESP.XX.ND208..BHZ.CS5532.ALL.32.LO.60"
+
+[100]
+description = "DAQ24USB-5V, Low sens., gain 32, 100 sps"
+resp = "RESP.XX.ND209..HHZ.CS5532.ALL.32.LO.100"
+
+[120]
+description = "DAQ24USB-5V, Low sens., gain 32, 120 sps"
+resp = "RESP.XX.ND210..HHZ.CS5532.ALL.32.LO.120"
+
+[200]
+description = "DAQ24USB-5V, Low sens., gain 32, 200 sps"
+resp = "RESP.XX.ND211..HHZ.CS5532.ALL.32.LO.200"
+
+[240]
+description = "DAQ24USB-5V, Low sens., gain 32, 240 sps"
+resp = "RESP.XX.ND212..HHZ.CS5532.ALL.32.LO.240"
+
+[400]
+description = "DAQ24USB-5V, Low sens., gain 32, 400 sps"
+resp = "RESP.XX.ND213..CHZ.CS5532.ALL.32.LO.400"
+
+[480]
+description = "DAQ24USB-5V, Low sens., gain 32, 480 sps"
+resp = "RESP.XX.ND214..CHZ.CS5532.ALL.32.LO.480"
+
+[800]
+description = "DAQ24USB-5V, Low sens., gain 32, 800 sps"
+resp = "RESP.XX.ND215..CHZ.CS5532.ALL.32.LO.800"
+
+[960]
+description = "DAQ24USB-5V, Low sens., gain 32, 960 sps"
+resp = "RESP.XX.ND216..CHZ.CS5532.ALL.32.LO.960"
+
+[1600]
+description = "DAQ24USB-5V, Low sens., gain 32, 1600 sps"
+resp = "RESP.XX.ND217..FHZ.CS5532.ALL.32.LO.1600"
+
+[1920]
+description = "DAQ24USB-5V, Low sens., gain 32, 1920 sps"
+resp = "RESP.XX.ND218..FHZ.CS5532.ALL.32.LO.1920"
+
+[3200]
+description = "DAQ24USB-5V, Low sens., gain 32, 3200 sps"
+resp = "RESP.XX.ND219..FHZ.CS5532.ALL.32.LO.3200"
+
+[3840]
+description = "DAQ24USB-5V, Low sens., gain 32, 3840 sps"
+resp = "RESP.XX.ND220..FHZ.CS5532.ALL.32.LO.3840"

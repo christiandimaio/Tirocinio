@@ -1,0 +1,11 @@
+[Main]
+question = "Select the sample rate in samples per second of the second slowest sample rate using the 24-bit A/D"
+
+[125]
+path = "rt72a08.24.32.3.100_125.txt"
+
+[200]
+path = "rt72a08.24.32.3.100_200.txt"
+
+[250]
+path = "rt72a08.24.32.3.100_250.txt"

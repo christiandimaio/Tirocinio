@@ -1,0 +1,14 @@
+[Main]
+question = "Select the sensitivity / MEMS water level for this infraBSU:
+
+[46 microV/Pa / 0.5 inches]
+description = "infraBSU (Infrasound), 0.016 Hz, 0.000046 V/Pa"
+resp = "RESP.XX.IS011..BDF.INFRABSU.0_016.0_000046"
+
+[23 microV/Pa / 1 inches]
+description = "infraBSU (Infrasound), 0.016 Hz, 0.000023 V/Pa"
+resp = "RESP.XX.IS012..BDF.INFRABSU.0_016.0_000023"
+
+[9.1 microV/Pa / 5 inches]
+description = "infraBSU (Infrasound), 0.016 Hz, 0.0000091 V/Pa"
+resp = "RESP.XX.IS013..BDF.INFRABSU.0_016.0_0000091"

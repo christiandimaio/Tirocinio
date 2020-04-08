@@ -1,0 +1,5 @@
+[Main]
+question = "Select the DiGOS/Omnirecs model"
+
+[DATACUBE]
+path = "datacube.txt"

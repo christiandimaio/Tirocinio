@@ -1,0 +1,8 @@
+[Main]
+question = "Select the tap table id for the rates/taps 40, 20, 10 and 1"
+
+[155]
+path = "cd24e1.1.40.20.10.1.155.txt"
+
+[160]
+path = "cd24e1.1.40.20.10.1.160.txt"

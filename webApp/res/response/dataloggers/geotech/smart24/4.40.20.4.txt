@@ -1,0 +1,10 @@
+[Main]
+question = "Select the final filter type"
+
+[Linear Phase]
+resp = "RESP.XX.T0383..MHZ.SMART24.4.40.20.4.LP"
+descr = "Smart24, gain 4, 40 Vpp, primary rate 20 sps, final rate 4 sps, Linear Phase filter"
+
+[Minimum Phase]
+resp = "RESP.XX.T0384..MHZ.SMART24.4.40.20.4.MP"
+descr = "Smart24, gain 4, 40 Vpp, primary rate 20 sps, final rate 4 sps, Minimum Phase filter"

@@ -1,0 +1,12 @@
+[Main]
+question = "Select the coil resistance for this L-4A:"
+detail = "sercel_l4a_sensors-details.html"
+
+[500 Ohms]
+path = "l4a.500.txt"
+
+[2000 Ohms]
+path = "l4a.2000.txt"
+
+[5500 Ohms]
+path = "l4a.5500.txt"

@@ -1,0 +1,10 @@
+[Main]
+question = "Select the sensitivity for this Veloget:"
+
+[40 V/m/s]
+resp = "RESP.XX.NS362..SHZ.VELOGET.1_80.40"
+description = "Veloget, 1-80 Hz, 40 V/m/s"
+
+[400 V/m/s]
+resp = "RESP.XX.NS363..SHZ.VELOGET.1_80.400"
+description = "Veloget, 1-80 Hz, 400 V/m/s"

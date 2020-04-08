@@ -1,0 +1,11 @@
+[Main]
+question = "Select the fir filters used to generate this channel"
+detail = "quanterra_Q330_LP_dataloggers-details.html"
+
+[VLP389/ULP379]
+resp = "RESP.XX.NQ177..UHZ.Q330.HR.20.0_01.all.vlp389_ulp379"
+description = "Q330HR, gain 20, 0.01 sps, port A (chans 1-3), linear filters for all sample rates, vlp389 and ulp379 fir filters"
+
+[DEC10/DEC10]
+resp = "RESP.XX.NQ179..UHZ.Q330.HR.20.0_01.all.dec10_dec10"
+description = "Q330HR, gain 20, 0.01 sps, port A (chans 1-3), linear filters for all sample rates, dec10 fir filters"

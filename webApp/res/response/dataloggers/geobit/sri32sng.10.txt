@@ -1,0 +1,8 @@
+[Main]
+question = "Select the FIR filter phase type for this channel"
+
+[Linear Phase]
+path = "sri32sng.10.lin.txt"
+
+[Minimum Phase]
+path = "sri32sng.10.min.txt"

@@ -1,0 +1,8 @@
+[Main]
+question = "Select the preamplifier gain setting"
+
+[1]
+path = "q330hr.b.1.txt"
+
+[20]
+path = "q330hr.b.20.txt"

@@ -1,0 +1,11 @@
+[Main]
+question = "Select the coil and shunt resistances for this S6000:"
+detail = "./sprengnether_sensors-details.html"
+
+[10000 and 6470 Ohms]
+description = "S6000, 2 Hz, 110 V/m/s, Rc=10000 Ohms, Rs=6470 Ohms"
+resp = "RESP.XX.NS334..SHZ.S6000.10000.6470.2.110"
+
+[640 and 213 Ohms]
+description = "S6000, 2 Hz, 12.5 V/m/s, Rc=640 Ohms, Rs=213 Ohms"
+resp = "RESP.XX.NS335..SHZ.S6000.640.213.2.12_5"

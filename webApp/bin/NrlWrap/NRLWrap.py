@@ -1,16 +1,16 @@
 from obspy.clients.nrl.client import LocalNRL
-from bin.Utils import Utils
+from webApp.bin.Utils import Utils
 import wget
 import zipfile
 import shutil
 import os
+from ..Utils import Utils
 
-program_path = Utils.retrieve_config_value(["application","info","full_path"])
+
 
 
 class NRLWrap:
     def __init__(self, root):
-        update_local_library()
         self._local_nrl = LocalNRL(root)
 
     def get_response(self, datalogger_keys=None, sensor_keys=None):
@@ -18,6 +18,7 @@ class NRLWrap:
 
 
 def update_local_library(url="http://ds.iris.edu/NRL/IRIS.zip"):
+    program_path = Utils.retrieve_config_value(["application", "info", "full_path"])
     dataloggers_path = os.path.join(program_path,Utils.retrieve_config_value(["application","module_configuration", "NRLWrap", "dataloggers_folder"]))
     sensors_path = os.path.join(program_path, Utils.retrieve_config_value(["application","module_configuration", "NRLWrap", "sensors_folder"]))
     custom_sensors_path = os.path.join(program_path, Utils.retrieve_config_value(["application","module_configuration", "NRLWrap", "custom_folder", "sensors"]))
@@ -27,7 +28,7 @@ def update_local_library(url="http://ds.iris.edu/NRL/IRIS.zip"):
         shutil.rmtree(dataloggers_path)
     if os.path.exists(sensors_path):
         shutil.rmtree(sensors_path)
-    #wget.download(url, iris_download_path, bar=Utils.custom_bar)
+    wget.download(url, iris_download_path, bar=Utils.custom_bar)
 
     with zipfile.ZipFile(iris_download_path, "r") as zip_ref:
         for file in zip_ref.namelist():
@@ -49,4 +50,4 @@ def update_local_library(url="http://ds.iris.edu/NRL/IRIS.zip"):
             sensor_index.writelines(custom_sensor_index.readlines())
     Utils.copy_folders(custom_sensors_path, sensors_path)
 
-    os.remove(".\\res\\temp_iris.zip")
+    os.remove(iris_download_path)

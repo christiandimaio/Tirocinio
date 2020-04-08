@@ -1,0 +1,8 @@
+[Main]
+question = "Select final filter type"
+
+[Linear phase]
+path="20.off.lp.txt"
+
+[Minimum phase]
+path="20.off.mp.txt"

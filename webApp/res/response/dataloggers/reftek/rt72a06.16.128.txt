@@ -1,0 +1,30 @@
+[Main]
+question = "Select the sample rate (in samples/second) for this data stream"
+
+[50]
+resp = "RESP.XX.NR142..BHZ.72A06.128.16.50"
+description = "RT72A-06, gain 128 50 sps, 16-bit words"
+
+[100]
+resp = "RESP.XX.NR143..HHZ.72A06.128.16.100"
+description = "RT72A-06, gain 128 100 sps, 16-bit words"
+
+[125]
+resp = "RESP.XX.NR144..HHZ.72A06.128.16.125"
+description = "RT72A-06, gain 128 125 sps, 16-bit words"
+
+[200]
+resp = "RESP.XX.NR145..HHZ.72A06.128.16.200"
+description = "RT72A-06, gain 128 200 sps, 16-bit words"
+
+[250]
+resp = "RESP.XX.NR146..HHZ.72A06.128.16.250"
+description = "RT72A-06, gain 128 250 sps, 16-bit words"
+
+[500]
+resp = "RESP.XX.NR147..HHZ.72A06.128.16.500"
+description = "RT72A-06, gain 128 500 sps, 16-bit words"
+
+[1000]
+resp = "RESP.XX.NR148..HHZ.72A06.128.16.1000"
+description = "RT72A-06, gain 128 1000 sps, 16-bit words"

@@ -1,0 +1,8 @@
+[Main]
+question = "Select the sensor sensitivity in V/m/s"
+
+[1500]
+path = "sts-2.1500.txt"
+
+[20000]
+path = "sts-2.20000.txt"

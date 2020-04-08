@@ -1,0 +1,6 @@
+[Main]
+question = "Select the coil resistance for this SGHT-15:"
+detail = "sercel_sght15_sensors-details.html"
+
+[2350 Ohms]
+path = "sght15.2350.txt"

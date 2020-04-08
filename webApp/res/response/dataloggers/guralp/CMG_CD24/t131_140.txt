@@ -1,0 +1,32 @@
+[Main]
+question = "Select this channel's tap table lookup number"
+
+[131]
+path = "t131_140.131.txt"
+
+[132]
+path = "t131_140.132.txt"
+
+[133]
+path = "t131_140.133.txt"
+
+[134]
+path = "t131_140.134.txt"
+
+[135]
+path = "t131_140.135.txt"
+
+[136]
+path = "t131_140.136.txt"
+
+[137]
+path = "t131_140.137.txt"
+
+[138]
+path = "t131_140.138.txt"
+
+[139]
+path = "t131_140.139.txt"
+
+[140]
+path = "t131_140.140.txt"

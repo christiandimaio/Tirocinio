@@ -1,0 +1,51 @@
+[Main]
+question = "Select the Nanometrics sensor model"
+
+[Titan Accelerometer]
+path = "titan.txt"
+
+[Meridian Posthole]
+description = "Meridian Posthole, 120 s, 1200 V/m/s"
+resp = "RESP.XX.NS353..BHZ.MeridianPosthole.120.1200"
+
+[Meridian Compact Posthole]
+path = "meridianCPH.txt"
+
+[Trillium 40]
+description = "Trillium 40, 40 s, 1553 V/m/s"
+resp = "RESP.XX.NS120..BHZ.Trillium40.40.1553"
+
+[Trillium 120P/PA]
+resp = "RESP.XX.NS121..BHZ.Trillium120P.120.1201"
+description = "Trillium 120P, 120 s, 1201 V/m/s"
+
+[Trillium 120Q/QA,PH,BH (Vault, Posthole or Borehole)]
+path = "trillium120Q.txt"
+
+[Trillium 120 Horizon]
+description = "Trillium Horizon 120, 120 s, 1200 V/m/s"
+resp = "RESP.XX.NS331..BHZ.Trillium120Q_g3.120.1203"
+
+[Trillium Compact 20 (Vault, Posthole, OBS)]
+path = "trcompact20.txt"
+
+[Trillium Compact 120 (Vault, Posthole, OBS)]
+path = "trcompact120.txt"
+
+[Trillium All-Terrain]
+description = "Trillium All-Terrain, 120 s, 754 V/m/s"
+resp= "RESP.XX.NS124..BHZ.TrilliumCompact120.120.754"
+
+[Trillium Cascadia seismometer]
+description = "Trillium Cascadia seismometer, 120 s, 754 V/m/s"
+resp= "RESP.XX.NS124..BHZ.TrilliumCompact120.120.754"
+
+[Trillium Cascadia Accelerometer]
+path = "titan.txt"
+
+[Trillium 240]
+path = "trillium240.txt"
+
+[Trillium 360]
+description = "Trillium 360, 360 s, 1100 V/m/s"
+resp = "RESP.XX.NS542..BHZ.Trillium360.373.1100"

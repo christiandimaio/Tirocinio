@@ -1,0 +1,18 @@
+[Main]
+question = "Select the nominal sensitivity:"
+
+[0.001 V/Pa]
+description = "prs2500 (Infrasound), 0.01-100 Hz, 0.001 V/Pa"
+resp = "RESP.XX.IS007..BDF.PRS2500.0_01.0_001"
+
+[0.01 V/Pa]
+description = "prs0250 (Infrasound), 0.01-100 Hz, 0.01 V/Pa"
+resp = "RESP.XX.IS008..BDF.PRS0250.0_01.0_01"
+
+[0.025 V/Pa]
+description = "prs0100 (Infrasound), 0.01-100 Hz, 0.025 V/Pa"
+resp = "RESP.XX.IS009..BDF.PRS0100.0_01.0_025"
+
+[0.2 V/Pa]
+description = "prs0025 (Infrasound), 0.01-100 Hz, 0.2 V/Pa"
+resp = "RESP.XX.IS010..BDF.PRS0025.0_01.0_2"

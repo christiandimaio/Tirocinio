@@ -1,0 +1,11 @@
+[Main]
+question = "Select the full scale voltage"
+
+[+/10V]
+path = "edas24ip.10v.txt"
+
+[+/5]
+path = "edas24ip.5v.txt"
+
+[+/2.5V]
+path = "edas24ip.2_5v.txt"

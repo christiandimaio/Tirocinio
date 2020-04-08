@@ -1,0 +1,18 @@
+[Main]
+question = "Select the C100 sensor version"
+
+[C100, version 1]
+description = "GEObit C100, version 1, 1.2 s, 1500 V/M/S"
+resp = "RESP.XX.NS500..SHZ.S100v1_15.1_2.1500"
+
+[C100, version 30]
+description = "GEObit C100, version 30, 5 s, 1500 V/M/S"
+resp = "RESP.XX.NS501..SHZ.S100v30.5.1500"
+
+[C100, version 31]
+description = "GEObit C100, version 31, 10 s, 1500 V/M/S"
+resp = "RESP.XX.NS502..SHZ.S100v31.10.1500"
+
+[C100, version 32]
+description = "GEObit C100, version 32, 10 s, 1500 V/M/S"
+resp = "RESP.XX.NS545..SHZ.C100v32.10.1500"

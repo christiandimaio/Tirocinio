@@ -1,0 +1,22 @@
+[Main]
+question = "Select the Clip Value (full scale range)"
+
+[0.25g]
+description = "Episensor, DC to >200 Hz,  5V differential full scale voltage, 0.25g clip level"
+resp = "RESP.XX.NS210..BNZ.Episensor.DC_200.5VDF.0_25G"
+
+[0.5g]
+description = "Episensor, DC to >200 Hz,  5V differential full scale voltage, 0.5g clip level"
+resp = "RESP.XX.NS211..BNZ.Episensor.DC_200.5VDF.0_5G"
+
+[1g]
+description = "Episensor, DC to >200 Hz,  5V differential full scale voltage, 1g clip level"
+resp = "RESP.XX.NS212..BNZ.Episensor.DC_200.5VDF.1G"
+
+[2g]
+description = "Episensor, DC to >200 Hz,  5V differential full scale voltage, 2g clip level"
+resp = "RESP.XX.NS213..BNZ.Episensor.DC_200.5VDF.2G"
+
+[4g]
+description = "Episensor, DC to >200 Hz,  5V differential full scale voltage, 4g clip level"
+resp = "RESP.XX.NS214..BNZ.Episensor.DC_200.5VDF.4G"

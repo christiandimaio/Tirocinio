@@ -1,0 +1,10 @@
+[Main]
+question = "Select the S400 sensor sensitivity"
+
+[368 V/M/S]
+description = "GEObit S400, 4.5 Hz, 368 V/M/S"
+resp = "RESP.XX.NS523..SHZ.S400.4_5.368"
+
+[115.2 V/M/S]
+description = "GEObit S400, 4.5 Hz, 115.2 V/M/S"
+resp = "RESP.XX.NS524..SHZ.S400.4_5.115"

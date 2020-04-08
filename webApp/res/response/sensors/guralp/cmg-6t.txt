@@ -1,0 +1,23 @@
+[Main]
+question = "Select the natural period (or passband) for this sensor"
+
+[1s - 100Hz]
+path = "cmg-6t.1_100.txt"
+
+[2s - 100Hz]
+path = "cmg-6t.2_100.txt"
+
+[5s - 100Hz]
+path = "cmg-6t.5_100.txt"
+
+[10s - 100Hz]
+path = "cmg-6t.10_100.txt"
+
+[30s - 100Hz]
+path = "cmg-6t.30_100.txt"
+
+[40s - 100Hz]
+path = "cmg-6t.40_100.txt"
+
+[60s - 100Hz]
+path = "cmg-6t.60_100.txt"

@@ -1,0 +1,34 @@
+[Main]
+question = "Select the sample rate in sample per second"
+
+[1]
+description = "EDAS-24IP, gain 1, 1 sps, +/-5V full scale voltage, mixed phase filters"
+resp = "RESP.XX.GD004..LHZ.EDAS_24IP.1.5.1.M"
+
+[10]
+description = "EDAS-24IP, gain 1, 10 sps, +/-5V full scale voltage, mixed phase filters"
+resp = "RESP.XX.GD010..BHZ.EDAS_24IP.1.5.10.M"
+
+[20]
+description = "EDAS-24IP, gain 1, 20 sps, +/-5V full scale voltage, mixed phase filters"
+resp = "RESP.XX.GD016..BHZ.EDAS_24IP.1.5.20.M"
+
+[50]
+description = "EDAS-24IP, gain 1, 50 sps, +/-5V full scale voltage, mixed phase filters"
+resp = "RESP.XX.GD022..BHZ.EDAS_24IP.1.5.50.M"
+
+[100]
+description = "EDAS-24IP, gain 1, 100 sps, +/-5V full scale voltage, mixed phase filters"
+resp = "RESP.XX.GD028..HHZ.EDAS_24IP.1.5.100.M"
+
+[125]
+description = "EDAS-24IP, gain 1, 125 sps, +/-5V full scale voltage, mixed phase filters"
+resp = "RESP.XX.GD034..HHZ.EDAS_24IP.1.5.125.M"
+
+[200]
+description = "EDAS-24IP, gain 1, 200 sps, +/-5V full scale voltage, mixed phase filters"
+resp = "RESP.XX.GD040..HHZ.EDAS_24IP.1.5.200.M"
+
+[500]
+description = "EDAS-24IP, gain 1, 500 sps, +/-5V full scale voltage, mixed phase filters"
+resp = "RESP.XX.GD046..CHZ.EDAS_24IP.1.5.500.M"

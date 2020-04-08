@@ -1,0 +1,15 @@
+[Main]
+question = "Select the shunt resistance for this HG-6HS:"
+detail = "hgs_hgx_sensors-details.html"
+
+[4.5 Hz (Rc=3500 ohms A coil, Rs=None)]
+description="HG-6HS, 4.5 Hz, 78.9 V/m/s, Rc=3500 Ohms (A coil), Rs=None"
+resp = "RESP.XX.NS608..SLZ.HG6HS.3500.NONE.4_5A.78_9"
+
+[4.5 Hz (Rc=3500 ohms A coil, Rs=14000 ohms)]
+description="HG-6HS, 4.5 Hz, 63.12 V/m/s, Rc=3500 (A coil), Rs=14000 Ohms"
+resp = "RESP.XX.NS560..SLZ.HG6HS.3500.14000.4_5A.63_12"
+
+[4.5 Hz (Rc=3500 ohms A coil, Rs=20000 ohms)]
+description="HG-6HS, 4.5 Hz, 67.15 V/m/s, Rc=3500 (A coil), Rs=20000 Ohms"
+resp = "RESP.XX.NS561..SLZ.HG6HS.3500.20000.4_5A.67_15"

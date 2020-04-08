@@ -1,0 +1,22 @@
+[Main]
+question = "Select the sample rate in samples per second for this channel"
+
+[100]
+description = "SRi32S High Gain, 0.625 Vpp, 100 sps, Minimum phase"
+resp = "RESP.XX.GB062..HHZ.SRI32SHG.64.0_625.100.MIN"
+
+[200]
+description = "SRi32S High Gain, 0.625 Vpp, 200 sps, Minimum phase"
+resp = "RESP.XX.GB066..HHZ.SRI32SHG.64.0_625.200.MIN"
+
+[250]
+description = "SRi32S High Gain, 0.625 Vpp, 250 sps, Minimum phase"
+resp = "RESP.XX.GB068..CHZ.SRI32SHG.64.0_625.250.MIN"
+
+[500]
+description = "SRi32S High Gain, 0.625 Vpp, 500 sps, Minimum phase"
+resp = "RESP.XX.GB070..CHZ.SRI32SHG.64.0_625.500.MIN"
+
+[1000]
+description = "SRi32S High Gain, 0.625 Vpp, 1000 sps, Minimum phase"
+resp = "RESP.XX.GB064..FHZ.SRI32SHG.64.0_625.1000.MIN"

@@ -1,0 +1,29 @@
+	<p>Note: These responses describe the <b>standalone</b> version of the CMG-CD24 datalogger.  CD24s 
+		that are integrated sensor-digitizer packages have different ADC sensitivities.  To 
+		describe the integrated CD24, use the responses below, but edit the stage 3 sensitivity 
+		according to the calibration sheet that accompanied your instrument.
+	</p>
+
+        <h3>Tap Table Lookup Numbers</h3>
+
+        <p>The CD24 generates sample rates for each channel by cascading decimation filters
+           to create successive "taps" or sample rates.  Some or all of these sample rates may be output.</p>
+
+        <p>The FIR filters used for a given sample rate is determined by the tap sequence
+           programmed into the datalogger at startup time.  Each unique combination of taps
+           is referenced by a "Tap Table Lookup (TTL) Number".  Knowning this number is necessary
+           to locate the correct instrument response, since a single sample rate can be
+           generated in a variety of ways.</p>
+
+	<p>The TTL can be found in one of these ways:
+		<ol>
+		    <li>running Guralp's EAMs program</li>
+		    <ul><li>selecting "GDI channels display from the tools menu</li>
+		        <li>choosing the data stream of interest and</li>
+		        <li>clicking "View details".</li>
+			<li>The "Metadata" table in the resulting display lists the "gcf-tap-table-lookup".</li></ul>
+		    <li>retrieving the TTL byte by web interface 
+			<a href="http://www.guralp.com/howtos/determining-fir-filter-information-from-gcf-data.shtml">(instructions here)</a></li>
+		    <li>reading the Decimation Index (TTL) from the Scream "ViewInfo" window 
+			<a href="https://www.guralp.com/documents/html/MAN-SWA-0001/s8.html#SubSection4">(instructions here)</a></li>
+	    </ol></p>

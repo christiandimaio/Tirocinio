@@ -1,0 +1,8 @@
+[Main]
+question = "Select the Sensitivity Mode"
+
+[Low]
+path = "cs5532.5v.lo.txt"
+
+[High]
+path = "cs5532.5v.hi.txt"

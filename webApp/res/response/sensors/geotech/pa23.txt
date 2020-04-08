@@ -1,0 +1,15 @@
+[Main]
+question = "Select the accelerometer model number:"
+detail = "geotech_pa23_sensors-details.html"
+
+[S-230]
+resp = "RESP.XX.NS328..BNZ.PA23.DC_100.10V.4G"
+description = "S-230, DC to 100 Hz, 10V single-ended full scale voltage, 4g clip level"
+
+[PA-23]
+resp = "RESP.XX.NS328..BNZ.PA23.DC_100.10V.4G"
+description = "PA-23, DC to 100 Hz, 10V single-ended full scale voltage, 4g clip level"
+
+[PA-23BH]
+resp = "RESP.XX.NS328..BNZ.PA23.DC_100.10V.4G"
+description = "PA-23BH, DC to 100 Hz, 10V single-ended full scale voltage, 4g clip level"

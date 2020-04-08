@@ -1,0 +1,20 @@
+[Main]
+question = "Select this channel's tap table lookup number"
+
+[221]
+path = "t221_226.221.txt"
+
+[222]
+path = "t221_226.222.txt"
+
+[223]
+path = "t221_226.223.txt"
+
+[224]
+path = "t221_226.224.txt"
+
+[225]
+path = "t221_226.225.txt"
+
+[226]
+path = "t221_226.226.txt"

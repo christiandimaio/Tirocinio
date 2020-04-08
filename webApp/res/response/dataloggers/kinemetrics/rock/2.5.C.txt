@@ -1,0 +1,46 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[1]
+description = "Rock family, gain 1, 5 Vpp, 1 sps, causal filter"
+resp = "RESP.XX.NK141..LHZ.ROCK.2.5.1.C"
+
+[10]
+description = "Rock family, gain 1, 5 Vpp, 10 sps, causal filter"
+resp = "RESP.XX.NK156..BHZ.ROCK.2.5.10.C"
+
+[20]
+description = "Rock family, gain 1, 5 Vpp, 20 sps, causal filter"
+resp = "RESP.XX.NK171..BHZ.ROCK.2.5.20.C"
+
+[50]
+description = "Rock family, gain 1, 5 Vpp, 50 sps, causal filter"
+resp = "RESP.XX.NK186..BHZ.ROCK.2.5.50.C"
+
+[100]
+description = "Rock family, gain 1, 5 Vpp, 100 sps, causal filter"
+resp = "RESP.XX.NK201..HHZ.ROCK.2.5.100.C"
+
+[200]
+description = "Rock family, gain 1, 5 Vpp, 200 sps, causal filter"
+resp = "RESP.XX.NK216..HHZ.ROCK.2.5.200.C"
+
+[250]
+description = "Rock family, gain 1, 5 Vpp, 250 sps, causal filter"
+resp = "RESP.XX.NK231..CHZ.ROCK.2.5.250.C"
+
+[500]
+description = "Rock family, gain 1, 5 Vpp, 500 sps, causal filter"
+resp = "RESP.XX.NK246..CHZ.ROCK.2.5.500.C"
+
+[1000]
+description = "Rock family, gain 1, 5 Vpp, 1000 sps, causal filter"
+resp = "RESP.XX.NK261..FHZ.ROCK.2.5.1000.C"
+
+[2000]
+description = "Rock family, gain 1, 5 Vpp, 2000 sps, causal filter"
+resp = "RESP.XX.NK276..FHZ.ROCK.2.5.2000.C"
+
+[5000]
+description = "Rock family, gain 1, 5 Vpp, 5000 sps, causal filter"
+resp = "RESP.XX.NK441..FHZ.ROCK.2.5.5000.C"

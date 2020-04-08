@@ -1,0 +1,21 @@
+[Main]
+question = "Select the final sample rate in samples per second"
+detail = "geotech_smart24_dataloggers-details.html"
+
+[5]
+path = "8.5.100.5.txt"
+
+[10]
+path = "8.5.100.10.txt"
+
+[20]
+path = "8.5.100.20.txt"
+
+[25]
+path = "8.5.100.25.txt"
+
+[50]
+path = "8.5.100.50.txt"
+
+[100]
+path = "8.5.100.100.txt"

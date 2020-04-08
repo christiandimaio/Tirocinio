@@ -1,0 +1,6 @@
+[Main]
+question = "Select the coil resistance for this GS-11D:"
+detail = "oyo_geospace_hs1_sensors-details.html"
+
+[4000 Ohms]
+path = "gs11d.8.4000.txt"

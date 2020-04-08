@@ -1,0 +1,15 @@
+[Main]
+question = "Select the coil and shunt resistance for this GS-1:"
+detail = "oyo_geospace_gs1_sensors-details.html"
+
+[2450 and 0 Ohms]
+description = "GS-1LF, 5 Hz, 100.4 V/m/s"
+resp = "RESP.XX.NS488..SHZ.GS1LF.2450.0.5.100_4"
+
+[2450 and 17400 Ohms]
+description = "GS-1LF, 5 Hz, 88.01 V/m/s"
+resp = "RESP.XX.NS489..SHZ.GS1LF.2450.17400.5.88"
+
+[2450 and 20000 Ohms]
+description = "GS-1LF, 5 Hz, 89.44 V/m/s"
+resp = "RESP.XX.NS490..SHZ.GS1LF.2450.20000.5.89_44"

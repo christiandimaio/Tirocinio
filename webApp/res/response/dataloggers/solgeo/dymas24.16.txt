@@ -1,0 +1,30 @@
+[Main]
+question = "Select the sample rate (in samples/second) for this data stream"
+
+[20]
+description = "DYMAS24, gain 16, 20 sps"
+resp = "RESP.XX.SG059..BHZ.DYMAS24.16.20"
+
+[25]
+description = "DYMAS24, gain 16, 25 sps"
+resp = "RESP.XX.SG067..BHZ.DYMAS24.16.25"
+
+[50]
+description = "DYMAS24, gain 16, 50 sps"
+resp = "RESP.XX.SG075..BHZ.DYMAS24.16.50"
+
+[100]
+description = "DYMAS24, gain 16, 100 sps"
+resp = "RESP.XX.SG083..HHZ.DYMAS24.16.100"
+
+[200]
+description = "DYMAS24, gain 16, 200 sps"
+resp = "RESP.XX.SG091..HHZ.DYMAS24.16.200"
+
+[250]
+description = "DYMAS24, gain 16, 250 sps"
+resp = "RESP.XX.SG099..HHZ.DYMAS24.16.250"
+
+[500]
+description = "DYMAS24, gain 16, 500 sps"
+resp = "RESP.XX.SG107..HHZ.DYMAS24.16.500"

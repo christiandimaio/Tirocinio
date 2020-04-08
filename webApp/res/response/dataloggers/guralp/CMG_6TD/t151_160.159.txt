@@ -1,0 +1,30 @@
+[MAIN]
+question = "Select this channel's sample rate in samples per second"
+
+[800]
+description = "6TD, gain 1, 800 sps, tap id 159 (800 400 80 20 10 2 1 Hz)"
+resp = "RESP.XX.G3001..HHZ.CMG_6TD.1.800.800"
+
+[400]
+description = "6TD, gain 1, 400 sps, tap id 159 (800 400 80 20 10 2 1 Hz)"
+resp = "RESP.XX.G3005..HHZ.CMG_6TD.1.800_400.400"
+
+[80]
+description = "6TD, gain 1, 80 sps, tap id 159 (800 400 80 20 10 2 1 Hz)"
+resp = "RESP.XX.G3018..HHZ.CMG_6TD.1.800_400_80.80"
+
+[20]
+description = "6TD, gain 1, 20 sps, tap id 159 (800 400 80 20 10 2 1 Hz)"
+resp = "RESP.XX.G3049..BHZ.CMG_6TD.1.800_400_80_20.20"
+
+[10]
+description = "6TD, gain 1, 10 sps, tap id 159 (800 400 80 20 10 2 1 Hz)"
+resp = "RESP.XX.G3114..BHZ.CMG_6TD.1.800_400_80_20_10.10"
+
+[2]
+description = "6TD, gain 1, 2 sps, tap id 159 (800 400 80 20 10 2 1 Hz)"
+resp = "RESP.XX.G3227..MHZ.CMG_6TD.1.800_400_80_20_10_2.2"
+
+[1]
+description = "6TD, gain 1, 1 sps, tap id 159 (800 400 80 20 10 2 1 Hz)"
+resp = "RESP.XX.G3349..LHZ.CMG_6TD.1.800_400_80_20_10_2_1.1"

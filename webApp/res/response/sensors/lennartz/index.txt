@@ -1,0 +1,46 @@
+[Main]
+question = "Select the Lennartz sensor model"
+
+[LE-3Dlite Classic]
+description = "LE-3Dlite Classic, 1 s, 400 V/m/s"
+resp = "RESP.XX.NS170..SHZ.LE-3DliteMkII.1.400"
+
+[LE-3Dlite MkII]
+description = "LE-3Dlite MkII, 1 s, 400 V/m/s"
+resp = "RESP.XX.NS170..SHZ.LE-3DliteMkII.1.400"
+
+[LE-3Dlite MkIII]
+description = "LE-3Dlite MkIII, 1 s, 800 V/m/s"
+resp = "RESP.XX.NS481..SHZ.LE-3DliteMkIII.1.800"
+
+[LE-1DV]
+description = "LE-1DV, 1 s, 400 V/m/s"
+resp = "RESP.XX.NS171..SHZ.LE-1DV.1.400"
+
+[LE-1DV MkII]
+description = "LE-1DV MkII, 1 s, 400 V/m/s"
+resp = "RESP.XX.NS171..SHZ.LE-1DV.1.400"
+
+[LE-1DV MkIII]
+description = "LE-1DV MkIII, 1 s, 800 V/m/s"
+resp = "RESP.XX.NS482..SHZ.LE-1DVMkIII.1.800"
+
+[LE-3D/BH]
+description = "LE-3D/BH, 1 s, 400 V/m/s"
+resp = "RESP.XX.NS172..SHZ.LE-3DBH.1.400"
+
+[LE-3D/BH MkIII]
+description = "LE-3D/BH MkIII, 1 s, 800 V/m/s"
+resp = "RESP.XX.NS483..SHZ.LE-3DBHMkIII.1.800"
+
+[LE-3D/5s]
+description = "LE-3D/5s, 5 s, 400 V/m/s"
+resp = "RESP.XX.NS173..SHZ.LE-3D5s.5.400"
+
+[LE-3D/5s MkIII]
+description = "LE-3D/5s MkIII, 5 s, 800 V/m/s"
+resp = "RESP.XX.NS484..SHZ.LE-3D5sMkIII.5.800"
+
+[LE-3D/20s]
+description = "LE-3D/20s, 20 s, 1000 V/m/s"
+resp = "RESP.XX.NS174..BHZ.LE-3D20s.20.1000"

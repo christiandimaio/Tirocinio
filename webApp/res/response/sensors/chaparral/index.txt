@@ -1,0 +1,8 @@
+[Main]
+question = "Select the Chaparral Physics infrasound sensor model"
+
+[50A]
+path = "50a.txt"
+
+[60-UHP]
+path = "60uhp.txt"

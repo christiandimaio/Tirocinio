@@ -1,0 +1,6 @@
+[Main]
+question = "Select the shunt resistance for this L-4C:"
+
+[3238 Ohms]
+description = "L-4C, 1 Hz, 102 V/m/s, Rc=2000 Ohms, Rs=3238 Ohms"
+resp = "RESP.XX.NS154..SHZ.L4C.2000.3238.1.102"

@@ -1,0 +1,98 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[1]
+description = "Affinity, gain 64, 1 sps"
+resp = "RESP.XX.NA007..LHZ.AFFINITY.64.1"
+
+[2]
+description = "Affinity, gain 64, 2 sps"
+resp = "RESP.XX.NA014..MHZ.AFFINITY.64.2"
+
+[4]
+description = "Affinity, gain 64, 4 sps"
+resp = "RESP.XX.NA021..MHZ.AFFINITY.64.4"
+
+[5]
+description = "Affinity, gain 64, 5 sps"
+resp = "RESP.XX.NA028..MHZ.AFFINITY.64.5"
+
+[8]
+description = "Affinity, gain 64, 8 sps"
+resp = "RESP.XX.NA035..MHZ.AFFINITY.64.8"
+
+[10]
+description = "Affinity, gain 64, 10 sps"
+resp = "RESP.XX.NA042..BHZ.AFFINITY.64.10"
+
+[16]
+description = "Affinity, gain 64, 16 sps"
+resp = "RESP.XX.NA049..BHZ.AFFINITY.64.16"
+
+[20]
+description = "Affinity, gain 64, 20 sps"
+resp = "RESP.XX.NA056..BHZ.AFFINITY.64.20"
+
+[25]
+description = "Affinity, gain 64, 25 sps"
+resp = "RESP.XX.NA063..BHZ.AFFINITY.64.25"
+
+[32]
+description = "Affinity, gain 64, 32 sps"
+resp = "RESP.XX.NA070..BHZ.AFFINITY.64.32"
+
+[40]
+description = "Affinity, gain 64, 40 sps"
+resp = "RESP.XX.NA077..BHZ.AFFINITY.64.40"
+
+[50]
+description = "Affinity, gain 64, 50 sps"
+resp = "RESP.XX.NA084..BHZ.AFFINITY.64.50"
+
+[80]
+description = "Affinity, gain 64, 80 sps"
+resp = "RESP.XX.NA091..BHZ.AFFINITY.64.80"
+
+[100]
+description = "Affinity, gain 64, 100 sps"
+resp = "RESP.XX.NA098..HHZ.AFFINITY.64.100"
+
+[125]
+description = "Affinity, gain 64, 125 sps"
+resp = "RESP.XX.NA105..HHZ.AFFINITY.64.125"
+
+[160]
+description = "Affinity, gain 64, 160 sps"
+resp = "RESP.XX.NA112..HHZ.AFFINITY.64.160"
+
+[200]
+description = "Affinity, gain 64, 200 sps"
+resp = "RESP.XX.NA119..HHZ.AFFINITY.64.200"
+
+[250]
+description = "Affinity, gain 64, 250 sps"
+resp = "RESP.XX.NA126..CHZ.AFFINITY.64.250"
+
+[400]
+description = "Affinity, gain 64, 400 sps"
+resp = "RESP.XX.NA133..CHZ.AFFINITY.64.400"
+
+[500]
+description = "Affinity, gain 64, 500 sps"
+resp = "RESP.XX.NA140..CHZ.AFFINITY.64.500"
+
+[800]
+description = "Affinity, gain 64, 800 sps"
+resp = "RESP.XX.NA147..CHZ.AFFINITY.64.800"
+
+[1000]
+description = "Affinity, gain 64, 1000 sps"
+resp = "RESP.XX.NA154..FHZ.AFFINITY.64.1000"
+
+[2000]
+description = "Affinity, gain 64, 2000 sps"
+resp = "RESP.XX.NA161..FHZ.AFFINITY.64.2000"
+
+[4000]
+description = "Affinity, gain 64, 4000 sps"
+resp = "RESP.XX.NA168..FHZ.AFFINITY.64.4000"

@@ -1,0 +1,11 @@
+[Main]
+question = "Select the generation of electronics used in this Trillium 240"
+detail = "nanometrics_trillium_sensors-details.html"
+
+[1 - serial numbers < 400]
+resp = "RESP.XX.NS122..BHZ.Trillium240_g1.244.1197"
+description = "Trillium 240, generation 1, 240 s, 1197 V/m/s"
+
+[2 - serial numbers >= 400]
+resp = "RESP.XX.NS123..BHZ.Trillium240_g2.244.1189"
+description = "Trillium 240, generation 2, 240 s, 1189 V/m/s"

@@ -1,0 +1,6 @@
+[Main]
+question = "Select the Seismo Wave infrasound sensor model"
+
+[MB3a]
+description = "MB3a (Infrasound), 0.01-27 Hz, 0.02 V/Pa"
+resp = "RESP.XX.IS005..BDF.MB3A.0_4.0_02"

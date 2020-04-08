@@ -1,0 +1,38 @@
+[Main]
+question = "Select the sample rate in samples per second for this channel"
+
+[0.01]
+path = "8.0_01.txt"
+
+[0.1]
+path = "8.0_1.txt"
+
+[1]
+path = "8.1.txt"
+
+[10]
+path = "8.10.txt"
+
+[20]
+path = "8.20.txt"
+
+[40]
+path = "8.40.txt"
+
+[50]
+path = "8.50.txt"
+
+[100]
+path = "8.100.txt"
+
+[200]
+path = "8.200.txt"
+
+[250]
+path = "8.250.txt"
+
+[500]
+path = "8.500.txt"
+
+[1000]
+path = "8.1000.txt"

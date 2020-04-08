@@ -1,0 +1,11 @@
+[Main]
+question = "Select the Input Range in Vpp"
+
+[40]
+path = "8.40.txt"
+
+[10]
+path = "8.10.txt"
+
+[5]
+path = "8.5.txt"

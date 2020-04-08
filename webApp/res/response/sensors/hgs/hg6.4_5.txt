@@ -1,0 +1,10 @@
+[Main]
+question = "Select the shunt resistance for this HG-6:"
+
+[1500 Ohms (A coil)]
+description = "HG-6, 4.5 Hz, 22.4 V/m/s, Rc=375 Ohms, Rs=1500 Ohms"
+resp = "RESP.XX.NS531..SLZ.HG6.375.1500.4_5A.22_4"
+
+[9090 Ohms (B coil)]
+description = "HG-6, 4.5 Hz, 27.7 V/m/s, Rc=375 Ohms, Rs=9090 Ohms"
+resp = "RESP.XX.NS532..SLZ.HG6.375.9090.4_5B.27_7"

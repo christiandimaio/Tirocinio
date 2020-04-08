@@ -1,0 +1,58 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[1]
+description="Centaur, 10 vpp (gain 4), 1 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN873..LHZ.CENTAUR.4.1.0_001.MP"
+
+[2]
+description="Centaur, 10 vpp (gain 4), 2 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN905..MHZ.CENTAUR.4.2.0_001.MP"
+
+[5]
+description="Centaur, 10 vpp (gain 4), 5 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN907..MHZ.CENTAUR.4.5.0_001.MP"
+
+[10]
+description="Centaur, 10 vpp (gain 4), 10 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN689..BHZ.CENTAUR.4.10.0_001.MP"
+
+[20]
+description="Centaur, 10 vpp (gain 4), 20 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN691..BHZ.CENTAUR.4.20.0_001.MP"
+
+[40]
+description="Centaur, 10 vpp (gain 4), 40 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN693..BHZ.CENTAUR.4.40.0_001.MP"
+
+[50]
+description="Centaur, 10 vpp (gain 4), 50 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN695..BHZ.CENTAUR.4.50.0_001.MP"
+
+[100]
+description="Centaur, 10 vpp (gain 4), 100 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN837..HHZ.CENTAUR.4.100.0_001.MP"
+
+[125]
+description="Centaur, 10 vpp (gain 4), 125 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN839..HHZ.CENTAUR.4.125.0_001.MP"
+
+[200]
+description="Centaur, 10 vpp (gain 4), 200 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN841..HHZ.CENTAUR.4.200.0_001.MP"
+
+[250]
+description="Centaur, 10 vpp (gain 4), 250 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN745..CHZ.CENTAUR.4.250.0_001.MP"
+
+[500]
+description="Centaur, 10 vpp (gain 4), 500 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN747..CHZ.CENTAUR.4.500.0_001.MP"
+
+[1000]
+description="Centaur, 10 vpp (gain 4), 1000 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN785..FHZ.CENTAUR.4.1000.0_001.MP"
+
+[5000]
+description="Centaur, 10 vpp (gain 4), 5000 sps, DC removal filter on (1 mHz), Minimum phase"
+resp = "RESP.XX.NN787..FHZ.CENTAUR.4.5000.0_001.MP"

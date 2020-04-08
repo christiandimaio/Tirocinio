@@ -1,0 +1,20 @@
+[Main]
+question = "Select the OYO Geospace sensor model"
+
+[GS-1-LF]
+path = "gs1.txt"
+
+[GS-ONE-LF]
+path = "gs.one.txt"
+
+[GS-11D]
+path = "gs11d.txt"
+
+[GS-30CT]
+path = "gs30ct.txt"
+
+[HS-1-LT]
+path = "hs1.txt"
+
+[OMNI-2400]
+path = "omni.2400.txt"

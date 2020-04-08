@@ -1,0 +1,15 @@
+[Main]
+question = "Select the R-Sensors CME-6211 sensor corner frequency"
+
+[30 second]
+description = "CME-6211, 30s-50 Hz, 2000 V/m/s"
+resp = "RESP.XX.NS374..BHZ.CME6211.60.2000"
+
+[60 second]
+description = "CME-6211, 60s-50 Hz, 2000 V/m/s"
+resp = "RESP.XX.NS646..BHZ.CME6211.30.2000"
+
+[120 second]
+description = "CME-6211, 120s-50 Hz, 2000 V/m/s"
+resp = "RESP.XX.NS647..BHZ.CME6211.120.2000"
+

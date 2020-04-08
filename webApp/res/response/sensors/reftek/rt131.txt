@@ -1,0 +1,14 @@
+[Main]
+question = "Select the accelerometer model number"
+detail = "./reftek_rt131_sensors-details.html"
+
+[131A-02 (also 130-SMA)]
+path = "rt131.a02.txt"
+
+[131B-01]
+description = "RT131B-01, DC to >500 Hz, +/-4g clip level, +/-10V full scale voltage"
+resp = "RESP.XX.NS134..BNZ.RT131B01.DC_500.4G.10V.SF1500S"
+
+[131B-02/3]
+description = "RT131B-02/3, DC to >500 Hz, +/-4g clip level, +/-6.9V full scale voltage"
+resp = "RESP.XX.NS379..BNZ.RT131B023.DC_500.4G.6_9V.SF2005"

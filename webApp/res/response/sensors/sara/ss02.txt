@@ -1,0 +1,10 @@
+[Main]
+question = "Select the sensor sensitivity"
+
+[400 V/m/s]
+resp = "RESP.XX.NS505..SHZ.SS02.5.400"
+description = "SS02, 5 s, 400 V/m/s"
+
+[1500 V/m/s]
+resp = "RESP.XX.NS506..SHZ.SS02.5.1500"
+description = "SS02, 5 s, 1500 V/m/s"

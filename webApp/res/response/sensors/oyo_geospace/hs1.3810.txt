@@ -1,0 +1,11 @@
+[Main]
+question = "Select the shunt resistance for this HS-1-LT:"
+detail = "oyo_geospace_hs1_sensors-details.html"
+
+[None]
+description = "HS-1-LT, 2 Hz, 76.2 V/m/s, Rc=3810 Ohms, None"
+resp = "RESP.XX.NS520..SLZ.HS1LT.3810.NONE.2.78_7"
+
+[115000 Ohms]
+description = "HS-1-LT, 2 Hz, 76.2 V/m/s, Rc=3810 Ohms, Rs=115000 Ohms"
+resp = "RESP.XX.NS380..SLZ.HS1LT.3810.115000.2.76"

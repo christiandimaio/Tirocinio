@@ -1,0 +1,6 @@
+[Main]
+question = "Select the corner frequency for this HG-6HS:"
+detail = "hgs_hgx_sensors-details.html"
+
+[4.5 Hz]
+path = "hg6hs.4_5.txt"

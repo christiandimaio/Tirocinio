@@ -1,0 +1,20 @@
+[Main]
+question = "Select the passband for this sensor"
+
+[30s - 50Hz]
+path = "cmg-3tb.30_50.txt"
+
+[100s - 50Hz]
+path = "cmg-3tb.100_50.txt"
+
+[120s - 50Hz]
+path = "cmg-3tb.120_50.txt"
+
+[360s - 50Hz]
+path = "cmg-3tb.360_50.txt"
+
+[360s - 100Hz]
+path = "cmg-3tb.360_100.txt"
+
+[360s - 200Hz]
+path = "cmg-3tb.360_200.txt"

@@ -2,6 +2,7 @@ const Form = ReactBootstrap.Form;
 const Button = ReactBootstrap.Button;
 const Image = ReactBootstrap.Image;
 const Alert = ReactBootstrap.Alert;
+
 class Sign_In_Form extends React.Component{
     render(){
         return (
@@ -10,12 +11,14 @@ class Sign_In_Form extends React.Component{
                 </div>);
     }
 }
+
 class Login_Form extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             email: "",
             password : "",
+            rememberme: false,
             formErrors : {
                 email:"",
                 password:""
@@ -26,9 +29,8 @@ class Login_Form extends React.Component{
     }
 
     handleChange(event){
-        event.preventDefault();
         let formErrors = this.state.formErrors;
-        const {name,value} = event.target;
+        let {name,value} = event.target;
         switch(name){
             case "email":
                 formErrors.email = value.length < 5 
@@ -40,6 +42,9 @@ class Login_Form extends React.Component{
                     ? "campo password vuoto"
                     : ""
                 break;
+            case "rememberme":
+                console.log(event.target.checked);
+                value = event.target.checked;
             default:
                 break;
         }
@@ -50,7 +55,8 @@ class Login_Form extends React.Component{
         event.preventDefault();
         axios.post('/', {
             email : this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            rememberME : this.state.rememberme
           })
           .then((response) => {
             if (response.data["operationCode"] != 200){
@@ -68,7 +74,7 @@ class Login_Form extends React.Component{
     
 
     render(){
-        const {tryLogIn} = this.props;
+        const {disableButtonLogIn} = this.props;
         const {email,password} = this.state;
         const {formErrors} = this.state.formErrors;
         const messageErrorEmail = email.length >= 0 && email.length<5 
@@ -91,9 +97,9 @@ class Login_Form extends React.Component{
                         <Form.Control required name="password" value={password} onChange={this.handleChange} type="password" placeholder="Password" className="rounded-pill"/>
                     </Form.Group>
                     <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Ricordami" />
+                        <Form.Check name="rememberme" type="checkbox" label="Ricordami." checked={this.state.rememberme} onChange={this.handleChange} />
                     </Form.Group>
-                    <Button varant="primary" type="submit" size="lg" block className="rounded-pill">Entra</Button>
+                    <Button varant="primary" type="submit" size="lg" block className="rounded-pill" disabled={disableButtonLogIn ? 'true' : ''}>Entra</Button>
                     
 
                 </Form>);
@@ -107,10 +113,7 @@ class Login extends React.Component{
         
 
         this.state = {
-          signUpClicked: false,
-          email:'',
-          password:'',
-          loginFailed:false
+          nrlUpdating : false
         }
     }
 
@@ -123,45 +126,21 @@ class Login extends React.Component{
     loginCheck = (result) => {
         this.setState({loginFailed : result});
     }  
+
+    nrlChangeState = (state) => {
+        this.setState({nrlUpdating : state});
+    }
     
     render(){
+        const nrlUpdating = this.state.nrlUpdating;
         return (    
-                // <div class=" h-100 w-100">
-                //     <div class="d-flex flex-column justify-content-center ">
-                //         {
-                //             this.state.signUpClicked?
-                //                     <div id="sign_up" class="container h-80">
-                //                         <Sign_In_Form/>
-                //                     </div>
-                //                     :
-                //                     <div id="sign_in" class=" align-self-center">
-                //                         <div class="border rounded-top jumbotron ">
-                //                             <Login_Form loginCheck={this.loginCheck}></Login_Form> 
-                //                             <Button variant="outline-primary" className="rounded-pill mt-4" size="lg" block onClick={this.handleSignInClick}>Registrati</Button>
-                //                         </div>   
-                //                     </div>
-                //         }
-                    
-                //     {                 
-                            
-                //         this.state.loginFailed ?
-                //             <Alert variant="warning" className=" w-20 alert-dismissible fade show" >
-                //                             Accesso non riuscito, controllare email o password!
-                //             </Alert>
-                //         :   <div></div>
-                            
-                //     }
-                //     </div>
-                        
-                           
-                // </div>
-
-                <div id="log_in" class="h-100">
+                <div id="log_in" class="h-100"> 
                     <div class="row align-items-center h-100">
                         <div class="col-xl-4 col-sm-4 col-lg-4 col-md-4 mx-auto">
+                                <NrlComponent nrlChangeState={this.nrlChangeState}></NrlComponent>
                                 <div class="border rounded-top jumbotron ">
-                                    <Login_Form loginCheck={this.loginCheck}></Login_Form> 
-                                    <Button variant="outline-primary" className="rounded-pill mt-4" size="lg" block onClick={this.handleSignInClick}>Registrati</Button>
+                                    <Login_Form loginCheck={this.loginCheck} disableButtonLogIn={nrlUpdating}></Login_Form> 
+                                    <Button variant="outline-primary" className="rounded-pill mt-4" size="lg" block onClick={this.handleSignInClick} disabled={nrlUpdating ? 'true' : '' } >Registrati</Button>
                                 </div>
                                 {
                                     this.state.loginFailed ?

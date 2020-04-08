@@ -1,0 +1,6 @@
+[Main]
+question = "Select the shunt resistance for this L-22E:"
+
+[1771 Ohms]
+description = "L-22E, 2 Hz, 31.8 V/m/s, Rc=325 Ohms, Rs=1771 Ohms"
+resp = "RESP.XX.NS161..SHZ.L22E.325.1771.2.31_8"

@@ -1,0 +1,23 @@
+[Main]
+question = "Select the preamplifier gain setting"
+
+[1]
+path = "rt72a06.32.1.txt"
+
+[8]
+path = "rt72a06.32.8.txt"
+
+[32]
+path = "rt72a06.32.32.txt"
+
+[128]
+path = "rt72a06.32.128.txt"
+
+[512]
+path = "rt72a06.32.512.txt"
+
+[2048]
+path = "rt72a06.32.2048.txt"
+
+[8192]
+path = "rt72a06.32.8192.txt"

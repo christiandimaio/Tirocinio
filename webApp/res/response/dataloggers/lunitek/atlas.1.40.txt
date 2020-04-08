@@ -1,0 +1,14 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[100]
+path = "atlas.1.40.100.txt"
+
+[200]
+path = "atlas.1.40.200.txt"
+
+[250]
+path = "atlas.1.40.250.txt"
+
+[500]
+path = "atlas.1.40.500.txt"

@@ -1,0 +1,15 @@
+[Main]
+question = "Select the corner frequency for this HG-24:"
+detail = "hgs_hgx_sensors-details.html"
+
+[10 Hz (Rc=375 ohms, Rs=None)]
+description="HG-24, 10 Hz, 28.8 V/m/s, Rc=375, Rs=None"
+resp = "RESP.XX.NS598..SLZ.HG24.375.NONE.10.28_8"
+
+[10 Hz (Rc=375 ohms, Rs=1000 ohms)]
+description="HG-24, 10 Hz, 20.95 V/m/s, Rc=375, Rs=1000 Ohms"
+resp = "RESP.XX.NS599..SLZ.HG24.375.1000.10.20_95"
+
+[10 Hz (Rc=375 ohms, Rs=1339 ohms)]
+description="HG-24, 10 Hz, 22.5 V/m/s, Rc=375, Rs=1339 Ohms"
+resp = "RESP.XX.NS600..SLZ.HG24.375.1339.10.22_5"

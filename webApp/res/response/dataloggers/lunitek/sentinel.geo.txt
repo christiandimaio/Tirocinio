@@ -1,0 +1,8 @@
+[Main]
+question = "Select the full scale voltage for this geophone channel"
+
+[1.024 Vpp]
+path = "sentinel.geo.1.1_024.txt"
+
+[2.048 Vpp]
+path = "sentinel.geo.1.2_048.txt"

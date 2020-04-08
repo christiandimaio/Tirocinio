@@ -1,0 +1,23 @@
+[Main]
+question = "Select the sample rate of the higher rate stream in samples per second"
+
+[40]
+path = "rt72a08.24.32.2.25_40.txt"
+
+[50]
+path = "rt72a08.24.32.2.25_50.txt"
+
+[100]
+path = "rt72a08.24.32.2.25_100.txt"
+
+[125]
+path = "rt72a08.24.32.2.25_125.txt"
+
+[200]
+path = "rt72a08.24.32.2.25_200.txt"
+
+[250]
+path = "rt72a08.24.32.2.25_250.txt"
+
+[500]
+path = "rt72a08.24.32.2.25_500.txt"

@@ -1,0 +1,66 @@
+[Main]
+question = "Select the sample rate (in samples/second) for this data stream"
+
+[1]
+resp = "RESP.XX.NR063..LHZ.72A07.cs5323.1.1"
+description = "RT72A-07, gain 1, 1 sps, cs5323 chip"
+
+[2]
+resp = "RESP.XX.NR064..MHZ.72A07.cs5323.1.2"
+description = "RT72A-07, gain 1, 2 sps, cs5323 chip"
+
+[4]
+resp = "RESP.XX.NR065..MHZ.72A07.cs5323.1.4"
+description = "RT72A-07, gain 1, 4 sps, cs5323 chip"
+
+[5]
+resp = "RESP.XX.NR066..MHZ.72A07.cs5323.1.5"
+description = "RT72A-07, gain 1, 5 sps, cs5323 chip"
+
+[8]
+resp = "RESP.XX.NR067..MHZ.72A07.cs5323.1.8"
+description = "RT72A-07, gain 1, 8 sps, cs5323 chip"
+
+[10]
+resp = "RESP.XX.NR068..BHZ.72A07.cs5323.1.10"
+description = "RT72A-07, gain 1, 10 sps, cs5323 chip"
+
+[20]
+resp = "RESP.XX.NR069..BHZ.72A07.cs5323.1.20"
+description = "RT72A-07, gain 1, 20 sps, cs5323 chip"
+
+[25]
+resp = "RESP.XX.NR070..BHZ.72A07.cs5323.1.25"
+description = "RT72A-07, gain 1, 25 sps, cs5323 chip"
+
+[40]
+resp = "RESP.XX.NR071..BHZ.72A07.cs5323.1.40"
+description = "RT72A-07, gain 1, 40 sps, cs5323 chip"
+
+[50]
+resp = "RESP.XX.NR072..BHZ.72A07.cs5323.1.50"
+description = "RT72A-07, gain 1, 50 sps, cs5323 chip"
+
+[100]
+resp = "RESP.XX.NR073..HHZ.72A07.cs5323.1.100"
+description = "RT72A-07, gain 1, 100 sps, cs5323 chip"
+
+[125]
+resp = "RESP.XX.NR074..HHZ.72A07.cs5323.1.125"
+description = "RT72A-07, gain 1, 125 sps, cs5323 chip"
+
+[200]
+resp = "RESP.XX.NR075..HHZ.72A07.cs5323.1.200"
+description = "RT72A-07, gain 1, 200 sps, cs5323 chip"
+
+[250]
+resp = "RESP.XX.NR076..HHZ.72A07.cs5323.1.250"
+description = "RT72A-07, gain 1, 250 sps, cs5323 chip"
+
+[500]
+resp = "RESP.XX.NR077..HHZ.72A07.cs5323.1.500"
+description = "RT72A-07, gain 1, 500 sps, cs5323 chip"
+
+[1000]
+resp = "RESP.XX.NR078..HHZ.72A07.cs5323.1.1000"
+description = "RT72A-07, gain 1, 1000 sps, cs5323 chip"

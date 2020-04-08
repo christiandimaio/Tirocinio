@@ -1,0 +1,58 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[1]
+description="Centaur, 40 vpp (gain 1), 1 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN862..LHZ.CENTAUR.1.1.OFF.MP"
+
+[2]
+description="Centaur, 40 vpp (gain 1), 2 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN882..MHZ.CENTAUR.1.2.OFF.MP"
+
+[5]
+description="Centaur, 40 vpp (gain 1), 5 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN884..MHZ.CENTAUR.1.5.OFF.MP"
+
+[10]
+description="Centaur, 40 vpp (gain 1), 10 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN642..BHZ.CENTAUR.1.10.OFF.MP"
+
+[20]
+description="Centaur, 40 vpp (gain 1), 20 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN644..BHZ.CENTAUR.1.20.OFF.MP"
+
+[40]
+description="Centaur, 40 vpp (gain 1), 40 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN646..BHZ.CENTAUR.1.40.OFF.MP"
+
+[50]
+description="Centaur, 40 vpp (gain 1), 50 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN648..BHZ.CENTAUR.1.50.OFF.MP"
+
+[100]
+description="Centaur, 40 vpp (gain 1), 100 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN802..HHZ.CENTAUR.1.100.OFF.MP"
+
+[125]
+description="Centaur, 40 vpp (gain 1), 125 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN804..HHZ.CENTAUR.1.125.OFF.MP"
+
+[200]
+description="Centaur, 40 vpp (gain 1), 200 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN806..HHZ.CENTAUR.1.200.OFF.MP"
+
+[250]
+description="Centaur, 40 vpp (gain 1), 250 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN722..CHZ.CENTAUR.1.250.OFF.MP"
+
+[500]
+description="Centaur, 40 vpp (gain 1), 500 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN724..CHZ.CENTAUR.1.500.OFF.MP"
+
+[1000]
+description="Centaur, 40 vpp (gain 1), 1000 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN762..FHZ.CENTAUR.1.1000.OFF.MP"
+
+[5000]
+description="Centaur, 40 vpp (gain 1), 5000 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN764..FHZ.CENTAUR.1.5000.OFF.MP"

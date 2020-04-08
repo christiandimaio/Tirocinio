@@ -1,0 +1,27 @@
+[Main]
+question = "Select the EA-120/140 Full Scale Voltage"
+detail = "eentec_accelerometer_sensors-details.html"
+
+[+/- 2.5V Single-ended]
+description = "EA-120/140, DC to 50 Hz, 2.5V single-ended full scale voltage, 2g clip level"
+resp = "RESP.XX.NS310..BNZ.EA120.DC_50.2_5VSE.2G"
+
+[+/- 5V Single-ended]
+description = "EA-120/140, DC to 50 Hz, 5V single-ended full scale voltage, 2g clip level"
+resp = "RESP.XX.NS311..BNZ.EA120.DC_50.5VSE.2G"
+
+[+/- 10V Single-ended]
+description = "EA-120/140, DC to 50 Hz, 10V single-ended full scale voltage, 2g clip level"
+resp = "RESP.XX.NS312..BNZ.EA120.DC_50.10VSE.2G"
+
+[+/- 5V Differential]
+description = "EA-120/140, DC to 50 Hz, 2.5V single-ended full scale voltage, 2g clip level"
+resp = "RESP.XX.NS319..BNZ.EA120.DC_50.5VDF.2G"
+
+[+/- 10V Differential]
+description = "EA-120/140, DC to 50 Hz, 5V single-ended full scale voltage, 2g clip level"
+resp = "RESP.XX.NS320..BNZ.EA120.DC_50.10VDF.2G"
+
+[+/- 20V Differential]
+description = "EA-120/140, DC to 50 Hz, 10V single-ended full scale voltage, 2g clip level"
+resp = "RESP.XX.NS321..BNZ.EA120.DC_50.20VDF.2G"

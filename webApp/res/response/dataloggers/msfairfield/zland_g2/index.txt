@@ -1,0 +1,23 @@
+[Main]
+question = "Select the preamplifier gain"
+
+[0 dB (1)]
+path = "1.txt"
+
+[6 dB (2)]
+path = "2.txt"
+
+[12 dB (4)]
+path = "4.txt"
+
+[18 dB (8)]
+path = "8.txt"
+
+[24 dB (16)]
+path = "16.txt"
+
+[30 dB (32)]
+path = "32.txt"
+
+[36 dB (64)]
+path = "64.txt"

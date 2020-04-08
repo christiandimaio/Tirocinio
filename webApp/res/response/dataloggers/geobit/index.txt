@@ -1,0 +1,14 @@
+[Main]
+question = "Select the GEObit datalogger model"
+
+[SRi32S Normal Gain]
+path = "sri32sng.txt"
+
+[SRi32S High Gain]
+path = "sri32shg.txt"
+
+[C100 SRi32S]
+path = "c100sri32s.txt"
+
+[GEOtiny]
+path = "geotiny.txt"

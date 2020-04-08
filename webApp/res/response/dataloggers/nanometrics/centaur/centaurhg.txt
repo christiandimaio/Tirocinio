@@ -1,0 +1,22 @@
+[Main]
+question = "Select the input range (gain) for this Centaur High Gain datalogger"
+detail = "nanometrics_centaur_high_gain_dataloggers-details.html"
+
+[10 Vpp (4)]
+path="4.txt"
+
+[5 Vpp (8)]
+path="8.txt"
+
+[2.5 Vpp (16)]
+path="16.txt"
+
+[1 Vpp (40)]
+path="40.txt"
+
+[0.5 Vpp (80)]
+path="80.txt"
+
+[0.25 Vpp (160)]
+path="160.txt"
+

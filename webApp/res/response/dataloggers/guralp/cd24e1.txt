@@ -1,0 +1,5 @@
+[Main]
+question = "Select the preamplifier gain setting"
+
+[1]
+path = "CMG_CD24E1/cd24e1.1.txt"

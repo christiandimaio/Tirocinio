@@ -1,0 +1,5 @@
+[Main]
+question = "Select the number of simultaneous data streams (sample rates)"
+
+[1]
+path = "1ds.txt"

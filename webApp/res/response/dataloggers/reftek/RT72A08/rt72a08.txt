@@ -1,0 +1,8 @@
+[Main]
+question = "Select the A/D resolution in bits for this channel"
+
+[16]
+path = "rt72a08.16.txt"
+
+[24]
+path = "rt72a08.24.txt"

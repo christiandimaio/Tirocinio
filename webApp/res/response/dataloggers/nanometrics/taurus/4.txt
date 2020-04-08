@@ -1,0 +1,8 @@
+[Main]
+question = "Select the input impedance mode"
+
+[High]
+path="4.hi.txt"
+
+[Low (default)]
+path="4.lo.txt"

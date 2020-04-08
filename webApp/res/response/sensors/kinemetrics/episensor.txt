@@ -1,0 +1,15 @@
+[Main]
+question = "Select the Episensor Full Scale Voltage"
+detail = "kinemetrics_episensor_sensors-details.html"
+
+[+/- 2.5V Single-ended]
+path = "episensor.2_5VSE.txt"
+
+[+/- 10V Single-ended]
+path = "episensor.10VSE.txt"
+
+[+/- 5V Differential]
+path = "episensor.5VDF.txt"
+
+[+/- 20V Differential]
+path = "episensor.20VDF.txt"

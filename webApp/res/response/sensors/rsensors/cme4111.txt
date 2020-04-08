@@ -1,0 +1,10 @@
+[Main]
+question = "Select the R-Sensors CME-4111 sensitivity"
+
+[4000 V/m/s (land)]
+description = "CME-4111, 60 s, 4000 V/m/s"
+resp = "RESP.XX.NS371..BHZ.CME4111.60.4000"
+
+[2000 V/m/s (Ocean Bottom)]
+description = "CME-4111OB, 60 s, 2000 V/m/s"
+resp = "RESP.XX.NS372..BHZ.CME4111OB.60.2000"

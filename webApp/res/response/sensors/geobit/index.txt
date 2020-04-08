@@ -1,0 +1,25 @@
+[Main]
+question = "Select the GEObit sensor model"
+
+[S20]
+description = "S20, 25 s, 1500 V/M/S"
+resp = "RESP.XX.NS503..BHZ.S20.25.1500"
+
+[S100]
+path = "s100.txt"
+
+[S200]
+path = "s200.txt"
+
+[S400]
+path = "s400.txt"
+
+[SM1500]
+description = "SM1500, DC to 500 Hz, 10V full scale voltage, 2g clip level"
+resp = "RESP.XX.NS538..BNZ.SM1500.DC_500.10V.2G"
+
+[C100 digital sensor]
+path = "c100.txt"
+
+[GEOtiny digital sensor]
+path = "geotiny.txt"

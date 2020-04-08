@@ -1,0 +1,10 @@
+[Main]
+question = "Select the final filter type"
+
+[Non-causal]
+description = "Etna 2, gain 1, 200 sps, non-causal filter"
+resp = "RESP.XX.NK470..HHZ.ETNA2.1.200.NonC"
+
+[Causal]
+description = "Etna 2, gain 1, 200 sps, causal filter"
+resp = "RESP.XX.NK471..HHZ.ETNA2.1.200.C"

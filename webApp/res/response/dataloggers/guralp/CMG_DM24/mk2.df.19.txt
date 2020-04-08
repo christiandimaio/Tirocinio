@@ -1,0 +1,18 @@
+[Main]
+question = "Select the sample rate in samples per dfcond"
+
+[200]
+description = "DM-24 Mk2 Differential, gain 1, 200 sps, tap id 19, (200 20 2 and 1 Hz)"
+resp = "mk2/RESP.XX.NG072..HHZ.CMG_DM24_MK2_DF.1..200"
+
+[20]
+description = "DM-24 Mk2 Differential, gain 1, 20 sps, tap id 19, (200 20 2 and 1 Hz)"
+resp = "mk2/RESP.XX.NG077..BHZ.CMG_DM24_MK2_DF.1.200.20"
+
+[2]
+description = "DM-24 Mk2 Differential, gain 1, 2 sps, tap id 19, (200 20 2 and 1 Hz)"
+resp = "mk2/RESP.XX.NG097..MHZ.CMG_DM24_MK2_DF.1.200_20.2"
+
+[1]
+description = "DM-24 Mk2 Differential, gain 1, 1 sps, tap id 19, (200 20 2 and 1 Hz)"
+resp = "mk2/RESP.XX.NG140..LHZ.CMG_DM24_MK2_DF.1.200_20_2.1"

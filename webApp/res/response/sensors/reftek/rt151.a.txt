@@ -1,0 +1,14 @@
+[Main]
+question = "Select the natural period in seconds for this sensor"
+
+[30]
+description = "RT151A, 30 s, 2000 V/m/s"
+resp = "RESP.XX.NS136..BHZ.RT151A.30.2000"
+
+[60]
+description = "RT151A, 60 s, 2000 V/m/s"
+resp = "RESP.XX.NS135..BHZ.RT151A.60.2000"
+
+[120]
+description = "RT151A, 120 s, 2000 V/m/s"
+resp = "RESP.XX.NS130..BHZ.RT151A.120.2000"

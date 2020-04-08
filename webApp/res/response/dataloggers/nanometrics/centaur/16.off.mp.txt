@@ -1,0 +1,58 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[1]
+description="Centaur, 16 vpp (gain 16), 1 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN866..LHZ.CENTAUR.16.1.OFF.MP"
+
+[2]
+description="Centaur, 16 vpp (gain 16), 2 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN890..MHZ.CENTAUR.16.2.OFF.MP"
+
+[5]
+description="Centaur, 16 vpp (gain 16), 5 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN892..MHZ.CENTAUR.16.5.OFF.MP"
+
+[10]
+description="Centaur, 16 vpp (gain 16), 10 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN658..BHZ.CENTAUR.16.10.OFF.MP"
+
+[20]
+description="Centaur, 16 vpp (gain 16), 20 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN660..BHZ.CENTAUR.16.20.OFF.MP"
+
+[40]
+description="Centaur, 16 vpp (gain 16), 40 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN662..BHZ.CENTAUR.16.40.OFF.MP"
+
+[50]
+description="Centaur, 16 vpp (gain 16), 50 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN664..BHZ.CENTAUR.16.50.OFF.MP"
+
+[100]
+description="Centaur, 16 vpp (gain 16), 100 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN814..HHZ.CENTAUR.16.100.OFF.MP"
+
+[125]
+description="Centaur, 16 vpp (gain 16), 125 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN816..HHZ.CENTAUR.16.125.OFF.MP"
+
+[200]
+description="Centaur, 16 vpp (gain 16), 200 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN818..HHZ.CENTAUR.16.200.OFF.MP"
+
+[250]
+description="Centaur, 16 vpp (gain 16), 250 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN730..CHZ.CENTAUR.16.250.OFF.MP"
+
+[500]
+description="Centaur, 16 vpp (gain 16), 500 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN732..CHZ.CENTAUR.16.500.OFF.MP"
+
+[1000]
+description="Centaur, 16 vpp (gain 16), 1000 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN770..FHZ.CENTAUR.16.1000.OFF.MP"
+
+[5000]
+description="Centaur, 16 vpp (gain 16), 5000 sps, DC removal filter off, Minimum phase"
+resp = "RESP.XX.NN772..FHZ.CENTAUR.16.5000.OFF.MP"

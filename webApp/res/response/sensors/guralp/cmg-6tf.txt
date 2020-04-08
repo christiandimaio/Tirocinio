@@ -1,0 +1,18 @@
+[Main]
+question = "Select the natural period (or passband) for this sensor"
+
+[1s - 100Hz, 2400 V/m/s]
+description = "CMG-6TF, 1s-100Hz, 2400 V/m/s"
+resp = "RESP.XX.NS344..SHZ.CMG6TF.1_100.2400"
+
+[2s - 100H, 2400 V/m/sz]
+description = "CMG-6TF, 2s-100Hz, 2400 V/m/s"
+resp = "RESP.XX.NS345..SHZ.CMG6TF.2_100.2400"
+
+[5s - 100Hz, 2400 V/m/s]
+description = "CMG-6TF, 5s-100Hz, 2400 V/m/s"
+resp = "RESP.XX.NS346..SHZ.CMG6TF.5_100.2400"
+
+[10s - 100Hz, 2400 V/m/s]
+description = "CMG-6TF, 10s-100Hz, 2400 V/m/s"
+resp = "RESP.XX.NS347..BHZ.CMG6TF.10_100.2400"

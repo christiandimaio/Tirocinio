@@ -1,0 +1,66 @@
+[Main]
+question = "Select the sample rate (in samples/second) for this data stream"
+
+[1]
+resp = "RESP.XX.N0161..LHZ.72A08_16b.2048.16.1"
+description = "RT72A-08, gain 2048, 1 sps, 16-bit A/D, 16-bit words"
+
+[2]
+resp = "RESP.XX.N0162..MHZ.72A08_16b.2048.16.2"
+description = "RT72A-08, gain 2048, 2 sps, 16-bit A/D, 16-bit words"
+
+[4]
+resp = "RESP.XX.N0163..MHZ.72A08_16b.2048.16.4"
+description = "RT72A-08, gain 2048, 4 sps, 16-bit A/D, 16-bit words"
+
+[5]
+resp = "RESP.XX.N0164..MHZ.72A08_16b.2048.16.5"
+description = "RT72A-08, gain 2048, 5 sps, 16-bit A/D, 16-bit words"
+
+[8]
+resp = "RESP.XX.N0165..MHZ.72A08_16b.2048.16.8"
+description = "RT72A-08, gain 2048, 8 sps, 16-bit A/D, 16-bit words"
+
+[10]
+resp = "RESP.XX.N0166..BHZ.72A08_16b.2048.16.10"
+description = "RT72A-08, gain 2048, 10 sps, 16-bit A/D, 16-bit words"
+
+[20]
+resp = "RESP.XX.N0167..BHZ.72A08_16b.2048.16.20"
+description = "RT72A-08, gain 2048, 20 sps, 16-bit A/D, 16-bit words"
+
+[25]
+resp = "RESP.XX.N0168..BHZ.72A08_16b.2048.16.25"
+description = "RT72A-08, gain 2048, 25 sps, 16-bit A/D, 16-bit words"
+
+[40]
+resp = "RESP.XX.N0169..BHZ.72A08_16b.2048.16.40"
+description = "RT72A-08, gain 2048, 40 sps, 16-bit A/D, 16-bit words"
+
+[50]
+resp = "RESP.XX.N0170..BHZ.72A08_16b.2048.16.50"
+description = "RT72A-08, gain 2048, 50 sps, 16-bit A/D, 16-bit words"
+
+[100]
+resp = "RESP.XX.N0171..HHZ.72A08_16b.2048.16.100"
+description = "RT72A-08, gain 2048, 100 sps, 16-bit A/D, 16-bit words"
+
+[125]
+resp = "RESP.XX.N0172..HHZ.72A08_16b.2048.16.125"
+description = "RT72A-08, gain 2048, 125 sps, 16-bit A/D, 16-bit words"
+
+[200]
+resp = "RESP.XX.N0173..HHZ.72A08_16b.2048.16.200"
+description = "RT72A-08, gain 2048, 200 sps, 16-bit A/D, 16-bit words"
+
+[250]
+resp = "RESP.XX.N0174..HHZ.72A08_16b.2048.16.250"
+description = "RT72A-08, gain 2048, 250 sps, 16-bit A/D, 16-bit words"
+
+[500]
+resp = "RESP.XX.N0175..HHZ.72A08_16b.2048.16.500"
+description = "RT72A-08, gain 2048, 500 sps, 16-bit A/D, 16-bit words"
+
+[1000]
+resp = "RESP.XX.N0176..HHZ.72A08_16b.2048.16.1000"
+description = "RT72A-08, gain 2048, 1000 sps, 16-bit A/D, 16-bit words"

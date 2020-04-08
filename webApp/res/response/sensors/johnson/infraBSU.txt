@@ -1,0 +1,16 @@
+[Main]
+question = "Select the corner period / capillary diameter (color) for this infraBSU:
+detail = "johnson_infraBSU_sensors-details.html"
+
+[0.016 Hz / 25 microns (Pink)]
+path = "infraBSU.0_016.txt"
+
+[0.031 Hz / 50 microns (White)]
+path = "infraBSU.0_031.txt"
+
+[0.035 Hz / 50 microns (Yellow)]
+path = "infraBSU.0_035.txt"
+
+[0.048 Hz / 62.5 microns (Blue)]
+path = "infraBSU.0_048.txt"
+

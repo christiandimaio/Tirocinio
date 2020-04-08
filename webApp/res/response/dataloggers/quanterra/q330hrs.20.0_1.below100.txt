@@ -1,0 +1,11 @@
+[Main]
+question = "Select the fir filters used to generate this channel"
+detail = "quanterra_Q330_LP_dataloggers-details.html"
+
+[VLP389]
+description = "Q330HRS, gain 20, 0.1 sps, linear filters below 100 sps, dec10 fir filter"
+resp = "RESP.XX.NQ193..VHZ.Q330.HR.20.0_1.below100.vlp389"
+
+[DEC10]
+description = "Q330HRS, gain 20, 0.1 sps, linear filters below 100 sps, dec10 fir filter"
+resp = "RESP.XX.NQ195..VHZ.Q330.HR.20.0_1.below100.dec10"

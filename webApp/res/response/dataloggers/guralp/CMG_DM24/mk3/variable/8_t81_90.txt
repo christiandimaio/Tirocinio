@@ -1,0 +1,32 @@
+[Main]
+question = "Select this channel's tap table lookup number"
+
+[81]
+path = "8_t81_90.81.txt"
+
+[82]
+path = "8_t81_90.82.txt"
+
+[83]
+path = "8_t81_90.83.txt"
+
+[84]
+path = "8_t81_90.84.txt"
+
+[85]
+path = "8_t81_90.85.txt"
+
+[86]
+path = "8_t81_90.86.txt"
+
+[87]
+path = "8_t81_90.87.txt"
+
+[88]
+path = "8_t81_90.88.txt"
+
+[89]
+path = "8_t81_90.89.txt"
+
+[90]
+path = "8_t81_90.90.txt"

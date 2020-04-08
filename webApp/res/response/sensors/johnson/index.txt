@@ -1,0 +1,9 @@
+[Main]
+question = "Select the Jeff B. Johnson infrasound sensor model"
+
+[infraBSU]
+path = "infraBSU.txt"
+
+[infraNMT]
+description = "infraNMT (Infrasound), 0.03 Hz, 0.000026 V/Pa"
+resp = "RESP.XX.IS023..BDF.INFRANMT.0_03.0_000026"

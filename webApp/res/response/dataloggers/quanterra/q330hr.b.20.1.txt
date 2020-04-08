@@ -1,0 +1,18 @@
+[Main]
+question = "Select the linear filter setting for this channel"
+
+[LINEAR AT ALL SPS]
+resp = "RESP.XX.NQ065..LHZ.Q330.SR.20.1.all"
+description = "Q330HR, gain 20, 1 sps, port B (chans 4-6), linear filters for all sample rates"
+
+[LINEAR BELOW 100 SPS]
+resp = "RESP.XX.NQ086..LHZ.Q330.SR.20.1.below100"
+description = "Q330HR, gain 20, 1 sps, port B (chans 4-6), linear filters below 100 sps"
+
+[LINEAR BELOW 40 SPS]
+resp = "RESP.XX.NQ107..LHZ.Q330.SR.20.1.below40"
+description = "Q330HR, gain 20, 1 sps, port B (chans 4-6), linear filters below 40 sps"
+
+[LINEAR BELOW 20 SPS]
+resp = "RESP.XX.NQ128..LHZ.Q330.SR.20.1.below20"
+description = "Q330HR, gain 20, 1 sps, port B (chans 4-6), linear filters below 20 sps"

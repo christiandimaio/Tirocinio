@@ -1,0 +1,18 @@
+[Main]
+question = "Select the sample rate in samples per second for this channel"
+
+[1]
+description = "QEP, channel 1, 1 sps"
+resp = "RESP.XX.NQ496..LHZ.QEP.1.1"
+
+[10]
+description = "QEP, channel 1, 10 sps"
+resp = "RESP.XX.NQ498..BHZ.QEP.1.10"
+
+[20]
+description = "QEP, channel 1, 20 sps"
+resp = "RESP.XX.NQ500..BHZ.QEP.1.20"
+
+[40]
+description = "QEP, channel 1, 40 sps"
+resp = "RESP.XX.NQ502..BHZ.QEP.1.40"

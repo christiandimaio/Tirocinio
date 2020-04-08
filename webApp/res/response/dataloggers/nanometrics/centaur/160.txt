@@ -1,0 +1,8 @@
+[Main]
+question = "Select whether the DC removal filter is on (corner at 1 mHz)"
+
+[Off]
+path="160.off.txt"
+
+[1 mHz]
+path="160.1.txt"

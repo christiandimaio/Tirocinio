@@ -1,0 +1,6 @@
+[Main]
+question = "Select the High Tech hydrophone model"
+
+[HTI-96-Min]
+description = "HTI-96-Min (Hydrophone), 2-30,000 Hz, 0.36 V/Pa"
+resp = "RESP.XX.NS689..BDH.HIGHTECH.2_30000.0_36"

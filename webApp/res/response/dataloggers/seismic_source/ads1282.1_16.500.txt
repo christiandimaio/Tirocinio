@@ -1,0 +1,22 @@
+[Main]
+question = "Select the final IIR filter corner frequency"
+
+[OFF]
+description = "Seismic Source DAQ3/Sigma3/Sigma4, 500 sps, IIR Off"
+resp = "RESP.XX.SS003..DHZ.DAQ3.1.500.OFF"
+
+[0.001 Hz]
+description = "Seismic Source DAQ3/Sigma3/Sigma4, 500 sps, IIR 0.001 Hz"
+resp = "RESP.XX.SS004..DHZ.DAQ3.1.500.0_001"
+
+[0.01 Hz]
+description = "Seismic Source DAQ3/Sigma3/Sigma4, 500 sps, IIR 0.01 Hz"
+resp = "RESP.XX.SS014..DHZ.DAQ3.1.500.0_01"
+
+[0.1 Hz]
+description = "Seismic Source DAQ3/Sigma3/Sigma4, 500 sps, IIR 0.1 Hz"
+resp = "RESP.XX.SS015..DHZ.DAQ3.1.500.0_1"
+
+[2 Hz]
+description = "Seismic Source DAQ3/Sigma3/Sigma4, 500 sps, IIR 2 Hz"
+resp = "RESP.XX.SS016..DHZ.DAQ3.1.500.2"

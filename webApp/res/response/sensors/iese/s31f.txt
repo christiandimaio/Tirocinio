@@ -1,0 +1,7 @@
+[Main]
+question = "Select the S31f fundamental frequency"
+detail = "iese_s21g_sensors-details.html"
+
+[2.0 Hz]
+description = "S31f, 2 Hz, 76 V/m/s, Rc=3180 Ohms, Rs=106651 Ohms"
+resp = "RESP.XX.NS376..SHZ.G88.3180.106651.2.76"

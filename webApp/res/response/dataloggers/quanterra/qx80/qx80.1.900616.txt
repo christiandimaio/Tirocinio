@@ -1,0 +1,27 @@
+[Main]
+question = "Select the sample rate in samples per second for this channel"
+
+[0.01]
+path = "qx80.1.900616.0_01.txt"
+
+[0.1]
+path = "qx80.1.900616.0_1.txt"
+
+[1]
+path = "qx80.1.900616.1.txt"
+
+[10]
+resp = "RESP.XX.NQ303..BHZ.Qx80.1.10.900616"
+description = "Qx80, gain 1, 10 sps, filter version 900616"
+
+[20]
+resp = "RESP.XX.NQ304..BHZ.Qx80.1.20.900616"
+description = "Qx80, gain 1, 20 sps, filter version 900616"
+
+[40]
+resp = "RESP.XX.NQ305..BHZ.Qx80.1.40.900616"
+description = "Qx80, gain 1, 40 sps, filter version 900616"
+
+[80]
+resp = "RESP.XX.NQ306..BHZ.Qx80.1.80.900616"
+description = "Qx80, gain 1, 80 sps, filter version 900616"

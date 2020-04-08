@@ -1,0 +1,82 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[1]
+description = "Kephren, gain 2, 1 sps"
+resp = "RESP.XX.NA002..LHZ.KEPHREN.2.1"
+
+[2]
+description = "Kephren, gain 2, 2 sps"
+resp = "RESP.XX.NA006..MHZ.KEPHREN.2.2"
+
+[4]
+description = "Kephren, gain 2, 4 sps"
+resp = "RESP.XX.NA010..MHZ.KEPHREN.2.4"
+
+[5]
+description = "Kephren, gain 2, 5 sps"
+resp = "RESP.XX.NA014..MHZ.KEPHREN.2.5"
+
+[8]
+description = "Kephren, gain 2, 8 sps"
+resp = "RESP.XX.NA018..MHZ.KEPHREN.2.8"
+
+[10]
+description = "Kephren, gain 2, 10 sps"
+resp = "RESP.XX.NA022..BHZ.KEPHREN.2.10"
+
+[16]
+description = "Kephren, gain 2, 16 sps"
+resp = "RESP.XX.NA026..BHZ.KEPHREN.2.16"
+
+[20]
+description = "Kephren, gain 2, 20 sps"
+resp = "RESP.XX.NA030..BHZ.KEPHREN.2.20"
+
+[25]
+description = "Kephren, gain 2, 25 sps"
+resp = "RESP.XX.NA034..BHZ.KEPHREN.2.25"
+
+[40]
+description = "Kephren, gain 2, 40 sps"
+resp = "RESP.XX.NA038..BHZ.KEPHREN.2.40"
+
+[50]
+description = "Kephren, gain 2, 50 sps"
+resp = "RESP.XX.NA042..BHZ.KEPHREN.2.50"
+
+[80]
+description = "Kephren, gain 2, 80 sps"
+resp = "RESP.XX.NA046..BHZ.KEPHREN.2.80"
+
+[100]
+description = "Kephren, gain 2, 100 sps"
+resp = "RESP.XX.NA050..HHZ.KEPHREN.2.100"
+
+[125]
+description = "Kephren, gain 2, 125 sps"
+resp = "RESP.XX.NA054..HHZ.KEPHREN.2.125"
+
+[200]
+description = "Kephren, gain 2, 200 sps"
+resp = "RESP.XX.NA058..HHZ.KEPHREN.2.200"
+
+[250]
+description = "Kephren, gain 2, 250 sps"
+resp = "RESP.XX.NA062..HHZ.KEPHREN.2.250"
+
+[400]
+description = "Kephren, gain 2, 400 sps"
+resp = "RESP.XX.NA066..HHZ.KEPHREN.2.400"
+
+[500]
+description = "Kephren, gain 2, 500 sps"
+resp = "RESP.XX.NA070..HHZ.KEPHREN.2.500"
+
+[1000]
+description = "Kephren, gain 2, 1000 sps"
+resp = "RESP.XX.NA074..HHZ.KEPHREN.2.1000"
+
+[2000]
+description = "Kephren, gain 2, 2000 sps"
+resp = "RESP.XX.NA078..HHZ.KEPHREN.2.2000"

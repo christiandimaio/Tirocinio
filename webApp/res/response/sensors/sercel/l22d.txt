@@ -1,0 +1,21 @@
+[Main]
+question = "Select the coil resistance for this L-22D:"
+detail = "sercel_l22d_sensors-details.html"
+
+[210 Ohms]
+path = "l22d.210.txt"
+
+[325 Ohms]
+path = "l22d.325.txt"
+
+[510 Ohms]
+path = "l22d.510.txt"
+
+[2200 Ohms]
+path = "l22d.2200.txt"
+
+[5470 Ohms]
+path = "l22d.5470.txt"
+
+[8540 Ohms]
+path = "l22d.8540.txt"

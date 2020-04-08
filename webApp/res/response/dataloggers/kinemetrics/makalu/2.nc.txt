@@ -1,0 +1,26 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[20]
+description = "Makalu, gain 2, 20 sps, non-causal filter"
+resp = "RESP.XX.NK065..BHZ.MAKALU.2.20.NonC"
+
+[40]
+description = "Makalu, gain 2, 40 sps, non-causal filter"
+resp = "RESP.XX.NK067..BHZ.MAKALU.2.40.NonC"
+
+[50]
+description = "Makalu, gain 2, 20 sps, non-causal filter"
+resp = "RESP.XX.NK069..BHZ.MAKALU.2.50.NonC"
+
+[100]
+description = "Makalu, gain 2, 100 sps, non-causal filter"
+resp = "RESP.XX.NK071..HHZ.MAKALU.2.100.NonC"
+
+[200]
+description = "Makalu, gain 2, 200 sps, non-causal filter"
+resp = "RESP.XX.NK073..HHZ.MAKALU.2.200.NonC"
+
+[250]
+description = "Makalu, gain 2, 250 sps, non-causal filter"
+resp = "RESP.XX.NK075..HHZ.MAKALU.2.250.NonC"

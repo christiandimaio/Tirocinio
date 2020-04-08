@@ -1,0 +1,46 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[1]
+description = "Rock family, gain 8, 10 Vpp, 1 sps, non-causal filter"
+resp = "RESP.XX.NK288..LHZ.ROCK.8.10.1.NonC"
+
+[10]
+description = "Rock family, gain 8, 10 Vpp, 10 sps, non-causal filter"
+resp = "RESP.XX.NK303..BHZ.ROCK.8.10.10.NonC"
+
+[20]
+description = "Rock family, gain 8, 10 Vpp, 20 sps, non-causal filter"
+resp = "RESP.XX.NK318..BHZ.ROCK.8.10.20.NonC"
+
+[50]
+description = "Rock family, gain 8, 10 Vpp, 50 sps, non-causal filter"
+resp = "RESP.XX.NK333..BHZ.ROCK.8.10.50.NonC"
+
+[100]
+description = "Rock family, gain 8, 10 Vpp, 100 sps, non-causal filter"
+resp = "RESP.XX.NK348..HHZ.ROCK.8.10.100.NonC"
+
+[200]
+description = "Rock family, gain 8, 10 Vpp, 200 sps, non-causal filter"
+resp = "RESP.XX.NK363..HHZ.ROCK.8.10.200.NonC"
+
+[250]
+description = "Rock family, gain 8, 10 Vpp, 250 sps, non-causal filter"
+resp = "RESP.XX.NK378..CHZ.ROCK.8.10.250.NonC"
+
+[500]
+description = "Rock family, gain 8, 10 Vpp, 500 sps, non-causal filter"
+resp = "RESP.XX.NK393..CHZ.ROCK.8.10.500.NonC"
+
+[1000]
+description = "Rock family, gain 8, 10 Vpp, 1000 sps, non-causal filter"
+resp = "RESP.XX.NK408..FHZ.ROCK.8.10.1000.NonC"
+
+[2000]
+description = "Rock family, gain 8, 10 Vpp, 2000 sps, non-causal filter"
+resp = "RESP.XX.NK423..FHZ.ROCK.8.10.2000.NonC"
+
+[5000]
+description = "Rock family, gain 8, 10 Vpp, 5000 sps, non-causal filter"
+resp = "RESP.XX.NK453..FHZ.ROCK.8.10.5000.NonC"

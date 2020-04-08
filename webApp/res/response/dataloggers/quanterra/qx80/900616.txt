@@ -1,0 +1,23 @@
+[Main]
+question = "Select the sample rate in samples per second for this channel"
+
+[0.01]
+path = "qx80_900616.0_01"
+
+[0.1]
+path = "qx80_900616.0_1"
+
+[1]
+path = "qx80_900616.1"
+
+[10]
+resp = "RESP.XX.NQ303..BHZ.Qx80.1.10.900616"
+
+[20]
+resp = "RESP.XX.NQ304..BHZ.Qx80.1.20.900616"
+
+[40]
+resp = "RESP.XX.NQ305..BHZ.Qx80.1.40.900616"
+
+[80]
+resp = "RESP.XX.NQ306..BHZ.Qx80.1.80.900616"

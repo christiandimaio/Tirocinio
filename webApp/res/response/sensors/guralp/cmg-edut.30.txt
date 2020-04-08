@@ -1,0 +1,6 @@
+[Main]
+question = "Select the sensor sensitivity in V/m/s"
+
+[2400]
+resp = "RESP.XX.NS057..BHZ.CMGEDUT.30.2400"
+description = "CMG-EDU-T, 30 s, 2400 V/m/s"

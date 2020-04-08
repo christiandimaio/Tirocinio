@@ -1,0 +1,18 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[125]
+description = "Sentinel r.1, gain 1, 10 Vpp, 125 sps"
+resp = "RESP.XX.LD057..HHZ.SENTINEL_R1.MEMS.1.10.125"
+
+[250]
+description = "Sentinel r.1, gain 1, 10 Vpp, 250 sps"
+resp = "RESP.XX.LD058..CHZ.SENTINEL_R1.MEMS.1.10.250"
+
+[500]
+description = "Sentinel r.1, gain 1, 10 Vpp, 500 sps"
+resp = "RESP.XX.LD059..CHZ.SENTINEL_R1.MEMS.1.10.500"
+
+[1000]
+description = "Sentinel r.1, gain 1, 10 Vpp, 1000 sps"
+resp = "RESP.XX.LD060..CHZ.SENTINEL_R1.MEMS.1.10.1000"

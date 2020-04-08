@@ -1,0 +1,9 @@
+[Main]
+question = "Select the Zland Node generation that contains this geophone"
+
+[Generation 1]
+description = "Geospace GS-30CT, 10 Hz, Rc=395, Rs=1000, 19.7 V/m/s"
+resp = "../oyo_geospace/RESP.XX.NS610..SHZ.GS30CT.10.395.1000.19_7"
+
+[Generation 2]
+path = "gen2.txt"

@@ -1,0 +1,10 @@
+[Main]
+question = "Select the R-Sensors geophone model"
+
+[MTSS-1001]
+description = "MTSS-1001, 1-300 Hz, 250 V/m/s"
+resp = "RESP.XX.NS623..SLZ.MTSS1001.1.250"
+
+[MTSS-2003]
+description = "MTSS-2003, 1-300 Hz, 250 V/m/s"
+resp = "RESP.XX.NS624..SLZ.MTSS2003.1.250"

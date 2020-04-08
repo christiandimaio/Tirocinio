@@ -1,0 +1,10 @@
+[Main]
+question = "Select the fundamental frequency of this geophone"
+
+[5 Hz]
+description = "Zland Node Gen. 2 geophone, 5 Hz, 0.7 damping, 76.7 V/m/s"
+resp = "RESP.XX.NS611..SHZ.ZLAND_GEN2.5.UNK.UNK.76_7"
+
+[10 Hz]
+description = "Zland Node Gen. 2 geophone, 10 Hz, 0.7 damping, 78.7 V/m/s"
+resp = "RESP.XX.NS612..SHZ.ZLAND_GEN2.10.UNK.UNK.78_7"

@@ -1,0 +1,11 @@
+[Main]
+question = "Select the input range"
+
+[40 Vpp]
+path = "sri32sng.40.txt"
+
+[20 Vpp]
+path = "sri32sng.20.txt"
+
+[10 Vpp]
+path = "sri32sng.10.txt"

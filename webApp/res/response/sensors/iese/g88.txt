@@ -1,0 +1,11 @@
+[Main]
+question = "Select the G88 fundamental frequency"
+detail = "iese_g88_sensors-details.html"
+
+[4.5 Hz]
+description = "G88, 4.5 Hz, 51.23 V/m/s, Rc=3180 Ohms, Rs=7096 Ohms"
+resp = "RESP.XX.NS375..SHZ.G88.3180.7096.4_5.51_23"
+
+[2.0 Hz]
+description = "G88, 2 Hz, 76 V/m/s, Rc=3180 Ohms, Rs=106651 Ohms"
+resp = "RESP.XX.NS376..SHZ.G88.3180.106651.2.76"

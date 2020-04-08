@@ -1,0 +1,44 @@
+[Main]
+question = "Select the sample rate for the lowest rate stream in samples per second"
+
+[1]
+path = "rt72a08.24.32.2.1.txt"
+
+[2]
+path = "rt72a08.24.32.2.2.txt"
+
+[4]
+path = "rt72a08.24.32.2.4.txt"
+
+[5]
+path = "rt72a08.24.32.2.5.txt"
+
+[8]
+path = "rt72a08.24.32.2.8.txt"
+
+[10]
+path = "rt72a08.24.32.2.10.txt"
+
+[20]
+path = "rt72a08.24.32.2.20.txt"
+
+[25]
+path = "rt72a08.24.32.2.25.txt"
+
+[40]
+path = "rt72a08.24.32.2.40.txt"
+
+[50]
+path = "rt72a08.24.32.2.50.txt"
+
+[100]
+path = "rt72a08.24.32.2.100.txt"
+
+[125]
+path = "rt72a08.24.32.2.125.txt"
+
+[200]
+path = "rt72a08.24.32.2.200.txt"
+
+[250]
+path = "rt72a08.24.32.2.250.txt"

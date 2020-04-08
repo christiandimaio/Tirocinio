@@ -1,0 +1,8 @@
+[Main]
+question = "Select the third fastest of the four sample rates (taps) that you selected when configuring the datalogger"
+
+[2]
+path = "cd24e1.1.20.10.2.txt"
+
+[5]
+path = "cd24e1.1.20.10.5.txt"

@@ -1,0 +1,18 @@
+[Main]
+question = "Select the sample rate in samples per second"
+
+[200]
+description = "DM-24 Mk2 Single-ended, gain 1, 200 sps, tap id 53, (200 100 20 and 4 Hz)"
+resp = "mk2/RESP.XX.NG001..HHZ.CMG_DM24_MK2_SE.1..200"
+
+[100]
+description = "DM-24 Mk2 Single-ended, gain 1, 100 sps, tap id 53, (200 100 20 and 4 Hz)"
+resp = "mk2/RESP.XX.NG002..HHZ.CMG_DM24_MK2_SE.1.200.100"
+
+[20]
+description = "DM-24 Mk2 Single-ended, gain 1, 20 sps, tap id 53, (200 100 20 and 4 Hz)"
+resp = "mk2/RESP.XX.NG010..BHZ.CMG_DM24_MK2_SE.1.200_100.20"
+
+[4]
+description = "DM-24 Mk2 Single-ended, gain 1, 4 sps, tap id 53, (200 100 20 and 4 Hz)"
+resp = "mk2/RESP.XX.NG034..MHZ.CMG_DM24_MK2_SE.1.200_100_20.4"
