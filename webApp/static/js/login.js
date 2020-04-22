@@ -10,101 +10,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-class Sign_In_Form extends React.Component{
-    
 
-    constructor(props){
-        super(props);
-        
-    }
-    render(){
-        return (
-                <div id="" class="jumbotron my-auto">
-                    <Box mb={2}>
-                        <Grid container spacing={2} justify="flex-start" alignItems="flex-start">
-                            <Grid item xl={4} xs={6}>
-                            <Button
-                                variant="outline-primary" className="rounded-pill " 
-                                onClick={()=>{ this.props.logInFormCaller()}}
-                            >
-                                Return to Login
-                            </Button>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                    <Grid
-                        container
-                        direction="row"
-                        spacing={2}
-                        justify="center"
-                        alignItems="baseline"
-                    >
-                        <Grid item xl={6} xs={6}>
-                            <TextField id="outlined-full-width" label="Nome" variant="outlined" required fullWidth>
-
-                            </TextField>
-                        </Grid>
-                        <Grid item xl={6} xs={6}>
-                            <TextField id="outlined-full-width" label="Cognome" variant="outlined" required fullWidth>
-
-                            </TextField>
-                        </Grid>
-                        
-                        <Grid item xl={6} xs={6}>
-                            <TextField id="outlined-full-width" label="Indirizzo Email" variant="outlined" required fullWidth>
-
-                            </TextField>
-                        </Grid>
-
-                        <Grid item xl={6} xs={6}>
-                            <TextField id="outlined-full-width" type="password" label="Password" variant="outlined" required fullWidth>
-
-                            </TextField>
-                        </Grid>
-                    </Grid>
-                    <Box mt={1}>
-                        <Grid
-                            container
-                            direction="column"
-                            justify="flex-start"
-                            alignItems="baseline"
-                            spacing={2}
-                        >
-                            <Grid mt={2} item xl={8} xs={8} spacing={2}>
-                                <FormControl variant="outlined" style={{minWidth: 200}}>
-                                    <InputLabel id="demo-simple-select-outlined-label">Tipo Operatore</InputLabel>
-                                    <Select autoWidth
-                                        labelId="tipo-operatore-label"
-                                        id="demo-simple-select-outlined"
-                                        label="Tipo Utente"
-                                        >
-                                        <MenuItem value={'10'}>Operatore Semplice</MenuItem>
-                                        <MenuItem value={20}>Operatore</MenuItem>
-                                        <MenuItem value={30}>Esterno</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-                            <Grid item xl={8} xs={8}>
-                            <TextField id="outlined-full-width" label="Telefono" variant="outlined" required fullWidth
-                            InputProps={{
-                                startAdornment: <InputAdornment position="start">+39</InputAdornment>,
-                                }}>
-
-                            </TextField>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                    <Box mt={3}>
-                        <Grid container item direction="row" justify="flex-end" alignItems="baseline">
-                            <Button_MUI variant="contained" color="primary" fullWidth>
-                                Registrati
-                            </Button_MUI>
-                        </Grid>
-                    </Box>
-                </div>
-                );
-    }
-}
 
 class Login_Form extends React.Component{
     constructor(props){
@@ -218,7 +124,7 @@ class Login_Form extends React.Component{
     }
 }
 
-class Login extends React.Component{
+class Login_SignIn extends React.Component{
     constructor() {
         super();
         
@@ -278,4 +184,4 @@ class Login extends React.Component{
     }
 }
 
-ReactDOM.render(<Login></Login>,document.getElementById("root"));
+ReactDOM.render(<Login_SignIn></Login_SignIn>,document.getElementById("root"));

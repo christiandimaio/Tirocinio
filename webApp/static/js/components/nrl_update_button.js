@@ -4,6 +4,10 @@ const {Button} = MaterialUI;
 const sleep = (ms) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
+const styles = {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+}
 class NrlComponent extends React.Component{
     constructor(props){
         super(props);
@@ -81,7 +85,7 @@ class NrlComponent extends React.Component{
                 <div class="container">
                     <div class="row h-10">
                         <div class="col-xl-8 col-sm-8">
-                            <Button variant="secondary" className="mb-2 " name="buttonNRLCALL" onClick ={this.updateNrlCall}>Aggiorna Database NRL</Button>
+                            <Button variant="secondary" style={styles} className="mb-2 " name="buttonNRLCALL" onClick ={this.updateNrlCall}>Aggiorna Database NRL</Button>
                         </div>
                         <div class="col-xl-4 col-sm-4">
                         {

@@ -66,6 +66,14 @@ def log_out():
 def test():
     return jsonify(ok=1)
 
+"""----------------------------------------------------------------------------"""
+"""Database Insert"""
+
+# Sign In
+@app.route("/database/insert/user",methods=["POST"])
+def sign_in():
+    print(request.json)
+    return jsonify(operationCode=200)
 
 """----------------------------------------------------------------------------"""
 """Check Directory Route"""
