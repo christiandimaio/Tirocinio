@@ -3,8 +3,9 @@ const Form = ReactBootstrap.Form;
 const Button = ReactBootstrap.Button;
 const Image = ReactBootstrap.Image;
 const Alert = ReactBootstrap.Alert;
-const {TextField,Box,Snackbar,IconButton,FormHelperText,InputLabel,InputAdornment,Visibility,VisibilityOff,Input,Checkbox,FormControlLabel,Icon,Grid,Select,MenuItem,FormControl,makeStyles,spacing} = MaterialUI;
+const {TextField,Box,Grow,Snackbar,IconButton,FormHelperText,InputLabel,InputAdornment,Visibility,VisibilityOff,Input,Checkbox,FormControlLabel,Icon,Grid,Select,MenuItem,FormControl,makeStyles,spacing} = MaterialUI;
 const Button_MUI = MaterialUI.Button;
+
 
 const operatore_style = {
     borderColor:'green',
@@ -123,7 +124,10 @@ class Sign_In_Form extends React.Component{
         let {error} = this.state;
         let {sign_in} = this.state;
         if (error.nome.state || error.cognome.state || error.password.state || error.password_conferma.state || error.tipo_utente.state){
-            console.log("ERROR");
+            this.setState(state => (state.sign_in.called  = true, state));
+            this.setState(state => (state.sign_in.successful=false, state));
+            this.setState(state => (state.sign_in.message=
+                "Completare tutti i campi Richiesti!", state));
             return
         }
         axios.post('/database/insert/user', {
@@ -181,7 +185,7 @@ class Sign_In_Form extends React.Component{
                         justify="center"
                         alignItems="baseline"
                     >
-                        <Grid item xl={6} xs={6}>
+                        <Grid item lg={6} xs={6}>
                             <TextField id="nome_textfield" error={error.nome.state} onChange={(e) => this.handleChange(e,'nome')} label="Nome" variant="outlined" required fullWidth
                             helperText="*Campo Richiesto">
 
@@ -220,24 +224,20 @@ class Sign_In_Form extends React.Component{
                             justify="flex-start"
                             alignItems="baseline"
                             spacing={2}
-                        >
+                        >   
+                            <Grid mt={2} item xl={6} xs={6}>
+                                <DateTimePicker>
+                                
+                                </DateTimePicker>
+                            </Grid>
                             <Grid mt={2} item xl={10} xs={10} spacing={2}>
-                                <FormControl variant="outlined" required style={{minWidth: 250}} error={error.tipo_utente.state} >
-                                    <InputLabel id="tipo-operatore-label">Tipo Utente</InputLabel>
-                                    <Select fullWidth
-                                        labelId="tipo-operatore-label"
-                                        id="tipo-operatore-label"
-                                        label="Tipo Utente"
-                                        style = {operatore_style}
-                                        value={this.state.tipo_utente}
-                                        onChange={(e) => this.handleChange(e,'tipo_utente')}
-                                        >
-                                        <MenuItem value={'Semplice'}>Operatore Semplice</MenuItem>
-                                        <MenuItem value={'Autorizzato'}>Operatore</MenuItem>
-                                        <MenuItem value={'Esterno'}>Esterno</MenuItem>
-                                    </Select>
-                                    <FormHelperText>{error.tipo_utente.message}</FormHelperText>
-                                </FormControl>
+                            <Selecter
+                                        properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Utente",minWidth:250,style:operatore_style,value:this.state.tipo_utente,
+                                        customHandler:this.handleChange,helperText:error.tipo_utente.message,name:"tipo_utente",error:error.tipo_utente.state}}
+                                        server_uri= '/database/select/user/type'>
+                                        
+                            </Selecter>
+                                
                             </Grid>
                             <Grid item xl={8} xs={8}>
                             <TextField id="outlined-full-width" onChange={(e) => this.handleChange(e,'telefono_utente')} label="Telefono" variant="outlined" fullWidth
@@ -269,7 +269,8 @@ class Sign_In_Form extends React.Component{
                         :<div></div>
                     }   
                 </div>
-                </div>
+                
+            </div>
                 );
     }
 }

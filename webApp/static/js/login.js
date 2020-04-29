@@ -2,7 +2,7 @@ const Form = ReactBootstrap.Form;
 const Button = ReactBootstrap.Button;
 const Image = ReactBootstrap.Image;
 const Alert = ReactBootstrap.Alert;
-const {TextField,Box,IconButton,InputLabel,InputAdornment,Visibility,VisibilityOff,Input,Checkbox,FormControlLabel,Icon,Grid,Select,MenuItem,FormControl,makeStyles,spacing} = MaterialUI;
+const {TextField,Box,Grow,IconButton,InputLabel,InputAdornment,Visibility,VisibilityOff,Input,Checkbox,FormControlLabel,Icon,Grid,Select,MenuItem,FormControl,makeStyles,spacing} = MaterialUI;
 const Button_MUI = MaterialUI.Button;
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -54,17 +54,19 @@ class Login_Form extends React.Component{
 
     tryLogIn(){
         event.preventDefault();
-        axios.post('/', {
-            email : this.state.email,
-            password: this.state.password,
-            rememberME : this.state.rememberme
+        axios.post('/login', {
+                        email : this.state.email,
+                        password: this.state.password,
+                        rememberME : this.state.rememberme
+                
           })
           .then((response) => {
             if (response.data["operationCode"] != 200){
                 console.log(response.data["operationCode"]);
                 this.props.loginCheck(true);
             }else{
-                console.log("LOGGED!");
+                window.location = "/";
+                console.log("OK, LOGGED");
             }
           })
           .catch((error) => {
@@ -163,7 +165,9 @@ class Login_SignIn extends React.Component{
                                 </div>
 
                             :    <div class="col-xl-4 col-sm-4 col-lg-4 col-md-4 mx-auto">
-                                        <NrlComponent nrlChangeState={this.nrlChangeState}></NrlComponent>
+                                        <Grow in={true} style={{transitionDelay:"10000ms"}}>
+                                            <NrlComponent nrlChangeState={this.nrlChangeState}></NrlComponent>
+                                        </Grow>
                                         <div class="border rounded-top jumbotron ">
                                             <Login_Form loginCheck={this.loginCheck} disableButtonLogIn={nrlUpdating}></Login_Form> 
                                             <Button variant="outline-primary" className="rounded-pill mt-4" size="lg" block onClick={this.handleSignInClick} disabled={nrlUpdating ? 'true' : '' } >Registrati</Button>

@@ -1,10 +1,14 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, url_for, redirect
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 import time
 import os
+
+
 from webApp.bin.Utils import Utils
+
+from webApp.models import *
 
 
 class Config(object):
@@ -22,7 +26,7 @@ from webApp import models
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = '/'
+login_manager.login_view = '/login'
 
 
 @login_manager.user_loader
@@ -33,8 +37,8 @@ def user_loader(user_id):
     return models.UserModel.query.get(str(user_id))
 
 
-@app.route("/", methods=['GET', "POST"])
-def home():
+@app.route("/login", methods=['GET','POST'])
+def log_in():
     """
     CODE RESPONSE : 201 = SOME ERRORS HAS OCCURRED
                     200 = OK, LOGGED
@@ -47,18 +51,28 @@ def home():
     rememberMe = content['rememberME']
     print(email)
     print(password)
-    registered_user = models.UserModel.query.filter_by(email=email, password=password).first()
-    if registered_user is None:
-        return jsonify(operationCode=201)
-    login_user(registered_user, remember=rememberMe)
-    return jsonify(operationCode=200)
+    user = UserModel.query.filter_by(email=email).first()
+    if user:
+        if user.check_password(password):
+            login_user(user, remember=rememberMe)
+            print("logged in")
+            return jsonify(operationCode=200)
 
+    return jsonify(operationCode=201)
+
+
+@app.route("/", methods=["GET"])
+@login_required
+def main_app():
+    return render_template("app.html")
 
 @app.route("/logout", methods=["GET"])
 @login_required
 def log_out():
+    print("log_out called")
     logout_user()
-    return render_template('login.html')
+    print("logged out")
+    return jsonify(operationCode=200)
 
 
 @app.route("/main", methods=["GET"])
@@ -66,19 +80,35 @@ def log_out():
 def test():
     return jsonify(ok=1)
 
+
+"""----------------------------------------------------------------------------"""
+"""Database Select"""
+
+
+@app.route("/database/select/user/type", methods=["GET"])
+def get_user_type():
+    return jsonify(operationCode=200, items=["Operatore Semplice", "Esterno", "Autorizzato"])
+
+
 """----------------------------------------------------------------------------"""
 """Database Insert"""
 
+
 # Sign In
-@app.route("/database/insert/user",methods=["POST"])
+@app.route("/database/insert/user", methods=["POST"])
 def sign_in():
+    user = models.UserModel(request.json['email'], request.json['password'])
+    db.session.add(user)
+    db.session.commit()
     print(request.json)
     return jsonify(operationCode=200)
+
 
 """----------------------------------------------------------------------------"""
 """Check Directory Route"""
 
-@app.route("/check/directory/nrl",methods=["GET"])
+
+@app.route("/check/directory/nrl", methods=["GET"])
 def check_nrl_folder_status():
     """
     CODE RESPONSE :
@@ -96,7 +126,6 @@ def check_nrl_folder_status():
         print(ex)
         return jsonify(result=199)
     return jsonify(result=200)
-
 
 
 """______----------------------------------------------------------------------"""
