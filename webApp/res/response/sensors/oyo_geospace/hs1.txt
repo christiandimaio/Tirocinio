@@ -1,9 +1,0 @@
-[Main]
-question = "Select the coil resistance for this HS-1:"
-detail = "oyo_geospace_hs1_sensors-details.html"
-
-[2500 Ohms]
-path = "hs1.2500.txt"
-
-[3810 Ohms]
-path = "hs1.3810.txt"

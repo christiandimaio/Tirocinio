@@ -1,8 +1,0 @@
-[Main]
-question = "Select the data word size in bits"
-
-[16]
-path = "16bit_streams/rt72a08.16.16.txt"
-
-[32]
-path = "16bit_streams/rt72a08.16.32.txt"

@@ -1,8 +1,0 @@
-[Main]
-question = "Select the natural frequency for this GS-ONE:"
-
-[4.5 Hz]
-path = "gs.one.4_5.txt"
-
-[5 Hz]
-path = "gs.one.5.txt"

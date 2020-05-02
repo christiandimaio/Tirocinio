@@ -1,9 +1,0 @@
-[Main]
-question = "Select the preamplifier gain setting"
-detail = "quanterra_Q330SR_dataloggers-details.html"
-
-[1]
-path = "q330sr.1.txt"
-
-[30]
-path = "q330sr.30.txt"

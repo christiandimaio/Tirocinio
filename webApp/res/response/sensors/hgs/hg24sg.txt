@@ -1,7 +1,0 @@
-[Main]
-question = "Select the corner frequency for this HG-24SG:"
-detail = "hgs_hgx_sensors-details.html"
-
-[10 Hz (Rc=350 ohms, Rs=None)]
-description="HG-24SG, 10 Hz, 22.8 V/m/s, Rc=350, Rs=None"
-resp = "RESP.XX.NS605..SLZ.HG24SG.350.NONE.10.22_8"

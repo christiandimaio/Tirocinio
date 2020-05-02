@@ -1,5 +1,0 @@
-[Main]
-question = "Select the Geotech model"
-
-[Smart24]
-path = "smart24/index.txt"

@@ -1,6 +1,0 @@
-[Main]
-question = "Select the shunt resistance for this GS-30CT:"
-detail = "oyo_geospace_gs30ct_sensors-details.html"
-
-[395 Ohms]
-path = "gs30ct.395.txt"

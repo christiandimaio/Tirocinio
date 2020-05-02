@@ -1,8 +1,0 @@
-[Main]
-question = "Select REF TEK 151 model A or B"
-
-[A]
-path = "rt151.a.txt"
-
-[B]
-path = "rt151.b.txt"

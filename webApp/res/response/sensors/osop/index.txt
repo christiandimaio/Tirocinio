@@ -1,7 +1,0 @@
-[Main]
-question = "Select the OSOP integrated sensor model"
-detail = "osop_sensors-details.html"
-
-[Raspberry Shake 1D Racotech]
-description = "Raspberry Shake 1D, 5 Hz, Unity V/M/S"
-resp = "RESP.XX.NS494..SHZ.RShake1D.1.5"

@@ -1,8 +1,0 @@
-[Main]
-question = "Select the Full Scale Input Range"
-
-[+/-2.5 V]
-path = "2.5.txt"
-
-[+/-10 V]
-path = "10.txt"

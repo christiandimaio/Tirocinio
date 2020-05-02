@@ -1,8 +1,0 @@
-[Main]
-question = "Select the slowest of the four sample rates (taps) you selected when configuring the datalogger"
-
-[1]
-path = "cd24e1.1.40.8.4.1.txt"
-
-[2]
-path = "cd24e1.1.40.8.4.2.txt"

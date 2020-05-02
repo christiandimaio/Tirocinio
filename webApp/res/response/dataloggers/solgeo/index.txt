@@ -1,8 +1,0 @@
-[Main]
-question = "Select the SolGeo model"
-
-[DYMAS 24]
-path = "dymas24.txt"
-
-[EDAX 24]
-path = "edax24.txt"

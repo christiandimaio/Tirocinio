@@ -1,8 +1,0 @@
-[Main]
-question = "Select whether the data was decimated from 20 sps by a factor of 2 or 5"
-
-[2]
-resp = "RESP.XX.NQ302..LHZ.Qx80.1.1.900616"
-
-[5]
-resp = "RESP.XX.NQ316..LHZ.Qx80.1.1.900616.GSN"

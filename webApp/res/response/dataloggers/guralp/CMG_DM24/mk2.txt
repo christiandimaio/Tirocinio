@@ -1,9 +1,0 @@
-[Main]
-question = "Select whether your DM24 Mk2 uses single-ended or differential output"
-detail = "guralp_CMG_DM24_mk2_dataloggers-details.html"
-
-[Single-ended]
-path = "mk2.se.txt"
-
-[Differential]
-path = "mk2.df.txt"

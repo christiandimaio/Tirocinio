@@ -1,6 +1,0 @@
-/Users/met/nominal_responses/dataloggers/quanterra/q330splus/RESP.XX.NQ367..HHZ.Q330Splus.32.250.all
-/Users/met/nominal_responses/dataloggers/quanterra/q330splus/RESP.XX.NQ397..HHZ.Q330Splus.32.250.below100
-/Users/met/nominal_responses/dataloggers/quanterra/q330splus/RESP.XX.NQ427..HHZ.Q330Splus.32.250.below40
-/Users/met/nominal_responses/dataloggers/quanterra/q330splus/RESP.XX.NQ457..HHZ.Q330Splus.32.250.below20
-/Users/met/nominal_responses/dataloggers/quanterra/q330splus/RESP.XX.NQ464..HHZ.Q330Splus.32.250.all_old
-/Users/met/nominal_responses/dataloggers/quanterra/q330splus/RESP.XX.NQ470..HHZ.Q330Splus.32.250.belowX_old
