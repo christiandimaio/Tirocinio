@@ -1,5 +1,0 @@
-[Main]
-question = "Select the natural frequency for this GS-1:"
-
-[1 Hz]
-path = "gs1.1.txt"

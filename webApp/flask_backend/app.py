@@ -1,12 +1,17 @@
-from flask import Flask,render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, login_required
 import os
+import sys
+
+import models
+
+sys.path.append('./myPackage/Utils/')
+sys.path.append('./myPackage/NrlWrap/')
+import Utils
 
 
-from webApp.flask_backend.myPackage.Utils import Utils
-from webApp.flask_backend.models import *
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
@@ -19,10 +24,10 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-
-
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+
 # login_manager.login_view = '/login'
 
 
@@ -31,10 +36,10 @@ def user_loader(user_id):
     """Given *user_id*, return the associated User object.
     :param unicode user_id: user_id (email) user to retrieve
     """
-    return UserModel.query.get(str(user_id))
+    return models.UserModel.query.get(str(user_id))
 
 
-@app.route("/login", methods=['GET','POST'])
+@app.route("/login", methods=['GET', 'POST'])
 def log_in():
     """
     CODE RESPONSE : 201 = SOME ERRORS HAS OCCURRED
@@ -48,7 +53,7 @@ def log_in():
     rememberMe = content['rememberME']
     print(email)
     print(password)
-    user = UserModel.query.filter_by(email=email).first()
+    user = models.UserModel.query.filter_by(email=email).first()
     if user:
         if user.check_password(password):
             login_user(user, remember=rememberMe)
@@ -62,6 +67,7 @@ def log_in():
 @login_required
 def main_app():
     return render_template("app.html")
+
 
 @app.route("/logout", methods=["GET"])
 @login_required
@@ -94,7 +100,7 @@ def get_user_type():
 # Sign In
 @app.route("/database/insert/user", methods=["POST"])
 def sign_in():
-    user = UserModel(request.json['email'], request.json['password'])
+    user = models.UserModel(request.json['email'], request.json['password'])
     db.session.add(user)
     db.session.commit()
     print(request.json)

@@ -1,6 +1,0 @@
-[Main]
-question = "Select the clip level in g and full scale voltage for sensor (sensitivity = [full_scale_voltage / clip_level] / g)"
-detail = "guralp_cmg5_sensors-details.html"
-
-[4G_10V]
-path = "cmg-5t.4g.10v.txt"

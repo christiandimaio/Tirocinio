@@ -1,8 +1,0 @@
-[Main]
-question = "Select whether the DC removal filter is on (corner at 1 mHz)"
-
-[Off]
-path="1.lo.off.txt"
-
-[1 mHz]
-path="1.lo.1.txt"

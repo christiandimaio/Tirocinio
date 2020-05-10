@@ -1,8 +1,0 @@
-[Main]
-question = "Select the final filter type"
-
-[Causal]
-path = "6.c.txt"
-
-[Non-causal]
-path = "6.nc.txt"

@@ -1,7 +1,10 @@
 import os
 import shutil
 import json
-from webApp.flask_backend.myPackage.NrlWrap import NRLWrap
+import sys
+
+import NRLWrap
+
 
 
 def copy_folders(src, dst):
@@ -15,7 +18,8 @@ def custom_bar(current, total, width=80):
 
 
 def retrieve_config_value(search_keys):
-    with open(os.path.join("/home/christian/Documenti/GitHub/Tirocinio/webApp/cfg","configuration.json"),"r") as config_file:
+    with open(os.path.join("./cfg", "configuration.json"),
+              "r") as config_file:
         config = json.load(config_file)
         temp_config = config
         for key in search_keys:

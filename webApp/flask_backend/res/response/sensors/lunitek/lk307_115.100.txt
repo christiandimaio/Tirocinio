@@ -1,8 +1,0 @@
-[Main]
-question = "Select the LK-307-115 full scale voltage"
-
-[+/-7.5V Single-ended]
-path = "lk307_115.100.7_5.txt"
-
-[+/-20V Single-ended]
-path = "lk307_115.100.20.txt"

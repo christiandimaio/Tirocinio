@@ -1,7 +1,0 @@
-[Main]
-question = "Select the SS-1 Ranger sensitivity"
-detail="kinemetrics_ss1_sensors-details.html"
-
-[345 V/m/s]
-description = "SS-1,1 Hz, 345 V/M/S"
-resp = "RESP.XX.NS236..SHZ.SS1.1.345"

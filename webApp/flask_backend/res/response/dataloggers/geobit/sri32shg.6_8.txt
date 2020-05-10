@@ -1,8 +1,0 @@
-[Main]
-question = "Select the FIR filter phase type for this channel"
-
-[Linear Phase]
-path = "sri32shg.6_8.lin.txt"
-
-[Minimum Phase]
-path = "sri32shg.6_8.min.txt"

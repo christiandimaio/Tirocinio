@@ -1,8 +1,0 @@
-[Main]
-question = "Select the sample rate of this channel in samples per second"
-
-[8]
-resp = "RESP.XX.N0576..MHZ.72A08_24b.1.8_500.8"
-
-[500]
-resp = "RESP.XX.N0577..HHZ.72A08_24b.1.8_500.500"

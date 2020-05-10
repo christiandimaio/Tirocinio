@@ -1,9 +1,0 @@
-[Main]
-question = "Select whether your DM24 Mk3 preamp has fixed (1) or variable (1,2,4,8,16,32,64) gain"
-detail = "guralp_CMG_DM24_mk3_dataloggers-details.html"
-
-[Fixed]
-path = "mk3/fixed.txt"
-
-[Variable]
-path = "mk3/variable.txt"

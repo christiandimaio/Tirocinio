@@ -3,7 +3,8 @@ import wget
 import zipfile
 import shutil
 import os
-from webApp.flask_backend.myPackage.Utils import Utils
+import sys
+import Utils
 
 
 

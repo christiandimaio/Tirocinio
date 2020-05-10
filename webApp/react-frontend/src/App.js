@@ -9,7 +9,7 @@ import Container from '@material-ui/core/Container';
 import ParticlesBg from 'particles-bg'
 import TopBar from './components/element/topbar.js';
 import AnimatedLoader from './components/element/loader.js'
-
+import axios from 'axios';
 const useStyles = makeStyles((theme) => ({
     backdrop: {
       zIndex: theme.zIndex.drawer + 1,
@@ -28,9 +28,28 @@ export default class App extends React.Component{
                 lockMessage:""
             }
         };
-        
+        this.checkServerStatus();
     }
+    checkServerStatus = async () => {
+        
+        axios.get('/update/NRL', {
+          })
+          .then((response) => {
+            const {result} = response.data;
+            if (result == 201){     //Aggiornamento già in corso
+                this.lockAppRequest("Aggiornamento NRL in corso,attendere..")         
 
+            }else if (result == 199){
+                //Errore
+            }else{
+                //Concluso
+            }
+            
+          })
+          .catch((error) => {
+            //ERRORE
+          });
+    }
     lockAppRequest = (message) => {
         this.setState(state => (state.lockApp.lockState  = true, state));
         this.setState(state => (state.lockApp.lockMessage  = message, state))

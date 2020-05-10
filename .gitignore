@@ -1,3 +1,4 @@
 
 *.zip
-/webApp/flask_backend/res/
+/webApp/flask_backend/res/response/dataloggers/
+/webApp/flask_backend/res/response/sensors/

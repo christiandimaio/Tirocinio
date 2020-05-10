@@ -1,7 +1,7 @@
 import obspy
 from obspy.core.inventory import Inventory, Network, Station, Channel, Site
 from obspy.clients.nrl.client import LocalNRL
-from bin.NrlWrap.NRLWrap import NRLWrap
+import NRLWrap
 from obspy import read
 import json
 import os
@@ -14,7 +14,7 @@ class StationXMLMaker:
     ...
     Attributes
     ----------
-    my_nrl : NRLWrap
+    my_nrl : NrlWrap
         the connection to the NRL database
     channels : list<Channel>
         the station's channel

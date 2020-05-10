@@ -58,7 +58,7 @@ export default class TopBar extends React.Component{
 
     updateNrlCall = async () => {
         this.props.nrlUpdateEvent.putLock("Aggiornamento NRL in corso,attendere..");
-        axios.get('/update/NRL', {
+        axios.get('/check/directory/nrl', {
           })
           .then((response) => {
             const {result} = response.data;
@@ -68,7 +68,7 @@ export default class TopBar extends React.Component{
             }else if (result == 199){
                 //Errore
             }else{
-                //Concluso
+                this.props.nrlUpdateEvent.releaseLock();
             }
             
           })
