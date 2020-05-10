@@ -3,31 +3,36 @@ import React from 'react';
 import axios from 'axios';
 import {FormControl,InputLabel,Select,FormHelperText,MenuItem} from '@material-ui/core';
 
+
+{/* <Selecter
+            properties = {{labelId:"label-selecter-id",
+                            id:"selecter",
+                            inputLabel:"Tipo Utente",
+                            style:operatore_style,
+                            value:this.state.tipo_utente,
+            customHandler:this.handleChange,
+            helperText:error.tipo_utente.message,
+            name:"tipo_utente",
+            error:error.tipo_utente.state}}
+            item= '/database/select/user/type'/> */}
+
 export default class Selecter extends React.Component{
     constructor(props){
         super(props);
 
         this.state = {
-            items:[],
             properties:{}
         };
         
-        axios.get(this.props.server_uri)
-          .then((response) => {
-            console.log(response.data);
-            this.setState({
-                items: response.data.items
-            });
-        });
+        
                 
     }
 
     render(){
             const {properties} = this.props;
-            let {items} = this.state;
-            console.log(properties);
+            let {items} = this.props;
                 return(
-                    <FormControl variant="outlined" error={properties.error} required style={{minWidth: 250}} >
+                    <FormControl variant="outlined" error={properties.error} required fullWidth >
                                     <InputLabel id="selecter-id-label">{properties.inputLabel}</InputLabel>
                                     <Select fullWidth
                                         labelId={properties.labelId}

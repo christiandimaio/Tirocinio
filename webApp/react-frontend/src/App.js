@@ -1,59 +1,99 @@
-import React,{ useState }  from 'react';
+import React,{ useState ,Component}  from 'react';
 import ReactDOM from 'react-dom';
 import Sign_Up from './components/sign_up/sign_up';
+import Login from './components/log_in/login.js'
 import {Box,Grid} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
+import ParticlesBg from 'particles-bg'
+import TopBar from './components/element/topbar.js';
+import AnimatedLoader from './components/element/loader.js'
 
+const useStyles = makeStyles((theme) => ({
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
+    },
+  }));
 
 export default class App extends React.Component{
 
     constructor(){
         super();
         this.state = {
-            visibleSection : "signUP",
-        }
+            visibleSection : "logIN",
+            lockApp: {
+                lockState:false,
+                lockMessage:""
+            }
+        };
+        
     }
 
-    changeView = (value) => {
+    lockAppRequest = (message) => {
+        this.setState(state => (state.lockApp.lockState  = true, state));
+        this.setState(state => (state.lockApp.lockMessage  = message, state))
+    }
+
+    releaseLockApp = () => {
+        this.setState(state => (state.lockApp.lockState  = false, state));
+        this.setState(state => (state.lockApp.lockMessage  = "", state))
+    }
+
+    changeView = (value) => { 
         this.setState({visibleSection:value});
     }
 
-    render(){
-       
+    renderSwitch = () => {
         switch(this.state.visibleSection){
             case "signUP" :
-                return (
-                    
-                        <Box display="flex" bgcolor="black" justifyContent="center"
-                    alignItems="center"
-                    minHeight="100vh">
-                        <Container maxWidth="sm" >
-                                            <Sign_Up dadProps={this.state} >
-                                            </Sign_Up>
-                        </Container>
+                return (<Box display="flex" style={{opacity:"99%"}} justifyContent="center"
+                            alignItems="center"
+                            minHeight="90vh">     
+                            <Container maxWidth="sm" >
+                                <Paper elevation={3} >
+                                    <Sign_Up changeView={this.changeView}  dadProps={this.state} />           
+                                </Paper>
+                            </Container> 
                         </Box>
-                        );
-            case "logIn":
-                return (
-                    <Box display="flex" width={1} height={1}>
-                                <Grid container direction="row" alignItems="center" justify="center" style={{width:"50%",margin:"auto"}}>
-                                    <Grid item >
-                                        <Sign_Up dadProps={this.state} changeView={this.changeView()}>
-                                        </Sign_Up>
-                                    </Grid>     
-                                </Grid>
+                );
+            case "logIN":
+                return(
+                    <Box display="flex" justifyContent="center"
+                            minHeight="90vh"
+                            alignItems="center">
+                        <Box style={{minWidth:"35%"}}>
+                            <Paper elevation={3} style={{backgroundColor:"#f5f5f5"}}>
+                                <Login changeView={this.changeView}/>
+                    
+                            </Paper> 
+                        </Box>
                     </Box>
                 );
             case "main":
-                    return(<div></div>);
-            default:
-                    return(<div></div>);
-
-            
+                return(<div></div>);
+            case "default":
+                return(<div></div>);
         }
-        
+            
+    }           
+    render(){
+        return (
+            <div>
+                <Box displpay="flex" minHeight="10vh">
+                    <TopBar isMain={false} nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>
+                </Box>
+                <div>
+                {
+                    this.renderSwitch()
+                }
+                </div>
+                    
+                    <ParticlesBg type="cobweb" num={100} color="#1a237e" bg={true} /> 
+                    <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:!(this.state.lockApp.lockState)}}/>
+            </div>
+            );
     }
 }
 ReactDOM.render(<App/>,document.getElementById('root'))

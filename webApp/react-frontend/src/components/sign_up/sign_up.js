@@ -1,25 +1,21 @@
-import React from 'react';
-import Selecter from './selecter';
+import React,{Component} from 'react';
+import Selecter from '../element/selecter';
+import DateTimePicker from '../element/date_picker';
 import {TextField,Box,Snackbar,InputAdornment,Grid,Button} from '@material-ui/core';
 import axios from 'axios';
-import DateFnsUtils from '@date-io/date-fns';
-
-  
-import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-  } from '@material-ui/pickers';
-  import Alert from '@material-ui/lab/Alert';
+import Paper from '@material-ui/core/Paper'
+  import MuiALert from '@material-ui/lab/Alert';
 
 const operatore_style = {
     borderColor:'green',
     color:'green',
-    fullWidth:250
+    fullWidth:200
 }
 
 export default class Sign_Up extends React.Component{
     constructor(props){
-        super(props);     
+        super(props);   
+        this.getTipiOperatore();  
         this.state={
             sign_in:{
                 called: false,
@@ -33,98 +29,101 @@ export default class Sign_Up extends React.Component{
             password_conferma:"",
             tipo_utente:"",
             telefono_utente:"",
+            data_nascita:null,
             error:{
                 nome:{
-                    state:true,
+                    status:null,
                     message:""
                 },
                 cognome:{
-                    state:true,
+                    status:null,
                     message:""
                 },
                 tipo_utente:{
-                    state:true,
-                    message:"*Campo Richiesto"
+                    status:null,
+                    message:""
                 },
                 email:{
-                    state:true,
+                    status:null,
                     message:""
                 },
                 password:{
-                    state:true,
+                    status:null,
                     message:""
                 },
                 password_conferma:{
-                    state:true,
+                    status:null,
                     message:""
                 }
-            }
+            },
+            database_operatori:[]
             
         };
     }
 
     handleChange = (event,name) => {
-        event.preventDefault();
+
         let {value} = event.target;
         const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let error = this.state.error;
         switch(name){
             case "nome":
                 if (value.length <= 0){
-                    error.nome.state = true
+                    error.nome.status = true
                 }else{
-                    error.nome.state = false
+                    error.nome.status = false
                 }
                 break;
             case "cognome":
                 if (value.length <= 0){
-                    error.cognome.state = true
+                    error.cognome.status = true
                 }else{
-                    error.cognome.state = false
+                    error.cognome.status = false
                 }
                 break;
             case "email":
                 if (value.match(email_regex)){
-                    error.email.state = false;
+                    error.email.status = false;
                     error.email.message="ok!";
                 }else{
-                    error.email.state = true;
+                    error.email.status = true;
                     error.email.message="Email non corretta!";
                 }
                 break;
             case "password":
                 if (value.length <=5){
-                    error.password.state = true;
+                    error.password.status = true;
                     error.password.message="Password minore di 5 caratteri,troppo debole!";
                 }else{
-                    error.password.state = false;
+                    error.password.status = false;
                     error.password.message="ok!";
                 }
                 break;
             case "password_conferma":
                 if (value == this.state.password){
-                    error.password_conferma.state = false;
+                    error.password_conferma.status = false;
                     error.password_conferma.message="Password Confermata";
                 }else{
-                    error.password_conferma.state = true;
+                    error.password_conferma.status = true;
                     error.password_conferma.message="Password diversa";
                 }
                 break;
             case "tipo_utente":
                 if (value != ""){
-                    error.tipo_utente.state = false
+                    error.tipo_utente.status = false
                 }
 
             default:
                 break;
         }
-        console.log(name,value);
-        this.setState({error,[name]: value});
-        console.log(this.state);
+        this.setState({error,[name]: value},(name,value) => {console.log(name+":"+value)});
     }
 
-    trySignIn = () => {
-        
+    handleDateChange = (value) => {
+        this.setState({data_nascita:(value.getDate()+"/"+(value.getMonth()+1)+"/"+value.getFullYear())});
+    }
+    trySignUp = () => {
+        console.log(this.state);
         let {error} = this.state;
         let {sign_in} = this.state;
         if (error.nome.state || error.cognome.state || error.password.state || error.password_conferma.state || error.tipo_utente.state){
@@ -139,7 +138,7 @@ export default class Sign_Up extends React.Component{
             cognome: this.state.cognome,
             email : this.state.email,
             password: this.state.password,
-            tipo_utente: this.state.tipo_utente,
+            tipo_utente: this.state.tipo_utente[0],
             telefono_utente: this.state.telefono_utente
           })
           .then((response) => {
@@ -165,19 +164,39 @@ export default class Sign_Up extends React.Component{
           
     }
 
+    switchToLogIn = () => {
+        this.props.changeView("logIN");
+    }
+    
+    getTipiOperatore = () => {
+        console.log("Richieste le tipologie di operatori disponibili al server");
+        axios.get("/database/select/user/type")
+            .then((response) => {
+                console.log(response.data);
+                this.setState({
+                    database_operatori: response.data.items
+                })
+            })
+            .catch((error) => {
+               this.setState({database_operatori:["Default"]})
+            });
+    }
+    
+  
     render(){
         const {error} = this.state;
         return (
             <div>
-                <Box border={3} borderColor="#3f51b5" borderRadius="2%" bgcolor="white">
-                    <Box display="flex">
+                <Box >
+                    <Box display="flex" my={2}>
                         <Grid container spacing={2} justify="flex-start" alignItems="flex-start">
                             <Grid item xl={4} xs={6}>
                             <Button
-                                variant="outline-primary" className="rounded-pill " 
-                                onClick={()=>{ this.props.logInFormCaller()}}
+                                variant="contained" 
+                                onClick={this.switchToLogIn}
+                                
                             >
-                                Return to Login
+                                Ritorna al login
                             </Button>
                             </Grid>
                         </Grid>
@@ -190,80 +209,67 @@ export default class Sign_Up extends React.Component{
                         alignItems="baseline"
                     >
                         <Grid item xl={5} xs={5}>
-                            <TextField id="nome_textfield" error={error.nome.state} onChange={(e) => this.handleChange(e,'nome')} label="Nome" variant="outlined" required fullWidth
-                            helperText="*Campo Richiesto">
+                                <TextField id="nome_textfield" error={error.nome.status} onChange={(e) => this.handleChange(e,'nome')} label="Nome" variant="outlined" required fullWidth
+                                helperText="*Campo Richiesto">
 
-                            </TextField>
+                                </TextField>
+                            
                         </Grid>
                         <Grid item xl={5} xs={6}>
-                            <TextField id="cognome_textfield" error={error.cognome.state} onChange={(e) => this.handleChange(e,'cognome')} label="Cognome" variant="outlined" required fullWidth
+                            <TextField id="cognome_textfield" error={error.cognome.status} onChange={(e) => this.handleChange(e,'cognome')} label="Cognome" variant="outlined" required fullWidth
                             helperText="*Campo Richiesto">
 
                             </TextField>
                         </Grid>
                         
                         <Grid item xl={11} xs={11}>
-                            <TextField id="email_textfield" error={error.email.state} name="email" onChange={(e) => this.handleChange(e,'email')} label="Indirizzo Email" variant="outlined" required fullWidth
+                            <TextField id="email_textfield" error={error.email.status} name="email" onChange={(e) => this.handleChange(e,'email')} label="Indirizzo Email" variant="outlined" required fullWidth
                              helperText={error.email.message}>
 
                             </TextField>
                         </Grid>
 
                         <Grid item xl={5} xs={5}>
-                            <TextField id="password_textfield" error={error.password.state} onChange={(e) => this.handleChange(e,'password')} type="text" label="Password" variant="outlined" required fullWidth
+                            <TextField id="password_textfield" error={error.password.status} onChange={(e) => this.handleChange(e,'password')} type="text" label="Password" variant="outlined" required fullWidth
                             helperText={error.password.message}>
                             </TextField>
                         </Grid>
                         <Grid item xl={5} xs={6}>
 
-                            <TextField id="password_conferma_textfield"  error={error.password_conferma.state} onChange={(e) => this.handleChange(e,'password_conferma')} type="text" label="Conferma Password" variant="outlined" required fullWidth
+                            <TextField id="password_conferma_textfield"  error={error.password_conferma.status} onChange={(e) => this.handleChange(e,'password_conferma')} type="text" label="Conferma Password" variant="outlined" required fullWidth
                             helperText={error.password_conferma.message}>
                             </TextField>
                         </Grid>
-                    </Grid>
-                    <Box mt={1}>
-                        <Grid
-                            container
-                            direction="row"
-                            justify="center"
-                            alignItems="center"
-                            spacing={2}
-                        >   
-                            <Grid  mt={2} item xl={5} xs={5} spacing={2}>
-                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                    <KeyboardDatePicker
-                                        margin="normal"
-                                        id="date-picker-dialog"
-                                        label="Date picker dialog"
-                                        format="MM/dd/yyyy"
-                                        KeyboardButtonProps={{
-                                            'aria-label': 'change date',
-                                        }}
-                                    />
-                                </MuiPickersUtilsProvider>
-                            </Grid>
-                            <Grid mt={2} xl={7} xs={6} item  spacing={2}>
-                            <Selecter
-                                        properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Utente",minWidth:270,style:operatore_style,value:this.state.tipo_utente,
-                                        customHandler:this.handleChange,helperText:error.tipo_utente.message,name:"tipo_utente",error:error.tipo_utente.state}}
-                                        server_uri= '/database/select/user/type'>
-                                        
-                            </Selecter>
-                                
-                            </Grid>
-                            <Grid item xl={11} xs={11}>
-                            <TextField id="outlined-full-width" onChange={(e) => this.handleChange(e,'telefono_utente')} label="Telefono" variant="outlined" fullWidth
-                            InputProps={{
-                                startAdornment: <InputAdornment position="start">+39</InputAdornment>,
-                                }}>
 
-                            </TextField>
+                        <Grid container direction="row" justify="center" alignItems="center">
+                            <Grid   item xl={5} xs={5}>
+                                <DateTimePicker properties={{
+                                                            id:"data-nascita_picker",
+                                                            label:"seleziona data di nascita",
+                                                            name:"data_nascita"
+                                                            }}
+                                                onChange={this.handleDateChange}/>
                             </Grid>
+                        </Grid>               
+
+                        <Grid xl={5} xs={5} item  >
+                            <Selecter
+                                        properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Utente",style:operatore_style,value:this.state.tipo_utente,
+                                        customHandler:this.handleChange,helperText:error.tipo_utente.message,name:"tipo_utente",error:error.tipo_utente.status}}
+                                        items={this.state.database_operatori}/>
                         </Grid>
-                    </Box>
+                        <Grid item xl={5} xs={6}>
+                                <TextField id="outlined-full-width" onChange={(e) => this.handleChange(e,'telefono_utente')} label="Telefono" variant="outlined" fullWidth
+                                InputProps={{
+                                    startAdornment: <InputAdornment position="start">+39</InputAdornment>,
+                                    }}>
+
+                                </TextField>
+                        </Grid>
+                    </Grid>
                     <Box mt={3}>
                         <Grid container item direction="row" justify="flex-end" alignItems="baseline">
-                            <Button variant="contained" color="primary" fullWidth onClick={() => this.trySignIn()}>
+                            <Button variant="contained" color="primary" fullWidth onClick={() => this.trySignUp()}>
                                 Registrati
                             </Button>
                         </Grid>
@@ -273,10 +279,10 @@ export default class Sign_Up extends React.Component{
                 <div> 
                     {
                         this.state.sign_in.called
-                        ?<Snackbar open={this.state.sign_in.called} autoHideDuration={3000} onClose={()=>{ this.props.logInFormCaller()}}>
-                            <Alert severity="error">
+                        ?<Snackbar open={this.state.sign_in.called} autoHideDuration={3000} onClose={() => { if(this.state.sign_in.successful){this.switchToLogIn()}else{this.setState(state => (state.sign_in.called  = false, state))} }}>
+                            <MuiALert elevation={9} variant="filled" severity={this.state.sign_in.successful?"success":"error"}>
                                 {this.state.sign_in.message}
-                            </Alert>
+                            </MuiALert>
                         </Snackbar>
                         :<div></div>
                     }   

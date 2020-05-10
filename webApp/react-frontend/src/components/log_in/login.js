@@ -1,20 +1,27 @@
 import React from 'react';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import axios from 'axios';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper'
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import { sizing } from '@material-ui/system';
 
-const Form = ReactBootstrap.Form;
-const Button = ReactBootstrap.Button;
-const Image = ReactBootstrap.Image;
-const Alert = ReactBootstrap.Alert;
-import {TextField,Box,Grow,IconButton,InputLabel,InputAdornment,Visibility,VisibilityOff,Input,Checkbox,FormControlLabel,Icon,Grid,Select,MenuItem,FormControl,makeStyles,spacing} from '@material-ui/core';
+const paperStyle = {};
+const styles = theme => ({
+	root: {
+		flexGrow: 1
+	}
+});
 
-const useStyles = makeStyles((theme) => ({
-    formControl: {
-      minWidth: 120,
-    }
-  }));
-
-
-
-class Login_Form extends React.Component{
+class Login extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -55,12 +62,10 @@ class Login_Form extends React.Component{
     }
 
     tryLogIn(){
-        event.preventDefault();
         axios.post('/login', {
                         email : this.state.email,
                         password: this.state.password,
                         rememberME : this.state.rememberme
-                
           })
           .then((response) => {
             if (response.data["operationCode"] != 200){
@@ -86,108 +91,182 @@ class Login_Form extends React.Component{
         // const messageErrorEmail = email.length >= 0 && email.length<5 
         //                             ? (<Form.Control.Feedback type="invalid" className="d-block">Lunghezza campo non valida</Form.Control.Feedback>)
         //                             : (<Form.Control.Feedback type="valid" className="d-block" >OK.</Form.Control.Feedback>);
-        return  (<Form onSubmit = {this.tryLogIn}>
-                    <Form.Group mb="4" controlId="formBasicEmail">
-                        {/* <Form.Label for = "validationCustomEmail">Email </Form.Label>
-                        <Form.Control required id="validationCustomEmail" name="email" type="email" placeholder="Enter email" onChange={this.handleChange}
-                            isvalid={email.length >= 0 && email.length >6}
-                            isinvalid = {email.length >=0 && email.length <=6}
-                            className ="rounded-pill"
-                        />
-                        {messageErrorEmail} */}
-                        <TextField id="standard-basic"  label="E-Mail" fullWidth={true} onChange={e => this.handleChange(e,'email')} helperText={this.state.formErrors.email_error} autoComplete></TextField>
-                    </Form.Group>
-                    
-                    {/* <Form.Group controlId="formBasicPassword">
-                        {/* <Form.Label>Password</Form.Label>
-                        <Form.Control required value={password} onChange={e => this.handleChange(e,'password')} type="password" placeholder="Password" className="rounded-pill"/>
-                        }*/} 
-                    
-                    <TextField id="standard-basic" type={'password'} label="Password" fullWidth={true} onChange={e => this.handleChange(e,'password')} helperText={this.state.formErrors.email_error} autoComplete></TextField>
-                    
-                    <FormControlLabel
-                        control={<Checkbox checked={this.state.rememberme} onChange={e => this.handleChange(e,'rememberme')} name="rememberme" />}
-                        label="Ricordami"
-                    />
-                    {/* </Form.Group>
-                    <Checkbox
-                        defaultChecked
-                        color="primary"
-                        label="Ricordami"
-                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                        checked={this.state.rememberme} onChange={this.handleChange} 
-                    /> 
-                    <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check name="rememberme" type="checkbox" label="Ricordami." checked={} onChange={this.handleChange} />
-                    </Form.Group> */}
-                    <Button variant="primary" type="submit" size="lg" block className="rounded-pill" disabled={disableButtonLogIn ? 'true' : ''}>Entra</Button>
+        const { classes } = this.props;
+        return  (
+                <div className={classes.xxx}>
+                
+                    <Grid container direction="column" spacing={3} justify="center" alignItems="center" style={{paddingTop:"10%",paddingBottom:"10%"}}>
+                        
+                            <Grid item style={{width:"60%"}}>
+                                <Paper>
+                                    <TextField
+                                    fullWidth
+                                    variant="outlined"
+                                    id="input-with-icon-textfield"
+                                    label="TextField"
+                                    InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                        <AccountCircle />
+                                        </InputAdornment>
+                                    ),
+                                    }}
+                                />
+                                </Paper>
+                            
+                        </Grid>    
+                        
+                        <Grid item style={{width:"60%"}}>
+                            <Paper>
+                                <TextField variant="outlined" id="standard-basic" type={'password'} label="Password" fullWidth  onChange={e => this.handleChange(e,'password')} helperText={this.state.formErrors.email_error} autoComplete></TextField>
+                            </Paper>
+                        </Grid>
+
+                        <Grid item xs={6} xl={5} >
+                                <FormControlLabel
+                                control={<Checkbox checked={this.state.rememberme} onChange={e => this.handleChange(e,'rememberme')} name="rememberme" />}
+                                label="Ricordami"
+                            />
+                        </Grid>
+                        
+                        <Grid item style={{width:"60%"}}>
+                            <Button fullWidth variant="contained" fullWidth disabled={disableButtonLogIn ? 'true' : ''} onClick={() => {this.props.changeView("signUP")}}>Registrati</Button>
+                        </Grid>
+                        
+                        <Grid item style={{width:"60%"}}>
+                            <Button fullWidth variant="contained" color="primary" fullWidth disabled={disableButtonLogIn ? 'true' : ''}>Entra</Button>
+                        </Grid>
+
+                    </Grid>
+
                     
 
-                </Form>);
+                
+                </div>
+                
+                    
+                    
+                    
+                   
+
+        );
                 
     }
 }
 
-class Login_SignIn extends React.Component{
-    constructor() {
-        super();
+Login.propTypes = {
+	classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Login);
+
+
+
+// <div>
+//                 <Box minHeight={1} my={2}>
+//                     <Grid containter direction="column" alignItems="center" justify="center" spacing={2} >
+//                         <Grid item xs={9} xl={9} >
+//                             <Paper>
+//                                 <TextField
+//                                 fullWidth
+//                                 variant="outlined"
+//                                 id="input-with-icon-textfield"
+//                                 label="TextField"
+//                                 InputProps={{
+//                                 startAdornment: (
+//                                     <InputAdornment position="start">
+//                                     <AccountCircle />
+//                                     </InputAdornment>
+//                                 ),
+//                                 }}
+//                             />
+//                             </Paper>
+//                         </Grid>    
+                        
+//                         <Grid item xs={6} xl={5} >
+//                             <TextField variant="outlined" id="standard-basic" type={'password'} label="Password" fullWidth  onChange={e => this.handleChange(e,'password')} helperText={this.state.formErrors.email_error} autoComplete></TextField>
+//                         </Grid>
+
+//                         <Grid item xs={6} xl={5} >
+//                                 <FormControlLabel
+//                                 control={<Checkbox checked={this.state.rememberme} onChange={e => this.handleChange(e,'rememberme')} name="rememberme" />}
+//                                 label="Ricordami"
+//                             />
+//                         </Grid>
+//                         <Grid container spacing={4}>
+
+//                                     <Grid item xs={6} xl={5}>
+
+//             <Button variant="contained" color="primary" fullWidth disabled={disableButtonLogIn ? 'true' : ''}>Entra</Button>
+
+//             </Grid>
+
+//                         </Grid>
+                        
+//                     </Grid>
+//                     </Box>
+//                 </div>   
+
+// class Login_SignIn extends React.Component{
+//     constructor() {
+//         super();
         
 
-        this.state = {
-          nrlUpdating : false,
-          signUpClicked:false
-        }
-    }
+//         this.state = {
+//           nrlUpdating : false,
+//           signUpClicked:false
+//         }
+//     }
 
-    handleSignInClick = () => {
-        console.log(this.state.signUpClicked)
-        this.setState({
-            signUpClicked: !this.state.signUpClicked
-          });
-      }
+//     handleSignInClick = () => {
+//         console.log(this.state.signUpClicked)
+//         this.setState({
+//             signUpClicked: !this.state.signUpClicked
+//           });
+//       }
 
-    loginCheck = (result) => {
-        this.setState({loginFailed : result});
-    }  
+//     loginCheck = (result) => {
+//         this.setState({loginFailed : result});
+//     }  
 
-    nrlChangeState = (state) => {
-        this.setState({nrlUpdating : state});
-    }
+//     nrlChangeState = (state) => {
+//         this.setState({nrlUpdating : state});
+//     }
     
-    render(){
-        const nrlUpdating = this.state.nrlUpdating;
-        return (    
-                <div id="log_in" class="h-100"> 
-                    <div class="row align-items-center h-100">
-                        {   this.state.signUpClicked
-                            ?   <div class="col-xl-6 col-sm-5 col-lg-4 col-md-4 mx-auto">
-                                    <Sign_In_Form logInFormCaller={this.handleSignInClick} >
+//     render(){
+//         const nrlUpdating = this.state.nrlUpdating;
+//         return (    
+//                 <div id="log_in" class="h-100"> 
+//                     <div class="row align-items-center h-100">
+//                         {   this.state.signUpClicked
+//                             ?   <div class="col-xl-6 col-sm-5 col-lg-4 col-md-4 mx-auto">
+//                                     <Sign_In_Form logInFormCaller={this.handleSignInClick} >
                                         
-                                    </Sign_In_Form>
-                                </div>
+//                                     </Sign_In_Form>
+//                                 </div>
 
-                            :    <div class="col-xl-4 col-sm-4 col-lg-4 col-md-4 mx-auto">
-                                        <Grow in={true} style={{transitionDelay:"10000ms"}}>
-                                            <NrlComponent nrlChangeState={this.nrlChangeState}></NrlComponent>
-                                        </Grow>
-                                        <div class="border rounded-top jumbotron ">
-                                            <Login_Form loginCheck={this.loginCheck} disableButtonLogIn={nrlUpdating}></Login_Form> 
-                                            <Button variant="outline-primary" className="rounded-pill mt-4" size="lg" block onClick={this.handleSignInClick} disabled={nrlUpdating ? 'true' : '' } >Registrati</Button>
-                                        </div>
-                                        {
-                                            this.state.loginFailed ?
-                                            <Alert variant="warning" className=" w-20 alert-dismissible fade show" >
-                                                Accesso non riuscito, controllare email o password!
-                                            </Alert> 
-                                            : <div></div>
-                                        }            
-                                </div> 
+//                             :    <div class="col-xl-4 col-sm-4 col-lg-4 col-md-4 mx-auto">
+//                                         <Grow in={true} style={{transitionDelay:"10000ms"}}>
+//                                             <NrlComponent nrlChangeState={this.nrlChangeState}></NrlComponent>
+//                                         </Grow>
+//                                         <div class="border rounded-top jumbotron ">
+//                                             <Login_Form loginCheck={this.loginCheck} disableButtonLogIn={nrlUpdating}></Login_Form> 
+//                                             <Button variant="outline-primary" className="rounded-pill mt-4" size="lg" block onClick={this.handleSignInClick} disabled={nrlUpdating ? 'true' : '' } >Registrati</Button>
+//                                         </div>
+//                                         {
+//                                             this.state.loginFailed ?
+//                                             <Alert variant="warning" className=" w-20 alert-dismissible fade show" >
+//                                                 Accesso non riuscito, controllare email o password!
+//                                             </Alert> 
+//                                             : <div></div>
+//                                         }            
+//                                 </div> 
                               
-                        }
-                    </div>
-                </div>
-        );
-    }
-}
+//                         }
+//                     </div>
+//                 </div>
+//         );
+//     }
+// }
 
-export default Login_SignIn
+// export default Login_SignIn
