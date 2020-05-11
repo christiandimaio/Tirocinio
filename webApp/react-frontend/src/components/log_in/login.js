@@ -26,6 +26,7 @@ const styles = theme => ({
 });
 
 class Login extends React.Component{
+    _isMounted = false;
     constructor(props){
         super(props);
         this.state = {
@@ -68,7 +69,7 @@ class Login extends React.Component{
                 }
                 break;
             case "password":
-                if(value.length >= 6){
+                if(value.length >=0){
                     formErrors.password.error=false;
                     formErrors.password.message="";
                 }else{
@@ -86,13 +87,17 @@ class Login extends React.Component{
     }
 
     tryLogIn(){
+        this._isMounted = true;
         let serverResponse = this.state.serverResponse;
         console.log(""+(this.state.formErrors.email.error || this.state.formErrors.password.error));
         if (this.state.formErrors.email.error || this.state.formErrors.password.error){
             serverResponse.response=true;
             serverResponse.error=true;
             serverResponse.message="Alcuni campi sono errati!"
-            this.setState({serverResponse});
+            if(this._isMounted){
+                this.setState({serverResponse});
+            }
+            
         }
         else{
             console.log("Try log in :"+this.state.email)
@@ -111,7 +116,9 @@ class Login extends React.Component{
                 }else{
                     this.props.changeView("main");
                 }
-                this.setState({serverResponse});
+                if(this._isMounted){
+                    this.setState({serverResponse});
+                }
             })
             .catch((error) => {
                 serverResponse.response=true;
@@ -121,12 +128,13 @@ class Login extends React.Component{
             
 
         }
-        console.log(serverResponse);
-          
+        console.log(serverResponse);  
           
     }
     
-   
+    componentWillUnmount() {
+        this._isMounted = false;
+      }
 
     render(){
         const {disableButtonLogIn} = this.props;
@@ -150,7 +158,7 @@ class Login extends React.Component{
                                             InputProps={{
                                                 startAdornment: (
                                                     <InputAdornment position="start">
-                                                    <AccountCircle />
+                                                    <AccountCircle style={{fill: "#1a237e"}} />
                                                     </InputAdornment>
                                                 ),
                                                 }}
@@ -175,7 +183,7 @@ class Login extends React.Component{
                                         InputProps={{
                                             startAdornment: (
                                                 <InputAdornment position="start">
-                                                    <VpnKeyIcon />
+                                                    <VpnKeyIcon style={{fill: "#1a237e"}}  />
                                                 </InputAdornment>
                                             ),
                                             }}/>

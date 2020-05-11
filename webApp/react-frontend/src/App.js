@@ -28,10 +28,9 @@ export default class App extends React.Component{
                 lockMessage:""
             }
         };
-        this.checkServerStatus();
-    }
-    checkServerStatus = async () => {
         
+    }
+    componentWillMount(){
         axios.get('/check/directory/nrl', {
           })
           .then((response) => {
@@ -91,7 +90,7 @@ export default class App extends React.Component{
                     </Box>
                 );
             case "main":
-                return(<div></div>);
+                return(<div><Paper elevation={3} ></Paper></div>);
             case "default":
                 return(<div></div>);
         }

@@ -14,9 +14,9 @@ const operatore_style = {
 }
 
 export default class Sign_Up extends React.Component{
+    _isMounted = false;
     constructor(props){
         super(props);   
-        this.getTipiOperatore();  
         this.state={
             sign_in:{
                 called: false,
@@ -124,14 +124,17 @@ export default class Sign_Up extends React.Component{
         this.setState({data_nascita:(value.getDate()+"/"+(value.getMonth()+1)+"/"+value.getFullYear())});
     }
     trySignUp = () => {
+        this._isMounted=true;
         console.log(this.state);
         let {error} = this.state;
         let {sign_in} = this.state;
         if (error.nome.state || error.cognome.state || error.password.state || error.password_conferma.state || error.tipo_utente.state){
-            this.setState(state => (state.sign_in.called  = true, state));
-            this.setState(state => (state.sign_in.successful=false, state));
-            this.setState(state => (state.sign_in.message=
-                "Completare tutti i campi Richiesti!", state));
+            if(this._isMounted){
+                this.setState(state => (state.sign_in.called  = true, state));
+                this.setState(state => (state.sign_in.successful=false, state));
+                this.setState(state => (state.sign_in.message=
+                    "Completare tutti i campi Richiesti!", state));
+            }
             return
         }
         axios.post('/database/insert/user', {
@@ -143,23 +146,27 @@ export default class Sign_Up extends React.Component{
             telefono_utente: this.state.telefono_utente
           })
           .then((response) => {
-            if (response.data["operationCode"] != 200){
+            if (response.data["operationCode"] != 200 && this._isMounted){
                 this.setState(state => (state.sign_in.called  = true, state));
                 this.setState(state => (state.sign_in.successful=false, state));
                 this.setState(state => (state.sign_in.message=
                             "Registrazione non riuscita a causa di qualche errore, riprovare più tardi!", state));
             }else{
-                this.setState(state => (state.sign_in.called  = true, state));
-                this.setState(state => (state.sign_in.successful=true, state));
-                this.setState(state => (state.sign_in.message = 
-                    "Registrazione Avvenuta con successo, sarai re-indirizzato alla pagina di login tra 3 secondi!", state));
+                if(this._isMounted){
+                    this.setState(state => (state.sign_in.called  = true, state));
+                    this.setState(state => (state.sign_in.successful=true, state));
+                    this.setState(state => (state.sign_in.message = 
+                        "Registrazione Avvenuta con successo, sarai re-indirizzato alla pagina di login tra 3 secondi!", state));
+                }
             }
           })
           .catch((error) => {
-            this.setState(state => (state.sign_in.called  = true, state));
-            this.setState(state => (state.sign_in.successful=false, state));
-            this.setState(state => (state.sign_in.message=
-                            "Registrazione non riuscita a causa di qualche errore, riprovare più tardi!", state));
+              if(this._isMounted){
+                    this.setState(state => (state.sign_in.called  = true, state));
+                    this.setState(state => (state.sign_in.successful=false, state));
+                    this.setState(state => (state.sign_in.message=
+                                    "Registrazione non riuscita a causa di qualche errore, riprovare più tardi!", state));
+                }
             console.log(error);
           });
           
@@ -169,20 +176,29 @@ export default class Sign_Up extends React.Component{
         this.props.changeView("logIN");
     }
     
-    getTipiOperatore = () => {
+    componentWillMount(){
+        this._isMounted=true;
         console.log("Richieste le tipologie di operatori disponibili al server");
         axios.get("/database/select/user/type")
             .then((response) => {
                 console.log(response.data);
-                this.setState({
-                    database_operatori: response.data.items
-                })
+                if(this._isMounted){
+                    this.setState({
+                        database_operatori: response.data.items
+                    })
+                }
             })
             .catch((error) => {
-               this.setState({database_operatori:["Default"]})
+                if(this._isMounted){
+                    this.setState({database_operatori:["Default"]})
+                }
+               
             });
     }
     
+    componentWillUnmount(){
+        this._isMounted=false
+    }
   
     render(){
         const {error} = this.state;

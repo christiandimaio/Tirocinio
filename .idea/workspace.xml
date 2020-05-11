@@ -20,13 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad542c72-03a8-4253-b8b2-e4df0841fb7b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/flask_backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/flask_backend/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/flask_backend/myPackage/NrlWrap/NRLWrap.py" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/flask_backend/myPackage/NrlWrap/NRLWrap.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/flask_backend/res/lock/lock_nrl_update.lock" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/flask_backend/res/lock/lock_nrl_update.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/flask_backend/res/response/temp_iris.ziplnzo2wpv.tmp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/webApp/react-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/react-frontend/src/components/element/date_picker.js" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/src/components/element/date_picker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webApp/react-frontend/src/components/element/topbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/src/components/element/topbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webApp/react-frontend/src/components/log_in/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/src/components/log_in/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webApp/react-frontend/src/components/sign_up/sign_up.js" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/src/components/sign_up/sign_up.js" afterDir="false" />
