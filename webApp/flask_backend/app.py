@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, login_required
 import os
 import sys
-
+from filelock import FileLock
 import models
 
 sys.path.append('./myPackage/Utils/')
@@ -59,8 +59,9 @@ def log_in():
             login_user(user, remember=rememberMe)
             print("logged in")
             return jsonify(operationCode=200)
-
-    return jsonify(operationCode=201)
+        else:
+            return jsonify(operationCode=201,message="Password Errata!")
+    return jsonify(operationCode=201,message="Utente inesistente!")
 
 
 @app.route("/", methods=["GET"])
@@ -120,10 +121,8 @@ def check_nrl_folder_status():
                     200 = OK
     """
     try:
-        lock_folder = Utils.retrieve_config_value(["application", "lock_folder"])
-        lock_file_name = Utils.retrieve_config_value(
-            ["application", "module_configuration", "NRLWrap", "update_in_progress_lock_file"])
-        if os.path.exists(os.path.join(lock_folder, lock_file_name)):
+
+        if nrl_update_lock.is_locked:
             return jsonify(result=201)
     except Exception as ex:
         print(ex)
@@ -143,24 +142,25 @@ def update_nrl():
                     200 = OK, UPDATED
     """
     try:
-        lock_folder = Utils.retrieve_config_value(["application", "lock_folder"])
-        lock_file_name = Utils.retrieve_config_value(
-            ["application", "module_configuration", "NRLWrap", "update_in_progress_lock_file"])
-        if os.path.exists(os.path.join(lock_folder, lock_file_name)):
+
+        if nrl_update_lock.is_locked:
             return jsonify(result=201)
         """Istanzio un file di lock """
-        lock_file = open(os.path.join("./" + lock_folder, lock_file_name), "w+")
+        nrl_update_lock.acquire()
         Utils.update_nrl_structure()
-        lock_file.close()
         """Rimuovo il lock """
-        os.remove(os.path.join(lock_folder, lock_file_name))
+        nrl_update_lock.release()
     except Exception as ex:
         print(ex)
-        if os.path.exists(os.path.join(lock_folder, lock_file_name)):
-            os.remove(os.path.join(lock_folder, lock_file_name))
+        nrl_update_lock.release()
         return jsonify(result=199)
     return jsonify(result=200)
 
 
 if __name__ == "__main__":
+    nrl_update_lock = FileLock(os.path.join(Utils.retrieve_config_value(["application", "lock_folder"]),
+                                            Utils.retrieve_config_value(
+                                                ["application", "module_configuration", "NRLWrap",
+                                                 "update_in_progress_lock_file"])
+                                            ))
     app.run(host="0.0.0.0", debug=True)

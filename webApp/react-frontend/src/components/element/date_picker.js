@@ -1,11 +1,12 @@
 import React,{Component,useState} from 'react';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-
+import itLocale from "date-fns/locale/it";
   
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
+    DatePicker
   } from '@material-ui/pickers';
 
 
@@ -29,10 +30,8 @@ export default class DateTimePicker extends React.Component {
         const {properties} = this.props;
 
         return(
-                <MuiPickersUtilsProvider  utils={DateFnsUtils}>
-                                            <KeyboardDatePicker
-                                                disableToolbar    
-                                                variant="inline"           
+            <MuiPickersUtilsProvider utils={DateFnsUtils} locale={itLocale}>
+                                            <KeyboardDatePicker        
                                                 margin="normal"
                                                 name={properties.name}
                                                 id= {properties.id}
@@ -43,6 +42,7 @@ export default class DateTimePicker extends React.Component {
                                                 KeyboardButtonProps={{
                                                     'aria-label': 'Cambia Data',
                                                 }}
+                                                style={{width:properties.width}}
                                                 invalidDateMessage="Inserire una data Corretta"
                                             />
                 </MuiPickersUtilsProvider>

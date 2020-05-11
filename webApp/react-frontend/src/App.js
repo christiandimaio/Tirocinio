@@ -32,7 +32,7 @@ export default class App extends React.Component{
     }
     checkServerStatus = async () => {
         
-        axios.get('/update/NRL', {
+        axios.get('/check/directory/nrl', {
           })
           .then((response) => {
             const {result} = response.data;
@@ -109,7 +109,7 @@ export default class App extends React.Component{
                 }
                 </div>
                     
-                    <ParticlesBg type="cobweb" num={100} color="#1a237e" bg={true} /> 
+                    <ParticlesBg type="cobweb"  color="#1a237e" bg={true} /> 
                     <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:!(this.state.lockApp.lockState)}}/>
             </div>
             );

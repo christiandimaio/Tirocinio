@@ -1,11 +1,12 @@
 import React,{Component} from 'react';
 import Selecter from '../element/selecter';
 import DateTimePicker from '../element/date_picker';
-import {TextField,Box,Snackbar,InputAdornment,Grid,Button} from '@material-ui/core';
+import {TextField,Box,Snackbar,InputAdornment,Grid,Button, FormControl} from '@material-ui/core';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper'
   import MuiALert from '@material-ui/lab/Alert';
-
+  import itLocale from "date-fns/locale/it";
+  import InputLabel from '@material-ui/core/InputLabel';
 const operatore_style = {
     borderColor:'green',
     color:'green',
@@ -222,7 +223,7 @@ export default class Sign_Up extends React.Component{
                             </TextField>
                         </Grid>
                         
-                        <Grid item xl={11} xs={11}>
+                        <Grid item xl={10} xs={11}>
                             <TextField id="email_textfield" error={error.email.status} name="email" onChange={(e) => this.handleChange(e,'email')} label="Indirizzo Email" variant="outlined" required fullWidth
                              helperText={error.email.message}>
 
@@ -242,13 +243,19 @@ export default class Sign_Up extends React.Component{
                         </Grid>
 
                         <Grid container direction="row" justify="center" alignItems="center">
-                            <Grid   item xl={5} xs={5}>
-                                <DateTimePicker properties={{
-                                                            id:"data-nascita_picker",
-                                                            label:"seleziona data di nascita",
-                                                            name:"data_nascita"
-                                                            }}
-                                                onChange={this.handleDateChange}/>
+                           <Grid item xl={2} xs={2} alignItems="center" style={{marginTop:"3%"}}>
+                                <InputLabel>Data Nascita</InputLabel>
+                           </Grid>
+                            <Grid   item xl={5} xs={5} >
+                                
+                                    <DateTimePicker properties={{
+                                                                width:"90%",
+                                                                id:"data-nascita_picker",
+                                                                label:"",
+                                                                name:"data_nascita"
+                                                                }}
+                                                    onChange={this.handleDateChange}/>
+                                
                             </Grid>
                         </Grid>               
 
