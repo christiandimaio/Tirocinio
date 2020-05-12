@@ -1,8 +1,0 @@
-[Main]
-question = "Select the input impedance mode"
-
-[High]
-path="0_4.hi.txt"
-
-[Low (default)]
-path="0_4.lo.txt"

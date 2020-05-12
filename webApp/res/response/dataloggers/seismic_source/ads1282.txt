@@ -1,6 +1,0 @@
-[Main]
-question = "Select the preamp gain"
-detail = "seismic_source_ADS1282_dataloggers-details.html"
-
-[1 or 16]
-path = "ads1282.1_16.txt"

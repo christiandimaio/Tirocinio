@@ -1,7 +1,0 @@
-[Main]
-question = "Select the shunt resistance for this 4.5 Hz GS-11D with Rc=4000:"
-detail = "oyo_geospace_hs1_sensors-details.html"
-
-[56160 Ohms]
-description = "GS-11D, 4.5 Hz, 96.4 V/m/s, Rc=4000 Ohms, Rs=56160"
-resp = "RESP.XX.NS390..SHZ.GS11D.4_5.4000.56160.97_4"

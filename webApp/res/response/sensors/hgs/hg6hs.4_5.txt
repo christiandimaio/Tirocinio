@@ -1,9 +1,0 @@
-[Main]
-question = "Select the coil resistance and type for this HG-6HS:"
-detail = "hgs_hgx_sensors-details.html"
-
-[3500, A coil]
-path = "hg6hs.4_5.a.txt"
-
-[3500, B coil]
-path = "hg6hs.4_5.b.txt"

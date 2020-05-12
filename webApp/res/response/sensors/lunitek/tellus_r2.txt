@@ -1,6 +1,0 @@
-[Main]
-question = "Select the Tellus R2 corner period"
-
-[30s]
-description = "TELLUS R2, 30s, 50 V/rad/s"
-resp = "RESP.XX.NS529..BJZ.TELLUS_R2.30.50"

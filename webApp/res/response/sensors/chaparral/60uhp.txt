@@ -1,6 +1,0 @@
-[Main]
-question = "Select the nominal sensitivity:"
-
-[0.009 V/Pa]
-description = "60-UHP (Infrasound), 0.03-200 Hz, 0.009 V/Pa"
-resp = "RESP.XX.IS006..BDF.60UHP.0_03.0_009"

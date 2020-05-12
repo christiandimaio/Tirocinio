@@ -1,6 +1,0 @@
-[Main]
-question = "Select the sample rate in samples per second"
-
-[50]
-description = "Raspberry Shake 1D, gain 1, 50 sps"
-resp = "RESP.XX.OD001..SHZ.RShake1D.1.50"

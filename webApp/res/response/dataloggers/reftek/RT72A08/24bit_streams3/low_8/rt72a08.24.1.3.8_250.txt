@@ -1,5 +1,0 @@
-[Main]
-question = "Select the sample rate in samples per second of the fastest sample rate using the 24-bit A/D"
-
-[500]
-path = "rt72a08.24.1.3.8_250_500.txt"

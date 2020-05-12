@@ -1,6 +1,0 @@
-[Main]
-question = "Select the shunt resistance for this L-4C:"
-
-[810 Ohms]
-description = "L-4C, 1 Hz, 51.5 V/m/s, Rc=500 Ohms, Rs=810 Ohms"
-resp = "RESP.XX.NS153..SHZ.L4C.500.810.1.51_5"

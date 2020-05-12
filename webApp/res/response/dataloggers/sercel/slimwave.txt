@@ -1,8 +1,0 @@
-[Main]
-question = "Select the preamp gain"
-
-[10 (20 dB)]
-path = "slimwave.10.txt"
-
-[100 (40 dB)]
-path = "slimwave.100.txt"

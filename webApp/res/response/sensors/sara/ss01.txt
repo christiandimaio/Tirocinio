@@ -1,6 +1,0 @@
-[Main]
-question = "Select the sensor sensitivity"
-
-[400 V/m/s]
-resp = "RESP.XX.NS504..BHZ.SS01.10.400"
-description = "SS01, 10 s, 400 V/m/s"

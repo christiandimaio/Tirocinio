@@ -1,9 +1,0 @@
-[Main]
-question = "Select the FIR filter version used by your datalogger"
-detail = "quanterra_Qx80_dataloggers-details.html"
-
-[Not Normalized  (released 1990/06/16)]
-path = "qx80.1.900616.txt"
-
-[Normalized  (released 1992/08/12)]
-path = "qx80.1.920812N.txt"

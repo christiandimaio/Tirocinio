@@ -1,8 +1,0 @@
-[Main]
-question = "Select the final filter phase type"
-
-[Linear Phase]
-path = "1.2000.lp.txt"
-
-[Minimum Phase]
-path = "1.2000.mp.txt"

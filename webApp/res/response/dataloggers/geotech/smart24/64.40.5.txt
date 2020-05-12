@@ -1,9 +1,0 @@
-[Main]
-question = "Select the final sample rate in samples per second"
-detail = "geotech_smart24_dataloggers-details.html"
-
-[1]
-path = "64.40.5.1.txt"
-
-[5]
-path = "64.40.5.5.txt"

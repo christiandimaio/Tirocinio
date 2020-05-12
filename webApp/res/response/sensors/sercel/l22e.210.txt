@@ -1,6 +1,0 @@
-[Main]
-question = "Select the shunt resistance for this L-22E:"
-
-[1144 Ohms]
-description = "L-22E, 2 Hz, 25.6 V/m/s, Rc=210 Ohms, Rs=1144 Ohms"
-resp = "RESP.XX.NS160..SHZ.L22E.210.1144.2.25_6"

@@ -1,8 +1,0 @@
-[Main]
-question = "Select the L-10 model:"
-
-[L-10AR]
-path = "l10.ar.txt"
-
-[L-10B]
-path = "l10.b.txt"

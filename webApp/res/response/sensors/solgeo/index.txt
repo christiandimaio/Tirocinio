@@ -1,5 +1,0 @@
-[Main]
-question = "Select the SolGeo sensor model"
-
-[Veloget]
-path = "veloget.txt"
