@@ -58,7 +58,7 @@ export default class TopBar extends React.Component{
 
     updateNrlCall = async () => {
         this.props.nrlUpdateEvent.putLock("Aggiornamento NRL in corso,attendere..");
-        axios.get('/update/NRL', {
+        axios.get('api/update/NRL', {
           })
           .then((response) => {
             const {result} = response.data;
@@ -78,7 +78,7 @@ export default class TopBar extends React.Component{
     }
     
     logout = () => {
-        axios.get("/logout"
+        axios.get("api/logout"
                 ).then((response) => {
                     console.log(response);
                     if (response.data["operationCode"]==200){
@@ -92,25 +92,25 @@ export default class TopBar extends React.Component{
 
     render(){
         return (
-        <div>
+        
             <AppBar position="static" style={{background:"#3f51b5"}}>
-            <Toolbar>
+            <Toolbar >
                     <Box display="flex" style={{flexGrow:1}}>
-                        <Typography variant="h3" >
+                        <Typography variant="h5" >
                         INGV
                         </Typography>
-                        <Typography variant="h6" style={{marginLeft:4}} spacing={2}>
+                        <Typography variant="h2" style={{marginLeft:4}} spacing={2}>
                         {this.props.username}
                         </Typography>
                     </Box>
                     
                         
-                     <Button
+                     <Button 
                             aria-controls="customized-menu"
                             aria-haspopup="true"
                             variant="contained"
                             color="inherit"
-                            style={{background:"#1a237e",minHeight:50}}
+                            style={{background:"#1a237e"}}
                             onClick={(event) => {this.setState({menu:event.currentTarget})}}
                         >
                             Open Menu
@@ -141,7 +141,7 @@ export default class TopBar extends React.Component{
                         
             </Toolbar>
             </AppBar>
-        </div>
+        
         );
     }
 }

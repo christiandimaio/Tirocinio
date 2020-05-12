@@ -13,8 +13,8 @@ export default class AnimatedLoader extends React.Component{
     render(){
         const {properties} = this.props;
         return (
-            <Backdrop hidden={properties.hidden} style={{zIndex:2,
-                color: '#fff'}} open={true} >
+            <Backdrop  style={{zIndex:2,
+                color: '#fff'}} open={properties.hidden} >
                 <Grid spacing={2} container direction="column" justify="center" alignItems="center">
                 <Grid item>
                     <CircularProgress color="secondary" />

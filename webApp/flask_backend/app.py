@@ -1,3 +1,4 @@
+import psycopg2
 from flask import Flask, render_template, request, jsonify
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -5,6 +6,8 @@ from flask_login import LoginManager, login_user, logout_user, login_required
 import os
 import sys
 from filelock import FileLock
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.ext.declarative import declarative_base
 import models
 
 sys.path.append('./myPackage/Utils/')
@@ -39,7 +42,7 @@ def user_loader(user_id):
     return models.UserModel.query.get(str(user_id))
 
 
-@app.route("/login", methods=['GET', 'POST'])
+@app.route("/api/login", methods=['GET', 'POST'])
 def log_in():
     """
     CODE RESPONSE : 201 = SOME ERRORS HAS OCCURRED
@@ -70,7 +73,7 @@ def main_app():
     return render_template("app.html")
 
 
-@app.route("/logout", methods=["GET"])
+@app.route("/api/logout", methods=["GET"])
 @login_required
 def log_out():
     print("log_out called")
@@ -79,7 +82,7 @@ def log_out():
     return jsonify(operationCode=200)
 
 
-@app.route("/main", methods=["GET"])
+@app.route("/api/main", methods=["GET"])
 @login_required
 def test():
     return jsonify(ok=1)
@@ -89,7 +92,7 @@ def test():
 """Database Select"""
 
 
-@app.route("/database/select/user/type", methods=["GET"])
+@app.route("/api/database/select/user/type", methods=["GET"])
 def get_user_type():
     return jsonify(operationCode=200, items=["Operatore Semplice", "Esterno", "Autorizzato"])
 
@@ -99,12 +102,18 @@ def get_user_type():
 
 
 # Sign In
-@app.route("/database/insert/user", methods=["POST"])
+@app.route("/api/database/insert/user", methods=["POST"])
 def sign_in():
+    print(request.json)
     user = models.UserModel(request.json['email'], request.json['password'])
     db.session.add(user)
-    db.session.commit()
-    print(request.json)
+    try:
+        db.session.commit()
+    except IntegrityError as ex:
+        if ex.orig.__class__ == psycopg2.errors.UniqueViolation:
+            return jsonify(operationCode=201,message="Utente già registrato!")
+        else:
+            return jsonify(operationCode=201)
     return jsonify(operationCode=200)
 
 
@@ -112,7 +121,7 @@ def sign_in():
 """Check Directory Route"""
 
 
-@app.route("/check/directory/nrl", methods=["GET"])
+@app.route("/api/check/directory/nrl", methods=["GET"])
 def check_nrl_folder_status():
     """
     CODE RESPONSE :
@@ -134,7 +143,7 @@ def check_nrl_folder_status():
 """Update Route"""
 
 
-@app.route("/update/NRL", methods=["GET"])
+@app.route("/api/update/NRL", methods=["GET"])
 def update_nrl():
     """
     CODE RESPONSE : 201 = UPDATE IS ALREADY CALLED

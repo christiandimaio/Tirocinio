@@ -101,7 +101,7 @@ class Login extends React.Component{
         }
         else{
             console.log("Try log in :"+this.state.email)
-            axios.post('/login', {
+            axios.post('api/login', {
                             email : this.state.email,
                             password: this.state.password,
                             rememberME : this.state.rememberme
@@ -142,10 +142,11 @@ class Login extends React.Component{
         let {formErrors} = this.state.formErrors;
         const { classes } = this.props;
         return  (
-                <div className={classes.xxx}>
-                    <Grid container direction="column" spacing={3} justify="center" alignItems="center" style={{paddingTop:"10%",paddingBottom:"10%"}}>
+               
+            <>
+                    <Grid container direction="column" spacing={3} justify="center" alignItems="center" >
                         
-                            <Grid item style={{width:"60%"}}>
+                            <Grid item style={{maxWidth:"100%"}}>
                                 <FormControl fullWidth>
                                     <Paper>
                                         <TextField
@@ -169,7 +170,7 @@ class Login extends React.Component{
                             
                         </Grid>    
                         
-                        <Grid item style={{width:"60%"}}>
+                        <Grid item style={{maxWidth:"100%"}}>
                             <FormControl fullWidth>
                                 <Paper>
                                     <TextField 
@@ -192,18 +193,18 @@ class Login extends React.Component{
                             </FormControl>
                         </Grid>
 
-                        <Grid item xs={6} xl={5} >
+                        <Grid item style={{maxWidth:"60%"}} >
                                 <FormControlLabel
                                 control={<Checkbox checked={this.state.rememberme} onChange={e => this.handleChange(e,'rememberme')} name="rememberme" />}
                                 label="Ricordami"
                             />
                         </Grid>
                         
-                        <Grid item style={{width:"60%"}}>
+                        <Grid item style={{maxWidth:"100%"}}>
                             <Button fullWidth variant="contained" fullWidth disabled={disableButtonLogIn ? 'true' : ''} onClick={() => {this.props.changeView("signUP")}}>Registrati</Button>
                         </Grid>
                         
-                        <Grid item style={{width:"60%"}}>
+                        <Grid item style={{maxWidth:"100%"}}>
                             <Button fullWidth variant="contained" color="primary" fullWidth disabled={disableButtonLogIn ? 'true' : ''} 
                                     onClick={() => {this.tryLogIn()}}>Entra</Button>
                         </Grid>
@@ -217,8 +218,8 @@ class Login extends React.Component{
                     </Snackbar>                    
                     
 
-                
-                </div>
+                    </>
+            
                 
                     
                     

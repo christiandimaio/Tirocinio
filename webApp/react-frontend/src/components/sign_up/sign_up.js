@@ -33,29 +33,34 @@ export default class Sign_Up extends React.Component{
             data_nascita:null,
             error:{
                 nome:{
-                    status:null,
+                    status:true,
                     message:""
                 },
                 cognome:{
-                    status:null,
+                    status:true,
                     message:""
                 },
                 tipo_utente:{
-                    status:null,
+                    status:true,
                     message:""
                 },
                 email:{
-                    status:null,
+                    status:true,
                     message:""
                 },
                 password:{
-                    status:null,
+                    status:true,
                     message:""
                 },
                 password_conferma:{
-                    status:null,
+                    status:true,
+                    message:""
+                },
+                data_nascita:{
+                    status:false,
                     message:""
                 }
+
             },
             database_operatori:[]
             
@@ -121,28 +126,37 @@ export default class Sign_Up extends React.Component{
     }
 
     handleDateChange = (value) => {
-        this.setState({data_nascita:(value.getDate()+"/"+(value.getMonth()+1)+"/"+value.getFullYear())});
+        
+        if(value instanceof Date && !isNaN(value)){
+            console.log(value);
+            this.setState({data_nascita:(value.getDate()+"/"+(value.getMonth()+1)+"/"+value.getFullYear())});
+            this.setState(state => (state.error.data_nascita.status=false,state));
+        }else{
+            this.setState(state => (state.error.data_nascita.status=true,state));
+        }
     }
     trySignUp = () => {
         this._isMounted=true;
         console.log(this.state);
         let {error} = this.state;
         let {sign_in} = this.state;
-        if (error.nome.state || error.cognome.state || error.password.state || error.password_conferma.state || error.tipo_utente.state){
+
+        if (error.nome.status || error.cognome.status || error.password.status || error.password_conferma.status || error.tipo_utente.status || error.data_nascita.status){
             if(this._isMounted){
                 this.setState(state => (state.sign_in.called  = true, state));
                 this.setState(state => (state.sign_in.successful=false, state));
                 this.setState(state => (state.sign_in.message=
-                    "Completare tutti i campi Richiesti!", state));
+                    "Non posso proseguire, c'è qualche errore sui campi!", state));
             }
             return
         }
-        axios.post('/database/insert/user', {
+        axios.post('api/database/insert/user', {
             nome: this.state.nome,
             cognome: this.state.cognome,
             email : this.state.email,
             password: this.state.password,
             tipo_utente: this.state.tipo_utente[0],
+            data_nascita: this.state.data_nascita,
             telefono_utente: this.state.telefono_utente
           })
           .then((response) => {
@@ -150,7 +164,7 @@ export default class Sign_Up extends React.Component{
                 this.setState(state => (state.sign_in.called  = true, state));
                 this.setState(state => (state.sign_in.successful=false, state));
                 this.setState(state => (state.sign_in.message=
-                            "Registrazione non riuscita a causa di qualche errore, riprovare più tardi!", state));
+                            response.data["message"], state));
             }else{
                 if(this._isMounted){
                     this.setState(state => (state.sign_in.called  = true, state));
@@ -179,7 +193,7 @@ export default class Sign_Up extends React.Component{
     componentWillMount(){
         this._isMounted=true;
         console.log("Richieste le tipologie di operatori disponibili al server");
-        axios.get("/database/select/user/type")
+        axios.get("api/database/select/user/type")
             .then((response) => {
                 console.log(response.data);
                 if(this._isMounted){
