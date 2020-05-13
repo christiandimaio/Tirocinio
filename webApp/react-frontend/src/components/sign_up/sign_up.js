@@ -29,6 +29,10 @@ export default class Sign_Up extends React.Component{
             password:"",
             password_conferma:"",
             tipo_utente:"",
+            provenienza_esterno:{
+                visible:false,
+                value:""
+            },
             telefono_utente:"",
             data_nascita:null,
             error:{
@@ -117,6 +121,8 @@ export default class Sign_Up extends React.Component{
             case "tipo_utente":
                 if (value != ""){
                     error.tipo_utente.status = false
+                }else if ( value == 0){
+                    this.setState((state) => (state.provenienza_esterno.visible=true,state));
                 }
 
             default:

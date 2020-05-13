@@ -17,6 +17,7 @@ import { withStyles } from "@material-ui/core/styles";
 import 'semantic-ui-css/semantic.min.css'
 import {Grid,Image} from 'semantic-ui-react';
 import SimpleCard from './components/element/station_card.js';
+import Request from 'axios-request-handler';
 const paperStyle = {};
 const styles = theme => ({
 	root: {
@@ -24,6 +25,10 @@ const styles = theme => ({
     },
     
 });
+
+const reviews = new Request('api/check/directory/nrl');
+
+
 
 class App extends React.Component{
     _isMounted = false;
@@ -39,9 +44,7 @@ class App extends React.Component{
         
     }
     componentWillMount(){
-        axios.get('api/check/directory/nrl', {
-          })
-          .then((response) => {
+        reviews.poll(5000).get((response) => {
             const {result} = response.data;
             console.log(result);
             if (result == 201){     //Aggiornamento già in corso
@@ -53,11 +56,10 @@ class App extends React.Component{
                 this.releaseLockApp();
             }
             
-          })
-          .catch((error) => {
-            //ERRORE
           });
+        
     }
+
     lockAppRequest = (message) => {
         this.setState(state => (state.lockApp.lockState  = true, state));
         this.setState(state => (state.lockApp.lockMessage  = message, state))

@@ -94,7 +94,7 @@ def test():
 
 @app.route("/api/database/select/user/type", methods=["GET"])
 def get_user_type():
-    return jsonify(operationCode=200, items=["Operatore Semplice", "Esterno", "Autorizzato"])
+    return jsonify(operationCode=200, items=["Esterno","Operatore Semplice","Autorizzato"])
 
 
 """----------------------------------------------------------------------------"""

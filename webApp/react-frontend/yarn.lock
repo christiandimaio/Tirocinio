@@ -2340,7 +2340,14 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.1.tgz#7e33d8f7d449b3f673cd72deb9abdc552dbe528e"
   integrity sha512-wMHVg2EOHaMRxbzgFJ9gtjOOCrI80OHLG14rxi28XwOW8ux6IiEbRCGGGqCtdAIg4FQCbW20k9RsT4y3gJlFug==
 
-axios@^0.19.2:
+axios-request-handler@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/axios-request-handler/-/axios-request-handler-1.0.4.tgz#a378644757ddad298c34ad7196a1a9e639876bdb"
+  integrity sha512-GTtPy7R8iTzaC+hHzMJtmPKrHV64kazvt74jOFIJZFVB+6FY6G9ExKe/EjfhY/2z7cO1b1+c6Y569oYdllsYQw==
+  dependencies:
+    axios "^0.19.0"
+
+axios@^0.19.0, axios@^0.19.2:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
