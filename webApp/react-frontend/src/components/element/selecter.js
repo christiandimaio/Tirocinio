@@ -50,7 +50,7 @@ export default class Selecter extends React.Component{
                                         value={this.state.value}
                                         >
                                         {
-                                            items.map(item => <MenuItem value={item}>{item}</MenuItem>)
+                                            items.map((item,i) => <MenuItem key={i} value={item}>{item}</MenuItem>)
                                         } 
                                     </Select>
                                     <FormHelperText>{properties.helperText}</FormHelperText>
