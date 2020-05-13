@@ -19,20 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad542c72-03a8-4253-b8b2-e4df0841fb7b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/webApp/react-frontend/src/components/element/station_card.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webApp/react-frontend/src/components/main/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/flask_backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/flask_backend/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/react-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/react-frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/react-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/react-frontend/src/components/element/loader.js" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/src/components/element/loader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/react-frontend/src/components/element/topbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/src/components/element/topbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/react-frontend/src/components/log_in/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/src/components/log_in/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/react-frontend/src/components/sign_up/sign_up.js" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/src/components/sign_up/sign_up.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/react-frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="ad542c72-03a8-4253-b8b2-e4df0841fb7b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
