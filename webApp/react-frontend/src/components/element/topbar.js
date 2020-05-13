@@ -123,12 +123,17 @@ export default class TopBar extends React.Component{
                             onClose={() => {this.setState({menu:null})}}
                             
                         >
-                            <StyledMenuItem hidden={this.props.isMain?false:true} onClick={(e) => this.logout()}>
-                            <ListItemIcon>
-                                <ExitToAppIcon style={{fill: "#1a237e"}}  fontSize="small" />
-                            </ListItemIcon>
-                            <ListItemText primary="Log Out" />
-                            </StyledMenuItem>
+                          <div>
+                            { this.props.isMain
+                              ?(<StyledMenuItem  onClick={(e) => this.logout()}>
+                                <ListItemIcon>
+                                    <ExitToAppIcon style={{fill: "#1a237e"}}  fontSize="small" />
+                                </ListItemIcon>
+                                <ListItemText primary="Log Out" />
+                              </StyledMenuItem>)
+                              :<></>
+                            } 
+                          </div>
                             <StyledMenuItem onClick={(e) => this.updateNrlCall()}>
                             <ListItemIcon>
                                 <SystemUpdateAltIcon style={{fill: "#1a237e"}}  fontSize="small" />

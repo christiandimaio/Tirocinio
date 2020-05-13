@@ -213,7 +213,7 @@ class App extends React.Component{
                         <Grid >
                         <Grid.Row >
                             <Grid.Column mobile={16} tablet={16} computer={16}>
-                            <TopBar isMain={false} />
+                            <TopBar isMain={this.state.visibleSection=="main"?true:false} nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>
                             </Grid.Column>                     
                         </Grid.Row>
                         </Grid>
