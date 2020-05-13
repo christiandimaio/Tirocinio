@@ -1,36 +1,33 @@
-from flask import Flask
-from app import db
+
 from werkzeug.security import generate_password_hash, check_password_hash
-import datetime
+from datetime import date
+from pony.orm import *
 
 
-class UserModel(db.Model):
-    __tablename__ = 'user'
+db = Database()
+db.bind(provider='postgres', user='postgres', password='root', host='localhost', database='test')
 
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(), unique=True)
-    password = db.Column(db.String())
-    registered_on = db.Column('registered_on', db.DateTime)
+class Operatore(db.Entity):
+    id_operatore = PrimaryKey(int, size=16, auto=True)
+    nome = Required(str, 255)
+    cognome = Required(str, 255)
+    data_nascita = Optional(date)
+    tipo = Required(str)
+    log_in = Optional('Log_in')
+    is_esterno = Optional('Esterno')
 
-    def __init__(self, email, password):
-        self.email = email
-        self.password = generate_password_hash(password)
-        self.registered_on = datetime.datetime.utcnow()
 
-    def check_password(self, password):
-        return check_password_hash(self.password, password)
+class Log_in(db.Entity):
+    email = PrimaryKey(str, 255, auto=True)
+    password = Required(str, 255)
+    is_online = Optional(bool, default=False)
+    remember_me = Optional(bool,default=False)
+    registrato_il = Required(date, default=lambda: date.today())
+    cod_operatore = Required(Operatore)
 
-    def is_authenticated(self):
-        return True
 
-    def is_active(self):
-        return True
+class Esterno(db.Entity):
+    provenienza = Required(str, 255)
+    cod_operatore = Required(Operatore, unique=True)
 
-    def is_anonymous(self):
-        return False
-
-    def get_id(self):
-        return str(self.id)
-
-    # def __repr__(self):
-    #     return f"<User {self.email}>"
+db.generate_mapping(create_tables=True)

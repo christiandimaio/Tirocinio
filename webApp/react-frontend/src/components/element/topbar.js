@@ -62,10 +62,10 @@ export default class TopBar extends React.Component{
           })
           .then((response) => {
             const {result} = response.data;
-            if (result == 201){     //Aggiornamento già in corso
+            if (result === 201){     //Aggiornamento già in corso
                 this.props.nrlUpdateEvent.putLock("Aggiornamento NRL in corso,attendere..")         
 
-            }else if (result == 199){
+            }else if (result === 199){
                 //Errore
             }else{
                 this.props.nrlUpdateEvent.releaseLock();
@@ -81,7 +81,7 @@ export default class TopBar extends React.Component{
         axios.get("api/logout"
                 ).then((response) => {
                     console.log(response);
-                    if (response.data["operationCode"]==200){
+                    if (response.data["operationCode"]===200){
                         console.log("OK, Logout");
                         window.location = "/login";
                     }

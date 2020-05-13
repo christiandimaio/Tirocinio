@@ -8,7 +8,10 @@ import sys
 from filelock import FileLock
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.declarative import declarative_base
-import models
+
+from pony.orm import *
+
+from webApp.flask_backend.models import *
 
 sys.path.append('./myPackage/Utils/')
 sys.path.append('./myPackage/NrlWrap/')
@@ -24,8 +27,7 @@ class Config(object):
 
 app = Flask(__name__)
 app.config.from_object(Config)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -34,15 +36,16 @@ login_manager.init_app(app)
 # login_manager.login_view = '/login'
 
 
-@login_manager.user_loader
-def user_loader(user_id):
-    """Given *user_id*, return the associated User object.
-    :param unicode user_id: user_id (email) user to retrieve
-    """
-    return models.UserModel.query.get(str(user_id))
+# @login_manager.user_loader
+# def user_loader(user_id):
+#     """Given *user_id*, return the associated User object.
+#     :param unicode user_id: user_id (email) user to retrieve
+#     """
+#     return
+#     return models.UserModel.query.get(str(user_id))
 
 
-@app.route("/api/login", methods=['GET', 'POST'])
+@app.route("/api/login", methods=['POST'])
 def log_in():
     """
     CODE RESPONSE : 201 = SOME ERRORS HAS OCCURRED
@@ -53,18 +56,25 @@ def log_in():
     content = request.json
     email = content['email']
     password = content['password']
-    rememberMe = content['rememberME']
+    rememberME = content['rememberME']
     print(email)
     print(password)
-    user = models.UserModel.query.filter_by(email=email).first()
-    if user:
-        if user.check_password(password):
-            login_user(user, remember=rememberMe)
-            print("logged in")
-            return jsonify(operationCode=200)
-        else:
-            return jsonify(operationCode=201,message="Password Errata!")
-    return jsonify(operationCode=201,message="Utente inesistente!")
+    with db_session:
+        try:
+            user = Log_in[email]
+            if user:
+                if user.password == password:
+                        user.remember_me = rememberME
+                        user.is_active = True
+                        commit()
+                        print("logged in")
+                        return jsonify(operationCode=200)
+
+                else:
+                    return jsonify(operationCode=201,message="Password Errata!")
+        except pony.orm.core.ObjectNotFound as ex:
+            return jsonify(operationCode=201,message="Utente inesistente!")
+    return jsonify(operationCode=201,message="Error")
 
 
 @app.route("/", methods=["GET"])
@@ -77,7 +87,8 @@ def main_app():
 @login_required
 def log_out():
     print("log_out called")
-    logout_user()
+    with db_session:
+        
     print("logged out")
     return jsonify(operationCode=200)
 
@@ -105,13 +116,20 @@ def get_user_type():
 @app.route("/api/database/insert/user", methods=["POST"])
 def sign_in():
     print(request.json)
-    user = models.UserModel(request.json['email'], request.json['password'])
-    db.session.add(user)
+
     try:
-        db.session.commit()
-    except IntegrityError as ex:
-        if ex.orig.__class__ == psycopg2.errors.UniqueViolation:
-            return jsonify(operationCode=201,message="Utente già registrato!")
+        with db_session:
+            user = Operatore(nome=request.json["nome"], cognome=request.json["cognome"],
+                             data_nascita=request.json["data_nascita"], tipo=request.json["tipo_utente"])
+            if request.json["tipo_utente"] == "Esterno":
+                operatore_esterno = Esterno(provenienza=request.json["provenienza_esterno"],cod_operatore=user)
+            log_in = Log_in(email=request.json["email"], password=request.json["password"], cod_operatore=user)
+
+            user.log_in = log_in
+        commit()
+    except Exception as ex:
+        if ex.original_exc.original_exc.__class__== psycopg2.errors.UniqueViolation:
+            return jsonify(operationCode=201, message="Utente già registrato!")
         else:
             return jsonify(operationCode=201)
     return jsonify(operationCode=200)
@@ -167,6 +185,12 @@ def update_nrl():
 
 
 if __name__ == "__main__":
+
+
+    db = Database()
+    db.bind(provider='postgres', user='postgres', password='root', host='localhost', database='test')
+    db.generate_mapping(create_tables=True)
+
     nrl_update_lock = FileLock(os.path.join(Utils.retrieve_config_value(["application", "lock_folder"]),
                                             Utils.retrieve_config_value(
                                                 ["application", "module_configuration", "NRLWrap",
