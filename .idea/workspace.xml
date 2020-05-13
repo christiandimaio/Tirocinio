@@ -20,7 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad542c72-03a8-4253-b8b2-e4df0841fb7b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/webApp/flask_backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/flask_backend/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webApp/flask_backend/myPackage/NrlWrap/NRLWrap.py" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/flask_backend/myPackage/NrlWrap/NRLWrap.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webApp/react-frontend/src/components/sign_up/sign_up.js" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/react-frontend/src/components/sign_up/sign_up.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -251,16 +252,5 @@
     <state x="408" y="311" width="540" height="179" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/1366.0.1920.1080/0.27.1366.741@0.27.1366.741" timestamp="1585902676499" />
     <state x="408" y="314" width="491" height="166" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/1366.0.1920.1080/0.32.1366.736@0.32.1366.736" timestamp="1589189076673" />
     <state x="1939" y="414" width="540" height="170" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/1366.0.1920.1080/0.32.1366.736@1366.0.1920.1080" timestamp="1589188818053" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/webApp/flask_backend/myPackage/NrlWrap/NRLWrap.py</url>
-          <line>39</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

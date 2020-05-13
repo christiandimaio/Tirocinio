@@ -21,6 +21,7 @@ export default class Selecter extends React.Component{
         super(props);
 
         this.state = {
+            value:"",
             properties:{}
         };
         
@@ -28,6 +29,12 @@ export default class Selecter extends React.Component{
                 
     }
 
+    valueChanged = (event,name) => {
+        
+        this.setState({value:event.target.value});
+        this.props.properties.customHandler(event,name);
+
+    }
     render(){
             const {properties} = this.props;
             let {items} = this.props;
@@ -38,8 +45,9 @@ export default class Selecter extends React.Component{
                                         labelId={properties.labelId}
                                         id={properties.id}
                                         label={properties.inputLabel}
-                                        onChange={(e) => properties.customHandler(e,properties.name)}
+                                        onChange={(e) => this.valueChanged(e,properties.name)}
                                         style={properties.style}
+                                        value={this.state.value}
                                         >
                                         {
                                             items.map(item => <MenuItem value={item}>{item}</MenuItem>)

@@ -29,12 +29,12 @@ export default class Sign_Up extends React.Component{
             password:"",
             password_conferma:"",
             tipo_utente:"",
-            provenienza_esterno:{
-                visible:false,
-                value:""
-            },
+            provenienza_esterno:"",
             telefono_utente:"",
             data_nascita:null,
+            visibility:{
+                provenienza_esterno:false
+            },
             error:{
                 nome:{
                     status:true,
@@ -63,6 +63,10 @@ export default class Sign_Up extends React.Component{
                 data_nascita:{
                     status:false,
                     message:""
+                },
+                provenienza_esterno:{
+                    status:true,
+                    message:""
                 }
 
             },
@@ -76,6 +80,8 @@ export default class Sign_Up extends React.Component{
         let {value} = event.target;
         const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let error = this.state.error;
+        let visibility = this.state.visibility;
+        console.log(name);
         switch(name){
             case "nome":
                 if (value.length <= 0){
@@ -119,16 +125,27 @@ export default class Sign_Up extends React.Component{
                 }
                 break;
             case "tipo_utente":
-                if (value != ""){
                     error.tipo_utente.status = false
-                }else if ( value == 0){
-                    this.setState((state) => (state.provenienza_esterno.visible=true,state));
+                if ( value == "Esterno"){
+                    visibility.provenienza_esterno=true;
+                }else{
+                    visibility.provenienza_esterno=false;
                 }
-
+                break;
+            case "provenienza_esterno":
+                console.log(value);
+                if (value.length <=1){
+                    error.provenienza_esterno.status = true;
+                    error.provenienza_esterno.message="Campo Richiesto per un utente Esterno!";
+                }else{
+                    error.provenienza_esterno.status = false;
+                    error.provenienza_esterno.message="ok!";
+                }
+                break;
             default:
                 break;
         }
-        this.setState({error,[name]: value},(name,value) => {console.log(name+":"+value)});
+        this.setState({error,visibility,[name]: value},(name,value) => {console.log(name+":"+value)});
     }
 
     handleDateChange = (value) => {
@@ -147,7 +164,8 @@ export default class Sign_Up extends React.Component{
         let {error} = this.state;
         let {sign_in} = this.state;
 
-        if (error.nome.status || error.cognome.status || error.password.status || error.password_conferma.status || error.tipo_utente.status || error.data_nascita.status){
+        if (error.nome.status || error.cognome.status || error.password.status || error.password_conferma.status || error.tipo_utente.status || error.data_nascita.status
+            || (this.state.tipo_utente=="Esterno" && error.provenienza_esterno.status)){
             if(this._isMounted){
                 this.setState(state => (state.sign_in.called  = true, state));
                 this.setState(state => (state.sign_in.successful=false, state));
@@ -161,7 +179,8 @@ export default class Sign_Up extends React.Component{
             cognome: this.state.cognome,
             email : this.state.email,
             password: this.state.password,
-            tipo_utente: this.state.tipo_utente[0],
+            tipo_utente: this.state.tipo_utente,
+            provenienza_esterno: this.state.visibility.provenienza_esterno?this.state.provenienza_esterno:"",
             data_nascita: this.state.data_nascita,
             telefono_utente: this.state.telefono_utente
           })
@@ -295,11 +314,26 @@ export default class Sign_Up extends React.Component{
                             </Grid>
                         </Grid>               
 
-                        <Grid xl={5} xs={5} item  >
-                            <Selecter
-                                        properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Utente",style:operatore_style,value:this.state.tipo_utente,
-                                        customHandler:this.handleChange,helperText:error.tipo_utente.message,name:"tipo_utente",error:error.tipo_utente.status}}
-                                        items={this.state.database_operatori}/>
+                        <Grid xl={5} xs={5} item  container direction="row">
+                            <Grid item xl={12} xs={12}>
+                               
+                                    <Selecter
+                                                properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Utente",style:operatore_style,value:this.state.tipo_utente,
+                                                customHandler:this.handleChange,helperText:error.tipo_utente.message,name:"tipo_utente",error:error.tipo_utente.status}}
+                                                items={this.state.database_operatori}/>
+                            </Grid>
+                            {
+                                this.state.visibility.provenienza_esterno
+                                ?<Grid item xl={12} xs={12}>
+                                    <TextField  value={this.state.provenienza_esterno} id="provenienza_esterno_textfield" error={error.provenienza_esterno.status} onChange={(e) => this.handleChange(e,'provenienza_esterno')} label="Provenienza" variant="standard" required fullWidth
+                                    helperText={error.provenienza_esterno.message}>
+
+                                    </TextField>
+                                </Grid>
+                                :<div></div>
+                            }         
+                            
+                            
                         </Grid>
                         <Grid item xl={5} xs={6}>
                                 <TextField id="outlined-full-width" onChange={(e) => this.handleChange(e,'telefono_utente')} label="Telefono" variant="outlined" fullWidth

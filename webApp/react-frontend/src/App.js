@@ -44,7 +44,7 @@ class App extends React.Component{
         
     }
     componentWillMount(){
-        reviews.poll(5000).get((response) => {
+        reviews.poll(20000).get((response) => {
             const {result} = response.data;
             console.log(result);
             if (result == 201){     //Aggiornamento già in corso
