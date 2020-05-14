@@ -7,6 +7,7 @@ from pony.orm import *
 
 db = Database()
 db.bind(provider='postgres', user='postgres', password='root', host='localhost', database='test')
+
 class Operatore(db.Entity):
     id_operatore = PrimaryKey(int, auto=True)
     nome = Required(str, 255)
@@ -31,7 +32,7 @@ class Log_in(db.Entity):
 
 class Esterno(db.Entity):
     provenienza = Required(str, 255)
-    operatore = Required(Operatore, unique=True, column='cod_operatore')
+    operatore = PrimaryKey(Operatore, column='cod_operatore')
 
 
 class Recapito(db.Entity):
@@ -49,11 +50,10 @@ class Veicolo(db.Entity):
 
 
 class Percorso(db.Entity):
-    id = PrimaryKey(int, auto=True)
     tempo_percorrenza = Required(int)
     veicolo = Required(Veicolo, column='cod_veicolo')
     stazione_sismica = Required('Stazione_sismica', column='id_stazione')
-
+    PrimaryKey(veicolo,stazione_sismica)
 
 class Stazione_sismica(db.Entity):
     codice_stazione = PrimaryKey(str, auto=True)
@@ -89,7 +89,7 @@ class Responsabile(db.Entity):
     operatore = Required(Operatore, column='cod_operatore')
     data_fine_incarico = Optional(date)
     data_inizio_incarico = Required(date, default=lambda: date.today())
-
+    PrimaryKey(operatore,stazione_sismica)
 
 class Componente(db.Entity):
     seriale = PrimaryKey(str, auto=True)
@@ -120,41 +120,41 @@ class Operazione(db.Entity):
     data_fine_operazione = Optional(date)
     tipo_operazione = Optional(str)
     note_operazione = Optional(str)
-
+    PrimaryKey(stazione_sismica,operatore,componente)
 
 class Batteria(db.Entity):
-    componente = Required(Componente, column='cod_componente')
+    componente = PrimaryKey(Componente, column='cod_componente')
     voltaggio = Required(Decimal, precision=2)
     amperaggio = Required(Decimal, precision=2)
 
 
 class Memoria_massa(db.Entity):
-    componente = Required(Componente, column='cod_componente')
+    componente = PrimaryKey(Componente, column='cod_componente')
     dimensione = Optional(Decimal)  # dimensione memoria espressa in GByte
     tipologia = Optional(str)
 
 
 class Pannello_solare(db.Entity):
-    componente = Required(Componente, column='cod_componente')
+    componente = PrimaryKey(Componente, column='cod_componente')
     potenza_pannello = Optional(Decimal, precision=2)
     ah_pannello = Required(Decimal, precision=2)  # corrente erogata in AH
 
 
 class Cavo(db.Entity):
-    componente = Required(Componente, column='cod_componente')
+    componente = PrimaryKey(Componente, column='cod_componente')
     sezione = Required(int, size=16)  # Espressa in mm
     tipo = Required(str)
     lunghezza = Required(int, size=8)  # Espressa in metri
 
 
 class Regolatore_carica(db.Entity):
-    componente = Required(Componente, column='cod_componente')
+    componente = PrimaryKey(Componente, column='cod_componente')
     volts_supportati = Required(Decimal, precision=2)
     ah_supportati = Optional(str)
 
 
 class Gps(db.Entity):
-    componente = Required(Componente, column='cod_componente')
+    componente = PrimaryKey(Componente, column='cod_componente')
     localizzazione = Optional('Localizzazione')
     is_impermeabile = Optional(bool, default=False)
     is_autocalibrante = Optional(bool, default=False)
@@ -162,7 +162,7 @@ class Gps(db.Entity):
 
 class Sensore(db.Entity):
     nrl = Required('NRL', column='resp_id')
-    componente = Required(Componente, column='cod_componente')
+    componente = PrimaryKey(Componente, column='cod_componente')
     canali = Set('Canale')
     gain = Optional(Decimal, precision=2)
     sampling_rate = Optional(int, size=16)
@@ -170,7 +170,7 @@ class Sensore(db.Entity):
 
 class Acquisitore(db.Entity):
     nrl = Required('NRL', column='resp_id')
-    componente = Required(Componente, column='cod_componente')
+    componente = PrimaryKey(Componente, column='cod_componente')
     canali = Set('Canale')
     n_canali = Required(int, default=4)
 
@@ -185,7 +185,7 @@ class NRL(db.Entity):
 
 
 class Localizzazione(db.Entity):
-    gps = Required(Gps, column='id_gps')
+    gps = PrimaryKey(Gps, column='id_gps')
     stazione_sismica = Required(Stazione_sismica, column='id_stazione')
     latitudine = Required(Decimal, precision=6)
     longitudine = Required(Decimal, precision=6)
