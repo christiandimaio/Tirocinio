@@ -62,10 +62,12 @@ def log_in():
     with db_session:
         try:
             user = Log_in[email]
+
             if user:
                 if user.password == password:
                         user.remember_me = rememberME
                         user.is_active = True
+                        print(user.operatore.nome)
                         commit()
                         print("logged in")
                         return jsonify(operationCode=200)
@@ -87,8 +89,7 @@ def main_app():
 @login_required
 def log_out():
     print("log_out called")
-    with db_session:
-        
+
     print("logged out")
     return jsonify(operationCode=200)
 
