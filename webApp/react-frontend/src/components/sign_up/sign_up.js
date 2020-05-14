@@ -153,7 +153,7 @@ export default class Sign_Up extends React.Component{
         
         if(value instanceof Date && !isNaN(value)){
             console.log(value);
-            this.setState({data_nascita:(value.getDate()+"/"+(value.getMonth()+1)+"/"+value.getFullYear())});
+            this.setState({data_nascita:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
             this.setState(state => (state.error.data_nascita.status=false,state));
         }else{
             this.setState(state => (state.error.data_nascita.status=true,state));

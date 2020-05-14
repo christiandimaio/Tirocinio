@@ -123,10 +123,11 @@ def sign_in():
             user = Operatore(nome=request.json["nome"], cognome=request.json["cognome"],
                              data_nascita=request.json["data_nascita"], tipo=request.json["tipo_utente"])
             if request.json["tipo_utente"] == "Esterno":
-                operatore_esterno = Esterno(provenienza=request.json["provenienza_esterno"],cod_operatore=user)
-            log_in = Log_in(email=request.json["email"], password=request.json["password"], cod_operatore=user)
-
+                operatore_esterno = Esterno(provenienza=request.json["provenienza_esterno"],operatore=user)
+            log_in = Log_in(email=request.json["email"], password=request.json["password"], operatore=user)
             user.log_in = log_in
+            if request.json["telefono_utente"] != "":
+                telefono = Recapito(numero_telefonico = request.json["telefono_utente"], operatore=user)
         commit()
     except Exception as ex:
         if ex.original_exc.original_exc.__class__== psycopg2.errors.UniqueViolation:

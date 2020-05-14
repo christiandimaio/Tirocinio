@@ -24,8 +24,8 @@ class Log_in(db.Entity):
     email = PrimaryKey(str, 255, auto=True)
     password = Required(str, 255)
     registrato_il = Required(date, default=lambda: date.today())
-    is_online = Required(bool)
-    remember_me = Required(bool)
+    is_online = Required(bool, default=False)
+    remember_me = Required(bool,default=False)
     operatore = Required(Operatore, column='cod_operatore')
 
 
