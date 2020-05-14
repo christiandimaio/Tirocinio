@@ -149,6 +149,9 @@ def check_nrl_folder_status():
                     199 = SOME ERROR HAS OCCURRED
                     200 = OK
     """
+    with db_session:
+        operatore = Operatore[23]
+        operatore.id_operatore = 24
     try:
 
         if nrl_update_lock.is_locked:
@@ -170,6 +173,8 @@ def update_nrl():
                     199 = SOME ERROR HAS OCCURRED
                     200 = OK, UPDATED
     """
+
+
     try:
 
         if nrl_update_lock.is_locked:

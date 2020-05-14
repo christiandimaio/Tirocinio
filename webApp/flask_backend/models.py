@@ -14,11 +14,11 @@ class Operatore(db.Entity):
     cognome = Required(str, 255)
     data_nascita = Optional(date)
     tipo = Required(str)
-    log_in = Optional('Log_in')
-    esterno = Optional('Esterno')
+    log_in = Optional('Log_in',cascade_delete=True)
+    esterno = Optional('Esterno',cascade_delete=True)
     recapiti = Set('Recapito')
-    responsabile = Optional('Responsabile')
-    operazioni = Optional('Operazione')
+    responsabile = Optional('Responsabile',cascade_delete=True)
+    operazioni = Optional('Operazione',cascade_delete=True)
 
 
 class Log_in(db.Entity):
@@ -46,7 +46,7 @@ class Veicolo(db.Entity):
     id_veicolo = PrimaryKey(int, auto=True)
     nome = Required(str)
     max_carico = Required(int, size=8, unsigned=True)
-    percorsi = Optional('Percorso')
+    percorsi = Optional('Percorso',cascade_delete=True)
 
 
 class Percorso(db.Entity):
@@ -58,8 +58,8 @@ class Percorso(db.Entity):
 class Stazione_sismica(db.Entity):
     codice_stazione = PrimaryKey(str, auto=True)
     percorsi = Set(Percorso)
-    note = Optional('Nota')
-    immagini = Optional('Foto')
+    note = Optional('Nota',cascade_delete=True)
+    immagini = Optional('Foto',cascade_delete=True)
     responsabili = Set('Responsabile')
     operazioni_svolte = Set('Operazione')
     localizzazioni = Set('Localizzazione')
@@ -101,15 +101,15 @@ class Componente(db.Entity):
     larghezza_mm = Optional(Decimal, precision=2)
     altezza_mm = Optional(Decimal, precision=2)
     profondita_mm = Optional(Decimal, precision=2)
-    operazioni = Optional('Operazione')
-    batteria = Optional('Batteria')
-    memoria_massa = Optional('Memoria_massa')
-    pannello_solare = Optional('Pannello_solare')
-    cavo = Optional('Cavo')
-    regolatore_carica = Optional('Regolatore_carica')
-    gps = Optional('Gps')
-    sensore = Optional('Sensore')
-    acquisitore = Optional('Acquisitore')
+    operazioni = Optional('Operazione',cascade_delete=True)
+    batteria = Optional('Batteria',cascade_delete=True)
+    memoria_massa = Optional('Memoria_massa',cascade_delete=True)
+    pannello_solare = Optional('Pannello_solare',cascade_delete=True)
+    cavo = Optional('Cavo',cascade_delete=True)
+    regolatore_carica = Optional('Regolatore_carica',cascade_delete=True)
+    gps = Optional('Gps',cascade_delete=True)
+    sensore = Optional('Sensore',cascade_delete=True)
+    acquisitore = Optional('Acquisitore',cascade_delete=True)
 
 
 class Operazione(db.Entity):
