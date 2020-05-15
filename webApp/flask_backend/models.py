@@ -13,7 +13,7 @@ class Operatore(db.Entity):
     nome = Required(str, 255)
     cognome = Required(str, 255)
     data_nascita = Optional(date)
-    tipo = Required(str)
+    tipo = Required(str,255)
     log_in = Optional('Log_in',cascade_delete=True)
     esterno = Optional('Esterno',cascade_delete=True)
     recapiti = Set('Recapito')
@@ -22,7 +22,8 @@ class Operatore(db.Entity):
 
 
 class Log_in(db.Entity):
-    email = PrimaryKey(str, 255, auto=True)
+    id_login = PrimaryKey(int, auto=True)
+    email = Required(str, 255, unique=True)
     password = Required(str, 255)
     registrato_il = Required(date, default=lambda: date.today())
     is_online = Required(bool, default=False)
@@ -32,11 +33,11 @@ class Log_in(db.Entity):
 
 class Esterno(db.Entity):
     provenienza = Required(str, 255)
-    operatore = PrimaryKey(Operatore, column='cod_operatore')
+    operatore = Required(Operatore, column='cod_operatore')
 
 
 class Recapito(db.Entity):
-    numero_telefonico = PrimaryKey(str)
+    numero_telefonico = Required(str, 255, unique=True)
     prefisso = Optional(str, default="+39")
     data_inserimento = Required(date, default=lambda: date.today())
     operatore = Required(Operatore, column='cod_operatore')
@@ -44,7 +45,7 @@ class Recapito(db.Entity):
 
 class Veicolo(db.Entity):
     id_veicolo = PrimaryKey(int, auto=True)
-    nome = Required(str)
+    nome = Required(str,50)
     max_carico = Required(int, size=8, unsigned=True)
     percorsi = Optional('Percorso',cascade_delete=True)
 
@@ -56,7 +57,7 @@ class Percorso(db.Entity):
     PrimaryKey(veicolo,stazione_sismica)
 
 class Stazione_sismica(db.Entity):
-    codice_stazione = PrimaryKey(str, auto=True)
+    codice_stazione = Required(str, 255, unique=True)
     percorsi = Set(Percorso)
     note = Optional('Nota',cascade_delete=True)
     immagini = Optional('Foto',cascade_delete=True)
@@ -64,7 +65,7 @@ class Stazione_sismica(db.Entity):
     operazioni_svolte = Set('Operazione')
     localizzazioni = Set('Localizzazione')
     canali = Set('Canale')
-    tipo_stazione = Required(str)
+    tipo_stazione = Required(str,30)
     data_messa_funzione = Optional(date, default=lambda: date.today())
     data_dismessa_funzione = Optional(date)
     frequenza_manutenzione = Required(int, default=1)  # espressa in mesi
@@ -79,7 +80,7 @@ class Nota(db.Entity):
 
 class Foto(db.Entity):
     id_foto = PrimaryKey(int, auto=True)
-    path_foto = Required(str)
+    path_foto = Required(str,300)
     data_caricamento = Required(date, default=lambda: date.today())
     stazione_sismica = Required(Stazione_sismica, column='id_stazione')
 
@@ -92,12 +93,12 @@ class Responsabile(db.Entity):
     PrimaryKey(operatore,stazione_sismica)
 
 class Componente(db.Entity):
-    seriale = PrimaryKey(str, auto=True)
-    codice_ov = Required(str, unique=True)
+    seriale = Required(str, unique=True)
+    codice_ov = Required(str,50, unique=True)
     data_acquisto = Required(date, default=lambda: date.today())
     periodo_manutenzione = Optional(int, default=12)
-    produttore = Required(str)
-    nome = Required(str)
+    produttore = Required(str,100)
+    nome = Required(str,100)
     larghezza_mm = Optional(Decimal, precision=2)
     altezza_mm = Optional(Decimal, precision=2)
     profondita_mm = Optional(Decimal, precision=2)
@@ -118,7 +119,7 @@ class Operazione(db.Entity):
     operatore = Required(Operatore, column='cod_operatore')
     data_inizio_operazione = Required(date, default=lambda: date.today())
     data_fine_operazione = Optional(date)
-    tipo_operazione = Optional(str)
+    tipo_operazione = Optional(str,50)
     note_operazione = Optional(str)
     PrimaryKey(stazione_sismica,operatore,componente)
 
@@ -131,7 +132,7 @@ class Batteria(db.Entity):
 class Memoria_massa(db.Entity):
     componente = PrimaryKey(Componente, column='cod_componente')
     dimensione = Optional(Decimal)  # dimensione memoria espressa in GByte
-    tipologia = Optional(str)
+    tipologia = Optional(str,150)
 
 
 class Pannello_solare(db.Entity):
@@ -143,14 +144,14 @@ class Pannello_solare(db.Entity):
 class Cavo(db.Entity):
     componente = PrimaryKey(Componente, column='cod_componente')
     sezione = Required(int, size=16)  # Espressa in mm
-    tipo = Required(str)
+    tipo = Required(str,100)
     lunghezza = Required(int, size=8)  # Espressa in metri
 
 
 class Regolatore_carica(db.Entity):
     componente = PrimaryKey(Componente, column='cod_componente')
     volts_supportati = Required(Decimal, precision=2)
-    ah_supportati = Optional(str)
+    ah_supportati = Optional(str,100)
 
 
 class Gps(db.Entity):
@@ -177,9 +178,9 @@ class Acquisitore(db.Entity):
 
 class NRL(db.Entity):
     id_ft = PrimaryKey(int, auto=True)
-    livello_1 = Optional(str)
-    livello_2 = Optional(str)
-    livello_3 = Optional(str)
+    livello_1 = Optional(str,100)
+    livello_2 = Optional(str,100)
+    livello_3 = Optional(str,100)
     sensori = Optional(Sensore)
     acquisitori = Optional(Acquisitore)
 
