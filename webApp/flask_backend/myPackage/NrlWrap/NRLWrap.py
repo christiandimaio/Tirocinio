@@ -13,6 +13,9 @@ class NRLWrap:
     def __init__(self, root):
         self._local_nrl = LocalNRL(root)
 
+    def local_nrl(self):
+        return self._local_nrl
+
     def get_response(self, datalogger_keys=None, sensor_keys=None):
         return self._local_nrl.get_response(datalogger_keys, sensor_keys)
 

@@ -18,6 +18,7 @@ import 'semantic-ui-css/semantic.min.css'
 import {Grid,Image} from 'semantic-ui-react';
 import SimpleCard from './components/element/station_card.js';
 import Request from 'axios-request-handler';
+import SimpleExample from './components/main/map.js'
 const paperStyle = {};
 const styles = theme => ({
 	root: {
@@ -35,7 +36,7 @@ class App extends React.Component{
     constructor(){
         super();
         this.state = {
-            visibleSection : "logIN",
+            visibleSection : "main",
             lockApp: {
                 lockState:false,
                 lockMessage:""
@@ -123,32 +124,8 @@ class App extends React.Component{
                 );
             case "main":
                 return(
-                    // <Grid container direction="row" className={classes.root}>
-
-                    //         <Grid item xl={3} xs={3} style={{height:"93vh"}} spacing={2} >
-                               
-                    //         <ImageGridList></ImageGridList>
-                    //         </Grid>
-                        
-                    //     <Grid item xl={9} xs={9} style={{height:"93vh"}} spacing={2}>
-                    //       <Paper style={{height:"90%",width:"90%"}}></Paper>
-                    //     </Grid>
-                    // </Grid>
-                    // <div className={classes.root}>
-                    //     <Grid container direction="row" spacing={2}>
-
-                    //             <Grid item xl={3} xs={3} spacing={2} >
-                                
-                    //             <ImageGridList></ImageGridList>
-                    //             </Grid>
-                            
-                    //         <Grid item xl={9} xs={9} spacing={2}>
-                    //         <Paper ></Paper>
-                    //         </Grid>
-                    //     </Grid>
-                    // </div>
                     <>
-                    <Grid padded columns="1" centered style={{flexGrow:1,maxHeight:"92vh",overflow:"auto"}}>
+                    <Grid padded columns="1" centered style={{minWidth:"25vw", maxHeight:"90vh",overflow:"auto"}}>
                                 <Grid.Column mobile={16} tablet={5} computer={4} style={{flexGrow:1,maxHeight:"100%"}} >
                                 <SimpleCard/>
                                 <SimpleCard/>
@@ -162,7 +139,7 @@ class App extends React.Component{
                             <Grid.Column stretched mobile={16} tablet={11} computer={16}>
                                 <Box display="flex" flexGrow={1}>
                                 <Paper elevation={3} style={{flexGrow:1}}>
-                                <Image fluid src='https://mcdn.wallpapersafari.com/medium/27/89/JuICQz.jpg'></Image>
+                                    <SimpleExample/>
                                 </Paper>
                                 </Box>
                                 
@@ -180,36 +157,7 @@ class App extends React.Component{
     render(){
         const { classes } = this.props;
         return (
-                    // <Grid containter direction="column" className={classes.root}>
-
-                    //         <Grid item style={{width:"100%",height:"6vh"}} >
-                    //                 <TopBar isMain={false}  nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>   
-                    //         </Grid>
-
-                    //         <Grid item style={{width:"100%",height:"100%",paddingTop:"4vh"}} container className={classes.root}>
-                    //             {
-                    //                 this.renderSwitch()
-                    //             } 
-                    //         </Grid>
-
-                    // </Grid> 
-                    // <Grid direction="row" contatiner className={classes.root}>
-                    //     <Grid item xl={12} xs={12}>
-                            
-                    //             <TopBar isMain={false}  nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>  
-                        
-                    //     </Grid>
-                    //     <Grid item xl={12} xs={12} container>
-
-                    //     {
-                    //                     this.renderSwitch()
-                    //                 } 
-                    //     </Grid>       
-                                    
-                               
-
-                        
-                    // </Grid>
+                   
 
                     <Box display="flex" flexDirection="column" style={{height:"100vh"}}>
                         <Grid >

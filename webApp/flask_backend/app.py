@@ -1,5 +1,5 @@
 import psycopg2
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, json
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, login_required
@@ -8,6 +8,7 @@ import sys
 from filelock import FileLock
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.declarative import declarative_base
+from obspy.clients.nrl.client import NRLDict
 
 from pony.orm import *
 
@@ -16,7 +17,7 @@ from webApp.flask_backend.models import *
 sys.path.append('./myPackage/Utils/')
 sys.path.append('./myPackage/NrlWrap/')
 import Utils
-
+from NRLWrap import NRLWrap
 
 
 class Config(object):
@@ -27,7 +28,6 @@ class Config(object):
 
 app = Flask(__name__)
 app.config.from_object(Config)
-
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -61,22 +61,22 @@ def log_in():
     print(password)
     with db_session:
         try:
-            user = Log_in[email]
-
+            user = Log_in.select(lambda user: user.email == email).first()
             if user:
                 if user.password == password:
-                        user.remember_me = rememberME
-                        user.is_active = True
-                        print(user.operatore.nome)
-                        commit()
-                        print("logged in")
-                        return jsonify(operationCode=200)
-
+                    user.remember_me = rememberME
+                    user.is_active = True
+                    print(user.operatore.nome)
+                    commit()
+                    print("logged in")
+                    return jsonify(operationCode=200)
+                if user.is_active:
+                    return jsonify(operationCode=201, message="Utente già loggato!")
                 else:
-                    return jsonify(operationCode=201,message="Password Errata!")
+                    return jsonify(operationCode=201, message="Password Errata!")
         except pony.orm.core.ObjectNotFound as ex:
-            return jsonify(operationCode=201,message="Utente inesistente!")
-    return jsonify(operationCode=201,message="Error")
+            return jsonify(operationCode=201, message="Utente inesistente!")
+    return jsonify(operationCode=201, message="Error")
 
 
 @app.route("/", methods=["GET"])
@@ -106,7 +106,7 @@ def test():
 
 @app.route("/api/database/select/user/type", methods=["GET"])
 def get_user_type():
-    return jsonify(operationCode=200, items=["Esterno","Operatore Semplice","Autorizzato"])
+    return jsonify(operationCode=200, items=["Esterno", "Operatore Semplice", "Autorizzato"])
 
 
 """----------------------------------------------------------------------------"""
@@ -123,25 +123,25 @@ def sign_in():
             user = Operatore(nome=request.json["nome"], cognome=request.json["cognome"],
                              data_nascita=request.json["data_nascita"], tipo=request.json["tipo_utente"])
             if request.json["tipo_utente"] == "Esterno":
-                operatore_esterno = Esterno(provenienza=request.json["provenienza_esterno"],operatore=user)
+                operatore_esterno = Esterno(provenienza=request.json["provenienza_esterno"], operatore=user)
             log_in = Log_in(email=request.json["email"], password=request.json["password"], operatore=user)
             user.log_in = log_in
             if request.json["telefono_utente"] != "":
-                telefono = Recapito(numero_telefonico = request.json["telefono_utente"], operatore=user)
+                telefono = Recapito(numero_telefonico=request.json["telefono_utente"], operatore=user)
         commit()
     except Exception as ex:
-        if ex.original_exc.original_exc.__class__== psycopg2.errors.UniqueViolation:
+        if ex.original_exc.original_exc.__class__ == psycopg2.errors.UniqueViolation:
             return jsonify(operationCode=201, message="Utente già registrato!")
         else:
             return jsonify(operationCode=201)
     return jsonify(operationCode=200)
 
 
-"""----------------------------------------------------------------------------"""
-"""Check Directory Route"""
+"""______----------------------------------------------------------------------"""
+"""    NRL    """
 
 
-@app.route("/api/check/directory/nrl", methods=["GET"])
+@app.route("/api/NRL/update/check", methods=["GET"])
 def check_nrl_folder_status():
     """
     CODE RESPONSE :
@@ -161,20 +161,17 @@ def check_nrl_folder_status():
         return jsonify(result=199)
     return jsonify(result=200)
 
-
-"""______----------------------------------------------------------------------"""
-"""Update Route"""
-
-
-@app.route("/api/update/NRL", methods=["GET"])
+@db_session
+def test():
+    componente = Componente()
+    componente = Componente[2]
+@app.route("/api/NRL/update", methods=["GET"])
 def update_nrl():
     """
     CODE RESPONSE : 201 = UPDATE IS ALREADY CALLED
                     199 = SOME ERROR HAS OCCURRED
                     200 = OK, UPDATED
     """
-
-
     try:
 
         if nrl_update_lock.is_locked:
@@ -191,9 +188,36 @@ def update_nrl():
     return jsonify(result=200)
 
 
+@app.route("/api/NRL/<string:request_type>", methods=["GET"])
+@app.route("/api/NRL/<string:request_type>/<string:level_1>", methods=["GET"])
+@app.route("/api/NRL/<string:request_type>/<string:level_1>/<string:level_2>", methods=["GET"])
+@app.route("/api/NRL/<string:request_type>/<string:level_1>/<string:level_2>/<string:level_3>", methods=["GET"])
+@app.route("/api/NRL/<string:request_type>/<string:level_1>/<string:level_2>/<string:level_3>/<string:level_4>", methods=["GET"])
+def get_Index_Nrl(request_type, level_1=None, level_2=None, level_3=None, level_4=None):
+    dict_lv = None
+    try:
+        if request_type == "sensors":
+            dict_lv = nrl_interface.local_nrl().sensors
+        elif request_type == "dataloggers":
+            dict_lv = nrl_interface.local_nrl().dataloggers
+        else:
+            return jsonify(operationCode=404, message="Bad Request!")
+        if level_1 is None:
+            return jsonify(operationCode=200, message = dict_lv._question, data=list(dict_lv.keys()))
+        if level_2 is None:
+            return jsonify(operationCode=200, message = dict_lv[level_1]._question, data=list(dict_lv[level_1].keys()))
+        if level_3 is None:
+            return jsonify(operationCode=200, message = dict_lv[level_1][level_2]._question, data=list(dict_lv[level_1][level_2].keys()))
+        if level_4 is None:
+            return jsonify(operationCode=200, message = dict_lv[level_1][level_2][level_3]._question, data=list(dict_lv[level_1][level_2][level_3].keys()))
+        else:
+            return jsonify(operationCode=200, message = dict_lv[level_1][level_2][level_3][level_4]._question, data=list(dict_lv[level_1][level_2][level_3][level_4].keys()))
+    except KeyError as key_except:
+        return jsonify(operationCode=201, message="Chiave Errata!")
+    except AttributeError as no_more_index_error:
+        return jsonify(operationCode=201,message="Non e' possibile effettuare altre sotto-ricerche")
+
 if __name__ == "__main__":
-
-
     db = Database()
     db.bind(provider='postgres', user='postgres', password='root', host='localhost', database='test')
     db.generate_mapping(create_tables=True)
@@ -203,4 +227,5 @@ if __name__ == "__main__":
                                                 ["application", "module_configuration", "NRLWrap",
                                                  "update_in_progress_lock_file"])
                                             ))
+    nrl_interface = NRLWrap(Utils.retrieve_config_value(["application", "module_configuration", "NRLWrap", "root"]))
     app.run(host="0.0.0.0", debug=True)

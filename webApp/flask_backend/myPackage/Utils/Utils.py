@@ -2,9 +2,9 @@ import os
 import shutil
 import json
 import sys
+from datetime import datetime
 
 import NRLWrap
-
 
 
 def copy_folders(src, dst):
@@ -32,6 +32,6 @@ def retrieve_config_value(search_keys):
 
 def update_nrl_structure():
     """
-    Call update local library procedure inside NRLWrap file
+
     """
     NRLWrap.update_local_library()
