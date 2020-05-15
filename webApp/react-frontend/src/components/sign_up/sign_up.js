@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper'
   import MuiALert from '@material-ui/lab/Alert';
   import itLocale from "date-fns/locale/it";
   import InputLabel from '@material-ui/core/InputLabel';
+  import Fade from '@material-ui/core/Fade';
 const operatore_style = {
     borderColor:'green',
     color:'green',
@@ -152,7 +153,7 @@ export default class Sign_Up extends React.Component{
         
         if(value instanceof Date && !isNaN(value)){
             console.log(value);
-            this.setState({data_nascita:(value.getDate()+"/"+(value.getMonth()+1)+"/"+value.getFullYear())});
+            this.setState({data_nascita:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
             this.setState(state => (state.error.data_nascita.status=false,state));
         }else{
             this.setState(state => (state.error.data_nascita.status=true,state));
@@ -215,7 +216,7 @@ export default class Sign_Up extends React.Component{
         this.props.changeView("logIN");
     }
     
-    componentWillMount(){
+    componentDidMount(){
         this._isMounted=true;
         console.log("Richieste le tipologie di operatori disponibili al server");
         axios.get("api/database/select/user/type")
@@ -298,7 +299,7 @@ export default class Sign_Up extends React.Component{
                         </Grid>
 
                         <Grid container direction="row" justify="center" alignItems="center">
-                           <Grid item xl={2} xs={2} alignItems="center" style={{marginTop:"3%"}}>
+                           <Grid item xl={2} xs={2} container alignItems="center" style={{marginTop:"3%"}}>
                                 <InputLabel>Data Nascita</InputLabel>
                            </Grid>
                             <Grid   item xl={5} xs={5} >
@@ -322,16 +323,19 @@ export default class Sign_Up extends React.Component{
                                                 customHandler:this.handleChange,helperText:error.tipo_utente.message,name:"tipo_utente",error:error.tipo_utente.status}}
                                                 items={this.state.database_operatori}/>
                             </Grid>
+                            <Fade in={this.state.visibility.provenienza_esterno} timeout={1000}>
                             {
-                                this.state.visibility.provenienza_esterno
-                                ?<Grid item xl={12} xs={12}>
+                                this.state.visibility.provenienza_esterno?
+                                <Grid item xl={12} xs={12}>
                                     <TextField  value={this.state.provenienza_esterno} id="provenienza_esterno_textfield" error={error.provenienza_esterno.status} onChange={(e) => this.handleChange(e,'provenienza_esterno')} label="Provenienza" variant="standard" required fullWidth
                                     helperText={error.provenienza_esterno.message}>
 
                                     </TextField>
                                 </Grid>
                                 :<div></div>
-                            }         
+                                
+                            }
+                            </Fade>         
                             
                             
                         </Grid>

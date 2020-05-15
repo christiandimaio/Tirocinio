@@ -201,11 +201,11 @@ class Login extends React.Component{
                         </Grid>
                         
                         <Grid item style={{maxWidth:"100%"}}>
-                            <Button fullWidth variant="contained" fullWidth disabled={disableButtonLogIn ? 'true' : ''} onClick={() => {this.props.changeView("signUP")}}>Registrati</Button>
+                            <Button fullWidth variant="contained" fullWidth  onClick={() => {this.props.changeView("signUP")}}>Registrati</Button>
                         </Grid>
                         
                         <Grid item style={{maxWidth:"100%"}}>
-                            <Button fullWidth variant="contained" color="primary" fullWidth disabled={disableButtonLogIn ? 'true' : ''} 
+                            <Button fullWidth variant="contained" color="primary" fullWidth 
                                     onClick={() => {this.tryLogIn()}}>Entra</Button>
                         </Grid>
 

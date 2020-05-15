@@ -43,7 +43,7 @@ class App extends React.Component{
         };
         
     }
-    componentWillMount(){
+    componentDidMount(){
         reviews.poll(20000).get((response) => {
             const {result} = response.data;
             console.log(result);
