@@ -19,6 +19,7 @@ import {Grid,Image} from 'semantic-ui-react';
 import SimpleCard from './components/element/station_card.js';
 import Request from 'axios-request-handler';
 import SimpleExample from './components/main/map.js'
+import Adder from './components/element/adder.js';
 const paperStyle = {};
 const styles = theme => ({
 	root: {
@@ -36,7 +37,7 @@ class App extends React.Component{
     constructor(){
         super();
         this.state = {
-            visibleSection : "main",
+            visibleSection : "logIN",
             lockApp: {
                 lockState:false,
                 lockMessage:""
@@ -135,6 +136,9 @@ class App extends React.Component{
                                 <SimpleCard/>
                                 </Grid.Column>
                         </Grid>
+                        <Box display="flex" style={{maxWidth:"5%",maxHeight:"5%"}}>
+                                    <Adder/>
+                                </Box>
                         <Grid padded columns="1" style={{flexGrow:1,maxHeight:"100%"}}>
                             <Grid.Column stretched mobile={16} tablet={11} computer={16}>
                                 <Box display="flex" flexGrow={1}>
@@ -142,11 +146,11 @@ class App extends React.Component{
                                     <SimpleExample/>
                                 </Paper>
                                 </Box>
-                                
-                                
+                               
                                 </Grid.Column>
-                            
+                                
                         </Grid>
+                       
                     </>
                 );
             case "default":
