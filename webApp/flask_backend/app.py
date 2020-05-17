@@ -1,24 +1,20 @@
-import psycopg2
-from flask import Flask, render_template, request, jsonify, json
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, login_user, logout_user, login_required
 import os
 import sys
-from filelock import FileLock
-from sqlalchemy.exc import IntegrityError
-from sqlalchemy.ext.declarative import declarative_base
-from obspy.clients.nrl.client import NRLDict
-from pony.orm.serialization import to_dict
-from pony.orm import *
 
-from webApp.flask_backend.models import *
+import psycopg2
+from filelock import FileLock
+from flask import Flask, render_template, request, jsonify
+from flask_login import LoginManager, login_required
+from pony.orm.serialization import to_dict
 
 sys.path.append('./myPackage/Utils/')
 sys.path.append('./myPackage/NrlWrap/')
+sys.path.append('./Model/')
 import Utils
+
 from NRLWrap import NRLWrap
 
+from Model.models import *
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'

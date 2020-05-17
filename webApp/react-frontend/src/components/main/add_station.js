@@ -22,22 +22,30 @@ export default class ModalExampleControlled extends Component {
                     </Fab>
                 </Tooltip>
             </Box>
-            <Modal dimmer="blurring"  open={this.state.modalOpen}
+            <Modal   open={this.state.modalOpen}
                     onClose={this.handleClose}  centered={false}>
                 <Modal.Header>Crea una nuova stazione</Modal.Header>
                 <Modal.Content >
                 
                 <Modal.Description>
                     <Grid>
+                        <Grid.Row columns={3}>
                         <Grid.Column>
-                            <TextField ></TextField>
+                        <TextField id="nome_textfield" label="Nome" variant="outlined" required fullWidth
+                                helperText="*Campo Richiesto">
+                                </TextField>
                         </Grid.Column>
                         <Grid.Column>
-                            <TextField ></TextField>
+                        <TextField id="nome_textfield" label="Nome" variant="outlined" required fullWidth
+                                helperText="*Campo Richiesto">
+                                </TextField>
                         </Grid.Column>
                         <Grid.Column>
-                            <TextField ></TextField>
+                            <TextField id="nome_textfield" label="Nome" variant="outlined" required fullWidth
+                                helperText="*Campo Richiesto">
+                                </TextField>
                         </Grid.Column>
+                        </Grid.Row>
                     </Grid>
                 </Modal.Description>
                 </Modal.Content>
