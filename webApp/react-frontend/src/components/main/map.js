@@ -2,7 +2,7 @@ import React,{ useState ,Component}  from 'react';
 import ReactDOM from 'react-dom';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
-export default class SimpleExample extends React.Component {
+export default class StationMap extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -13,18 +13,24 @@ export default class SimpleExample extends React.Component {
   }
 
   render() {
-    const position = [this.state.lat, this.state.lng];
+    
     return (
-      <Map center={position} zoom={this.state.zoom} >
+      <Map center={[40.863,14.2767]} zoom={this.state.zoom} >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-        <Marker position={position}>
-          <Popup>
-            A pretty CSS3 popup. <br/> Easily customizable.
-          </Popup>
-        </Marker>
+        {
+          this.props.stations_info.map((item) => (
+            <Marker position={[item["latitudine"],item["longitudine"]]} >
+            <Popup zoomAnimation >
+              {item["codice"]}
+            </Popup>
+          </Marker>
+          ))
+          
+        }
+        
       </Map>
     );
   }

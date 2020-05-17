@@ -9,7 +9,7 @@ from filelock import FileLock
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.declarative import declarative_base
 from obspy.clients.nrl.client import NRLDict
-
+from pony.orm.serialization import to_dict
 from pony.orm import *
 
 from webApp.flask_backend.models import *
@@ -65,12 +65,12 @@ def log_in():
             if user:
                 if user.password == password:
                     user.remember_me = rememberME
-                    user.is_active = True
+                    user.is_online = True
                     print(user.operatore.nome)
                     commit()
                     print("logged in")
                     return jsonify(operationCode=200)
-                if user.is_active:
+                if user.is_online:
                     return jsonify(operationCode=201, message="Utente già loggato!")
                 else:
                     return jsonify(operationCode=201, message="Password Errata!")
@@ -110,8 +110,38 @@ def get_user_type():
 
 
 """----------------------------------------------------------------------------"""
-"""Database Insert"""
+"""Stazione sismica"""
 
+@app.route("/api/stations/summary",methods=["GET"])
+def get_stations():
+    with db_session:
+        stazioni = select((stazioni,avg(stazioni.localizzazioni.latitudine),avg(stazioni.localizzazioni.longitudine),count(stazioni.operazioni_svolte)) for stazioni in Stazione_sismica )
+        list = []
+        for stazione in stazioni:
+
+            list.append({
+                "id_univoco":stazione[0].id,
+                "tipo_stazione":stazione[0].tipo_stazione,
+                "codice":stazione[0].codice_stazione,
+                "data_messa_funzione":stazione[0].data_messa_funzione.strftime("%d/%m/%Y"),
+                "numero_operazioni":stazione[3],
+                "latitudine":stazione[1],
+                "longitudine":stazione[2],
+                "is_attiva": stazione[0].is_attiva()
+            })
+    return jsonify(data=list)
+
+@app.route("/api/station/create",methods=["POST"])
+def create_station():
+    with db_session:
+        station = Stazione_sismica(codice_stazione="IOCA",tipo_stazione="Analogica")
+        componente = Componente(seriale="WIEWD232",codice_ov="12312",produttore="Garmin",nome="T3")
+        gps = Gps(componente=componente)
+        localizzazione = Localizzazione(gps=gps,stazione_sismica=station,latitudine=40.863,longitudine=14.2503)
+    return jsonify(operationCode=200)
+
+"""----------------------------------------------------------------------------"""
+"""Database Insert"""
 
 # Sign In
 @app.route("/api/database/insert/user", methods=["POST"])

@@ -16,10 +16,10 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import 'semantic-ui-css/semantic.min.css'
 import {Grid,Image} from 'semantic-ui-react';
-import SimpleCard from './components/element/station_card.js';
+
 import Request from 'axios-request-handler';
-import SimpleExample from './components/main/map.js'
-import Adder from './components/element/adder.js';
+import Main from './components/main/main.js'
+
 const paperStyle = {};
 const styles = theme => ({
 	root: {
@@ -37,7 +37,7 @@ class App extends React.Component{
     constructor(){
         super();
         this.state = {
-            visibleSection : "logIN",
+            visibleSection : "main",
             lockApp: {
                 lockState:false,
                 lockMessage:""
@@ -105,52 +105,22 @@ class App extends React.Component{
             case "logIN":
                 return(
                     <Box  display="flex" width="100%" height="100%" flexDirection="column"  alignItems="center" justifyContent="center" >
-                    
-                    <Grid centered  >
-                        
-                            <Grid.Column  >
-                                <Paper elevation={3} style={{backgroundColor:"#f5f5f5",padding:"15%"}}>
-                                    
+                        <Grid centered  >
+                            <Grid.Column>
+                                <Paper elevation={3} style={{backgroundColor:"#f5f5f5",padding:"15%"}}>                                 
                                     <Login changeView={this.changeView}/>
-                                    
-                        
                                 </Paper> 
-                            </Grid.Column >
-                          
-                    </Grid>
-                    <ParticlesBg type="cobweb"  color="#1a237e" bg={true} /> 
-                    <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:this.state.lockApp.lockState}}/>
+                            </Grid.Column >   
+                        </Grid>
+                        <ParticlesBg type="cobweb"  color="#1a237e" bg={true} /> 
+                        <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:this.state.lockApp.lockState}}/>
                     </Box>
                    
                 );
             case "main":
                 return(
                     <>
-                    <Grid padded columns="1" centered style={{minWidth:"25vw", maxHeight:"90vh",overflow:"auto"}}>
-                                <Grid.Column mobile={16} tablet={5} computer={4} style={{flexGrow:1,maxHeight:"100%"}} >
-                                <SimpleCard/>
-                                <SimpleCard/>
-                                <SimpleCard/>
-                                <SimpleCard/>
-                                <SimpleCard/>
-                                <SimpleCard/>
-                                </Grid.Column>
-                        </Grid>
-                        <Box display="flex" style={{maxWidth:"5%",maxHeight:"5%"}}>
-                                    <Adder/>
-                                </Box>
-                        <Grid padded columns="1" style={{flexGrow:1,maxHeight:"100%"}}>
-                            <Grid.Column stretched mobile={16} tablet={11} computer={16}>
-                                <Box display="flex" flexGrow={1}>
-                                <Paper elevation={3} style={{flexGrow:1}}>
-                                    <SimpleExample/>
-                                </Paper>
-                                </Box>
-                               
-                                </Grid.Column>
-                                
-                        </Grid>
-                       
+                        <Main/> 
                     </>
                 );
             case "default":
@@ -161,28 +131,22 @@ class App extends React.Component{
     render(){
         const { classes } = this.props;
         return (
-                   
-
                     <Box display="flex" flexDirection="column" style={{height:"100vh"}}>
                         <Grid >
-                        <Grid.Row >
-                            <Grid.Column mobile={16} tablet={16} computer={16}>
-                            <TopBar isMain={this.state.visibleSection=="main"?true:false} nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>
-                            </Grid.Column>                     
-                        </Grid.Row>
+                            <Grid.Row >
+                                <Grid.Column mobile={16} tablet={16} computer={16}>
+                                    <TopBar isMain={this.state.visibleSection=="main"?true:false} nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>
+                                </Grid.Column>                     
+                            </Grid.Row>
                         </Grid>
                         <Box display="flex" flexWrap="wrap" flexGrow={1} >
-                        {
-                                        this.renderSwitch()
-                                    } 
+                            {
+                                this.renderSwitch()
+                            } 
                         </Box>
                         
-                    </Box>
-                  
-            
-
-                
-            );
+                    </Box> 
+                );
     }
 }
 App.propTypes = {

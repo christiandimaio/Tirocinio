@@ -1,5 +1,6 @@
 from decimal import Decimal
 
+from sqlalchemy import Float
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date, datetime
 from pony.orm import *
@@ -71,6 +72,12 @@ class Stazione_sismica(db.Entity):
     data_dismessa_funzione = Optional(date)
     frequenza_manutenzione = Required(int, default=1)  # espressa in mesi
     altezza_lv_mare = Optional(int)  # espressa in metri
+
+    def is_attiva(self):
+        if self.data_dismessa_funzione is None:
+            return "Dismessa"
+        else:
+            return "Attiva"
 
 
 class Nota(db.Entity):
@@ -192,8 +199,8 @@ class NRL(db.Entity):
 class Localizzazione(db.Entity):
     gps = PrimaryKey(Gps, column='id_gps')
     stazione_sismica = Required(Stazione_sismica, column='id_stazione')
-    latitudine = Required(Decimal, precision=6)
-    longitudine = Required(Decimal, precision=6)
+    latitudine = Required(float)
+    longitudine = Required(float)
     ultimo_aggiornamento = Optional(datetime, default=lambda: datetime.utcnow())  # date time espresso utc
 
 
