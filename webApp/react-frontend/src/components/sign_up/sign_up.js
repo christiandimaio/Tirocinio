@@ -175,7 +175,7 @@ export default class Sign_Up extends React.Component{
             }
             return
         }
-        axios.post('api/database/insert/user', {
+        axios.post('/api/Operatore/insert', {
             nome: this.state.nome,
             cognome: this.state.cognome,
             email : this.state.email,
@@ -219,7 +219,7 @@ export default class Sign_Up extends React.Component{
     componentDidMount(){
         this._isMounted=true;
         console.log("Richieste le tipologie di operatori disponibili al server");
-        axios.get("api/database/select/user/type")
+        axios.get("api/Operatori/type")
             .then((response) => {
                 console.log(response.data);
                 if(this._isMounted){

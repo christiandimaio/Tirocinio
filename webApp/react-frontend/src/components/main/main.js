@@ -38,7 +38,7 @@ export default class Main extends React.Component{
   }
   componentDidMount() {
     this._isMounted=true;
-    axios.get('/api/stations/summary')
+    axios.get('/api/Stazioni/info')
         .then((response) => {
           
           if(this._isMounted){

@@ -29,7 +29,7 @@ class NrlComponent extends React.Component{
     updateNrlCall = async () => {
         event.preventDefault();
         this.setState({call_request:true});
-        axios.get('/update/NRL', {
+        axios.get('/api/NRL/update', {
           })
           .then((response) => {
             const {result} = response.data;
