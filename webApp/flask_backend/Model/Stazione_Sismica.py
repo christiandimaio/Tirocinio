@@ -20,6 +20,6 @@ class Stazione_Sismica(db.Entity):
 
     def is_attiva(self):
         if self.data_dismessa_funzione is None:
-            return "Dismessa"
-        else:
             return "Attiva"
+        else:
+            return "Dismessa"

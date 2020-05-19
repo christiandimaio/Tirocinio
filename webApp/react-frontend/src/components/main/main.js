@@ -16,6 +16,7 @@ import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import axios from 'axios';
 import AddNewStation from './add_station.js';
+import { Divider,Header } from 'semantic-ui-react'
 import Button from '@material-ui/core/Button';
 export default class Main extends React.Component{
   _isMounted=false;
@@ -74,17 +75,21 @@ export default class Main extends React.Component{
                 <Grid.Column mobile={16} tablet={5} computer={4} style={{flexGrow:1,maxHeight:"100%"}} >
                     {
                       this.state.station_summary.map((item) => 
-                      <StationCard properties={{id_stazione:item["id_univoco"],
-                                              nome_stazione:item["codice"],
-                                            tipo_stazione:item["tipo_stazione"],
-                                            messa_funzione:item["data_messa_funzione"],
-                                            numero_operazioni_svolte:item["numero_operazioni"],
-                                            is_attiva:item["is_attiva"],
-                                          getInfo:this.getStationInfo}}
-                        />
+                      <>
+                      <Paper elevation={3} style={{padding:7}}>
+                        <StationCard properties={{id_stazione:item["id_univoco"],
+                                                nome_stazione:item["codice"],
+                                              tipo_stazione:item["tipo_stazione"],
+                                              messa_funzione:item["data_messa_funzione"],
+                                              numero_operazioni_svolte:item["numero_operazioni"],
+                                              is_attiva:item["is_attiva"],
+                                            getInfo:this.getStationInfo}}
+                          />
+                      </Paper>
+                      <Divider />
+                    </>
                       )
-                    } 
-                    
+                    }   
                     <AddNewStation />
                 </Grid.Column>
                 

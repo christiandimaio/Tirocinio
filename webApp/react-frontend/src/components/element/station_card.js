@@ -29,15 +29,21 @@ export default class StationCard extends React.Component {
             <Item.Header as='a'>{properties.nome_stazione}</Item.Header>
             <Item.Meta>
               <span className='cinema'>Data messa in funzione : {properties.messa_funzione}</span>
+              <Label>{properties.tipo_stazione}</Label>
+              <Label>{properties.is_attiva}</Label>
             </Item.Meta>
             <Item.Description>Numero Operazioni effettuate: {properties.numero_operazioni_svolte}</Item.Description>
             <Item.Extra>
+            
               <Button primary floated='center' onClick={() => {properties.getInfo(properties.id_stazione)}}>
                 Visualizza Info
                 <Icon name='right chevron'  />
               </Button>
-              <Label>{properties.tipo_stazione}</Label>
-              <Label>{properties.is_attiva}</Label>
+              <Button primary floated='center' onClick={() => {properties.getInfo(properties.id_stazione)}}>
+                Aggiungi Operazione
+                <Icon name='right chevron'  />
+              </Button>
+              
             </Item.Extra>
           </Item.Content>
         </Item>
