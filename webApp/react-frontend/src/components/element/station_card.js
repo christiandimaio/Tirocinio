@@ -18,7 +18,9 @@ export default class StationCard extends React.Component {
   constructor(props){
     super(props);
   }
-
+  state={
+    openAddOperationModal:false
+  }
   render(){
     const {properties} = this.props;
     return(
@@ -35,18 +37,18 @@ export default class StationCard extends React.Component {
             <Item.Description>Numero Operazioni effettuate: {properties.numero_operazioni_svolte}</Item.Description>
             <Item.Extra>
             
-              <Button primary floated='center' onClick={() => {properties.getInfo(properties.id_stazione)}}>
+              <Button primary floated='center' onClick={() => {properties.getInfo(properties.nome_stazione)}}>
                 Visualizza Info
                 <Icon name='right chevron'  />
               </Button>
-              <Button primary floated='center' onClick={() => {properties.getInfo(properties.id_stazione)}}>
+              <Button primary floated='center' onClick={() => {properties.openAddOperationModal(properties.nome_stazione)}}>
                 Aggiungi Operazione
                 <Icon name='right chevron'  />
               </Button>
-              
             </Item.Extra>
           </Item.Content>
         </Item>
+       
       </Item.Group >
     );
   }

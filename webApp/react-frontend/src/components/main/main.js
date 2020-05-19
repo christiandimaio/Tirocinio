@@ -18,6 +18,7 @@ import axios from 'axios';
 import AddNewStation from './add_station.js';
 import { Divider,Header } from 'semantic-ui-react'
 import Button from '@material-ui/core/Button';
+import AddOperation from '../element/add_operation.js';
 export default class Main extends React.Component{
   _isMounted=false;
   constructor(props){
@@ -25,18 +26,28 @@ export default class Main extends React.Component{
     this.state={
       ...props,
       openAddStation:false,
-      station_summary:[]
+      station_summary:[],
+      openAddOperationModal:false,
+      addOperation_StationId:null,
     }
 
   }
 
-  getStationInfo = (station_id) => {
-    console.log("Richiesta visualizzazione info per stazione :" + station_id);
+  getStationInfo = (nome_stazione) => {
+    console.log("Richiesta visualizzazione info per stazione :" + nome_stazione);
+  }
+
+  addOperationDialogOpen = (nome_stazione) => {
+    this.setState({openAddOperationModal:true,addOperation_StationId:nome_stazione});
+  }
+  addOperationDialogClose = () => {
+    this.setState({openAddOperationModal:false,addOperation_StationId:""});
   }
 
   componentWillUnmount(){
     this._isMounted=false;
   }
+
   componentDidMount() {
     this._isMounted=true;
     axios.get('/api/Stazioni/info')
@@ -66,7 +77,7 @@ export default class Main extends React.Component{
 
 
   render(){
-    console.log(this.state.openAddStation);
+    console.log(this.state.openAddOperationModal);
     console.log(this.state.station_summary);
     return (
      
@@ -83,13 +94,16 @@ export default class Main extends React.Component{
                                               messa_funzione:item["data_messa_funzione"],
                                               numero_operazioni_svolte:item["numero_operazioni"],
                                               is_attiva:item["is_attiva"],
-                                            getInfo:this.getStationInfo}}
+                                            getInfo:this.getStationInfo,
+                                            openAddOperationModal:this.addOperationDialogOpen}}
                           />
                       </Paper>
                       <Divider />
+                      
                     </>
                       )
-                    }   
+                    }
+                    <AddOperation open={this.state.openAddOperationModal} handleClose={this.addOperationDialogClose} station_id={this.state.addOperation_StationId}/>
                     <AddNewStation />
                 </Grid.Column>
                 

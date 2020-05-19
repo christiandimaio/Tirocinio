@@ -13,14 +13,29 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { green } from '@material-ui/core/colors';
 import { Divider } from 'semantic-ui-react'
 import TransferList from '../element/transfer_list.js'
-export default class ModalExampleControlled extends Component {
-    state = { modalOpen: false, test:"" }
+
+export default class AddNewStation extends Component {
+    state = { modalOpen: false,
+                codice_stazione:"",
+                tipo_stazione:"Digitale",
+                periodo_manutenzione:null,
+                seriale_gps:null,
+                latitudine:null,
+                longitudine:null,
+                altezza_lv_mare:null,
+                responsabile_1:null,
+                responsabile_2:null,
+                responsabile_3:null,
+                responsabile_4:null,
+                note_aggiuntive:null }
 
 
     handleOpen = () => this.setState({ modalOpen: true })
 
     handleClose = () => this.setState({ modalOpen: false })
     
+    handleChange = (name,event) => this.setState({[name]:event.target.value})
+
     render() {
         return (
             <>
@@ -41,7 +56,7 @@ export default class ModalExampleControlled extends Component {
                         
                             <Grid.Row columns={3}>
                             <Grid.Column>
-                            <TextField id="codice_stazione_textfield" label="Codice Stazione" variant="outlined" required fullWidth
+                            <TextField id="codice_stazione_textfield" value={this.state.codice_stazione} onChange={(e) => this.handleChange("codice_stazione",e)} label="Codice Stazione" variant="outlined" required fullWidth
                                     helperText="*Campo Richiesto">
                                     </TextField>
                             </Grid.Column>
@@ -60,6 +75,8 @@ export default class ModalExampleControlled extends Component {
                                     getAriaValueText={(value) => {return '$(value)M'}}
                                     aria-labelledby="discrete-slider-small-steps"
                                     step={1}
+                                    value={this.state.periodo_manutenzione}
+                                    onChange={(e) => this.handleChange("periodo_manutenzione",e)}
                                     marks
                                     min={1}
                                     max={12}
@@ -176,10 +193,10 @@ export default class ModalExampleControlled extends Component {
                                     <TextField
                                         variant="outlined"
                                         id="standard-multiline-static"
-                                        label="Nota Aggiuntiva"
+                                        label="Note"
                                         multiline
                                         rows={5}
-                                        defaultValue="Inserisci nota qui.."
+                                        placeholder="Inserisci nota qui.."
                                         fullWidth
                                     />
                                 </Grid.Column>
