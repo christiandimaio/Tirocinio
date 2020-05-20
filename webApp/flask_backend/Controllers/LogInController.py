@@ -34,7 +34,8 @@ class Auth(Resource):
                     print("logged in")
                     loadUser(user)
                     return jsonify(operationCode=200, message="OK")
-
+            else:
+                return jsonify(operationCode=201, message="Utente inesistente!")
         except pony.orm.core.ObjectNotFound as ex:
             return jsonify(operationCode=201, message="Utente inesistente!")
         return jsonify(operationCode=201, message="Errore")

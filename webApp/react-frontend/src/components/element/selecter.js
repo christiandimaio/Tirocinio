@@ -14,7 +14,8 @@ import {FormControl,InputLabel,Select,FormHelperText,MenuItem} from '@material-u
             helperText:error.tipo_utente.message,
             name:"tipo_utente",
             error:error.tipo_utente.state}}
-            item= '/database/select/user/type'/> */}
+            item= '/database/select/user/type'/> 
+        required*/}
 
 export default class Selecter extends React.Component{
     constructor(props){
@@ -39,7 +40,7 @@ export default class Selecter extends React.Component{
             const {properties} = this.props;
             let {items} = this.props;
                 return(
-                    <FormControl variant="outlined" error={properties.error} required fullWidth >
+                    <FormControl variant="outlined" error={properties.error} required={properties.required} fullWidth >
                                     <InputLabel id="selecter-id-label">{properties.inputLabel}</InputLabel>
                                     <Select fullWidth
                                         labelId={properties.labelId}
@@ -50,7 +51,7 @@ export default class Selecter extends React.Component{
                                         value={this.state.value}
                                         >
                                         {
-                                            items.map((item,i) => <MenuItem key={i} value={item}>{item}</MenuItem>)
+                                            items.map((item,i) => <MenuItem value={item.key}>{item.value}</MenuItem>)
                                         } 
                                     </Select>
                                     <FormHelperText>{properties.helperText}</FormHelperText>

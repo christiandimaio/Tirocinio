@@ -360,7 +360,7 @@ export default class Sign_Up extends React.Component{
                 <div> 
                     {
                         this.state.sign_in.called
-                        ?<Snackbar open={this.state.sign_in.called} autoHideDuration={3000} onClose={() => { if(this.state.sign_in.successful){this.switchToLogIn()}else{this.setState(state => (state.sign_in.called  = false, state))} }}>
+                        ?<Snackbar open={this.state.sign_in.called} autoHideDuration={2000} onClose={() => { if(this.state.sign_in.successful){this.switchToLogIn()}else{this.setState(state => (state.sign_in.called  = false, state))} }}>
                             <MuiALert elevation={9} variant="filled" severity={this.state.sign_in.successful?"success":"error"}>
                                 {this.state.sign_in.message}
                             </MuiALert>

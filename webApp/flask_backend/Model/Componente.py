@@ -14,7 +14,7 @@ class Componente(db.Entity):
     larghezza_mm = Optional(Decimal, precision=2)
     altezza_mm = Optional(Decimal, precision=2)
     profondita_mm = Optional(Decimal, precision=2)
-    operazioni = Optional('Operazione', cascade_delete=True)
+    operazioni = Set('Operazione', cascade_delete=True)
     batteria = Optional('Batteria', cascade_delete=True)
     memoria_massa = Optional('Memoria_Massa', cascade_delete=True)
     pannello_solare = Optional('Pannello_Solare', cascade_delete=True)
@@ -23,3 +23,34 @@ class Componente(db.Entity):
     gps = Optional('Gps', cascade_delete=True)
     sensore = Optional('Sensore', cascade_delete=True)
     acquisitore = Optional('Acquisitore', cascade_delete=True)
+
+
+    def can_install(self):
+        n_installazioni = 0
+        n_rimozioni = 0
+        if self.operazioni is None:
+            return True
+        for operazione in self.operazioni:
+            if operazione.tipo_operazione == "Installazione":
+                n_installazioni += 1
+            if operazione.tipo_operazione == "Rimozione":
+                n_rimozioni += 1
+        if (n_installazioni == n_rimozioni) :
+            return True
+        else:
+            return False
+
+    def check_operation_supported(self):
+        n_installazioni = 0
+        n_rimozioni = 0
+        if self.operazioni is None:
+            return False
+        for operazione in self.operazioni:
+            if operazione.tipo_operazione == "Installazione":
+                n_installazioni += 1
+            if operazione.tipo_operazione == "Rimozione":
+                n_rimozioni += 1
+        if n_installazioni > n_rimozioni:
+            return True
+        else:
+            return False

@@ -96,7 +96,7 @@ export default class AddOperation extends Component {
                                     <Grid.Column width={5}  >
                                     
                                             
-                                                <TextField id="seriale_gps_textfield" label="N. Seriale GPS" variant="outlined" required 
+                                                <TextField id="seriale_gps_textfield" label="N. Seriale Componente" variant="outlined" required 
                                                     helperText="*Campo Richiesto">
                                                     </TextField>
                                     </Grid.Column>
@@ -106,8 +106,8 @@ export default class AddOperation extends Component {
                                         </IconButton>
                                     </Grid.Column>
                                     <Grid.Column  width={6} floated="right">
-                                    <TextField id="codice_stazione_textfield" label="Latitudine (Gradi)" variant="outlined" required fullWidth
-                                                    helperText="*Campo Richiesto, separatore: '.'">
+                                    <TextField id="codice_stazione_textfield" label="Produttore" variant="outlined" required fullWidth
+                                                    helperText="Non modificabile">
                                                     </TextField>
                                     </Grid.Column>
                             </Grid.Row>
@@ -115,29 +115,29 @@ export default class AddOperation extends Component {
                                 <Grid.Row>
                                     
                                     <Grid.Column width={6} floated="right">
-                                        <TextField id="codice_stazione_textfield" label="Latitudine (Gradi)" variant="outlined" required fullWidth
-                                                        helperText="*Campo Richiesto, separatore: '.'">
+                                        <TextField id="codice_stazione_textfield" label="Nome Componente" variant="outlined" required fullWidth
+                                                        helperText="Non modificabile">
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row>
                                     <Grid.Column width={6} floated="right">
-                                        <TextField id="codice_stazione_textfield" label="Latitudine (Gradi)" variant="outlined" required fullWidth
-                                                        helperText="*Campo Richiesto, separatore: '.'">
+                                        <TextField id="codice_stazione_textfield" label="Larghezza (mm)" variant="outlined" required fullWidth
+                                        helperText="Non modificabile">
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row>
                                     <Grid.Column width={6} floated="right">
-                                        <TextField id="codice_stazione_textfield" label="Latitudine (Gradi)" variant="outlined" required fullWidth
-                                                        helperText="*Campo Richiesto, separatore: '.'">
+                                        <TextField id="codice_stazione_textfield" label="Altezza (mm)" variant="outlined" required fullWidth
+                                                        helperText="Non modificabile">
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row>
                                     <Grid.Column width={6} floated="right">
-                                        <TextField id="codice_stazione_textfield" label="Latitudine (Gradi)" variant="outlined" required fullWidth
-                                                        helperText="*Campo Richiesto, separatore: '.'">
+                                        <TextField id="codice_stazione_textfield" label="Profondità (mm)" variant="outlined" required fullWidth
+                                                        helperText="Non modificabile">
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
@@ -150,7 +150,7 @@ export default class AddOperation extends Component {
                             <Grid.Row >
                                 <Grid.Column width={6}>
                                     <Selecter
-                                        properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Responsabile 1",style:{flexGrow:1},value:"",
+                                        properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Operatore",style:{flexGrow:1},value:"",
                                         customHandler:this.handleChange,helperText:"*Campo richiesto",name:"tipo_stazione",error:false}}
                                         items={["Analogica","Digitale"]}/>
                                 </Grid.Column>

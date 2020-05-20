@@ -13,9 +13,13 @@ from Controllers.OperatoreController import *
 from Controllers.StazioneSismicaController import *
 from Controllers.LogInController import *
 from Controllers.NrlController import *
-from Model import Log_In
+from Controllers.ComponenteController import *
+from Controllers.ComponenteGpsController import *
+from Model import Log_In,Operatore
 from connection import db
 from LoginManager import *
+
+
 
 db.generate_mapping(create_tables=True)
 app = Flask(__name__)
@@ -30,6 +34,9 @@ def load_user(user_id):
     return Log_In.get(id=user_id)
 
 
+"""----------------------------------------------------------------------------"""
+"""ROTTE MODELLO GPS"""
+api.add_resource(GetGps,'/api/Componente/Gps/<string:seriale>')
 
 """----------------------------------------------------------------------------"""
 """ROTTE MODELLO LOG_IN"""
@@ -47,12 +54,12 @@ api.add_resource(DeAuth,'/api/logout')
 
 api.add_resource(GetTipologieOperatore,'/api/Operatori/type')
 api.add_resource(InsertOperatore,'/api/Operatore/insert')
-
-
+api.add_resource(GetOperatori,'/api/Operatori')
+api.add_resource(GetOperatoriListed,'/api/Operatori/selecter')
 """----------------------------------------------------------------------------"""
 """Modello Stazione sismica"""
 
-api.add_resource(postStazioneSismica,'/api/Stazione/insert')
+api.add_resource(postStazioneSismica,'/api/Stazione')
 api.add_resource(getStazioneSismicaInfo,'/api/Stazioni/info')
 
 

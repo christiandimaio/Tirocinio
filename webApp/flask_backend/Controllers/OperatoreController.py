@@ -6,6 +6,9 @@ from Model import Esterno
 from Model import Log_In
 from Model import Recapito
 from Model import Operatore
+from pony.orm import *
+from pony.orm.serialization import to_json
+from connection import db
 
 
 class InsertOperatore(Resource):
@@ -32,5 +35,26 @@ class InsertOperatore(Resource):
 class GetTipologieOperatore(Resource):
     @staticmethod
     def get():
-        return jsonify(operationCode=200, items=["Esterno", "Operatore Semplice", "Autorizzato"])
+        return jsonify(operationCode=200, items=[{"key":"Esterno","value":"Esterno"},
+                                                 {"key":"Operatore Semplice","value":"Operatore Semplice"},
+                                                 {"key":"Autorizzato","value":"Autorizzato"}])
 
+class GetOperatori(Resource):
+    @staticmethod
+    def get():
+        operatori=[]
+        with db_session:
+            data = select(operatore for operatore in Operatore).order_by(Operatore.nome,Operatore.cognome)[:]
+            for operatore in data:
+                operatori.append(operatore.to_dict())
+        return jsonify(operationCode=201,items=operatori)
+
+class GetOperatoriListed(Resource):
+    @staticmethod
+    def get():
+        operatori=[]
+        with db_session:
+            data = select(operatore for operatore in Operatore).order_by(Operatore.nome,Operatore.cognome)[:]
+            for operatore in data:
+                operatori.append({"key":operatore.id_operatore,"value":operatore.nome+" "+operatore.cognome})
+        return jsonify(operationCode=201,items=operatori)

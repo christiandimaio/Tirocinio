@@ -48,6 +48,10 @@ export default class Main extends React.Component{
     this._isMounted=false;
   }
 
+  forceReRender = () => {
+    this.setState({state:this.state})
+  }
+
   componentDidMount() {
     this._isMounted=true;
     axios.get('/api/Stazioni/info')
@@ -104,7 +108,7 @@ export default class Main extends React.Component{
                       )
                     }
                     <AddOperation open={this.state.openAddOperationModal} handleClose={this.addOperationDialogClose} station_id={this.state.addOperation_StationId}/>
-                    <AddNewStation />
+                    <AddNewStation callReRender={this.forceReRender}/>
                 </Grid.Column>
                 
               </Grid>                       
