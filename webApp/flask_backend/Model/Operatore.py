@@ -12,5 +12,5 @@ class Operatore(db.Entity):
     log_in = Optional('Log_In', cascade_delete=True)
     esterno = Optional('Esterno', cascade_delete=True)
     recapiti = Set('Recapito')
-    responsabile = Optional('Responsabile', cascade_delete=True)
-    operazioni = Optional('Operazione', cascade_delete=True)
+    responsabile = Set('Responsabile', cascade_delete=True)
+    operazioni = Set('Operazione', cascade_delete=True)

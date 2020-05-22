@@ -52,6 +52,7 @@ export default class AddNewStation extends Component {
         }
         else{
             this.setState(state => (state.registrazione.chiamata  = false, state));
+            this.props.callReRender()
         }
     }
     
@@ -337,7 +338,7 @@ export default class AddNewStation extends Component {
                     </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button negative onClick={() => {this.setState({modalOpen:false})}}>
+                        <Button negative onClick={() => {this.handleClose()}}>
                             Cancella
                         </Button>
                         <Button

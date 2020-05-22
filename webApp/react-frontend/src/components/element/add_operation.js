@@ -15,6 +15,7 @@ import { Divider } from 'semantic-ui-react'
 import TransferList from './transfer_list.js'
 import DateTimePicker from './date_picker.js'
 import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
 export default class AddOperation extends Component {
     _isMounted=false
     constructor(props){
@@ -33,7 +34,8 @@ export default class AddOperation extends Component {
         responsabile_2:null,
         responsabile_3:null,
         responsabile_4:null,
-        note_aggiuntive:null }
+        note_aggiuntive:null,
+        operatori_list:[] }
 
     componentWillReceiveProps(nextProps){
         if(nextProps.open!==this.props.open){
@@ -44,6 +46,21 @@ export default class AddOperation extends Component {
         }
     componentDidMount(){
         this._isMounted=true
+        axios.get("api/Operatori/selecter")
+            .then((response) => {
+                console.log(response.data);
+                if(this._isMounted){
+                    this.setState({
+                        operatori_list: response.data.items
+                    })
+                }
+            })
+            .catch((error) => {
+                if(this._isMounted){
+                    this.setState({database_operatori:["Default"]})
+                }
+                
+            });
     }
     handleClose = () => this.setState({ modalOpen: false })
     
@@ -65,7 +82,8 @@ export default class AddOperation extends Component {
                                 <Selecter
                                     properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Operazione",style:{flexGrow:1},value:"",
                                     customHandler:this.handleChange,helperText:"*Campo richiesto",name:"tipo_stazione",error:false}}
-                                    items={["Installazione","Manutenzione","Rimozione"]}/>
+                                    items={[{"key":"Installazione","value":"Installazione"},{"key":"Manutenzione","value":"Manutenzione"},
+                                            {"key":"Rimozione","value":"Rimozione"}]}/>
                                 </Grid.Column>
                                 <Grid.Column >
                                     <DateTimePicker properties={{
@@ -92,11 +110,11 @@ export default class AddOperation extends Component {
                                     Selezione Componente
                                 </Header>
                             </Divider>
-                            <Grid.Row >
+                            <Grid.Row style={{paddingBottom:0}} style={{paddingBottom:0}}>
                                     <Grid.Column width={5}  >
                                     
                                             
-                                                <TextField id="seriale_gps_textfield" label="N. Seriale Componente" variant="outlined" required 
+                                                <TextField  id="seriale_gps_textfield" label="N. Seriale Componente" variant="outlined" required 
                                                     helperText="*Campo Richiesto">
                                                     </TextField>
                                     </Grid.Column>
@@ -106,38 +124,38 @@ export default class AddOperation extends Component {
                                         </IconButton>
                                     </Grid.Column>
                                     <Grid.Column  width={6} floated="right">
-                                    <TextField id="codice_stazione_textfield" label="Produttore" variant="outlined" required fullWidth
-                                                    helperText="Non modificabile">
+                                    <TextField disabled id="codice_stazione_textfield" label="Produttore" variant="standard"  fullWidth
+                                                    >
                                                     </TextField>
                                     </Grid.Column>
                             </Grid.Row>
                             
-                                <Grid.Row>
+                                <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     
                                     <Grid.Column width={6} floated="right">
-                                        <TextField id="codice_stazione_textfield" label="Nome Componente" variant="outlined" required fullWidth
-                                                        helperText="Non modificabile">
+                                        <TextField disabled id="nome_textfield" label="Nome Componente" variant="standard"  fullWidth
+                                                        >
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
-                                <Grid.Row>
+                                <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     <Grid.Column width={6} floated="right">
-                                        <TextField id="codice_stazione_textfield" label="Larghezza (mm)" variant="outlined" required fullWidth
-                                        helperText="Non modificabile">
+                                        <TextField  disabled id="larghezza_textfield" label="Larghezza (mm)" variant="standard"  fullWidth
+                                        >
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
-                                <Grid.Row>
+                                <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     <Grid.Column width={6} floated="right">
-                                        <TextField id="codice_stazione_textfield" label="Altezza (mm)" variant="outlined" required fullWidth
-                                                        helperText="Non modificabile">
+                                        <TextField disabled id="altezza_textfield" label="Altezza (mm)" variant="standard"  fullWidth
+                                                        >
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
-                                <Grid.Row>
+                                <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     <Grid.Column width={6} floated="right">
-                                        <TextField id="codice_stazione_textfield" label="Profondità (mm)" variant="outlined" required fullWidth
-                                                        helperText="Non modificabile">
+                                        <TextField disabled id="profondita_textfield" label="Profondità (mm)" variant="standard"  fullWidth
+                                                        >
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
@@ -149,10 +167,10 @@ export default class AddOperation extends Component {
                             </Divider>
                             <Grid.Row >
                                 <Grid.Column width={6}>
-                                    <Selecter
-                                        properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Operatore",style:{flexGrow:1},value:"",
-                                        customHandler:this.handleChange,helperText:"*Campo richiesto",name:"tipo_stazione",error:false}}
-                                        items={["Analogica","Digitale"]}/>
+                                <Selecter
+                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Operatore",style:{flexGrow:1},value:"",
+                                    customHandler:this.handleResponsabileChange,helperText:"*Campo richiesto",required:true,name:"Operatore",error:false}}
+                                    items={this.state.operatori_list}/>
                                 </Grid.Column>
                             </Grid.Row>
                             <Divider horizontal>

@@ -19,6 +19,7 @@ import AddNewStation from './add_station.js';
 import { Divider,Header } from 'semantic-ui-react'
 import Button from '@material-ui/core/Button';
 import AddOperation from '../element/add_operation.js';
+import StationViewer from './station_viewer.js';
 export default class Main extends React.Component{
   _isMounted=false;
   constructor(props){
@@ -29,12 +30,23 @@ export default class Main extends React.Component{
       station_summary:[],
       openAddOperationModal:false,
       addOperation_StationId:null,
+      open_station_info:{
+        open:false,
+        id_station:""
+      }
     }
 
   }
 
-  getStationInfo = (nome_stazione) => {
-    console.log("Richiesta visualizzazione info per stazione :" + nome_stazione);
+  openStationInfo = (id_stazione) => {
+    this.closeStationInfo()
+    this.setState(state => (state.open_station_info.open  = true, state));
+    this.setState(state => (state.open_station_info.id_station  = id_stazione, state));
+  }
+
+  closeStationInfo = () => {
+    this.setState(state => (state.open_station_info.open  = false, state));
+    this.setState(state => (state.open_station_info.id_station  = "", state));
   }
 
   addOperationDialogOpen = (nome_stazione) => {
@@ -49,14 +61,19 @@ export default class Main extends React.Component{
   }
 
   forceReRender = () => {
+    
     this.setState({state:this.state})
   }
 
   componentDidMount() {
     this._isMounted=true;
+    this.retrieveStationInfo()
+  }
+
+  retrieveStationInfo = () =>{
+    console.log("reload UI")
     axios.get('/api/Stazioni/info')
         .then((response) => {
-          
           if(this._isMounted){
             console.log(response.data["data"]);
               this.setState({
@@ -66,9 +83,7 @@ export default class Main extends React.Component{
           
       })
       .catch((error) => {
-         
-              
-          
+   
       }
     );
   }
@@ -98,7 +113,7 @@ export default class Main extends React.Component{
                                               messa_funzione:item["data_messa_funzione"],
                                               numero_operazioni_svolte:item["numero_operazioni"],
                                               is_attiva:item["is_attiva"],
-                                            getInfo:this.getStationInfo,
+                                            getInfo:this.openStationInfo,
                                             openAddOperationModal:this.addOperationDialogOpen}}
                           />
                       </Paper>
@@ -108,16 +123,21 @@ export default class Main extends React.Component{
                       )
                     }
                     <AddOperation open={this.state.openAddOperationModal} handleClose={this.addOperationDialogClose} station_id={this.state.addOperation_StationId}/>
-                    <AddNewStation callReRender={this.forceReRender}/>
+                    <AddNewStation callReRender={this.retrieveStationInfo}/>
                 </Grid.Column>
                 
               </Grid>                       
                         
               <Grid padded columns="1" style={{flexGrow:1,maxHeight:"100%"}}>
-                <Grid.Column stretched mobile={16} tablet={11} computer={16}>
+                <Grid.Column stretched mobile={16} tablet={16} computer={16}>
                   <Box display="flex" flexGrow={1}>
                     <Paper elevation={3} style={{flexGrow:1}}>
-                      <StationMap stations_info={this.state.station_summary}/>
+                      {
+                        this.state.open_station_info.open
+                        ?<StationViewer close={this.closeStationInfo} id_station={this.state.open_station_info.id_station}></StationViewer>
+                        :<StationMap stations_info={this.state.station_summary}/>
+                      }
+                      
                     </Paper>
                   </Box>              
                 </Grid.Column>                 

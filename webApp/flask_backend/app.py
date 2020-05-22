@@ -61,7 +61,7 @@ api.add_resource(GetOperatoriListed,'/api/Operatori/selecter')
 
 api.add_resource(postStazioneSismica,'/api/Stazione')
 api.add_resource(getStazioneSismicaInfo,'/api/Stazioni/info')
-
+api.add_resource(getOperazioniStazione,"/api/Stazione/<string:codice_stazione>/Operazioni")
 
 """______----------------------------------------------------------------------"""
 """    NRL    """

@@ -73,3 +73,29 @@ class getStazioneSismicaInfo(Resource):
                     "is_attiva": stazione[0].is_attiva()
                 })
         return jsonify(data=list)
+
+class getOperazioniStazione(Resource):
+    @staticmethod
+    def get(codice_stazione):
+        with db_session:
+            operazioni = select ((operazioni) for operazioni in Operazione
+                                              if operazioni.stazione_sismica.codice_stazione==codice_stazione)[:]
+            result = []
+            for operazione in operazioni:
+                result.append({
+                    "componente":{
+                        "seriale":operazione.componente.seriale,
+                        "produttore":operazione.componente.produttore,
+                        "nome":operazione.componente.nome
+                    },
+                    "operazione":{
+                        "tipo_operazione":operazione.tipo_operazione,
+                        "data_inizio_operazione":operazione.data_inizio_operazione,
+                        "data_fine_operazione":operazione.data_fine_operazione,
+                    },
+                    "operatore":{
+                        "nome_cognome":operazione.operatore.nome+" "+operazione.operatore.cognome,
+                        "note":operazione.note_operazione
+                    }
+                })
+            return jsonify(operationCode=200,data=result)
