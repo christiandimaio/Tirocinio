@@ -23,7 +23,8 @@ import Fab from '@material-ui/core/Fab';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import OperazioniTable from '../element/operazioni_table.js';
 import axios from 'axios';
-
+import zIndex from '@material-ui/core/styles/zIndex';
+import HomeIcon from '@material-ui/icons/Home';
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
   
@@ -60,8 +61,7 @@ function TabPanel(props) {
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow:1,
-      maxWidth: '100%',
-      backgroundColor: theme.palette.background.paper,
+      maxWidth: '100%'
     },
   }));
   
@@ -75,9 +75,12 @@ function ScrollableTabsButtonForce(props) {
   
     return (
       <div className={classes.root}>
-        <AppBar position="relative" color="default" >
+      <Grid>
+      <Grid.Row columns={1}>
+        <Grid.Column width={16}>
+        <AppBar style={{zIndex:0}} position="relative" color="default" >
           <Tabs
-            style={{flexGrow:1}}
+            style={{maxHeight:"100%"}}
             value={value}
             onChange={handleChange}
             variant="scrollable"
@@ -86,23 +89,62 @@ function ScrollableTabsButtonForce(props) {
             textColor="primary"
             aria-label="scrollable force tabs example"
           >
-            <Tab label="Operazioni" icon={<AirportShuttleIcon />} {...a11yProps(0)} />
-            <Tab label="Componenti" icon={<SettingsIcon />} {...a11yProps(1)} />
-            <Tab label="Canali" icon={<PermDataSettingIcon />} {...a11yProps(1)} />
+            <Tab label="Informazioni Stazione" icon={<HomeIcon />} {...a11yProps(0)} />
+            <Tab label="Operazioni" icon={<AirportShuttleIcon />} {...a11yProps(1)} />
+            <Tab label="Componenti" icon={<SettingsIcon />} {...a11yProps(2)} />
+            <Tab label="Canali" icon={<PermDataSettingIcon />} {...a11yProps(3)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-            <Box diplay="flex" style={{maxHeight:"60%",overflow:"auto"}}>
-                <OperazioniTable operazioni = {props.operazioni}/>
-            </Box>
+          <Box display="flex"   width="100%">
+              <Paper elevation={3} style={{padding:6,width:"100%"}}>
+                  <Grid padded style={{width:"100%"}}>
+                      <Grid.Row columns={1} >
+                          <Grid.Column width={5} floated="left">
+                              <h5>TEST</h5>
+                          </Grid.Column>
+                      </Grid.Row>
+                      <Grid.Row columns={1} >
+                          <Grid.Column width={5} floated="left">
+                          <h5>TEST</h5>
+                          </Grid.Column>
+                      </Grid.Row>
+                      <Grid.Row columns={1} >
+                          <Grid.Column width={5} floated="left">
+                          <h5>TEST</h5>
+                          </Grid.Column>
+                      </Grid.Row>
+                      <Grid.Row columns={1} >
+                          <Grid.Column width={5} floated="left">
+                          <h5>TEST</h5>
+                          </Grid.Column>
+                      </Grid.Row>
+                  </Grid>
+              </Paper>
+          </Box>
         </TabPanel>
-        <TabPanel value={value} index={1}>
-            In costruzione
+        <TabPanel value={value} index={1} >
+            <Grid style={{flexGrow:1}}>
+              <Grid.Row columns={1}>
+                <Grid.Column width={16}>
+                <OperazioniTable operazioni = {props.operazioni}/>  
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+                
+            
         </TabPanel>
         <TabPanel value={value} index={2}>
             In costruzione
         </TabPanel>
-
+        <TabPanel value={value} index={3}>
+            In costruzione
+        </TabPanel>
+     
+        </Grid.Column>
+      </Grid.Row>
+     
+      </Grid>
       </div>
     );
   }
@@ -145,33 +187,8 @@ export default class StationViewer extends React.Component{
     render(){
         return(
             <Box display="flex" width="100%" height="100%" flexDirection="column">
-                <Box display="flex"   width="100%">
-                    <Paper elevation={3} style={{padding:6,width:"100%"}}>
-                        <Grid padded style={{width:"100%"}}>
-                            <Grid.Row columns={1} >
-                                <Grid.Column width={5} floated="left">
-                                    <h5>TEST</h5>
-                                </Grid.Column>
-                            </Grid.Row>
-                            <Grid.Row columns={1} >
-                                <Grid.Column width={5} floated="left">
-                                <h5>TEST</h5>
-                                </Grid.Column>
-                            </Grid.Row>
-                            <Grid.Row columns={1} >
-                                <Grid.Column width={5} floated="left">
-                                <h5>TEST</h5>
-                                </Grid.Column>
-                            </Grid.Row>
-                            <Grid.Row columns={1} >
-                                <Grid.Column width={5} floated="left">
-                                <h5>TEST</h5>
-                                </Grid.Column>
-                            </Grid.Row>
-                        </Grid>
-                    </Paper>
-                </Box>
-                <Box display="flex" flexGrow={1} paddingTop={2} >
+                
+                <Box display="flex" flexGrow={1}  >
                     <ScrollableTabsButtonForce operazioni = {this.state.operazioni_stazione}></ScrollableTabsButtonForce>
                 </Box>
                 

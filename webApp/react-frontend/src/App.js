@@ -139,7 +139,7 @@ class App extends React.Component{
                                 </Grid.Column>                     
                             </Grid.Row>
                         </Grid>
-                        <Box display="flex" flexWrap="wrap" flexGrow={1} >
+                        <Box display="flex" flexDirection="row" flexWrap="wrap" flexGrow={1} >
                             {
                                 this.renderSwitch()
                             } 

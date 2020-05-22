@@ -52,6 +52,7 @@ export default class AddNewStation extends Component {
         }
         else{
             this.setState(state => (state.registrazione.chiamata  = false, state));
+            this.setState({modalOpen:false});
             this.props.callReRender()
         }
     }
@@ -169,7 +170,7 @@ export default class AddNewStation extends Component {
                     </Tooltip>
                 </Box>
                 <Modal   open={this.state.modalOpen}
-                        onClose={this.handleClose}  centered={false}>
+                        onClose={this.handleClose}  closeOnDimmerClick={false} centered={false}>
                     <Modal.Header>Crea una nuova stazione</Modal.Header>
                     <Modal.Content scrolling>
                     

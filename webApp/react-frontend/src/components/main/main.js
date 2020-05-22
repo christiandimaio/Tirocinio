@@ -142,6 +142,7 @@ export default class Main extends React.Component{
                   </Box>              
                 </Grid.Column>                 
               </Grid>
+              
             
             </>
             );
