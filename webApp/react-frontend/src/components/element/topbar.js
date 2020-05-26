@@ -10,6 +10,7 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
+import FullScreenDialog from './magazzino.js'
 
 // const {MenuIcon} = MaterialUI.Menu;
 
@@ -50,7 +51,8 @@ export default class TopBar extends React.Component{
         super(props);
         this.state = {
             username : "",
-            menu:null
+            menu:null,
+            open_magazzino:false
         }
         
     }
@@ -77,6 +79,10 @@ export default class TopBar extends React.Component{
           });
     }
     
+    openMagazzino = (value) =>{
+      this.setState({open_magazzino:value})
+    }
+
     logout = () => {
         axios.get("api/logout"
                 ).then((response) => {
@@ -125,12 +131,23 @@ export default class TopBar extends React.Component{
                         >
                           <div>
                             { this.props.isMain
-                              ?(<StyledMenuItem  onClick={(e) => this.logout()}>
-                                <ListItemIcon>
-                                    <ExitToAppIcon style={{fill: "#1a237e"}}  fontSize="small" />
-                                </ListItemIcon>
-                                <ListItemText primary="Log Out" />
-                              </StyledMenuItem>)
+                              ?( 
+                              <>
+                                <StyledMenuItem  onClick={(e) => this.logout()}>
+                                    <ListItemIcon>
+                                        <ExitToAppIcon style={{fill: "#1a237e"}}  fontSize="small" />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Log Out" />
+                                </StyledMenuItem>
+                                <StyledMenuItem  onClick={(e) => this.openMagazzino(true)}>
+                                  <ListItemIcon>
+                                      <ExitToAppIcon style={{fill: "#1a237e"}}  fontSize="small" />
+                                  </ListItemIcon>
+                                  <ListItemText primary="Gestisci Magazzino" />
+                                </StyledMenuItem>
+                                <FullScreenDialog open={this.state.open_magazzino} handleChange={this.openMagazzino}/>
+                              </>
+                              )
                               :<></>
                             } 
                           </div>

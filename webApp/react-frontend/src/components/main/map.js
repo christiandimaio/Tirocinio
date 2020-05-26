@@ -15,7 +15,7 @@ export default class StationMap extends React.Component {
   render() {
     
     return (
-      <Map center={[40.863,14.2767]} zoom={this.state.zoom} >
+      <Map center={[41.0842,14.3358]} zoom={this.state.zoom} >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'

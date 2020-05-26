@@ -69,7 +69,7 @@ api.add_resource(getOperazioniStazione,"/api/Stazione/<string:codice_stazione>/O
 
 api.add_resource(CheckIfNrlIsUpdating,'/api/NRL/update/status')
 api.add_resource(UpdateNrl,"/api/NRL/update")
-
+api.add_resource(GetStationXML,"/api/Stazioni/<string:codice_stazione>/StationXml")
 routes = [
         "/api/NRL/<string:request_type>",
         "/api/NRL/<string:request_type>/<string:level_1>",
