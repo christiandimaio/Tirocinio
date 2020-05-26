@@ -13,7 +13,7 @@ from Model import Operazione
 from pony.orm import *
 
 
-class postStazioneSismica(Resource):
+class PostStazioneSismica(Resource):
     @staticmethod
     def post():
         print(request.json)
@@ -53,7 +53,7 @@ class postStazioneSismica(Resource):
             return jsonify(operationCode=500,message="Errore durante inserimento della stazione, riprovare")
         return jsonify(operationCode=200)
 
-class getStazioneSismicaInfo(Resource):
+class GetStazioneSismicaInfo(Resource):
     @staticmethod
     def get():
         with db_session:
@@ -74,7 +74,7 @@ class getStazioneSismicaInfo(Resource):
                 })
         return jsonify(data=list)
 
-class getOperazioniStazione(Resource):
+class GetOperazioniStazione(Resource):
     @staticmethod
     def get(codice_stazione):
         with db_session:
@@ -99,3 +99,22 @@ class getOperazioniStazione(Resource):
                     }
                 })
             return jsonify(operationCode=200,data=result)
+
+class GetComponenteStazione(Resource):
+    @staticmethod
+    @db_session
+    def get(codice_stazione,seriale):
+        max_data = max((operazione.data_inizio_operazione) for operazione in Operazione
+                                                    if operazione.stazione_sismica.codice_stazione==codice_stazione
+                                                        and operazione.componente.seriale==seriale)
+        operazione = select((operazione) for operazione in Operazione
+                                                    if operazione.stazione_sismica.codice_stazione==codice_stazione
+                                                        and operazione.componente.seriale==seriale
+                                                            and operazione.data_inizio_operazione==max_data).first()
+
+
+        if operazione and operazione.tipo_operazione != "Rimozione":
+            return jsonify(operationCode=200, item=operazione.componente.to_dict())
+        else:
+            return jsonify(operationCode=404, message="Not Found")
+        return jsonify(operationCode=500, message="Internal Error")

@@ -33,6 +33,10 @@ login_manager = createManager(app)
 def load_user(user_id):
     return Log_In.get(id=user_id)
 
+"""----------------------------------------------------------------------------"""
+"""Rotte Componente"""
+
+api.add_resource(GetComponente,'/api/Componente/<string:seriale>')
 
 """----------------------------------------------------------------------------"""
 """ROTTE MODELLO GPS"""
@@ -59,10 +63,10 @@ api.add_resource(GetOperatoriListed,'/api/Operatori/selecter')
 """----------------------------------------------------------------------------"""
 """Modello Stazione sismica"""
 
-api.add_resource(postStazioneSismica,'/api/Stazione')
-api.add_resource(getStazioneSismicaInfo,'/api/Stazioni/info')
-api.add_resource(getOperazioniStazione,"/api/Stazione/<string:codice_stazione>/Operazioni")
-
+api.add_resource(PostStazioneSismica,'/api/Stazione')
+api.add_resource(GetStazioneSismicaInfo,'/api/Stazioni/info')
+api.add_resource(GetOperazioniStazione,"/api/Stazione/<string:codice_stazione>/Operazioni")
+api.add_resource(GetComponenteStazione,'/api/Stazione/<string:codice_stazione>/Componenti/<string:seriale>')
 """______----------------------------------------------------------------------"""
 """    NRL    """
 

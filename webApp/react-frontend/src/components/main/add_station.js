@@ -24,7 +24,7 @@ export default class AddNewStation extends Component {
                 seriale_gps:null,
                 latitudine:null,
                 longitudine:null,
-                altezza_lv_mare:null,
+                altezza_lv_mare:0,
                 responsabile_1:null,
                 responsabile_2:null,
                 responsabile_3:null,

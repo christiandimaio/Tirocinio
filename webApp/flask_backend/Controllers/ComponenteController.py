@@ -11,9 +11,9 @@ class GetComponente(Resource):
     @staticmethod
     @db_session
     def get(seriale):
-        componente = Componente.select(lambda componente: componente.seriale == seriale)[:1]
+        componente = Componente.select(lambda componente: componente.seriale == seriale).first()
         if componente :
-            return jsonify(operationCode=200,item=componente,possible_to_install=componente.can_install(),
+            return jsonify(operationCode=200,item=componente.to_dict(),possible_to_install=componente.can_install(),
                            installed=componente.check_operation_supported())
         else:
             return jsonify(operationCode=404,message="Not Found")

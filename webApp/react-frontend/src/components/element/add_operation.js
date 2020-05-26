@@ -20,22 +20,27 @@ export default class AddOperation extends Component {
     _isMounted=false
     constructor(props){
         super(props);
-        
+        this.state={ 
+            tipo_operazione:"Installazione",
+            data_fine_operazione:"",
+            data_inizio_operazione:"",
+            seriale_componente:"",
+            verifica_componente:{
+                verificato:false,
+                messaggio:"*Campo Richiesto"
+            },
+            componente:{
+                produttore:"",
+                nome:"",
+                larghezza:"",
+                altezza:"",
+                profondita:"",
+            },
+            operatore_incaricato:"",
+            note:""
+        }
     }
-    state = { modalOpen:false,
-        codice_stazione:"",
-        tipo_stazione:"Digitale",
-        periodo_manutenzione:null,
-        seriale_gps:null,
-        latitudine:null,
-        longitudine:null,
-        altezza_lv_mare:null,
-        responsabile_1:null,
-        responsabile_2:null,
-        responsabile_3:null,
-        responsabile_4:null,
-        note_aggiuntive:null,
-        operatori_list:[] }
+    
 
     componentWillReceiveProps(nextProps){
         if(nextProps.open!==this.props.open){
@@ -64,8 +69,48 @@ export default class AddOperation extends Component {
     }
     handleClose = () => this.setState({ modalOpen: false })
     
-    handleChange = (name,event) => this.setState({[name]:event.target.value})
+    handleTipoOperazioneChange = (event,name) => this.setState({tipo_operazione:event.target.value})
 
+    handleSerialeChange = (event) => this.setState({seriale_componente:event.target.value})
+
+    handleDateInzioOperazioniChange = (value) => {
+        if(value instanceof Date && !isNaN(value)){
+            this.setState({data_inizio_operazione:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
+        }
+    }
+    handleDateFineOperazioniChange = (value) => {
+        if(value instanceof Date && !isNaN(value)){
+            this.setState({data_fine_operazione:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
+        }
+    }
+
+    handleOperatoreIncaricatoChange = (event) => this.setState({operatore_incaricato:event.target.value})
+
+    handleNotaChange = (event) => this.setState({note:event.target.value})
+
+    handleCheckComponenteSeriale = () => {
+        axios.get("api/Stazione/"+this.props.station_id+"/Componente/"+this.state.seriale_componente)
+            .then((response) => {
+                console.log(response)
+                if(response.data.operationCode == 404){
+                    this.setState(state => (state.verifica_componente.verificato  = false, state));
+                    this.setState(state => (state.verifica_componente.messaggio  = "Non trovato!", state));
+                }else{
+                    if((response.data.items != null)){
+                        if (response.data.possible_to_install){
+                            this.setState(state => (state.verifica_componente.verificato  = true, state));
+                            this.setState(state => (state.verifica_gps.messaggio  = "Trovato! Installabile", state));
+                        }else {
+                            this.setState(state => (state.verifica_gps.risultato  = false, state));
+                            this.setState(state => (state.verifica_gps.messaggio  = "Già installato presso altra stazione", state));
+                        }
+                    }else{
+                        this.setState(state => (state.verifica_gps.risultato  = false, state));
+                        this.setState(state => (state.verifica_gps.messaggio  = "Questo seriale non appartiene ad un GPS", state));
+                    }
+                }
+            })
+    }
     render() {
         
         return (
@@ -81,27 +126,27 @@ export default class AddOperation extends Component {
                                 <Grid.Column>
                                 <Selecter
                                     properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Operazione",style:{flexGrow:1},value:"",
-                                    customHandler:this.handleChange,helperText:"*Campo richiesto",name:"tipo_stazione",error:false}}
+                                    customHandler:this.handleTipoOperazioneChange,helperText:"*Campo richiesto",name:"tipo_stazione",error:false}}
                                     items={[{"key":"Installazione","value":"Installazione"},{"key":"Manutenzione","value":"Manutenzione"},
                                             {"key":"Rimozione","value":"Rimozione"}]}/>
                                 </Grid.Column>
                                 <Grid.Column >
                                     <DateTimePicker properties={{
                                                                     width:"90%",
-                                                                    id:"data-nascita_picker",
+                                                                    id:"datainizio_picker",
                                                                     label:"Data Inizio Operazione",
-                                                                    name:"data_nascita"
+                                                                    name:"data_inizio_op"
                                                                     }}
-                                                        onChange={this.handleDateChange}/>
+                                                        onChange={this.handleDateInzioOperazioniChange}/>
                                 </Grid.Column>
                                 <Grid.Column>
                                     <DateTimePicker properties={{
                                                                     width:"90%",
-                                                                    id:"data-nascita_picker",
+                                                                    id:"datafine_picker",
                                                                     label:"Data Fine Operazione",
-                                                                    name:"data_nascita"
+                                                                    name:"data_fine_op"
                                                                     }}
-                                                        onChange={this.handleDateChange}/>
+                                                        onChange={this.handleDateFineOperazioniChange}/>
                                 </Grid.Column>
                             </Grid.Row>
                             <Divider horizontal>
@@ -111,12 +156,11 @@ export default class AddOperation extends Component {
                                 </Header>
                             </Divider>
                             <Grid.Row style={{paddingBottom:0}} style={{paddingBottom:0}}>
-                                    <Grid.Column width={5}  >
-                                    
-                                            
-                                                <TextField  id="seriale_gps_textfield" label="N. Seriale Componente" variant="outlined" required 
-                                                    helperText="*Campo Richiesto">
-                                                    </TextField>
+                                    <Grid.Column width={5}  >   
+                                        <TextField  id="seriale_componente_textfield" label="N. Seriale Componente" variant="outlined" required 
+                                            helperText="*Campo Richiesto"  value={this.state.seriale_componente}
+                                            onChange={this.handleSerialeChange}>
+                                        </TextField>
                                     </Grid.Column>
                                     <Grid.Column width={2} >
                                         <IconButton aria-label="delete" onClick={() => {this.setState({test:"OK"})}}>
@@ -124,12 +168,9 @@ export default class AddOperation extends Component {
                                         </IconButton>
                                     </Grid.Column>
                                     <Grid.Column  width={6} floated="right">
-                                    <TextField disabled id="codice_stazione_textfield" label="Produttore" variant="standard"  fullWidth
-                                                    >
-                                                    </TextField>
+                                        <TextField disabled id="produttore_textfield" label="Produttore" variant="standard"  fullWidth/>             
                                     </Grid.Column>
                             </Grid.Row>
-                            
                                 <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     
                                     <Grid.Column width={6} floated="right">
