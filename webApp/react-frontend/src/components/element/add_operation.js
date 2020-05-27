@@ -3,18 +3,18 @@ import { Header, Icon, Modal,Button } from 'semantic-ui-react'
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
-import {TextField,Box, FormControl} from '@material-ui/core';
+import {TextField,Snackbar} from '@material-ui/core';
 import {Grid,Image} from 'semantic-ui-react';
 import Selecter from './selecter';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import IconButton from '@material-ui/core/IconButton';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import { green } from '@material-ui/core/colors';
+import { green,red } from '@material-ui/core/colors';
 import { Divider } from 'semantic-ui-react'
 import TransferList from './transfer_list.js'
 import DateTimePicker from './date_picker.js'
-import Paper from '@material-ui/core/Paper';
+import MuiALert from '@material-ui/lab/Alert';
 import axios from 'axios';
 export default class AddOperation extends Component {
     _isMounted=false
@@ -28,6 +28,11 @@ export default class AddOperation extends Component {
             verifica_componente:{
                 verificato:false,
                 messaggio:"*Campo Richiesto"
+            },
+            registrazione:{
+                chiamata: false,
+                stato:false,
+                messaggio:""
             },
             componente:{
                 produttore:"",
@@ -67,15 +72,35 @@ export default class AddOperation extends Component {
                 
             });
     }
-    handleClose = () => this.setState({ modalOpen: false })
-    
-    handleTipoOperazioneChange = (event,name) => this.setState({tipo_operazione:event.target.value})
+
+    handleClose = () => {
+        let {registrazione} = this.state;
+        console.log(registrazione.stato)
+        registrazione.chiamata=false;
+        
+        if (registrazione.stato){
+            registrazione.stato=false;
+            this.setState({registrazione})
+            this.props.handleClose()
+        }else{
+            this.setState({registrazione})
+        }
+            
+        
+    }
+
+    handleTipoOperazioneChange = (event,name) => {
+        this.setState({tipo_operazione:event.target.value});
+        this.setState(state => (state.verifica_componente.verificato  = false, state));
+        this.setState(state => (state.verifica_componente.messaggio  = "Verifica", state));
+    }
 
     handleSerialeChange = (event) => this.setState({seriale_componente:event.target.value})
 
     handleDateInzioOperazioniChange = (value) => {
         if(value instanceof Date && !isNaN(value)){
             this.setState({data_inizio_operazione:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
+            this.setState({data_fine_operazione:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
         }
     }
     handleDateFineOperazioniChange = (value) => {
@@ -89,27 +114,84 @@ export default class AddOperation extends Component {
     handleNotaChange = (event) => this.setState({note:event.target.value})
 
     handleCheckComponenteSeriale = () => {
+        let {componente} = this.state;
         axios.get("api/Stazione/"+this.props.station_id+"/Componente/"+this.state.seriale_componente)
             .then((response) => {
                 console.log(response)
-                if(response.data.operationCode == 404){
-                    this.setState(state => (state.verifica_componente.verificato  = false, state));
-                    this.setState(state => (state.verifica_componente.messaggio  = "Non trovato!", state));
-                }else{
-                    if((response.data.items != null)){
-                        if (response.data.possible_to_install){
-                            this.setState(state => (state.verifica_componente.verificato  = true, state));
-                            this.setState(state => (state.verifica_gps.messaggio  = "Trovato! Installabile", state));
-                        }else {
-                            this.setState(state => (state.verifica_gps.risultato  = false, state));
-                            this.setState(state => (state.verifica_gps.messaggio  = "Già installato presso altra stazione", state));
-                        }
+                if((response.data.item != null)){
+                    if (this.state.tipo_operazione == "Installazione"){
+                        this.setState(state => (state.verifica_componente.verificato  = false, state));
+                        this.setState(state => (state.verifica_componente.messaggio  = "Già installato!", state));
                     }else{
-                        this.setState(state => (state.verifica_gps.risultato  = false, state));
-                        this.setState(state => (state.verifica_gps.messaggio  = "Questo seriale non appartiene ad un GPS", state));
+                        this.setState(state => (state.verifica_componente.verificato  = true, state));
+                        this.setState(state => (state.verifica_componente.messaggio  = "Ok!", state));
                     }
+                    componente.produttore = response.data.item.produttore;
+                    componente.nome = response.data.item.nome;
+                    componente.larghezza = response.data.item.larghezza_mm;
+                    componente.altezza = response.data.item.altezza_mm;
+                    componente.profondita = response.data.item.profondita_mm;
+                    this.setState({componente});
+                }else{
+                    axios.get("api/Componente/"+this.state.seriale_componente)
+                    .then((response) => {
+                        console.log(response)
+                        if(response.data.item != null){
+                            if(this.state.tipo_operazione == "Installazione" && response.data.possible_to_install){
+                                this.setState(state => (state.verifica_componente.verificato  = true, state));
+                                this.setState(state => (state.verifica_componente.messaggio  = "Installabile!", state));
+                            }else if(this.state.tipo_operazione != "Installazione" && response.data.possible_to_install){
+                                this.setState(state => (state.verifica_componente.verificato  = false, state));
+                                this.setState(state => (state.verifica_componente.messaggio  = "Non presente in stazione!", state));
+                            }else{
+                                this.setState(state => (state.verifica_componente.verificato  = false, state));
+                                this.setState(state => (state.verifica_componente.messaggio  = "Installato in altra stazione!", state));
+                            }
+                        }else{
+                            this.setState(state => (state.verifica_componente.verificato  = false, state));
+                            this.setState(state => (state.verifica_componente.messaggio  = "Questo seriale non appartiene a nessun componente", state));
+                        }
+                    })
+                    
+                    
                 }
+                
             })
+    }
+
+    addOperation = () => {
+        var info = this.state;
+        if (info.tipo_operazione == "" || info.data_inizio_operazione == "" || info.data_fine_operazione == "" || !(info.verifica_componente.verificato) || 
+            info.operatore_incaricato == "" || info.seriale_componente == ""){
+                this.setState(state => (state.registrazione.chiamata  = true, state));
+                this.setState(state => (state.registrazione.stato  = false, state));
+                this.setState(state => (state.registrazione.messaggio  = "Campi richiesti non inseriti!", state));
+                return 
+            }
+        axios.post('/api/Stazione/'+this.props.station_id+'/Operazione', {
+            tipo_operazione:info.tipo_operazione,
+            data_inizio_operazione:info.data_inizio_operazione,
+            data_fine_operazione:info.data_fine_operazione,
+            seriale_componente:info.seriale_componente,
+            operatore_incaricato:info.operatore_incaricato,
+            note:info.note,
+          })
+          .then((response) => {
+            this.setState(state => (state.registrazione.chiamata  = true, state));
+            
+            if (response.data["operationCode"] != 200){
+                this.setState(state => (state.registrazione.stato  = false, state));
+                this.setState(state => (state.registrazione.messaggio  = response.data.message, state));
+            
+            }else{
+                if(this._isMounted){
+                    this.setState(state => (state.registrazione.stato  = true, state));
+                this.setState(state => (state.registrazione.messaggio  = "Registrazione avvenuta con successo", state));
+            
+                }
+            }
+          })
+         
     }
     render() {
         
@@ -125,7 +207,7 @@ export default class AddOperation extends Component {
                             <Grid.Row  columns={3}>
                                 <Grid.Column>
                                 <Selecter
-                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Operazione",style:{flexGrow:1},value:"",
+                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Operazione",style:{flexGrow:1},value:this.state.tipo_operazione,
                                     customHandler:this.handleTipoOperazioneChange,helperText:"*Campo richiesto",name:"tipo_stazione",error:false}}
                                     items={[{"key":"Installazione","value":"Installazione"},{"key":"Manutenzione","value":"Manutenzione"},
                                             {"key":"Rimozione","value":"Rimozione"}]}/>
@@ -136,7 +218,7 @@ export default class AddOperation extends Component {
                                                                     id:"datainizio_picker",
                                                                     label:"Data Inizio Operazione",
                                                                     name:"data_inizio_op"
-                                                                    }}
+                                                                }}
                                                         onChange={this.handleDateInzioOperazioniChange}/>
                                 </Grid.Column>
                                 <Grid.Column>
@@ -158,44 +240,45 @@ export default class AddOperation extends Component {
                             <Grid.Row style={{paddingBottom:0}} style={{paddingBottom:0}}>
                                     <Grid.Column width={5}  >   
                                         <TextField  id="seriale_componente_textfield" label="N. Seriale Componente" variant="outlined" required 
-                                            helperText="*Campo Richiesto"  value={this.state.seriale_componente}
+                                            helperText={this.state.verifica_componente.messaggio} error={this.state.verifica_componente.verificato?false:true
+                                            } value={this.state.seriale_componente}
                                             onChange={this.handleSerialeChange}>
                                         </TextField>
                                     </Grid.Column>
                                     <Grid.Column width={2} >
-                                        <IconButton aria-label="delete" onClick={() => {this.setState({test:"OK"})}}>
-                                            <CheckCircleIcon fontSize="large" style={{ color: green[500] }} />
+                                        <IconButton aria-label="delete" onClick={this.handleCheckComponenteSeriale}>
+                                            <CheckCircleIcon fontSize="large" style={this.state.verifica_componente.verificato?{ color: green[500] }:{ color: red[500] }} />
                                         </IconButton>
                                     </Grid.Column>
                                     <Grid.Column  width={6} floated="right">
-                                        <TextField disabled id="produttore_textfield" label="Produttore" variant="standard"  fullWidth/>             
+                                        <TextField disabled id="produttore_textfield" value={this.state.componente.produttore} label="Produttore" variant="standard"  fullWidth/>             
                                     </Grid.Column>
                             </Grid.Row>
                                 <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     
                                     <Grid.Column width={6} floated="right">
-                                        <TextField disabled id="nome_textfield" label="Nome Componente" variant="standard"  fullWidth
+                                        <TextField disabled id="nome_textfield" value={this.state.componente.nome} label="Nome Componente" variant="standard"  fullWidth
                                                         >
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     <Grid.Column width={6} floated="right">
-                                        <TextField  disabled id="larghezza_textfield" label="Larghezza (mm)" variant="standard"  fullWidth
+                                        <TextField  disabled id="larghezza_textfield" value={this.state.componente.larghezza} label="Larghezza (mm)" variant="standard"  fullWidth
                                         >
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     <Grid.Column width={6} floated="right">
-                                        <TextField disabled id="altezza_textfield" label="Altezza (mm)" variant="standard"  fullWidth
+                                        <TextField disabled id="altezza_textfield" value={this.state.componente.altezza} label="Altezza (mm)" variant="standard"  fullWidth
                                                         >
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     <Grid.Column width={6} floated="right">
-                                        <TextField disabled id="profondita_textfield" label="Profondità (mm)" variant="standard"  fullWidth
+                                        <TextField disabled id="profondita_textfield" value={this.state.componente.profondita} label="Profondità (mm)" variant="standard"  fullWidth
                                                         >
                                             </TextField>
                                     </Grid.Column>
@@ -210,7 +293,7 @@ export default class AddOperation extends Component {
                                 <Grid.Column width={6}>
                                 <Selecter
                                     properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Operatore",style:{flexGrow:1},value:"",
-                                    customHandler:this.handleResponsabileChange,helperText:"*Campo richiesto",required:true,name:"Operatore",error:false}}
+                                    customHandler:this.handleOperatoreIncaricatoChange,helperText:"*Campo richiesto",required:true,name:"Operatore",error:false}}
                                     items={this.state.operatori_list}/>
                                 </Grid.Column>
                             </Grid.Row>
@@ -230,6 +313,8 @@ export default class AddOperation extends Component {
                                         rows={5}
                                         placeholder="Inserisci nota qui.."
                                         fullWidth
+                                        onChange={this.handleNotaChange}
+                                        value={this.state.note}
                                     />
                                 </Grid.Column>
                             </Grid.Row>
@@ -241,13 +326,24 @@ export default class AddOperation extends Component {
                             Cancella
                         </Button>
                         <Button
-                            
+                            onClick={() => {this.addOperation()}}
                             positive
                             labelPosition='right'
                             icon='checkmark'
                             content='Salva'
                         />
                     </Modal.Actions>
+                    <div> 
+                    {
+                        this.state.registrazione.chiamata
+                        ?<Snackbar open={this.state.registrazione.chiamata} autoHideDuration={500} onClose={this.handleClose}>
+                            <MuiALert elevation={9} variant="filled" severity={this.state.registrazione.stato?"success":"error"}>
+                                {this.state.registrazione.messaggio}
+                            </MuiALert>
+                        </Snackbar>
+                        :<div></div>
+                    }   
+                </div>
                 </Modal>
         </>
         )

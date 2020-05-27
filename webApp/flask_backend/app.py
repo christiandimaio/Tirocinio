@@ -66,14 +66,15 @@ api.add_resource(GetOperatoriListed,'/api/Operatori/selecter')
 api.add_resource(PostStazioneSismica,'/api/Stazione')
 api.add_resource(GetStazioneSismicaInfo,'/api/Stazioni/info')
 api.add_resource(GetOperazioniStazione,"/api/Stazione/<string:codice_stazione>/Operazioni")
-api.add_resource(GetComponenteStazione,'/api/Stazione/<string:codice_stazione>/Componenti/<string:seriale>')
+api.add_resource(GetComponenteStazione,'/api/Stazione/<string:codice_stazione>/Componente/<string:seriale>')
+api.add_resource(InsertOperazione,"/api/Stazione/<string:codice_stazione>/Operazione")
 """______----------------------------------------------------------------------"""
 """    NRL    """
 
 
 api.add_resource(CheckIfNrlIsUpdating,'/api/NRL/update/status')
 api.add_resource(UpdateNrl,"/api/NRL/update")
-api.add_resource(GetStationXML,"/api/Stazioni/<string:codice_stazione>/StationXml")
+api.add_resource(GetStationXML,"/api/Stazione/<string:codice_stazione>/StationXml")
 routes = [
         "/api/NRL/<string:request_type>",
         "/api/NRL/<string:request_type>/<string:level_1>",

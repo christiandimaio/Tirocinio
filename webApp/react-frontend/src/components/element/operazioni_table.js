@@ -99,8 +99,8 @@ export default function OperazioniTable(props) {
           {
             props.operazioni.map( (operazione) => {
               
-              const data_fine = new Date(operazione["operazione"]["data_fine_operazione"]);
-              const data_inizio = new Date(operazione["operazione"]["data_inizio_operazione"]);
+              const data_fine = operazione["operazione"]["data_fine_operazione"]!=null ? new Date(operazione["operazione"]["data_fine_operazione"]):"";
+              const data_inizio = operazione["operazione"]["data_inizio_operazione"]!=null ? new Date(operazione["operazione"]["data_inizio_operazione"]):"" ;
               
               return(
                 <TableRow >
@@ -108,7 +108,7 @@ export default function OperazioniTable(props) {
                   <TableCell align="center">{operazione["operazione"]["tipo_operazione"]}</TableCell>
                   <TableCell align="center">{operazione["operatore"]["nome_cognome"]}</TableCell>
                   <TableCell align="center">{data_inizio.getFullYear()+"/"+(data_inizio.getMonth()+1)+"/"+data_inizio.getDate()}</TableCell>
-                  <TableCell align="center">{data_fine.getFullYear()+"/"+(data_fine.getMonth()+1)+"/"+data_fine.getDate()}</TableCell>
+                  <TableCell align="center">{data_fine!=""?data_fine.getFullYear()+"/"+(data_fine.getMonth()+1)+"/"+data_fine.getDate():""}</TableCell>
                 </TableRow>
               )
             })

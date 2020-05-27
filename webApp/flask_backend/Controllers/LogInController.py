@@ -25,7 +25,7 @@ class Auth(Resource):
             user = Log_In.select(lambda user: user.email == email).first()
             if user:
                 if user.is_online:
-                    return jsonify(operationCode=201, message="Utente già loggato!")
+                    return jsonify(operationCode=200, message="Utente già loggato!")
                 if user.password == password:
                     user.remember_me = rememberME
                     user.is_online = True

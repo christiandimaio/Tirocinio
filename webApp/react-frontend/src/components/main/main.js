@@ -54,6 +54,7 @@ export default class Main extends React.Component{
   }
   addOperationDialogClose = () => {
     this.setState({openAddOperationModal:false,addOperation_StationId:""});
+    this.retrieveStationInfo()
   }
 
   

@@ -118,3 +118,28 @@ class GetComponenteStazione(Resource):
         else:
             return jsonify(operationCode=404, message="Not Found")
         return jsonify(operationCode=500, message="Internal Error")
+
+class InsertOperazione(Resource):
+    @staticmethod
+    def post(codice_stazione):
+        with db_session:
+            try:
+                stazione = Stazione_Sismica.select(lambda stazione:stazione.codice_stazione==codice_stazione)\
+                                            .first()
+                operatore_incaricato = Operatore[request.json["operatore_incaricato"]]
+
+                componente = Componente.select(lambda componente: componente.seriale == request.json["seriale_componente"])\
+                                        .first()
+                if stazione and operatore_incaricato and componente:
+                    operazione = Operazione(stazione_sismica=stazione,
+                                             componente=componente,
+                                             operatore=operatore_incaricato,
+                                             data_inizio_operazione=request.json["data_inizio_operazione"],
+                                             data_fine_operazione=request.json["data_fine_operazione"],
+                                             tipo_operazione= request.json["tipo_operazione"],
+                                             note_operazione=request.json["note"])
+                    return jsonify(operationCode="200")
+            except Exception as ex:
+                rollback()
+                return jsonify(operationCode=500, message="OPS! Qualcosa è andato storto")
+        return jsonify(operationCode=500,message="OPS! Qualcosa è andato storto")
