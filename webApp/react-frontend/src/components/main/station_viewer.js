@@ -17,7 +17,7 @@ import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PermDataSettingIcon from '@material-ui/icons/PermDataSetting';
 import { Grid } from 'semantic-ui-react';
-import {TextField, FormControl,Snackbar} from '@material-ui/core';
+import StationInfo from '../element/station_info.js';
 import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -98,41 +98,20 @@ function ScrollableTabsButtonForce(props) {
         <TabPanel value={value} index={0}>
           <Box display="flex"   width="100%">
               <Paper elevation={3} style={{padding:6,width:"100%"}}>
-                  <Grid padded style={{width:"100%"}}>
-                      <Grid.Row columns={1} >
-                          <Grid.Column width={5} floated="left">
-                              <h5>TEST</h5>
-                          </Grid.Column>
-                      </Grid.Row>
-                      <Grid.Row columns={1} >
-                          <Grid.Column width={5} floated="left">
-                          <h5>TEST</h5>
-                          </Grid.Column>
-                      </Grid.Row>
-                      <Grid.Row columns={1} >
-                          <Grid.Column width={5} floated="left">
-                          <h5>TEST</h5>
-                          </Grid.Column>
-                      </Grid.Row>
-                      <Grid.Row columns={1} >
-                          <Grid.Column width={5} floated="left">
-                          <h5>TEST</h5>
-                          </Grid.Column>
-                      </Grid.Row>
-                  </Grid>
+                  <StationInfo id_station={props.id_station}/>
               </Paper>
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1} >
-            <Grid style={{flexGrow:1}}>
-              <Grid.Row columns={1}>
-                <Grid.Column width={16}>
-                <OperazioniTable operazioni = {props.operazioni}/>  
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-                
-            
+          <Grid >
+            <Grid.Row columns={1}>
+              <Grid.Column width={16}>
+                <Paper style={{overflowY:"auto",overflowX:"auto"}}>
+                  <OperazioniTable operazioni = {props.operazioni}/>  
+                </Paper>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>   
         </TabPanel>
         <TabPanel value={value} index={2}>
             In costruzione
@@ -154,42 +133,46 @@ export default class StationViewer extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            operazioni_stazione : []
+            operazioni_stazione : [],
+            info_stazione: null
         }
     }
 
     componentDidUpdate(prevProps,prevState) {
         if (this.props.id_station !== prevProps.id_station) {
             this.getOperazioniStazione()
+            
         }
     }
 
     componentDidMount(){
         console.log("-------------------------------------------------");
         this.getOperazioniStazione()
+        
     }
 
     getOperazioniStazione = () => {
         axios.get('/api/Stazione/'+this.props.id_station+'/Operazioni')
         .then((response) => {
-          
             console.log(response.data["data"]);
                 this.setState({
                     operazioni_stazione: response.data["data"]
-                });
-            
+                }); 
         })
         .catch((error) => {
             
         }
         );
     }
+
+    
+
     render(){
         return(
             <Box display="flex" width="100%" height="100%" flexDirection="column">
                 
                 <Box display="flex" flexGrow={1}  >
-                    <ScrollableTabsButtonForce operazioni = {this.state.operazioni_stazione}></ScrollableTabsButtonForce>
+                    <ScrollableTabsButtonForce operazioni = {this.state.operazioni_stazione} id_station={this.props.id_station}></ScrollableTabsButtonForce>
                 </Box>
                 
                     <Fab variant="extended" style={{width:"5%",marginLeft:6,marginBottom:9}} onClick={() => this.props.close()}>

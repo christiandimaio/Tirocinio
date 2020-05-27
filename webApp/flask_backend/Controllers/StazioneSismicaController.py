@@ -74,6 +74,22 @@ class GetStazioneSismicaInfo(Resource):
                 })
         return jsonify(data=list)
 
+class GetStazione(Resource):
+    @staticmethod
+    def get(codice_stazione):
+        operatori=[]
+        with db_session:
+            stazione = Stazione_Sismica.select(lambda stazione: stazione.codice_stazione==codice_stazione).first()
+            if stazione:
+                responsabili = list(stazione.responsabili.operatore)
+                for resposabile in responsabili:
+                    operatori.append(""+resposabile.nome+" "+resposabile.cognome)
+                return jsonify(operationCode=200,item=stazione.to_dict(),responsabili=operatori,nota=stazione.note.nota)
+            else:
+                return jsonify(operationCode=404)
+        return jsonify(operationCode=500)
+
+
 class GetOperazioniStazione(Resource):
     @staticmethod
     def get(codice_stazione):

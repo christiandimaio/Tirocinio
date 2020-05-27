@@ -67,7 +67,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Box from '@material-ui/core/Box';
-
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
 const useStyles = makeStyles({
   table: {
     flexGrow:1
@@ -78,38 +81,67 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
+function Row(props) {
+  const { operazione } = props;
+  const { data_inizio } = props;
+  const { data_fine } = props;
+  const [open, setOpen] = React.useState(false);
+
+  return (
+          <React.Fragment>
+            <TableRow >
+              <TableCell>
+                <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+                  {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                </IconButton>
+              </TableCell>
+              
+              <TableCell align="center">{operazione["componente"]["seriale"]}</TableCell>
+              <TableCell align="center">{operazione["operazione"]["tipo_operazione"]}</TableCell>
+              <TableCell align="center">{operazione["operatore"]["nome_cognome"]}</TableCell>
+              <TableCell align="center">{data_inizio.getFullYear()+"/"+(data_inizio.getMonth()+1)+"/"+data_inizio.getDate()}</TableCell>
+              <TableCell align="center">{data_fine!=""?data_fine.getFullYear()+"/"+(data_fine.getMonth()+1)+"/"+data_fine.getDate():""}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                  <Box margin={1} justifyContent="center">
+                    Note : {operazione["operatore"]["note"]}
+                  </Box>
+                </Collapse>
+              </TableCell>
+            </TableRow>
+          </React.Fragment>
+  );
+}
 
 export default function OperazioniTable(props) {
   const classes = useStyles();
-
+  const [open, setOpen] = React.useState(false);
   
   return (
     <TableContainer component={Box} >
       <Table className={classes.table} size="small" aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Seriale</TableCell>
-            <TableCell align="center">Tipo Operazione</TableCell>
-            <TableCell align="center">Operatore</TableCell>
-            <TableCell align="center">Data Inizio Operazione</TableCell>
-            <TableCell align="center">Data Fine Operazione</TableCell>
+            <TableCell align="center" size="small"></TableCell>
+            <TableCell align="center" size="small">Seriale</TableCell>
+            <TableCell align="center" size="small">Tipo Operazione</TableCell>
+            <TableCell align="center" size="small">Operatore</TableCell>
+            <TableCell align="center" size="small">Data Inizio Operazione</TableCell>
+            <TableCell align="center" size="small">Data Fine Operazione</TableCell>
+            
           </TableRow>
         </TableHead>
         <TableBody>
           {
             props.operazioni.map( (operazione) => {
-              
+              console.log(operazione)
               const data_fine = operazione["operazione"]["data_fine_operazione"]!=null ? new Date(operazione["operazione"]["data_fine_operazione"]):"";
               const data_inizio = operazione["operazione"]["data_inizio_operazione"]!=null ? new Date(operazione["operazione"]["data_inizio_operazione"]):"" ;
               
               return(
-                <TableRow >
-                  <TableCell align="center">{operazione["componente"]["seriale"]}</TableCell>
-                  <TableCell align="center">{operazione["operazione"]["tipo_operazione"]}</TableCell>
-                  <TableCell align="center">{operazione["operatore"]["nome_cognome"]}</TableCell>
-                  <TableCell align="center">{data_inizio.getFullYear()+"/"+(data_inizio.getMonth()+1)+"/"+data_inizio.getDate()}</TableCell>
-                  <TableCell align="center">{data_fine!=""?data_fine.getFullYear()+"/"+(data_fine.getMonth()+1)+"/"+data_fine.getDate():""}</TableCell>
-                </TableRow>
+                <Row operazione={operazione} data_inizio={data_inizio} data_fine={data_fine}/>
               )
             })
           }
