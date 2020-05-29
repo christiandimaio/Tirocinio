@@ -102,10 +102,10 @@ function Row(props) {
               <TableCell align="center">{data_inizio.getFullYear()+"/"+(data_inizio.getMonth()+1)+"/"+data_inizio.getDate()}</TableCell>
               <TableCell align="center">{data_fine!=""?data_fine.getFullYear()+"/"+(data_fine.getMonth()+1)+"/"+data_fine.getDate():""}</TableCell>
             </TableRow>
-            <TableRow>
+            <TableRow style={{width:"50%"}}>
               <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                 <Collapse in={open} timeout="auto" unmountOnExit>
-                  <Box margin={1} justifyContent="center">
+                  <Box  justifyContent="center" display="flex">
                     Note : {operazione["operatore"]["note"]}
                   </Box>
                 </Collapse>

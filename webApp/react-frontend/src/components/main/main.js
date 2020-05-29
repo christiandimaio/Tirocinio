@@ -20,6 +20,7 @@ import { Divider,Header } from 'semantic-ui-react'
 import Button from '@material-ui/core/Button';
 import AddOperation from '../element/add_operation.js';
 import StationViewer from './station_viewer.js';
+import 'typeface-roboto';
 export default class Main extends React.Component{
   _isMounted=false;
   constructor(props){
@@ -127,7 +128,6 @@ export default class Main extends React.Component{
                     <AddOperation open={this.state.openAddOperationModal} handleClose={this.addOperationDialogClose} station_id={this.state.addOperation_StationId}/>
                     <AddNewStation callReRender={this.retrieveStationInfo}/>
                 </Grid.Column>
-                
               </Grid>                       
                         
               <Grid padded columns="1" style={{flexGrow:1,maxHeight:"100%"}}>

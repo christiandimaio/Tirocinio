@@ -79,14 +79,17 @@ class GetStazione(Resource):
     def get(codice_stazione):
         operatori=[]
         with db_session:
-            stazione = Stazione_Sismica.select(lambda stazione: stazione.codice_stazione==codice_stazione).first()
-            if stazione:
-                responsabili = list(stazione.responsabili.operatore)
-                for resposabile in responsabili:
-                    operatori.append(""+resposabile.nome+" "+resposabile.cognome)
-                return jsonify(operationCode=200,item=stazione.to_dict(),responsabili=operatori,nota=stazione.note.nota)
-            else:
-                return jsonify(operationCode=404)
+            try:
+                stazione = Stazione_Sismica.select(lambda stazione: stazione.codice_stazione==codice_stazione).first()
+                if stazione:
+                    responsabili = list(stazione.responsabili.operatore)
+                    for resposabile in responsabili:
+                        operatori.append(""+resposabile.nome+" "+resposabile.cognome)
+                    return jsonify(operationCode=200,item=stazione.to_dict(),responsabili=operatori,nota=stazione.note.nota)
+                else:
+                    return jsonify(operationCode=404)
+            except Exception as ex:
+                return jsonify(operationCode=500)
         return jsonify(operationCode=500)
 
 
