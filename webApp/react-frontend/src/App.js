@@ -37,7 +37,7 @@ class App extends React.Component{
     constructor(){
         super();
         this.state = {
-            visibleSection : "main",
+            visibleSection : "logIN",
             lockApp: {
                 lockState:false,
                 lockMessage:""

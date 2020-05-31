@@ -8,7 +8,7 @@ export default class StationMap extends React.Component {
     this.state = {
       lat: 40.863,
       lng: 14.2767,
-      zoom: 12
+      zoom: 8
     }
   }
 

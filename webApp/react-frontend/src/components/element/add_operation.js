@@ -17,13 +17,15 @@ import DateTimePicker from './date_picker.js'
 import MuiALert from '@material-ui/lab/Alert';
 import axios from 'axios';
 export default class AddOperation extends Component {
-    _isMounted=false
+    _isMounted=false;
+    today=new Date();
     constructor(props){
         super(props);
+       
         this.state={ 
             tipo_operazione:"Installazione",
-            data_fine_operazione:"",
             data_inizio_operazione:"",
+            data_fine_operazione:"",
             seriale_componente:"",
             verifica_componente:{
                 verificato:false,
@@ -57,6 +59,13 @@ export default class AddOperation extends Component {
         }
     componentDidMount(){
         this._isMounted=true
+
+        if(this._isMounted){
+
+            this.setState({data_inizio_operazione:this.today.getFullYear()+"/"+(this.today.getMonth()+1)+"/"+this.today.getDate(),
+                            data_fine_operazione:this.today.getFullYear()+"/"+(this.today.getMonth()+1)+"/"+this.today.getDate()})
+        }
+
         axios.get("api/Operatori/selecter")
             .then((response) => {
                 console.log(response.data);
@@ -94,6 +103,7 @@ export default class AddOperation extends Component {
         if (event.target.value != "Altro"){
             this.setState(state => (state.verifica_componente.verificato  = false, state));
             this.setState(state => (state.verifica_componente.messaggio  = "Verifica", state));
+            this.setState({disabilita_controllo_componente:false});
         }else{
             this.setState(state => (state.verifica_componente.verificato  = true, state));
             this.setState(state => (state.verifica_componente.messaggio  = "Non necessario", state));
@@ -125,7 +135,6 @@ export default class AddOperation extends Component {
         let {componente} = this.state;
         axios.get("api/Stazione/"+this.props.station_id+"/Componente/"+this.state.seriale_componente)
             .then((response) => {
-                console.log(response)
                 if((response.data.item != null)){
                     if (this.state.tipo_operazione == "Installazione"){
                         this.setState(state => (state.verifica_componente.verificato  = false, state));
@@ -143,7 +152,7 @@ export default class AddOperation extends Component {
                 }else{
                     axios.get("api/Componente/"+this.state.seriale_componente)
                     .then((response) => {
-                        console.log(response)
+                        
                         if(response.data.item != null){
                             if(this.state.tipo_operazione == "Installazione" && response.data.possible_to_install){
                                 this.setState(state => (state.verifica_componente.verificato  = true, state));
@@ -155,10 +164,17 @@ export default class AddOperation extends Component {
                                 this.setState(state => (state.verifica_componente.verificato  = false, state));
                                 this.setState(state => (state.verifica_componente.messaggio  = "Installato in altra stazione!", state));
                             }
+                            componente.produttore = response.data.item.produttore;
+                            componente.nome = response.data.item.nome;
+                            componente.larghezza = response.data.item.larghezza_mm;
+                            componente.altezza = response.data.item.altezza_mm;
+                            componente.profondita = response.data.item.profondita_mm;
+                            this.setState({componente});
                         }else{
                             this.setState(state => (state.verifica_componente.verificato  = false, state));
                             this.setState(state => (state.verifica_componente.messaggio  = "Questo seriale non appartiene a nessun componente", state));
                         }
+
                     })
                     
                     
@@ -249,7 +265,7 @@ export default class AddOperation extends Component {
                                     <Grid.Column width={5}  >   
                                         <TextField  id="seriale_componente_textfield" label="N. Seriale Componente" variant="outlined" required 
                                             helperText={this.state.verifica_componente.messaggio} error={this.state.verifica_componente.verificato?false:true
-                                            } value={this.state.seriale_componente}
+                                            } value={this.state.disabilita_controllo_componente?"":this.state.seriale_componente}
                                             onChange={this.handleSerialeChange} disabled={this.state.disabilita_controllo_componente}>
                                         </TextField>
                                     </Grid.Column>
@@ -259,34 +275,34 @@ export default class AddOperation extends Component {
                                         </IconButton>
                                     </Grid.Column>
                                     <Grid.Column  width={6} floated="right">
-                                        <TextField disabled id="produttore_textfield" value={this.state.componente.produttore} label="Produttore" variant="standard"  fullWidth/>             
+                                        <TextField disabled id="produttore_textfield" value={this.state.disabilita_controllo_componente?"":this.state.componente.produttore} label="Produttore" variant="standard"  fullWidth/>             
                                     </Grid.Column>
                             </Grid.Row>
                                 <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     
                                     <Grid.Column width={6} floated="right">
-                                        <TextField disabled id="nome_textfield" value={this.state.componente.nome} label="Nome Componente" variant="standard"  fullWidth
+                                        <TextField disabled id="nome_textfield" value={this.state.disabilita_controllo_componente?"":this.state.componente.nome} label="Nome Componente" variant="standard"  fullWidth
                                                         >
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     <Grid.Column width={6} floated="right">
-                                        <TextField  disabled id="larghezza_textfield" value={this.state.componente.larghezza} label="Larghezza (mm)" variant="standard"  fullWidth
+                                        <TextField  disabled id="larghezza_textfield" value={this.state.disabilita_controllo_componente?"":this.state.componente.larghezza} label="Larghezza (mm)" variant="standard"  fullWidth
                                         >
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     <Grid.Column width={6} floated="right">
-                                        <TextField disabled id="altezza_textfield" value={this.state.componente.altezza} label="Altezza (mm)" variant="standard"  fullWidth
+                                        <TextField disabled id="altezza_textfield" value={this.state.disabilita_controllo_componente?"":this.state.componente.altezza} label="Altezza (mm)" variant="standard"  fullWidth
                                                         >
                                             </TextField>
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row style={{paddingBottom:0,paddingTop:0}}>
                                     <Grid.Column width={6} floated="right">
-                                        <TextField disabled id="profondita_textfield" value={this.state.componente.profondita} label="Profondità (mm)" variant="standard"  fullWidth
+                                        <TextField disabled id="profondita_textfield" value={this.state.disabilita_controllo_componente?"":this.state.componente.profondita} label="Profondità (mm)" variant="standard"  fullWidth
                                                         >
                                             </TextField>
                                     </Grid.Column>

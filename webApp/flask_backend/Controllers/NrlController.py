@@ -124,5 +124,5 @@ class GetStationXML(Resource):
                                        p_datalogger=canale.acquisitore.nrl.getKeys()
                                        )
             stationXML.make_xml(p_file_name="{0}.xml".format(stazione.codice_stazione))
-            return send_file("{0}.xml".format(stazione.codice_stazione),as_attachment=True)
+            return send_file("INGV_OV_{0}.xml".format(stazione.codice_stazione),as_attachment=True)
 
