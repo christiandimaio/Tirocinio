@@ -41,6 +41,7 @@ export default class AddOperation extends Component {
                 altezza:"",
                 profondita:"",
             },
+            disabilita_controllo_componente:false,
             operatore_incaricato:"",
             note:""
         }
@@ -90,9 +91,16 @@ export default class AddOperation extends Component {
     }
 
     handleTipoOperazioneChange = (event,name) => {
-        this.setState({tipo_operazione:event.target.value});
-        this.setState(state => (state.verifica_componente.verificato  = false, state));
-        this.setState(state => (state.verifica_componente.messaggio  = "Verifica", state));
+        if (event.target.value != "Altro"){
+            this.setState(state => (state.verifica_componente.verificato  = false, state));
+            this.setState(state => (state.verifica_componente.messaggio  = "Verifica", state));
+        }else{
+            this.setState(state => (state.verifica_componente.verificato  = true, state));
+            this.setState(state => (state.verifica_componente.messaggio  = "Non necessario", state));
+            this.setState({disabilita_controllo_componente:true});
+        }
+            this.setState({tipo_operazione:event.target.value});
+            
     }
 
     handleSerialeChange = (event) => this.setState({seriale_componente:event.target.value})
@@ -162,7 +170,7 @@ export default class AddOperation extends Component {
     addOperation = () => {
         var info = this.state;
         if (info.tipo_operazione == "" || info.data_inizio_operazione == "" || info.data_fine_operazione == "" || !(info.verifica_componente.verificato) || 
-            info.operatore_incaricato == "" || info.seriale_componente == ""){
+            info.operatore_incaricato == "" || (info.seriale_componente == "" && info.tipo_operazione !="Altro")){
                 this.setState(state => (state.registrazione.chiamata  = true, state));
                 this.setState(state => (state.registrazione.stato  = false, state));
                 this.setState(state => (state.registrazione.messaggio  = "Campi richiesti non inseriti!", state));
@@ -172,7 +180,7 @@ export default class AddOperation extends Component {
             tipo_operazione:info.tipo_operazione,
             data_inizio_operazione:info.data_inizio_operazione,
             data_fine_operazione:info.data_fine_operazione,
-            seriale_componente:info.seriale_componente,
+            seriale_componente:this.state.tipo_operazione != "Altro"?info.seriale_componente:"",
             operatore_incaricato:info.operatore_incaricato,
             note:info.note,
           })
@@ -210,7 +218,7 @@ export default class AddOperation extends Component {
                                     properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Operazione",style:{flexGrow:1},value:this.state.tipo_operazione,
                                     customHandler:this.handleTipoOperazioneChange,helperText:"*Campo richiesto",name:"tipo_stazione",error:false}}
                                     items={[{"key":"Installazione","value":"Installazione"},{"key":"Manutenzione","value":"Manutenzione"},
-                                            {"key":"Rimozione","value":"Rimozione"}]}/>
+                                            {"key":"Rimozione","value":"Rimozione"},{"key":"Altro","value":"Altro"}]}/>
                                 </Grid.Column>
                                 <Grid.Column >
                                     <DateTimePicker properties={{
@@ -242,11 +250,11 @@ export default class AddOperation extends Component {
                                         <TextField  id="seriale_componente_textfield" label="N. Seriale Componente" variant="outlined" required 
                                             helperText={this.state.verifica_componente.messaggio} error={this.state.verifica_componente.verificato?false:true
                                             } value={this.state.seriale_componente}
-                                            onChange={this.handleSerialeChange}>
+                                            onChange={this.handleSerialeChange} disabled={this.state.disabilita_controllo_componente}>
                                         </TextField>
                                     </Grid.Column>
                                     <Grid.Column width={2} >
-                                        <IconButton aria-label="delete" onClick={this.handleCheckComponenteSeriale}>
+                                        <IconButton aria-label="delete" onClick={this.handleCheckComponenteSeriale} disabled={this.state.disabilita_controllo_componente}>
                                             <CheckCircleIcon fontSize="large" style={this.state.verifica_componente.verificato?{ color: green[500] }:{ color: red[500] }} />
                                         </IconButton>
                                     </Grid.Column>

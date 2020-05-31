@@ -96,8 +96,8 @@ function ScrollableTabsButtonForce(props) {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <Box display="flex"   width="100%">
-              <Paper elevation={3} style={{padding:6,width:"100%"}}>
+          <Box display="flex" flexGrow={1} height={1}>
+              <Paper elevation={3} style={{padding:6,flexGrow:1,width:"100%",height:"100%"}}>
                   <StationInfo id_station={props.id_station}/>
               </Paper>
           </Box>

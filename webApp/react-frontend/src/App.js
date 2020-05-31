@@ -121,6 +121,8 @@ class App extends React.Component{
                 return(
                     <>
                         <Main/> 
+                        <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:this.state.lockApp.lockState}}/>
+                    
                     </>
                 );
             case "default":

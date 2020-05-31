@@ -103,9 +103,9 @@ class GetOperazioniStazione(Resource):
             for operazione in operazioni:
                 result.append({
                     "componente":{
-                        "seriale":operazione.componente.seriale,
-                        "produttore":operazione.componente.produttore,
-                        "nome":operazione.componente.nome
+                        "seriale":operazione.componente.seriale if operazione.componente is not None else "",
+                        "produttore":operazione.componente.produttore if operazione.componente is not None else "",
+                        "nome":operazione.componente.nome if operazione.componente is not None else ""
                     },
                     "operazione":{
                         "tipo_operazione":operazione.tipo_operazione,
