@@ -51,11 +51,16 @@ class GetStazioneSismicaInfo(Resource):
     @staticmethod
     def get():
         with db_session:
-            stazioni = select((stazioni, avg(stazioni.localizzazioni.latitudine),
-                               avg(stazioni.localizzazioni.longitudine), count(stazioni.operazioni_svolte)) for stazioni
-                              in Stazione_Sismica)
+            stazioni = select((stazione, localizzazione.latitudine,
+                               localizzazione.longitudine, count(stazione.operazioni_svolte))
+                              for stazione in Stazione_Sismica
+                              for localizzazione in stazione.localizzazioni
+                              if localizzazione.ultimo_aggiornamento == max(stazione.localizzazioni.ultimo_aggiornamento))
             list = []
             for stazione in stazioni:
+                storico_coordinate = (Localizzazione
+                                          .select(lambda localizzazione:
+                                                        localizzazione.stazione_sismica == stazione[0])[:]).to_list()
                 list.append({
                     "id_univoco": stazione[0].id,
                     "tipo_stazione": stazione[0].tipo_stazione,
@@ -64,7 +69,8 @@ class GetStazioneSismicaInfo(Resource):
                     "numero_operazioni": stazione[3],
                     "latitudine": stazione[1],
                     "longitudine": stazione[2],
-                    "is_attiva": stazione[0].is_attiva()
+                    "is_attiva": stazione[0].is_attiva(),
+                    "storico_coordinate":[localizzazione.to_dict() for localizzazione in storico_coordinate]
                 })
         return jsonify(data=list)
 
@@ -75,16 +81,24 @@ class GetStazione(Resource):
         with db_session:
             try:
                 stazione = Stazione_Sismica.select(lambda stazione: stazione.codice_stazione==codice_stazione).first()
+                storico_coordinate = (Localizzazione
+                                          .select(lambda localizzazione:
+                                                  localizzazione.stazione_sismica == stazione)[:]).to_list()
                 if stazione:
                     responsabili = list(stazione.responsabili.operatore)
                     for resposabile in responsabili:
                         operatori.append(""+resposabile.nome+" "+resposabile.cognome)
-                    return jsonify(operationCode=200,item=stazione.to_dict(),responsabili=operatori,nota=stazione.note.nota)
+                    return jsonify(operationCode=200,
+                                   item=stazione.to_dict(),
+                                   responsabili=operatori,
+                                   nota=stazione.note.nota,
+                                   storico_coordinate=[localizzazione.to_dict() for localizzazione in storico_coordinate])
                 else:
                     return jsonify(operationCode=404)
             except Exception as ex:
                 return jsonify(operationCode=500)
         return jsonify(operationCode=500)
+
 
 
 class GetOperazioniStazione(Resource):
