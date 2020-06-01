@@ -31,7 +31,8 @@ export default class DateTimePicker extends React.Component {
 
         return(
             <MuiPickersUtilsProvider utils={DateFnsUtils} locale={itLocale}>
-                                            <KeyboardDatePicker        
+                                            <KeyboardDatePicker       
+                                            
                                                 margin="normal"
                                                 name={properties.name}
                                                 id= {properties.id}

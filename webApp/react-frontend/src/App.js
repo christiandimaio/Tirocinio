@@ -16,7 +16,10 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import 'semantic-ui-css/semantic.min.css'
 import {Grid,Image} from 'semantic-ui-react';
-import SimpleCard from './components/element/station_card.js';
+
+import Request from 'axios-request-handler';
+import Main from './components/main/main.js'
+
 const paperStyle = {};
 const styles = theme => ({
 	root: {
@@ -25,12 +28,16 @@ const styles = theme => ({
     
 });
 
+const reviews = new Request('/api/NRL/update/status');
+
+
+
 class App extends React.Component{
     _isMounted = false;
     constructor(){
         super();
         this.state = {
-            visibleSection : "logIN",
+            visibleSection : "main",
             lockApp: {
                 lockState:false,
                 lockMessage:""
@@ -38,10 +45,8 @@ class App extends React.Component{
         };
         
     }
-    componentWillMount(){
-        axios.get('api/check/directory/nrl', {
-          })
-          .then((response) => {
+    componentDidMount(){
+        reviews.poll(20000).get((response) => {
             const {result} = response.data;
             console.log(result);
             if (result == 201){     //Aggiornamento già in corso
@@ -53,11 +58,10 @@ class App extends React.Component{
                 this.releaseLockApp();
             }
             
-          })
-          .catch((error) => {
-            //ERRORE
           });
+        
     }
+
     lockAppRequest = (message) => {
         this.setState(state => (state.lockApp.lockState  = true, state));
         this.setState(state => (state.lockApp.lockMessage  = message, state))
@@ -101,73 +105,24 @@ class App extends React.Component{
             case "logIN":
                 return(
                     <Box  display="flex" width="100%" height="100%" flexDirection="column"  alignItems="center" justifyContent="center" >
-                    
-                    <Grid centered  >
-                        
-                            <Grid.Column  >
-                                <Paper elevation={3} style={{backgroundColor:"#f5f5f5",padding:"15%"}}>
-                                    
+                        <Grid centered  >
+                            <Grid.Column>
+                                <Paper elevation={3} style={{backgroundColor:"#f5f5f5",padding:"15%"}}>                                 
                                     <Login changeView={this.changeView}/>
-                                    
-                        
                                 </Paper> 
-                            </Grid.Column >
-                          
-                    </Grid>
-                    <ParticlesBg type="cobweb"  color="#1a237e" bg={true} /> 
-                    <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:this.state.lockApp.lockState}}/>
+                            </Grid.Column >   
+                        </Grid>
+                        <ParticlesBg type="cobweb"  color="#1a237e" bg={true} /> 
+                        <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:this.state.lockApp.lockState}}/>
                     </Box>
                    
                 );
             case "main":
                 return(
-                    // <Grid container direction="row" className={classes.root}>
-
-                    //         <Grid item xl={3} xs={3} style={{height:"93vh"}} spacing={2} >
-                               
-                    //         <ImageGridList></ImageGridList>
-                    //         </Grid>
-                        
-                    //     <Grid item xl={9} xs={9} style={{height:"93vh"}} spacing={2}>
-                    //       <Paper style={{height:"90%",width:"90%"}}></Paper>
-                    //     </Grid>
-                    // </Grid>
-                    // <div className={classes.root}>
-                    //     <Grid container direction="row" spacing={2}>
-
-                    //             <Grid item xl={3} xs={3} spacing={2} >
-                                
-                    //             <ImageGridList></ImageGridList>
-                    //             </Grid>
-                            
-                    //         <Grid item xl={9} xs={9} spacing={2}>
-                    //         <Paper ></Paper>
-                    //         </Grid>
-                    //     </Grid>
-                    // </div>
                     <>
-                    <Grid padded columns="1" centered style={{flexGrow:1,maxHeight:"92vh",overflow:"auto"}}>
-                                <Grid.Column mobile={16} tablet={5} computer={4} style={{flexGrow:1,maxHeight:"100%"}} >
-                                <SimpleCard/>
-                                <SimpleCard/>
-                                <SimpleCard/>
-                                <SimpleCard/>
-                                <SimpleCard/>
-                                <SimpleCard/>
-                                </Grid.Column>
-                        </Grid>
-                        <Grid padded columns="1" style={{flexGrow:1,maxHeight:"100%"}}>
-                            <Grid.Column stretched mobile={16} tablet={11} computer={16}>
-                                <Box display="flex" flexGrow={1}>
-                                <Paper elevation={3} style={{flexGrow:1}}>
-                                <Image fluid src='https://mcdn.wallpapersafari.com/medium/27/89/JuICQz.jpg'></Image>
-                                </Paper>
-                                </Box>
-                                
-                                
-                                </Grid.Column>
-                            
-                        </Grid>
+                        <Main/> 
+                        <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:this.state.lockApp.lockState}}/>
+                    
                     </>
                 );
             case "default":
@@ -178,57 +133,22 @@ class App extends React.Component{
     render(){
         const { classes } = this.props;
         return (
-                    // <Grid containter direction="column" className={classes.root}>
-
-                    //         <Grid item style={{width:"100%",height:"6vh"}} >
-                    //                 <TopBar isMain={false}  nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>   
-                    //         </Grid>
-
-                    //         <Grid item style={{width:"100%",height:"100%",paddingTop:"4vh"}} container className={classes.root}>
-                    //             {
-                    //                 this.renderSwitch()
-                    //             } 
-                    //         </Grid>
-
-                    // </Grid> 
-                    // <Grid direction="row" contatiner className={classes.root}>
-                    //     <Grid item xl={12} xs={12}>
-                            
-                    //             <TopBar isMain={false}  nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>  
-                        
-                    //     </Grid>
-                    //     <Grid item xl={12} xs={12} container>
-
-                    //     {
-                    //                     this.renderSwitch()
-                    //                 } 
-                    //     </Grid>       
-                                    
-                               
-
-                        
-                    // </Grid>
-
                     <Box display="flex" flexDirection="column" style={{height:"100vh"}}>
                         <Grid >
-                        <Grid.Row >
-                            <Grid.Column mobile={16} tablet={16} computer={16}>
-                            <TopBar isMain={false} />
-                            </Grid.Column>                     
-                        </Grid.Row>
+                            <Grid.Row >
+                                <Grid.Column mobile={16} tablet={16} computer={16}>
+                                    <TopBar isMain={this.state.visibleSection=="main"?true:false} nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>
+                                </Grid.Column>                     
+                            </Grid.Row>
                         </Grid>
-                        <Box display="flex" flexWrap="wrap" flexGrow={1} >
-                        {
-                                        this.renderSwitch()
-                                    } 
+                        <Box display="flex" flexDirection="row" flexGrow={1} >
+                            {
+                                this.renderSwitch()
+                            } 
                         </Box>
                         
-                    </Box>
-                  
-            
-
-                
-            );
+                    </Box> 
+                );
     }
 }
 App.propTypes = {

@@ -1,7 +1,7 @@
 import obspy
 from obspy.core.inventory import Inventory, Network, Station, Channel, Site
 from obspy.clients.nrl.client import LocalNRL
-import NRLWrap
+from NRLWrap import NRLWrap
 from obspy import read
 import json
 import os
@@ -32,10 +32,8 @@ class StationXMLMaker:
     get_
     """
 
-    def __init__(self, root=".\\res"):
-        if not os.path.exists(root):
-            os.mkdir(root)
-        self.my_nrl = NRLWrap(root)
+    def __init__(self, nrl_wrap):
+        self.my_nrl = nrl_wrap
 
     def get_channels(self):
         raise NotImplementedError
@@ -144,8 +142,8 @@ class JsonToStationXML(StationXMLMaker):
 
 
 class NRLToStationXML(StationXMLMaker):
-    def __init__(self,root):
-        super(NRLToStationXML, self).__init__(root)
+    def __init__(self,nrl_wrap):
+        super(NRLToStationXML, self).__init__(nrl_wrap)
         self.inventory = None
         self.network = None
         self.station = None

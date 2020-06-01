@@ -22,6 +22,7 @@ defer==1.0.6
 distro==1.3.0
 distro-info===0.21ubuntu4
 entrypoints==0.3
+filelock==3.0.12
 Flask==1.1.1
 Flask-BabelEx==0.9.3
 Flask-Compress==1.4.0
@@ -31,7 +32,7 @@ Flask-Mail==0.9.1
 Flask-Migrate==2.1.1
 Flask-Paranoid==0.2.0
 Flask-Principal==0.4.0
-Flask-Security==1.7.5
+Flask-Security-Too==3.4.2
 Flask-SQLAlchemy==2.1
 Flask-WTF==0.14.2
 future==0.18.2
@@ -47,6 +48,7 @@ language-selector==0.1
 launchpadlib==1.10.7
 lazr.restfulclient==0.14.2
 lazr.uri==1.0.3
+ldap3==2.4.1
 legacy==0.1.6
 louis==3.10.0
 lxml==4.5.0
@@ -62,12 +64,15 @@ obspy==1.2.1
 olefile==0.46
 paramiko==2.6.0
 passlib==1.7.1
+pbr==5.4.5
 pexpect==4.6.0
 Pillow==6.1.0
+pony==0.7.13
 protobuf==3.6.1
 psutil==5.5.1
 psycopg2==2.8.5
 psycopg2-binary==2.8.4
+pyasn1==0.4.2
 pycairo==1.16.2
 pycrypto==2.6.1
 pycups==1.9.73
@@ -94,11 +99,13 @@ screen-resolution-extra==0.0.0
 SecretStorage==2.3.1
 simplejson==3.16.0
 six==1.12.0
+speaklater==1.3
 SQLAlchemy==1.2.18
 sqlparse==0.2.4
 sshtunnel==0.1.4
 system-service==0.3
 systemd-python==234
+testresources==2.0.1
 ubuntu-advantage-tools==19.5
 ubuntu-drivers-common==0.0.0
 ufw==0.36

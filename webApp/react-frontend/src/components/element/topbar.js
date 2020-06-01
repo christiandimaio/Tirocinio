@@ -10,6 +10,7 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
+import FullScreenDialog from './magazzino.js'
 
 // const {MenuIcon} = MaterialUI.Menu;
 
@@ -50,7 +51,8 @@ export default class TopBar extends React.Component{
         super(props);
         this.state = {
             username : "",
-            menu:null
+            menu:null,
+            open_magazzino:false
         }
         
     }
@@ -58,14 +60,14 @@ export default class TopBar extends React.Component{
 
     updateNrlCall = async () => {
         this.props.nrlUpdateEvent.putLock("Aggiornamento NRL in corso,attendere..");
-        axios.get('api/update/NRL', {
+        axios.get('api/NRL/update', {
           })
           .then((response) => {
             const {result} = response.data;
-            if (result == 201){     //Aggiornamento già in corso
+            if (result === 201){     //Aggiornamento già in corso
                 this.props.nrlUpdateEvent.putLock("Aggiornamento NRL in corso,attendere..")         
 
-            }else if (result == 199){
+            }else if (result === 199){
                 //Errore
             }else{
                 this.props.nrlUpdateEvent.releaseLock();
@@ -77,11 +79,15 @@ export default class TopBar extends React.Component{
           });
     }
     
+    openMagazzino = (value) =>{
+      this.setState({open_magazzino:value})
+    }
+
     logout = () => {
         axios.get("api/logout"
                 ).then((response) => {
                     console.log(response);
-                    if (response.data["operationCode"]==200){
+                    if (response.data["operationCode"]===200){
                         console.log("OK, Logout");
                         window.location = "/login";
                     }
@@ -123,12 +129,28 @@ export default class TopBar extends React.Component{
                             onClose={() => {this.setState({menu:null})}}
                             
                         >
-                            <StyledMenuItem hidden={this.props.isMain?false:true} onClick={(e) => this.logout()}>
-                            <ListItemIcon>
-                                <ExitToAppIcon style={{fill: "#1a237e"}}  fontSize="small" />
-                            </ListItemIcon>
-                            <ListItemText primary="Log Out" />
-                            </StyledMenuItem>
+                          <div>
+                            { this.props.isMain
+                              ?( 
+                              <>
+                                <StyledMenuItem  onClick={(e) => this.logout()}>
+                                    <ListItemIcon>
+                                        <ExitToAppIcon style={{fill: "#1a237e"}}  fontSize="small" />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Log Out" />
+                                </StyledMenuItem>
+                                <StyledMenuItem  onClick={(e) => this.openMagazzino(true)}>
+                                  <ListItemIcon>
+                                      <ExitToAppIcon style={{fill: "#1a237e"}}  fontSize="small" />
+                                  </ListItemIcon>
+                                  <ListItemText primary="Gestisci Magazzino" />
+                                </StyledMenuItem>
+                                <FullScreenDialog open={this.state.open_magazzino} handleChange={this.openMagazzino}/>
+                              </>
+                              )
+                              :<></>
+                            } 
+                          </div>
                             <StyledMenuItem onClick={(e) => this.updateNrlCall()}>
                             <ListItemIcon>
                                 <SystemUpdateAltIcon style={{fill: "#1a237e"}}  fontSize="small" />

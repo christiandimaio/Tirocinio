@@ -14,13 +14,15 @@ import {FormControl,InputLabel,Select,FormHelperText,MenuItem} from '@material-u
             helperText:error.tipo_utente.message,
             name:"tipo_utente",
             error:error.tipo_utente.state}}
-            item= '/database/select/user/type'/> */}
+            item= '/database/select/user/type'/> 
+        required*/}
 
 export default class Selecter extends React.Component{
     constructor(props){
         super(props);
 
         this.state = {
+            value:"",
             properties:{}
         };
         
@@ -28,21 +30,28 @@ export default class Selecter extends React.Component{
                 
     }
 
+    valueChanged = (event,name) => {
+        
+        this.setState({value:event.target.value});
+        this.props.properties.customHandler(event,name);
+
+    }
     render(){
             const {properties} = this.props;
             let {items} = this.props;
                 return(
-                    <FormControl variant="outlined" error={properties.error} required fullWidth >
+                    <FormControl variant="outlined" error={properties.error} required={properties.required} fullWidth >
                                     <InputLabel id="selecter-id-label">{properties.inputLabel}</InputLabel>
                                     <Select fullWidth
                                         labelId={properties.labelId}
                                         id={properties.id}
                                         label={properties.inputLabel}
-                                        onChange={(e) => properties.customHandler(e,properties.name)}
+                                        onChange={(e) => this.valueChanged(e,properties.name)}
                                         style={properties.style}
+                                        value={this.state.value}
                                         >
                                         {
-                                            items.map(item => <MenuItem value={item}>{item}</MenuItem>)
+                                            items.map((item,i) => <MenuItem value={item.key}>{item.value}</MenuItem>)
                                         } 
                                     </Select>
                                     <FormHelperText>{properties.helperText}</FormHelperText>

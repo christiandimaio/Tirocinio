@@ -1,40 +1,55 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles({
-  
-});
+import { Button, Icon, Image, Item, Label } from 'semantic-ui-react'
+import DefaultStationImage from '../../images/stations/default.png'
 
-export default function SimpleCard() {
-  const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
-  return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
-  );
+// Proprietà componente 
+// id_stazione = identificativo della stazione
+// image_scr = Path immagine principale stazione
+// nome_stazione = Codice della stazione
+// tipo_stazione = tipologia stazione (Analogica - Digitale)
+// messa_funzione = Data di messa in funzione stazione sismica
+// numero_operazioni_svolte = Numero delle operazioni svolte sulla stazione
+// is_attiva (Stringa) = Indica sé la stazione è attiva o meno
+// getInfo (Funzione) = Funzione per avvisare il padre che è stato cliccato il bottone per vedere le info della stazione
+export default class StationCard extends React.Component {
+
+  constructor(props){
+    super(props);
+  }
+  state={
+    openAddOperationModal:false
+  }
+  render(){
+    const {properties} = this.props;
+    return(
+      <Item.Group divided>
+        <Item>
+          <Item.Image  size='tiny'  src={DefaultStationImage} />
+          <Item.Content>
+            <Item.Header as='a'>{properties.nome_stazione}</Item.Header>
+            <Item.Meta>
+              <span className='cinema'>Data messa in funzione : {properties.messa_funzione}</span>
+              <Label>{properties.tipo_stazione}</Label>
+              <Label>{properties.is_attiva}</Label>
+            </Item.Meta>
+            <Item.Description>Numero Operazioni effettuate: {properties.numero_operazioni_svolte}</Item.Description>
+            <Item.Extra>
+            
+              <Button primary floated='center' onClick={() => {properties.getInfo(properties.nome_stazione)}}>
+                Visualizza Info
+                <Icon name='right chevron'  />
+              </Button>
+              <Button primary floated='center' onClick={() => {properties.openAddOperationModal(properties.nome_stazione)}}>
+                Aggiungi Operazione
+                <Icon name='right chevron'  />
+              </Button>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+       
+      </Item.Group >
+    );
+  }
 }
