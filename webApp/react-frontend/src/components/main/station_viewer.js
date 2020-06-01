@@ -4,13 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import PhoneIcon from '@material-ui/icons/Phone';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import HelpIcon from '@material-ui/icons/Help';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
-import ThumbDown from '@material-ui/icons/ThumbDown';
-import ThumbUp from '@material-ui/icons/ThumbUp';
+
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
@@ -21,7 +15,7 @@ import StationInfo from '../element/station_info.js';
 import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import OperazioniTable from '../element/operazioni_table.js';
+import OperazioniTab from '../element/operazioni_tab.js';
 import axios from 'axios';
 import zIndex from '@material-ui/core/styles/zIndex';
 import HomeIcon from '@material-ui/icons/Home';
@@ -103,15 +97,7 @@ function ScrollableTabsButtonForce(props) {
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1} >
-          <Grid >
-            <Grid.Row columns={1}>
-              <Grid.Column width={16}>
-                <Paper style={{overflowY:"auto",overflowX:"auto"}}>
-                  <OperazioniTable operazioni = {props.operazioni}/>  
-                </Paper>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>   
+          <OperazioniTab operazioni = {props.operazioni}/>             
         </TabPanel>
         <TabPanel value={value} index={2}>
             In costruzione

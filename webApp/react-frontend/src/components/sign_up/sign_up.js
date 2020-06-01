@@ -327,7 +327,7 @@ export default class Sign_Up extends React.Component{
                             {
                                 this.state.visibility.provenienza_esterno?
                                 <Grid item xl={12} xs={12}>
-                                    <TextField  value={this.state.provenienza_esterno} id="provenienza_esterno_textfield" error={error.provenienza_esterno.status} onChange={(e) => this.handleChange(e,'provenienza_esterno')} label="Provenienza" variant="standard" required fullWidth
+                                    <TextField  value={this.state.provenienza_esterno} id="provenienza_esterno_textfield" error={error.provenienza_esterno.status} onChange={(e) => this.handleChange(e,'provenienza_esterno')} label="Ente Appartenenza" variant="standard" required fullWidth
                                     helperText={error.provenienza_esterno.message}>
 
                                     </TextField>

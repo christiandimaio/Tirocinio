@@ -19,7 +19,6 @@ class PostStazioneSismica(Resource):
         print(request.json)
         try:
             with db_session:
-                gps = Gps.select(lambda gps: gps.componente.seriale == request.json["seriale_gps"]).first()
                 operatore_installazione = Operatore[request.json["operatore_installazione"]]
                 operatori=[]
                 if request.json["responsabile_1"]:
@@ -37,16 +36,11 @@ class PostStazioneSismica(Resource):
                                            altezza_lv_mare=request.json["altezza_lv_mare"],
                                            frequenza_manutenzione=request.json["periodo_manutenzione"])
                 nota = Nota(nota=request.json["note_aggiuntive"],stazione_sismica=station)
-                localizzazione = Localizzazione(gps=gps, stazione_sismica=station, latitudine=request.json["latitudine"],
-                                                longitudine=request.json["longitudine"])
+                localizzazione = Localizzazione(stazione_sismica=station, latitudine=request.json["latitudine"],
+                                                longitudine=request.json["longitudine"],ellissoide=request.json["ellissoide"])
                 for operatore in operatori:
                     responsabili.append(Responsabile(stazione_sismica=station,operatore=operatore))
                 station.responsabili = responsabili
-                installazione = Operazione(stazione_sismica=station,
-                                           componente=gps.componente,
-                                           operatore=operatore_installazione,
-                                           tipo_operazione="Installazione",
-                                           note_operazione=request.json["note_aggiuntive"])
 
         except Exception as ex:
             rollback()

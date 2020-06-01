@@ -36,7 +36,6 @@ export default class Main extends React.Component{
         id_station:""
       }
     }
-
   }
 
   openStationInfo = (id_stazione) => {
