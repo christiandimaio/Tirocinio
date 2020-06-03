@@ -102,8 +102,7 @@ class JsonToStationXML(StationXMLMaker):
 
     def set_network(self):
         self.network_raw = self.get_network()
-        self.network = Network(code=self.network_raw["code"], stations=[], description=self.network_raw["description"],
-                               start_date=obspy.UTCDateTime(self.network_raw["start_date"]))
+        self.network = Network(code=self.network_raw["code"], stations=[], description=self.network_raw["description"])
 
     def set_inventory(self):
         self.inventory_raw = self.get_inventory()
@@ -168,10 +167,9 @@ class NRLToStationXML(StationXMLMaker):
     def get_station(self):
         return self.station
 
-    def set_network(self, code="", description="", start_date="2020,2,1,0,0,0.00"):
-        self.network_raw = {"code": code, "description": description, "start_date": start_date}
-        self.network = Network(code=self.network_raw["code"], stations=[], description=self.network_raw["description"],
-                               start_date=obspy.UTCDateTime(self.network_raw["start_date"]))
+    def set_network(self, code="", description=""):
+        self.network_raw = {"code": code, "description": description}
+        self.network = Network(code=self.network_raw["code"], stations=[], description=self.network_raw["description"])
 
     def set_inventory(self, p_creator=""):
         self.inventory_raw = {"creator": p_creator}
@@ -187,16 +185,18 @@ class NRLToStationXML(StationXMLMaker):
                                site=Site(name=self.station_raw["site_name"]))
 
     def set_channel(self, p_code="", p_location_code="", p_latitude=0, p_longitude=0, p_elevation=0, p_depth=0,
-                    p_azimuth=0, p_dip=0, p_sample_rate=0, p_sensor=None, p_datalogger=None):
+                    p_azimuth=0, p_dip=0, p_sample_rate=0, p_sensor=None, p_datalogger=None, p_start_date=None,p_end_date=None):
         self.channels_raw = {"code": p_code, "location_code": p_location_code, "latitude": p_latitude,
                              "longitude": p_longitude, "elevation": p_elevation, "depth": p_depth, "azimuth": p_azimuth,
-                             "dip": p_dip, "sample_rate": p_sample_rate, "sensor": p_sensor, "datalogger": p_datalogger}
+                             "dip": p_dip, "sample_rate": p_sample_rate, "sensor": p_sensor, "datalogger": p_datalogger,
+                             "start_date":p_start_date,"end_date":p_end_date}
 
         temp_channel = Channel(code=self.channels_raw["code"], location_code=self.channels_raw["location_code"],
                                latitude=self.channels_raw["latitude"], longitude=self.channels_raw["longitude"],
                                elevation=self.channels_raw["elevation"], depth=self.channels_raw["depth"],
                                azimuth=self.channels_raw["azimuth"], dip=self.channels_raw["dip"],
-                               sample_rate=self.channels_raw["sample_rate"])
+                               sample_rate=self.channels_raw["sample_rate"],start_date=self.channels_raw["start_date"],
+                               end_date= self.channels_raw["end_date"])
         temp_channel.response = self.my_nrl.get_response(datalogger_keys=p_datalogger, sensor_keys=p_sensor)
         self.channels.append(temp_channel)
 

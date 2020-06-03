@@ -1,3 +1,5 @@
+
+//Componente per la visualizzazione delle informazioni stazione sotto forma di card 
 import React from 'react';
 
 import { Button, Icon, Image, Item, Label } from 'semantic-ui-react'
@@ -46,7 +48,9 @@ const ComponentCard = (props) => (
 )
 
 
-
+//Props :
+// classImagePath: immagine di default del componente
+//  
 export default class ComponentCardInfo extends React.Component {
 
   constructor(props){

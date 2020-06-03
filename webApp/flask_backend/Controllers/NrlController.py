@@ -96,33 +96,44 @@ class GetStationXML(Resource):
             os.remove("temp_xml.xml")
         stationXML = NRLToStationXML(nrl_interface)
         stationXML.set_inventory("INGV-OV")
-        stationXML.set_network(code="OV",description="Network Ov",start_date=obspy.UTCDateTime(2020,5,26))
+        stationXML.set_network(code="OV",description="Network Ov")
         with db_session:
-            stazione = Stazione_Sismica.select(lambda _stazione: _stazione.codice_stazione==codice_stazione).first()
-            localizzazione = Localizzazione.select(lambda _localizzazione:
+            _stazione = Stazione_Sismica.select(lambda _stazione: _stazione.codice_stazione==codice_stazione).first()
+            _localizzazione = Localizzazione.select(lambda _localizzazione:
                                                    _localizzazione.stazione_sismica.codice_stazione==codice_stazione).first()
-            stationXML.set_station(p_name=stazione.codice_stazione,
-                                   p_latitude=localizzazione.latitudine,
-                                   p_longitude=localizzazione.longitudine,
-                                   p_elevation=stazione.altezza_lv_mare,
-                                   p_creation_date=obspy.UTCDateTime(stazione.data_messa_funzione.year,
-                                                                     stazione.data_messa_funzione.month,
-                                                                     stazione.data_messa_funzione.day),
+            stationXML.set_station(p_name=_stazione.codice_stazione,
+                                   p_latitude=_localizzazione.latitudine,
+                                   p_longitude=_localizzazione.longitudine,
+                                   p_elevation=_stazione.altezza_lv_mare,
+                                   p_creation_date=obspy.UTCDateTime(_stazione.data_messa_funzione.year,
+                                                                     _stazione.data_messa_funzione.month,
+                                                                     _stazione.data_messa_funzione.day),
                                    )
-            canali = Canale.select(lambda canale: canale.stazione_sismica.codice_stazione==codice_stazione)
-
-            for canale in canali:
-                stationXML.set_channel(p_code=canale.componente_sensore,
-                                       p_latitude=localizzazione.latitudine,
-                                       p_longitude=localizzazione.longitudine,
-                                       p_elevation=stazione.altezza_lv_mare,
-                                       p_depth=canale.profondita,
-                                       p_azimuth=canale.azimuth,
-                                       p_dip=canale.azimuth,
-                                       p_sample_rate=canale.sensore.sampling_rate,
-                                       p_sensor=canale.sensore.nrl.getKeys(),
-                                       p_datalogger=canale.acquisitore.nrl.getKeys()
+            _canali = Canale.select(lambda canale: canale.stazione_sismica.codice_stazione==codice_stazione)
+            if request.json is not None and request.json["data_creazione_canale"] is not None:
+                _canali = _canali.filter(lambda canale: canale.data_creazione_canale >= request.json["data_creazione_canale"])
+                if request.json["data_dismessa_canale"] is not None:
+                    _canali = _canali.filter(lambda canale: canale.data_dismessa_canale <= request.json["data_dismessa_canale"])
+            for _canale in _canali:
+                stationXML.set_channel(p_location_code=_canale.location_code,
+                                       p_start_date=obspy.UTCDateTime(_canale.data_creazione_canale.year,
+                                                                     _canale.data_creazione_canale.month,
+                                                                     _canale.data_creazione_canale.day),
+                                       p_end_date=obspy.UTCDateTime(_canale.data_dismessa_canale.year,
+                                                                     _canale.data_dismessa_canale.month,
+                                                                     _canale.data_dismessa_canale.day)
+                                                    if _canale.data_dismessa_canale is not None else None,
+                                       p_code=_canale.componente_sensore,
+                                       p_latitude=_localizzazione.latitudine,
+                                       p_longitude=_localizzazione.longitudine,
+                                       p_elevation=(_stazione.altezza_lv_mare - _canale.profondita),
+                                       p_depth=_canale.profondita,
+                                       p_azimuth=_canale.azimuth,
+                                       p_dip=_canale.inclinazione,
+                                       p_sample_rate=_canale.sensore.sampling_rate,
+                                       p_sensor=_canale.sensore.nrl.getKeys(),
+                                       p_datalogger=_canale.acquisitore.nrl.getKeys()
                                        )
-            stationXML.make_xml(p_file_name="{0}.xml".format(stazione.codice_stazione))
-            return send_file("{0}.xml".format(stazione.codice_stazione),as_attachment=True)
+            stationXML.make_xml(p_file_name="{0}.xml".format(_stazione.codice_stazione))
+            return send_file("{0}.xml".format(_stazione.codice_stazione),as_attachment=True)
 

@@ -1,3 +1,5 @@
+// Component per la gestione dell'inserimento operazioni della stazione, si basa su di un modal 
+
 import React, { Component } from 'react'
 import { Header, Icon, Modal,Button } from 'semantic-ui-react'
 import AddIcon from '@material-ui/icons/Add';
@@ -52,12 +54,14 @@ export default class AddOperation extends Component {
 
     componentWillReceiveProps(nextProps){
         if(nextProps.open!==this.props.open){
-            //Perform some operation
+            //Verifica sè è stata chiamata la chiusura del modal 
             this.setState({modalOpen: nextProps.open });
           
         }
         }
     componentDidMount(){
+        // Procedura invocata dopo componentWillMount, imposta un valore di default per le date di inizio e fine operazione
+        // a data odierna
         this._isMounted=true
 
         if(this._isMounted){
@@ -66,6 +70,7 @@ export default class AddOperation extends Component {
                             data_fine_operazione:this.today.getFullYear()+"/"+(this.today.getMonth()+1)+"/"+this.today.getDate()})
         }
 
+        //Invocazione chiamata alla web api per la lista degli operatori 
         axios.get("api/Operatori/selecter")
             .then((response) => {
                 console.log(response.data);
@@ -83,7 +88,12 @@ export default class AddOperation extends Component {
             });
     }
 
+    // Gestore evento : chiusura component
     handleClose = () => {
+        // procedura chiamata alla richiesta di uscita dal modal, può avvenire in due casi:
+        // 1) Premo il tasto cancella
+        // 2) Premo su salva -> Tutto okay : si chiude il form
+        //                   -> Qualcosa va storto : annullo la chiamata e resetto le variabili 
         let {registrazione} = this.state;
         console.log(registrazione.stato)
         registrazione.chiamata=false;
@@ -99,7 +109,12 @@ export default class AddOperation extends Component {
         
     }
 
+    // Gestore evento : modifica al tipo operazione component Selecter
     handleTipoOperazioneChange = (event,name) => {
+        // Procedura che tiene traccia degli eventi di modifica sul selecter Tipo Operazione
+        // Nel caso in cui si seleziona:
+        //      Altro : La verifica del seriale non deve essere eseguita, imposto la verifica a true implicitamente
+        //      Altrimenti : La verifica del seriale deve avvenire per poter registrare l'operazione
         if (event.target.value != "Altro"){
             this.setState(state => (state.verifica_componente.verificato  = false, state));
             this.setState(state => (state.verifica_componente.messaggio  = "Verifica", state));
@@ -113,29 +128,39 @@ export default class AddOperation extends Component {
             
     }
 
+    // Gestore evento : modifica seriale componente
     handleSerialeChange = (event) => this.setState({seriale_componente:event.target.value})
 
+    // Gestore evento : modifica component DateTimePicker su stato data_inizio_operazione
     handleDateInzioOperazioniChange = (value) => {
         if(value instanceof Date && !isNaN(value)){
             this.setState({data_inizio_operazione:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
+
+            //Implicitamente setto anche data_fine_operazione per non avere stati incoerenti sul database
             this.setState({data_fine_operazione:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
         }
     }
+
+    // Gestore evento : modifica component DateTimePicker su stato data_fine_operazione
     handleDateFineOperazioniChange = (value) => {
         if(value instanceof Date && !isNaN(value)){
             this.setState({data_fine_operazione:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
         }
     }
 
+    // Gestore evento : modifica component Selecter su stato operatore incaricato
     handleOperatoreIncaricatoChange = (event) => this.setState({operatore_incaricato:event.target.value})
 
+    // Gestore evento : modifica component TextArea su stato nota
     handleNotaChange = (event) => this.setState({note:event.target.value})
 
+    // Gestore evento : click sul bottone "Verifica seriale"
     handleCheckComponenteSeriale = () => {
         let {componente} = this.state;
         axios.get("api/Stazione/"+this.props.station_id+"/Componente/"+this.state.seriale_componente)
             .then((response) => {
                 if((response.data.item != null)){
+                    // Se la web api mi ritorna un componente verifico il tipo di operazione
                     if (this.state.tipo_operazione == "Installazione"){
                         this.setState(state => (state.verifica_componente.verificato  = false, state));
                         this.setState(state => (state.verifica_componente.messaggio  = "Già installato!", state));
@@ -150,6 +175,8 @@ export default class AddOperation extends Component {
                     componente.profondita = response.data.item.profondita_mm;
                     this.setState({componente});
                 }else{
+                    // Se la web api non ritorna un componente significa che quel componente non è installato in quella stazione
+                    //  procedo ad interrogare il database sull'effettiva presenza del componente in altre stazioni o in magazzino
                     axios.get("api/Componente/"+this.state.seriale_componente)
                     .then((response) => {
                         
@@ -183,8 +210,11 @@ export default class AddOperation extends Component {
             })
     }
 
+    // Gestore evento : click sul bottone "salva"
     addOperation = () => {
         var info = this.state;
+
+        // Verifica sè tutti i campi richiesti sono inseriti e validi
         if (info.tipo_operazione == "" || info.data_inizio_operazione == "" || info.data_fine_operazione == "" || !(info.verifica_componente.verificato) || 
             info.operatore_incaricato == "" || (info.seriale_componente == "" && info.tipo_operazione !="Altro")){
                 this.setState(state => (state.registrazione.chiamata  = true, state));
@@ -196,13 +226,14 @@ export default class AddOperation extends Component {
             tipo_operazione:info.tipo_operazione,
             data_inizio_operazione:info.data_inizio_operazione,
             data_fine_operazione:info.data_fine_operazione,
-            seriale_componente:this.state.tipo_operazione != "Altro"?info.seriale_componente:"",
+            seriale_componente:this.state.tipo_operazione != "Altro"?info.seriale_componente:"", //Nel caso in cui il tipo di operazione sia "Altro" il seriale va inviato vuoto
             operatore_incaricato:info.operatore_incaricato,
             note:info.note,
           })
           .then((response) => {
             this.setState(state => (state.registrazione.chiamata  = true, state));
-            
+            // Codici di verifica :
+            //      200 : Tutto okay
             if (response.data["operationCode"] != 200){
                 this.setState(state => (state.registrazione.stato  = false, state));
                 this.setState(state => (state.registrazione.messaggio  = response.data.message, state));
@@ -217,8 +248,9 @@ export default class AddOperation extends Component {
           })
          
     }
+
     render() {
-        
+        // Per il render guardare JSX + Material UI + Semantic UI React + eventuali componenti custom
         return (
             <>
                 <Modal   open={this.state.modalOpen}

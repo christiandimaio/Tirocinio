@@ -1,3 +1,4 @@
+// Componente che permette di creare un FAB, guarda material ui come riferimento
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
