@@ -11,11 +11,18 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Divider,Header,Icon } from 'semantic-ui-react'
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
+import DateTimePicker from './date_picker';
+import { Button, Image, Item, Label } from 'semantic-ui-react'
 export default class StationInfo extends React.Component{
     _isMounted=false
     constructor(props){
         super(props);
+        var today=new Date();
         this.state={
+            stationxml_filter:{
+                da:today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate(),
+                a:today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate()
+            },
             codice_stazione:"",
             altezza_lv_mare:"",
             freq_manutenzione:"",
@@ -27,11 +34,45 @@ export default class StationInfo extends React.Component{
         
     }
 
+    handleDataStationXmlLowBound = (value) => {
+        let {stationxml_filter} = this.state;
+        stationxml_filter.da =value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate()
+        this.setState({stationxml_filter})
+    }
+
+    handleDataStationXmlUpperBound = (value) => {
+        let {stationxml_filter} = this.state;
+        stationxml_filter.a =value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate()
+        this.setState({stationxml_filter})
+    }
+
     componentDidUpdate(prevProps,prevState) {
         if (this.props.id_station !== prevProps.id_station) {
             this.getStazione()
         }
     }
+
+    getStationXml = () => {
+        var fileDownload = require('js-file-download');
+        axios.get('/api/Stazione/'+this.state.codice_stazione+'/StationXml',{
+            params:{
+                data_creazione_canale:this.state.stationxml_filter.da,
+                data_dismessa_canale:this.state.stationxml_filter.a
+            }
+            
+          })
+            .then((response) => {
+              console.log(response)
+                if (response.headers["content-type"] == "application/xml; charset=utf-8"){
+                  fileDownload(response.data, 'filename.xml');
+                }else{
+                  this.setState({errore_download:true});
+                }
+                
+                
+          })
+    
+      }
 
     getStazione = () => {
         axios.get('/api/Stazione/'+this.props.id_station)
@@ -150,8 +191,41 @@ export default class StationInfo extends React.Component{
                             </Paper>
                         </Grid.Column>
                     </Grid.Row>
-                   
+                    <Divider horizontal>
+                        <Header as='h4'>
+                            <GpsFixedIcon style={{paddingRight:3}}/>
+                            Storico StationXml
+                        </Header>
+                    </Divider>
+                    <Grid.Row centered columns={3}>
+                        <Grid.Column textAlign="center">
+                            <DateTimePicker properties={{
+                                                            width:"90%",
+                                                            id:"da_picker",
+                                                            label:"Da",
+                                                            name:"stationxml_da"
+                                                        }}
+                                                        onChange={this.handleDataStationXmlLowBound}
+                                                        />
+                        </Grid.Column>
+                        <Grid.Column textAlign="center">
+                            <DateTimePicker properties={{
+                                                            width:"90%",
+                                                            id:"a_picker",
+                                                            label:"A",
+                                                            name:"stationxml_a"
+                                                        }}
+                                                            onChange={this.handleDataStationXmlUpperBound}
+                                                        />
+                        </Grid.Column>
+                        <Grid.Column textAlign="center">
+                        <Button style={{marginTop:"4%",backgroundColor:"#3f51b5",color:"white",}} onClick={this.getStationXml}>
+                            <h4 color="white">Scarica StationXml</h4>
+                            </Button>
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
+                
                 
         </React.Fragment>
         );

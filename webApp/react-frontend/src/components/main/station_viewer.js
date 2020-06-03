@@ -19,6 +19,7 @@ import OperazioniTab from '../element/operazioni_tab.js';
 import axios from 'axios';
 import zIndex from '@material-ui/core/styles/zIndex';
 import HomeIcon from '@material-ui/icons/Home';
+import CanaliTab from '../element/canali_tab.js';
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
   
@@ -103,7 +104,9 @@ function ScrollableTabsButtonForce(props) {
             In costruzione
         </TabPanel>
         <TabPanel value={value} index={3}>
-            In costruzione
+            <Box display="flex" flexGrow={1} width={1}>
+              <CanaliTab nome_stazione={props.id_station}/>
+            </Box>
         </TabPanel>
      
         </Grid.Column>

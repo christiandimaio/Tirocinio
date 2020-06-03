@@ -52,7 +52,9 @@ class GetCanali(Resource):
                         .order_by(Canale.data_creazione_canale,Canale.location_code)
 
         if canali is not None:
-            return jsonify(operationCode=200,items= [{"canale":canale.to_dict(),
+            return jsonify(operationCode=200,
+                           stazione=list(canali).pop().stazione_sismica.to_dict(),
+                           items= [{"info":canale.to_dict(),
                                                       "acquisitore":canale.acquisitore.componente.to_dict(),
                                                       "sensore":canale.sensore.componente.to_dict()} for canale in canali])
         else:
