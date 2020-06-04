@@ -8,6 +8,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Pagination from '@material-ui/lab/Pagination';
 import { Box } from '@material-ui/core';
 import { Grid,Icon,Divider,Header } from 'semantic-ui-react';
+import IconButton from '@material-ui/core/IconButton';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AddChannel from './add_channel.js';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -18,12 +22,25 @@ export default function CardExampleFluid(props) {
     const classes = useStyles();
     const [rowsPerPage, setRowsPerPage] = React.useState(4);
     const [page, setPage] = React.useState(1);
-
+    const [apriFormCanale, openForm] = React.useState(false)
     const handlePageChange = (event,newPage) => {
         setPage(newPage)
     } 
+
+    const openCreaCanaleForm = () => {
+        openForm(true)
+    }
+
+    const closeCreaCanaleForm = () => {
+        openForm(false)
+    }
+
+    
+
   return (
     <div className={classes.root}>
+        {console.log(props.stazione)}
+        <AddChannel station_id={props.stazione.codice_stazione} />
         <Box>
             {
                 (

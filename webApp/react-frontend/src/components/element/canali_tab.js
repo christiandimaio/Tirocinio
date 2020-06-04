@@ -25,21 +25,27 @@ import CardExampleFluid from './canale_card.js';
 import axios from 'axios';
 
 export default class CanaliTab extends React.Component {
+    _isMounted=false
     constructor(props){
         super(props)
         this.state={
-            canali:[]
+            canali:[],
+            stazione:[]
         }
     }
 
     componentWillMount(){
+        this._isMounted=true
         axios.get('/api/Stazione/'+this.props.nome_stazione+"/Canali")
         .then((response) => {
             console.log(response.data.item);
-            this.setState({
-                canali: response.data.items,
-                stazione: response.data.stazione
+            if(this._isMounted){
+                this.setState({
+                    canali: response.data.items,
+                    stazione: response.data.stazione
                 });
+            }
+            
             
         })
     }

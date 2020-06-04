@@ -65,9 +65,13 @@ api.add_resource(PostStazioneSismica, '/api/Stazione')
 api.add_resource(GetStazioneSismicaInfo, '/api/Stazioni/info')
 api.add_resource(GetOperazioniStazione, "/api/Stazione/<string:codice_stazione>/Operazioni")
 api.add_resource(GetStazione, "/api/Stazione/<string:codice_stazione>")
-api.add_resource(GetComponenteStazione, '/api/Stazione/<string:codice_stazione>/Componente/<string:seriale>')
 api.add_resource(InsertOperazione, "/api/Stazione/<string:codice_stazione>/Operazione")
 api.add_resource(GetCanali,"/api/Stazione/<string:codice_stazione>/Canali")
+
+# Rotte componentistica stazione
+api.add_resource(GetComponenteStazione, '/api/Stazione/<string:codice_stazione>/Componente/<string:seriale>')
+api.add_resource(GetSensoriStazione,"/api/Stazione/<string:codice_stazione>/Sensori")
+api.add_resource(GetAcquisitoriStazione,"/api/Stazione/<string:codice_stazione>/Acquisitori")
 
 """______----------------------------------------------------------------------"""
 """    NRL    """

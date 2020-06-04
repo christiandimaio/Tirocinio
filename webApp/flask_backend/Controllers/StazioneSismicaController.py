@@ -146,3 +146,61 @@ class GetComponenteStazione(Resource):
             return jsonify(operationCode=404, message="Not Found")
         return jsonify(operationCode=500, message="Internal Error")
 
+class GetSensoriStazione(Resource):
+    @staticmethod
+    @db_session
+    def get(codice_stazione):
+        operazioni = select((operazione) for operazione in Operazione
+                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                            and operazione.componente.sensore is not None
+                            )
+        sensori = []
+        for _operazione in operazioni:
+            if _operazione.componente not in sensori:
+                n_installazioni_sensore = count(operazione.tipo_operazione for operazione in Operazione
+                                                if operazione.stazione_sismica.codice_stazione==codice_stazione
+                                                and operazione.componente.seriale == _operazione.componente.seriale
+                                                and operazione.tipo_operazione == "Installazione")
+                n_rimozioni_sensore = count(operazione.tipo_operazione for operazione in Operazione
+                                                if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                                and operazione.componente.seriale == _operazione.componente.seriale
+                                                and operazione.tipo_operazione == "Rimozione")
+                if n_installazioni_sensore > n_rimozioni_sensore:
+                    sensori.append(_operazione.componente)
+        if len(sensori) > 0:
+            return jsonify(operationCode=200,items=[{"componente":sensore.to_dict(),
+                                                     "sensore":sensore.sensore.to_dict(),
+                                                     "NRL":sensore.sensore.nrl.to_dict()} for sensore in sensori])
+        return jsonify(operationCode=500, message="Internal Error")
+
+class GetAcquisitoriStazione(Resource):
+    @staticmethod
+    @db_session
+    def get(codice_stazione):
+        operazioni = select((operazione) for operazione in Operazione
+                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                            and operazione.componente.acquisitore is not None
+                            )
+        acquisitori = []
+        try:
+            for _operazione in operazioni:
+                if _operazione.componente not in acquisitori:
+                    n_installazioni_acquisitore = count(operazione.tipo_operazione for operazione in Operazione
+                                                    if operazione.stazione_sismica.codice_stazione==codice_stazione
+                                                    and operazione.componente.seriale == _operazione.componente.seriale
+                                                    and operazione.tipo_operazione == "Installazione")
+                    n_rimozioni_acquisitore = count(operazione.tipo_operazione for operazione in Operazione
+                                                    if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                                    and operazione.componente.seriale == _operazione.componente.seriale
+                                                    and operazione.tipo_operazione == "Rimozione")
+                    if n_installazioni_acquisitore > n_rimozioni_acquisitore:
+                        acquisitori.append(_operazione.componente)
+            if len(acquisitori) > 0:
+                return jsonify(operationCode=200,items=[{"componente":acquisitore.to_dict(),
+                                                         "acquisitore":acquisitore.acquisitore.to_dict(),
+                                                         "NRL":acquisitore.acquisitore.nrl.to_dict()} for acquisitore in acquisitori])
+            else:
+                return jsonify(operationCode=404,message="Not Found")
+        except Exception as ex:
+            return jsonify(operationCode=500, message="Internal Error")
+

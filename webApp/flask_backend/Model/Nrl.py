@@ -7,8 +7,8 @@ class NRL(db.Entity):
     livello_2 = Optional(str, 100)
     livello_3 = Optional(str, 100)
     livello_4 = Optional(str, 100)
-    sensori = Optional('Sensore')
-    acquisitori = Optional('Acquisitore')
+    sensori = Set('Sensore')
+    acquisitori = Set('Acquisitore')
 
     def getKeys(self) -> []:
         keys=[]
