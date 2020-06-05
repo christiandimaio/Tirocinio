@@ -48,7 +48,7 @@ export default class Selecter extends React.Component{
                                         label={properties.inputLabel}
                                         onChange={(e) => this.valueChanged(e,properties.name)}
                                         style={properties.style}
-                                        value={this.state.value}
+                                        value={properties.value}
                                         >
                                         {
                                             items.map((item,i) => <MenuItem value={item.key}>{item.value}</MenuItem>)

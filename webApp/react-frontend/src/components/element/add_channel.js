@@ -5,7 +5,7 @@ import { Header, Icon, Modal,Button, GridRow } from 'semantic-ui-react'
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
-import {TextField,Snackbar} from '@material-ui/core';
+import {TextField,Snackbar,InputAdornment,OutlinedInput,FormControl,FormHelperText} from '@material-ui/core';
 import {Grid,Image} from 'semantic-ui-react';
 import Selecter from './selecter';
 import Typography from '@material-ui/core/Typography';
@@ -62,11 +62,19 @@ function getAcquisitori(station_id){
         
 
 function VerticalLinearStepper(props) {
-    const classes = useStyles();
-    const [activeStep, setActiveStep] = React.useState(0);
-    const steps = getSteps();
-   
-    
+  const today = new Date();
+  const classes = useStyles();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const steps = getSteps();
+  const [dataCreazioneCanale,setData] = React.useState(today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate());
+  const [serialeSensore,setSerialeSensore] = React.useState("");
+  const [serialeAcquisitore,setSerialeAcquisitore] = React.useState("");
+  const [numeroCanaleAcquisitore,setNumeroCanale] = React.useState(0);
+  const [componenteSensore,setComponenteSensore] = React.useState("HHN");
+  const [inclinazione,setInclinazione] = React.useState(0);
+  const [azimuth,setAzimuth] = React.useState(0);
+  const [profondita,setProfondita] = React.useState(0);
+  const [campiInconpleti,attivaErrore] = React.useState(false);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -80,6 +88,51 @@ function VerticalLinearStepper(props) {
     setActiveStep(0);
   };
 
+  const handleDataCreazioneCanale = (value) => {
+    setData(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate());
+  }
+
+  const handleSensoreChange = (event,name) => {
+    setSerialeSensore(event.target.value);
+  }
+
+  const handleAcquisitoreChange = (event,name) => {
+    setSerialeAcquisitore(event.target.value);
+  }
+
+  const handleNumeroCanaleChange = (event) => {
+    setNumeroCanale(event.target.value)
+  }
+
+  const handleComponenteSensoreChange = (event) => {
+    setComponenteSensore(event.target.value)
+  }
+
+  const handleInclinazioneChange = (event) => {
+    setInclinazione(event.target.value)
+  }
+
+  const handleAzimuthChange = (event) => {
+    setAzimuth(event.target.value)
+  }
+
+  const handleProfonditaChange = (event) => {
+    setProfondita(event.target.value)
+  }
+
+  const verificaForm = (step) => {
+    switch(step){
+      case 0:
+        if (serialeSensore == "" || serialeAcquisitore == ""){
+          return true
+        }else{
+          return false
+        }
+      default:
+        return false
+    }
+  }
+
   const getStepContent = (step) =>{
     var sensori = [];
     var acquisitori = [];
@@ -88,12 +141,12 @@ function VerticalLinearStepper(props) {
             console.log(props.sensori)
             if (props.sensori.length > 0){
                 props.sensori.map((sensore) => {
-                    sensori.push({"key":sensore.componente.id,"value":sensore.componente.seriale})
+                    sensori.push({"key":sensore.componente.seriale,"value":sensore.componente.seriale})
                 })
             }
             
             props.acquisitori.map((acquisitore) => {
-               acquisitori.push({"key":acquisitore.componente.id,"value":acquisitore.componente.seriale})
+               acquisitori.push({"key":acquisitore.componente.seriale,"value":acquisitore.componente.seriale})
             })
           return(
               <Grid padded>
@@ -103,14 +156,13 @@ function VerticalLinearStepper(props) {
                     </Grid.Column>
                     <Grid.Column>
                         <Selecter
-                                        properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Seriale",style:{flexGrow:1}
-                                        ,name:"tipo_stazione",error:false}}
-                                       items={acquisitori}/>
+                          properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Seriale",style:{flexGrow:1},value:serialeAcquisitore,
+                          customHandler:handleAcquisitoreChange
+                          ,name:"tipo_stazione",error:false}}
+                          items={acquisitori}/>
                     </Grid.Column>
                     <Grid.Column>
-                        <TextField variant="outlined" id="profondita_textfield"  label="N. Canale" variant="outlined"  fullWidth
-                                                            >
-                                                </TextField>
+                      <TextField variant="outlined" id="n_canale_textfield"  label="N. Canale" variant="outlined" value={numeroCanaleAcquisitore} fullWidth onChange={handleNumeroCanaleChange}/>
                     </Grid.Column>
                   </Grid.Row>
                   <Grid.Row columns={3}>
@@ -119,14 +171,14 @@ function VerticalLinearStepper(props) {
                     </Grid.Column>
                     <Grid.Column>
                     <Selecter
-                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Seriale",style:{flexGrow:1},
-                                    helperText:"*Campo richiesto",name:"tipo_stazione",error:false}}
-                                    items={sensori}/>
+                      properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Seriale",style:{flexGrow:1},value:serialeSensore,
+                      customHandler:handleSensoreChange,
+                      name:"tipo_stazione",error:false}}
+                      items={sensori}/>
                     </Grid.Column>
                     <Grid.Column>
-                        <TextField  id="profondita_textfield" label="Componente Sensore" variant="outlined"  fullWidth
-                                                            >
-                                                </TextField>
+                        <TextField  id="profondita_textfield" label="Componente Sensore" variant="outlined" value={componenteSensore}  fullWidth onChange={handleComponenteSensoreChange}
+                                />
                     </Grid.Column>
                   </Grid.Row>
               </Grid>
@@ -136,32 +188,31 @@ function VerticalLinearStepper(props) {
               <Grid padded >
                 <Grid.Row columns={2} >
                     <Grid.Column width={5}>
-                    <TextField  id="profondita_textfield" label="Inclinazione" variant="outlined"  fullWidth
-                                                            >
-                                                </TextField>
+                    <TextField  id="profondita_textfield" label="Inclinazione" variant="outlined" value={inclinazione}  fullWidth onChange={handleInclinazioneChange}
+                                helperText="Espressa in gradi"/>
                     </Grid.Column>
                     <Grid.Column width={5}>
-                    <TextField  id="profondita_textfield" label="Azimuth" variant="outlined"  fullWidth
-                                                            >
+                    <TextField  id="profondita_textfield" label="Azimuth" variant="outlined" value={azimuth} fullWidth onChange={handleAzimuthChange}
+                                helperText="Espresso in gradi">
                                                 </TextField>
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row columns={1} >
                     <Grid.Column width={5} >
-                    <TextField  id="profondita_textfield" label="Profondità" variant="outlined"  fullWidth
-                                                            >
-                                                </TextField>
+                    <TextField  id="profondita_textfield" label="Profondità" variant="outlined" value={profondita} fullWidth onChange={handleProfonditaChange}
+                                helperText="Rispetto al piano della stazione Ex. -23" />
+                                               
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row columns={1} >
                     <Grid.Column width={5}>
                     <DateTimePicker properties={{
-                                                                    width:"100%",
-                                                                    id:"datafine_picker",
-                                                                    label:"Data Creazione Canale",
-                                                                    name:"data_fine_op"
-                                                                    }}
-                                                        />
+                                                  width:"100%",
+                                                  id:"datafine_picker",
+                                                  label:"Data Creazione Canale",
+                                                  name:"data_fine_op"
+                                                }}
+                                  onChange={handleDataCreazioneCanale}/>
                     </Grid.Column>
                 </Grid.Row>
               </Grid>
@@ -174,35 +225,35 @@ function VerticalLinearStepper(props) {
                         <Typography variant="body1">Acquisitore</Typography>
                     </Grid.Column>
                     <Grid.Column>
-                        <Typography variant="body1">Seriale: 12323</Typography>
+                      <Typography variant="body1">Seriale: {serialeAcquisitore}</Typography>
                     </Grid.Column>
                     <Grid.Column>
-                        <Typography variant="body1">N. Canale: 4</Typography>
+                      <Typography variant="body1">N. Canale: {numeroCanaleAcquisitore}</Typography>
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row columns={3}>
                     <Grid.Column>
-                        <Typography variant="body1">Sensore</Typography>
+                      <Typography variant="body1">Sensore</Typography>
                     </Grid.Column>
                     <Grid.Column>
-                        <Typography variant="body1">Seriale: 12323</Typography>
+                      <Typography variant="body1">Seriale: {serialeSensore}</Typography>
                     </Grid.Column>
                     <Grid.Column>
-                        <Typography variant="body1">Componente: HHE</Typography>
+                      <Typography variant="body1">Componente: {componenteSensore}</Typography>
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row columns={4}>
                     <Grid.Column>
-                        <Typography variant="body1">Inclinazione: 20°</Typography>
+                     <Typography variant="body1">Inclinazione: {inclinazione}°</Typography>
                     </Grid.Column>
                     <Grid.Column>
-                        <Typography variant="body1">Azimuth: 30°</Typography>
+                      <Typography variant="body1">Azimuth: {azimuth}°</Typography>
                     </Grid.Column>
                     <Grid.Column>
-                        <Typography variant="body1">Profondità: -30 mt.</Typography>
+                        <Typography variant="body1">Profondità: {profondita} mt.</Typography>
                     </Grid.Column>
                     <Grid.Column>
-                        <Typography variant="body1">Data Creazione: Oggi</Typography>
+                      <Typography variant="body1">Data Creazione: {dataCreazioneCanale}</Typography>
                     </Grid.Column>
                 </Grid.Row>
               </Grid>
@@ -237,6 +288,7 @@ function VerticalLinearStepper(props) {
                     color="primary"
                     onClick={handleNext}
                     className={classes.button}
+                    disabled={verificaForm(activeStep)}
                   >
                     {activeStep === steps.length - 1 ? 'Conferma' : 'Avanti'}
                   </Button>

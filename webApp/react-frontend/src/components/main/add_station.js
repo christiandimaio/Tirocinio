@@ -184,13 +184,13 @@ export default class AddNewStation extends Component {
                             </Grid.Column>
                             <Grid.Column>
                             <Selecter
-                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Stazione",style:{flexGrow:1},value:"",
+                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Stazione",style:{flexGrow:1},value:this.state.tipo_stazione,
                                     customHandler:this.handleTipoStazioneChange,helperText:"*Campo richiesto",name:"tipo_stazione",required:true,error:false}}
                                     items={[{"key":"Analogica","value":"Analogica"},{"key":"Digitale","value":"Digitale"}]}/>
                             </Grid.Column>
                             <Grid.Column>
                                 <Selecter
-                                        properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Operatore Installazione",style:{flexGrow:1},value:"",
+                                        properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Operatore Installazione",style:{flexGrow:1},value:this.state.operatore_installazione,
                                         required:true,helperText:"*Campo richiesto",
                                         customHandler:this.handleResponsabileChange,name:"operatore_installazione",error:false}}
                                         items={this.state.operatori_list}/>
@@ -291,25 +291,25 @@ export default class AddNewStation extends Component {
                             <Grid.Row columns={4}>
                                 <Grid.Column>
                                 <Selecter
-                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Responsabile 1",style:{flexGrow:1},value:"",
+                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Responsabile 1",style:{flexGrow:1},value:this.state.responsabile_1,
                                     customHandler:this.handleResponsabileChange,helperText:"*Campo richiesto",required:true,name:"responsabile_1",error:false}}
                                     items={this.state.operatori_list}/>
                                 </Grid.Column>
                                 <Grid.Column>
                                 <Selecter
-                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Responsabile 2",style:{flexGrow:1},value:"",
+                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Responsabile 2",style:{flexGrow:1},value:this.state.responsabile_2,
                                     customHandler:this.handleResponsabileChange,helperText:"",name:"responsabile_2",error:false}}
                                     items={this.state.operatori_list}/>
                                 </Grid.Column>
                                 <Grid.Column>
                                 <Selecter
-                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Responsabile 3",style:{flexGrow:1},value:"",
+                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Responsabile 3",style:{flexGrow:1},value:this.state.responsabile_3,
                                     customHandler:this.handleResponsabileChange,helperText:"",name:"responsabile_3",error:false}}
                                     items={this.state.operatori_list}/>
                                 </Grid.Column>
                                 <Grid.Column>
                                 <Selecter
-                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Responsabile 4",style:{flexGrow:1},value:"",
+                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Responsabile 4",style:{flexGrow:1},value:this.state.responsabile_4,
                                     customHandler:this.handleResponsabileChange,helperText:"",name:"responsabile_4",error:false}}
                                     items={this.state.operatori_list}/>
                                 </Grid.Column>

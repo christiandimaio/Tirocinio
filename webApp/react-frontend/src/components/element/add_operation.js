@@ -96,16 +96,47 @@ export default class AddOperation extends Component {
         //                   -> Qualcosa va storto : annullo la chiamata e resetto le variabili 
         let {registrazione} = this.state;
         console.log(registrazione.stato)
-        registrazione.chiamata=false;
         
-        if (registrazione.stato){
-            registrazione.stato=false;
-            this.setState({registrazione})
-            this.props.handleClose()
+        
+        if (registrazione.chiamata){
+            registrazione.chiamata=false;
+            if (registrazione.stato){
+                registrazione.stato=false;
+                this.setState({registrazione})
+                this.resetData()
+                this.props.handleClose()
+            }else{
+                this.setState({registrazione})
+            }
         }else{
-            this.setState({registrazione})
+            this.resetData()
+            this.props.handleClose()
         }
-            
+    }
+
+    resetData = () => {
+        let {verifica_componente} = this.state;
+        verifica_componente.verificato = false;
+        verifica_componente.messaggio = "*Campo Richiesto";
+
+        let {componente} = this.state;
+        componente.produttore = "";
+        componente.nome="";
+        componente.larghezza="";
+        componente.altezza ="";
+        componente.profondita = "";
+
+        this.setState({
+            tipo_operazione:"Installazione",
+            data_inizio_operazione:"",
+            data_fine_operazione:"",
+            seriale_componente:"",
+            disabilita_controllo_componente:false,
+            operatore_incaricato:"",
+            note:"",
+            verifica_componente,
+            componente
+        })
         
     }
 
@@ -348,7 +379,7 @@ export default class AddOperation extends Component {
                             <Grid.Row >
                                 <Grid.Column width={6}>
                                 <Selecter
-                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Operatore",style:{flexGrow:1},value:"",
+                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Operatore",style:{flexGrow:1},value:this.state.operatore_incaricato,
                                     customHandler:this.handleOperatoreIncaricatoChange,helperText:"*Campo richiesto",required:true,name:"Operatore",error:false}}
                                     items={this.state.operatori_list}/>
                                 </Grid.Column>
@@ -378,7 +409,7 @@ export default class AddOperation extends Component {
                     </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button negative onClick={() => {this.props.handleClose()}}>
+                        <Button negative onClick={this.handleClose}>
                             Cancella
                         </Button>
                         <Button
