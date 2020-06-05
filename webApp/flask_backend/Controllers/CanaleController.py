@@ -36,8 +36,6 @@ class PostCanale(Resource):
                                     inclinazione=request.json["inclinazione"],
                                     azimuth=request.json["azimuth"],
                                     data_creazione_canale=request.json["data_creazione_canale"],
-                                    data_dismessa_canale= request.json["data_dismessa_canale"]
-                                                            if request.json["data_dismessa_canale"] is not None else None,
                                     profondita = request.json["profondita"],
                                     location_code = request.json["location_code"])
             except Exception as ex:

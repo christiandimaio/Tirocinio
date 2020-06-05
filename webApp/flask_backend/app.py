@@ -67,7 +67,7 @@ api.add_resource(GetOperazioniStazione, "/api/Stazione/<string:codice_stazione>/
 api.add_resource(GetStazione, "/api/Stazione/<string:codice_stazione>")
 api.add_resource(InsertOperazione, "/api/Stazione/<string:codice_stazione>/Operazione")
 api.add_resource(GetCanali,"/api/Stazione/<string:codice_stazione>/Canali")
-
+api.add_resource(PostCanale,"/api/Stazione/<string:codice_stazione>/Canale")
 # Rotte componentistica stazione
 api.add_resource(GetComponenteStazione, '/api/Stazione/<string:codice_stazione>/Componente/<string:seriale>')
 api.add_resource(GetSensoriStazione,"/api/Stazione/<string:codice_stazione>/Sensori")

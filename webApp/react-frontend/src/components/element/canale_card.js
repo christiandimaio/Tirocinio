@@ -65,7 +65,7 @@ export default function CardExampleFluid(props) {
                                             Registro canale
                                         </Header>
                                     </Divider>
-                                    <Grid.Row >
+                                    <Grid.Row columns={2}>
                                         <Grid.Column width={8}>
                                             <h3>Data Creazione:</h3><h5>{canale.info.data_creazione_canale}</h5>
                                         </Grid.Column>
