@@ -17,17 +17,19 @@ class Auth(Resource):
         content = request.json
         email = content['email']
         password = content['password']
-        rememberME = content['rememberME']
+        rememberMe = content['rememberMe']
         print(email)
         print(password)
 
         try:
             user = Log_In.select(lambda user: user.email == email).first()
             if user:
+                # Non lo faccio lavorare questo controllo perchè si dovrebbe implementare un
+                # meccanismo che dopo un timeout di inattività setti lo stato ad offline
                 if user.is_online:
                     return jsonify(operationCode=200, message="Utente già loggato!")
                 if user.password == password:
-                    user.remember_me = rememberME
+                    user.remember_me = rememberMe
                     user.is_online = True
 
                     print(user.operatore.nome)

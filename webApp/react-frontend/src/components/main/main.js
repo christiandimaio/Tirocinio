@@ -15,12 +15,58 @@ import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import axios from 'axios';
-import AddNewStation from './add_station.js';
+import AddNewStation from '../element/add_station.js';
 import { Divider,Header } from 'semantic-ui-react'
 import Button from '@material-ui/core/Button';
 import AddOperation from '../element/add_operation.js';
-import StationViewer from './station_viewer.js';
+import StationViewer from '../element/station_viewer.js';
 import 'typeface-roboto';
+import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
+import StreetviewIcon from '@material-ui/icons/Streetview';
+import SearchIcon from '@material-ui/icons/Search';
+import DirectionsIcon from '@material-ui/icons/Directions';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+    width: "100%",
+    borderTopColor:"green"
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+  },
+  divider: {
+    height: 28,
+    margin: 4,
+  },
+}));
+
+function CustomizedInputBase() {
+  const classes = useStyles();
+
+  return (
+    <Paper className={classes.root} >
+      <IconButton className={classes.iconButton} aria-label="menu">
+        <StreetviewIcon />
+      </IconButton>
+      <InputBase
+        className={classes.input}
+        placeholder="Cerca una stazione"
+        inputProps={{ 'aria-label': 'Cerca una stazione' }}
+      />
+      <IconButton  className={classes.iconButton} aria-label="Cerca">
+        <SearchIcon />
+      </IconButton>
+    </Paper>
+  );
+}
 export default class Main extends React.Component{
   _isMounted=false;
   constructor(props){
@@ -104,7 +150,10 @@ export default class Main extends React.Component{
      
             <>
               <Grid padded columns="1" centered style={{minWidth:"25vw", maxHeight:"90vh",overflow:"auto"}}>
+                
                 <Grid.Column mobile={16} tablet={5} computer={4} style={{flexGrow:1,maxHeight:"100%"}} >
+                <CustomizedInputBase/>
+                <Divider />
                     {
                       this.state.station_summary.map((item) => 
                       <>
