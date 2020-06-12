@@ -1,6 +1,5 @@
-import React,{ useState ,Component}  from 'react';
-import ReactDOM from 'react-dom';
-import Sign_Up from './components/sign_up/sign_up';
+import React from 'react';
+import SignUp from './components/sign_up/sign_up';
 import Login from './components/log_in/login.js'
 import {Box} from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
@@ -10,12 +9,11 @@ import AnimatedLoader from './components/element/utils/loader.js'
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import 'semantic-ui-css/semantic.min.css'
-import {Grid,Image} from 'semantic-ui-react';
+import {Grid} from 'semantic-ui-react';
 import Request from 'axios-request-handler';
 import Main from './components/main/main.js'
 
-const paperStyle = {};
-const styles = theme => ({
+const styles = () => ({
 	root: {
         flexGrow: 1,
     },
@@ -49,10 +47,10 @@ class App extends React.Component{
             // Risposte - 200 Nessun aggiornamento
             //            201 Aggiornamento in corso
             //            199 Errore durante la richiesta
-            if (result == 201){    
+            if (result === 201){    
                 this.lockAppRequest("Aggiornamento NRL in corso,attendere..")         
 
-            }else if (result == 199){
+            }else if (result === 199){
                 //Errore
             }else{
                 this.releaseLockApp();
@@ -64,14 +62,14 @@ class App extends React.Component{
 
     // Funzione chiamata quando è necessario bloccare l'interfaccia dell'app
     lockAppRequest = (message) => {
-        this.setState(state => (state.lockApp.lockState  = true, state));
-        this.setState(state => (state.lockApp.lockMessage  = message, state))
+        this.setState(state => (state.lockApp.lockState  = true));
+        this.setState(state => (state.lockApp.lockMessage  = message))
     }
 
     // Funzione chiamata quando bisogna sbloccare l'interfaccia dell'app
     releaseLockApp = () => {
-        this.setState(state => (state.lockApp.lockState  = false, state));
-        this.setState(state => (state.lockApp.lockMessage  = "", state))
+        this.setState(state => (state.lockApp.lockState  = false));
+        this.setState(state => (state.lockApp.lockMessage  = ""))
     }
 
     // Funzione cambiata quando viene richiesto di cambiare stato dell'app tra main - logIN e signUP
@@ -81,7 +79,6 @@ class App extends React.Component{
 
     // Funzione che renderizza tramite JSX la parte di html dedicata al contesto da dover visualizzare
     renderSwitch = () => {
-        const { classes } = this.props;
         switch(this.state.visibleSection){
             case "signUP" :
                 return (
@@ -93,7 +90,7 @@ class App extends React.Component{
                                 <Grid.Row>
                                     <Grid.Column mobile={16} tablet={8} computer={6} >
                                         <Paper elevation={3} >
-                                            <Sign_Up changeView={this.changeView}/>           
+                                            <SignUp changeView={this.changeView}/>           
                                         </Paper>
                                     </Grid.Column>
                                 </Grid.Row>
@@ -127,7 +124,7 @@ class App extends React.Component{
                         <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:this.state.lockApp.lockState}}/>
                     </>
                 );
-            case "default":
+            default:
                 return(<div></div>);
         }
             
@@ -135,13 +132,12 @@ class App extends React.Component{
     
     // Funzione richiamata seguendo il life cycle della classe, renderizza il componente
     render(){
-        const { classes } = this.props;
         return (
                     <Box display="flex" flexDirection="column" style={{height:"100vh"}}>
                         <Grid >
                             <Grid.Row >
                                 <Grid.Column mobile={16} tablet={16} computer={16}>
-                                    <TopBar isMain={this.state.visibleSection=="main"?true:false} nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>
+                                    <TopBar isMain={this.state.visibleSection==="main"?true:false} nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>
                                 </Grid.Column>                     
                             </Grid.Row>
                         </Grid>

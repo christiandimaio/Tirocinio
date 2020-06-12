@@ -70,7 +70,7 @@ export default class StationInfo extends React.Component{
           })
             .then((response) => {
               console.log(response)
-                if (response.headers["content-type"] == "application/xml; charset=utf-8"){
+                if (response.headers["content-type"] === "application/xml; charset=utf-8"){
                   fileDownload(response.data, 'filename.xml');
                 }else{
                   this.setState({errore_download:true});

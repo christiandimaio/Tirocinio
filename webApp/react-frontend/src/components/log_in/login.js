@@ -55,7 +55,7 @@ class Login extends React.Component{
     
         // Funzione che segue lo stesso criterio di funzionamento di quella nel componente sign_up
     handleChange(event,name){
-        const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const email_regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let formErrors = this.state.formErrors;
         
         let {value} = event.target;
@@ -81,6 +81,7 @@ class Login extends React.Component{
             case "rememberMe":
                 console.log(event.target.checked);
                 value = event.target.checked;
+                break;
             default:
                 break;
         }
@@ -108,7 +109,7 @@ class Login extends React.Component{
                 rememberMe : this.state.rememberMe
             })
             .then((response) => {
-                if (response.data["operationCode"] != 200){
+                if (response.data["operationCode"] !== 200){
                     console.log(response.data["operationCode"]);
                     console.log(response.data["message"]);
                     serverResponse.response=true;
@@ -195,8 +196,7 @@ class Login extends React.Component{
                     <Grid item style={{maxWidth:"100%"}}>
                         <Button 
                             fullWidth 
-                            variant="contained" 
-                            fullWidth  
+                            variant="contained"  
                             onClick={() => {this.props.changeView("signUP")}}
                         >
                             Registrati
@@ -208,7 +208,6 @@ class Login extends React.Component{
                             fullWidth 
                             variant="contained" 
                             color="primary" 
-                            fullWidth 
                             onClick={() => {this.tryLogIn()}}
                         >
                             Entra
@@ -217,7 +216,7 @@ class Login extends React.Component{
 
                 </Grid>
 
-                <Snackbar open={this.state.serverResponse.response} autoHideDuration={3000} onClose={() => { this.setState(state => (state.serverResponse.response  = false, state))}} >
+                <Snackbar open={this.state.serverResponse.response} autoHideDuration={3000} onClose={() => { this.setState(state => (state.serverResponse.response  = false))}} >
                         <MuiALert elevation={9} variant="filled" severity={this.state.serverResponse.error?"error":"success"}>
                             {this.state.serverResponse.message}
                         </MuiALert>

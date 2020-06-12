@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import { Modal,Button } from 'semantic-ui-react'
-import {TextField} from '@material-ui/core';
+import {TextField,Tooltip} from '@material-ui/core';
 import {Grid} from 'semantic-ui-react';
 import Selecter from './utils/selecter';
 import Typography from '@material-ui/core/Typography';
@@ -61,7 +61,7 @@ function VerticalLinearStepper(props) {
   const [inclination,setInclination] = React.useState(0);
   const [azimuth,setAzimuth] = React.useState(0);
   const [depth,setDepth] = React.useState(0);
-  const [] = React.useState(false);
+
   const [locationCode,setLocationCode] = React.useState("")
 
   const handleNext = () => {
@@ -112,13 +112,13 @@ function VerticalLinearStepper(props) {
   const formVerify = (step) => {
     switch(step){
       case 0:
-        if (sensorSerial == "" || dataloggerSerial == ""){
+        if (sensorSerial === "" || dataloggerSerial === ""){
           return true
         }else{
           return false
         }
       case 1:
-        if (locationCode == ""){
+        if (locationCode === ""){
           return true
         }else{
           return false
@@ -151,10 +151,12 @@ function VerticalLinearStepper(props) {
             if (props.sensors.length > 0){
                 props.sensors.map((sensor) => {
                   _sensors.push({"key":sensor.componente.seriale,"value":sensor.componente.seriale})
+                  return true
                 })
             }
             props.dataloggers.map((datalogger) => {
               _dataloggers.push({"key":datalogger.componente.seriale,"value":datalogger.componente.seriale})
+              return true
             })
           return(
               <Grid padded>
@@ -182,7 +184,6 @@ function VerticalLinearStepper(props) {
                         variant="outlined" 
                         id="n_canale_textfield"  
                         label="N. Canale" 
-                        variant="outlined" 
                         value={dataloggerChannelNumber} 
                         fullWidth 
                         onChange={handleChannelNumberChange}/>
@@ -409,7 +410,9 @@ export default class AddChannel extends Component {
     }
     
     handleOpen = () => {
+      if (this.state.sensors.length > 0 && this.state.dataloggers.length > 0){
         this.setState({modalOpen:true})
+      }
     }
     handleClose =() =>{
         this.setState({modalOpen:false})
@@ -417,15 +420,19 @@ export default class AddChannel extends Component {
 
     componentDidUpdate(prevProps,prevState) {
         if (this.props.stationId !== prevProps.stationId) {
-            axios.get("api/Stazione/"+this.props.station_id+"/Sensori")
+            axios.get("api/Stazione/"+this.props.stationId+"/Sensori")
             .then((response) => {
                 console.log(response.data.items)
-                this.setState({sensors:response.data.items})   
+                if (response.data.operationCode !== 404){
+                  this.setState({sensors:response.data.items})
+                }   
             })
-            //Invocazione chiamata alla web api per la lista degli operatori 
+            //Invocazione chiamata alla web api per la lista degli acquisitori 
             axios.get("api/Stazione/"+this.props.stationId+"/Acquisitori")
             .then((response) => {
-                        this.setState({dataloggers:response.data.items}) 
+              if (response.data.operationCode !== 404){
+                this.setState({dataloggers:response.data.items}) 
+              } 
             })
         }
     }
@@ -445,9 +452,13 @@ export default class AddChannel extends Component {
         // Per il render guardare JSX + Material UI + Semantic UI React + eventuali componenti custom
         return (
             <>
-                <IconButton aria-label="delete" color="primary" onClick={this.handleOpen} >
-                    <AddCircleIcon fontSize="large"/>
-                </IconButton>
+                <Tooltip title={this.state.sensors.length > 0 && this.state.dataloggers.length > 0?"Aggiungi canale":"Non è possibile aggiungere "+
+                                  "un canale poichè a bordo della stazione mancano sensori o acquisitori, per il corretto funzionamento è necessario che ci "+
+                                  "siano almeno un acquisitore ed un sensore"} interactive>
+                  <IconButton aria-label="delete" color={!(this.state.sensors.length > 0 && this.state.dataloggers.length > 0)?"secondary":"primary"} onClick={this.handleOpen} >
+                      <AddCircleIcon fontSize="large"/>
+                  </IconButton>
+                </Tooltip>
                 <Modal   open={this.state.modalOpen}
                           centered={false} closeOnDimmerClick={false}>
                     <Modal.Header>Aggiungi Canale</Modal.Header>

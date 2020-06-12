@@ -140,13 +140,13 @@ export default class AddOperation extends Component {
         // Nel caso in cui si seleziona:
         //      Altro : La verifica del seriale non deve essere eseguita, imposto la verifica a true implicitamente
         //      Altrimenti : La verifica del seriale deve avvenire per poter registrare l'operazione
-        if (event.target.value != "Altro"){
-            this.setState(state => (state.verifica_componente.verificato  = false, state));
-            this.setState(state => (state.verifica_componente.messaggio  = "Verifica", state));
+        if (event.target.value !== "Altro"){
+            this.setState(state => (state.verifica_componente.verificato  = false));
+            this.setState(state => (state.verifica_componente.messaggio  = "Verifica"));
             this.setState({disabilita_controllo_componente:false});
         }else{
-            this.setState(state => (state.verifica_componente.verificato  = true, state));
-            this.setState(state => (state.verifica_componente.messaggio  = "Non necessario", state));
+            this.setState(state => (state.verifica_componente.verificato  = true));
+            this.setState(state => (state.verifica_componente.messaggio  = "Non necessario"));
             this.setState({disabilita_controllo_componente:true});
         }
             this.setState({tipo_operazione:event.target.value});
@@ -184,14 +184,14 @@ export default class AddOperation extends Component {
         let {componente} = this.state;
         axios.get("api/Stazione/"+this.props.station_id+"/Componente/"+this.state.seriale_componente)
             .then((response) => {
-                if((response.data.item != null)){
+                if((response.data.item !== null)){
                     // Se la web api mi ritorna un componente verifico il tipo di operazione
-                    if (this.state.tipo_operazione == "Installazione"){
-                        this.setState(state => (state.verifica_componente.verificato  = false, state));
-                        this.setState(state => (state.verifica_componente.messaggio  = "Già installato!", state));
+                    if (this.state.tipo_operazione === "Installazione"){
+                        this.setState(state => (state.verifica_componente.verificato  = false));
+                        this.setState(state => (state.verifica_componente.messaggio  = "Già installato!"));
                     }else{
-                        this.setState(state => (state.verifica_componente.verificato  = true, state));
-                        this.setState(state => (state.verifica_componente.messaggio  = "Ok!", state));
+                        this.setState(state => (state.verifica_componente.verificato  = true));
+                        this.setState(state => (state.verifica_componente.messaggio  = "Ok!"));
                     }
                     componente.produttore = response.data.item.produttore;
                     componente.nome = response.data.item.nome;
@@ -205,16 +205,16 @@ export default class AddOperation extends Component {
                     axios.get("api/Componente/"+this.state.seriale_componente)
                     .then((response) => {
                         
-                        if(response.data.item != null){
-                            if(this.state.tipo_operazione == "Installazione" && response.data.possible_to_install){
-                                this.setState(state => (state.verifica_componente.verificato  = true, state));
-                                this.setState(state => (state.verifica_componente.messaggio  = "Installabile!", state));
-                            }else if(this.state.tipo_operazione != "Installazione" && response.data.possible_to_install){
-                                this.setState(state => (state.verifica_componente.verificato  = false, state));
-                                this.setState(state => (state.verifica_componente.messaggio  = "Non presente in stazione!", state));
+                        if(response.data.item !== null){
+                            if(this.state.tipo_operazione === "Installazione" && response.data.possible_to_install){
+                                this.setState(state => (state.verifica_componente.verificato  = true));
+                                this.setState(state => (state.verifica_componente.messaggio  = "Installabile!"));
+                            }else if(this.state.tipo_operazione !== "Installazione" && response.data.possible_to_install){
+                                this.setState(state => (state.verifica_componente.verificato  = false));
+                                this.setState(state => (state.verifica_componente.messaggio  = "Non presente in stazione!"));
                             }else{
-                                this.setState(state => (state.verifica_componente.verificato  = false, state));
-                                this.setState(state => (state.verifica_componente.messaggio  = "Installato in altra stazione!", state));
+                                this.setState(state => (state.verifica_componente.verificato  = false));
+                                this.setState(state => (state.verifica_componente.messaggio  = "Installato in altra stazione!"));
                             }
                             componente.produttore = response.data.item.produttore;
                             componente.nome = response.data.item.nome;
@@ -223,8 +223,8 @@ export default class AddOperation extends Component {
                             componente.profondita = response.data.item.profondita_mm;
                             this.setState({componente});
                         }else{
-                            this.setState(state => (state.verifica_componente.verificato  = false, state));
-                            this.setState(state => (state.verifica_componente.messaggio  = "Questo seriale non appartiene a nessun componente", state));
+                            this.setState(state => (state.verifica_componente.verificato  = false));
+                            this.setState(state => (state.verifica_componente.messaggio  = "Questo seriale non appartiene a nessun componente"));
                         }
 
                     })
@@ -240,33 +240,33 @@ export default class AddOperation extends Component {
         var info = this.state;
 
         // Verifica sè tutti i campi richiesti sono inseriti e validi
-        if (info.tipo_operazione == "" || info.data_inizio_operazione == "" || info.data_fine_operazione == "" || !(info.verifica_componente.verificato) || 
-            info.operatore_incaricato == "" || (info.seriale_componente == "" && info.tipo_operazione !="Altro")){
-                this.setState(state => (state.registrazione.chiamata  = true, state));
-                this.setState(state => (state.registrazione.stato  = false, state));
-                this.setState(state => (state.registrazione.messaggio  = "Campi richiesti non inseriti!", state));
+        if (info.tipo_operazione === "" || info.data_inizio_operazione === "" || info.data_fine_operazione === "" || !(info.verifica_componente.verificato) || 
+            info.operatore_incaricato === "" || (info.seriale_componente === "" && info.tipo_operazione !=="Altro")){
+                this.setState(state => (state.registrazione.chiamata  = true));
+                this.setState(state => (state.registrazione.stato  = false));
+                this.setState(state => (state.registrazione.messaggio  = "Campi richiesti non inseriti!"));
                 return 
             }
         axios.post('/api/Stazione/'+this.props.station_id+'/Operazione', {
             tipo_operazione:info.tipo_operazione,
             data_inizio_operazione:info.data_inizio_operazione,
             data_fine_operazione:info.data_fine_operazione,
-            seriale_componente:this.state.tipo_operazione != "Altro"?info.seriale_componente:"", //Nel caso in cui il tipo di operazione sia "Altro" il seriale va inviato vuoto
+            seriale_componente:this.state.tipo_operazione !== "Altro"?info.seriale_componente:"", //Nel caso in cui il tipo di operazione sia "Altro" il seriale va inviato vuoto
             operatore_incaricato:info.operatore_incaricato,
             note:info.note,
           })
           .then((response) => {
-            this.setState(state => (state.registrazione.chiamata  = true, state));
+            this.setState(state => (state.registrazione.chiamata  = true));
             // Codici di verifica :
             //      200 : Tutto okay
-            if (response.data["operationCode"] != 200){
-                this.setState(state => (state.registrazione.stato  = false, state));
-                this.setState(state => (state.registrazione.messaggio  = response.data.message, state));
+            if (response.data["operationCode"] !== 200){
+                this.setState(state => (state.registrazione.stato  = false));
+                this.setState(state => (state.registrazione.messaggio  = response.data.message));
             
             }else{
                 if(this._isMounted){
-                    this.setState(state => (state.registrazione.stato  = true, state));
-                this.setState(state => (state.registrazione.messaggio  = "Registrazione avvenuta con successo", state));
+                    this.setState(state => (state.registrazione.stato  = true));
+                this.setState(state => (state.registrazione.messaggio  = "Registrazione avvenuta con successo"));
             
                 }
             }
@@ -318,7 +318,7 @@ export default class AddOperation extends Component {
                                     Selezione Componente
                                 </Header>
                             </Divider>
-                            <Grid.Row style={{paddingBottom:0}} style={{paddingBottom:0}}>
+                            <Grid.Row style={{paddingBottom:0}} >
                                     <Grid.Column width={5}  >   
                                         <TextField  id="seriale_componente_textfield" label="N. Seriale Componente" variant="outlined" required 
                                             helperText={this.state.verifica_componente.messaggio} error={this.state.verifica_componente.verificato?false:true

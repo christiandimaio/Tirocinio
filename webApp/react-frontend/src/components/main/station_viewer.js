@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -72,7 +72,11 @@ function ScrollableTabsButtonForce(props) {
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
-  
+    
+    useEffect(() => {
+      setValue(0)
+    }, [props.stationId]);
+
     return (
       <div className={classes.root}>
       <Grid>
@@ -141,7 +145,7 @@ export default class StationViewer extends React.Component{
     componentDidUpdate(prevProps,prevState) {
       if (this.props.stationId !== prevProps.stationId) {
           this.getOperazioniStazione()
-          
+          this.setState({state:this.state})  
       }
     }
 

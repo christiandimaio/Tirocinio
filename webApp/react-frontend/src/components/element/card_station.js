@@ -1,12 +1,11 @@
 import React from 'react';
-import { Button, Icon, Image, Item, Label,Grid } from 'semantic-ui-react'
+import { Button, Item, Label } from 'semantic-ui-react'
 import DefaultStationImage from '../../images/stations/default.png'
 import {Box,Snackbar} from '@material-ui/core';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import axios from 'axios';
 import MuiALert from '@material-ui/lab/Alert';
 import ListOutlinedIcon from '@material-ui/icons/ListOutlined';
@@ -36,9 +35,7 @@ var fileDownload = require('js-file-download');
 
 export default class StationCard extends React.Component {
 
-  constructor(props){
-    super(props);
-  }
+
 
   state={
     downloadError:false //Stato che indica di un eventuale errore nello scaricare lo stationXml
@@ -55,7 +52,7 @@ export default class StationCard extends React.Component {
     axios.get('/api/Stazione/'+stationId+'/StationXml')
         .then((response) => {
           console.log(response)
-            if (response.headers["content-type"] == "application/xml; charset=utf-8"){
+            if (response.headers["content-type"] === "application/xml; charset=utf-8"){
               fileDownload(response.data, 'station.xml');
             }else{
               this.setState({downloadError:true});

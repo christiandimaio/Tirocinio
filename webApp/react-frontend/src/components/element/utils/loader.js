@@ -1,14 +1,10 @@
-import React,{ useState ,Component}  from 'react';
-import {Box,Grid} from '@material-ui/core';
+import React,{ }  from 'react';
+import {Grid} from '@material-ui/core';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 export default class AnimatedLoader extends React.Component{
-    constructor(props){
-        super(props);
-        
-    }
 
     render(){
         const {properties} = this.props;

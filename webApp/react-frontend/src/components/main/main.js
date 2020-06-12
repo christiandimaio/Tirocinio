@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
@@ -40,9 +40,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CustomizedInputBase() {
+function CustomizedInputBase(props) {
   const classes = useStyles();
+  const [value,setValue] = React.useState("")
 
+  const handleChange = (event) => {
+    setValue(event.target.value.toUpperCase())
+    props.setFilter(event.target.value.toUpperCase())
+  }
   return (
     <Paper className={classes.root} >
       <IconButton className={classes.iconButton} aria-label="menu">
@@ -52,6 +57,8 @@ function CustomizedInputBase() {
         className={classes.input}
         placeholder="Cerca una stazione"
         inputProps={{ 'aria-label': 'Cerca una stazione' }}
+        value = {value}
+        onChange={handleChange}
       />
       <IconButton  className={classes.iconButton} aria-label="Cerca">
         <SearchIcon />
@@ -78,7 +85,8 @@ export default class Main extends React.Component{
       stationInfo:{ // Attributo che gestisce la visualizzazione delle informazioni della stazione
         open:false, // Booleano che mi permette di capire quando viene richiesta l'apertura della sezione "informazioni stazione"
         stationId:"" // Identificativo della stazione
-      }
+      },
+      stationFilter:"" // filtro sul codice della stazione
     }
   }
 
@@ -86,28 +94,28 @@ export default class Main extends React.Component{
   // Come parametro prende l'identificativo della stazione Ex. "IOCA"
   openStationInfo = (id) => {
     this.closeStationInfo() // Necessario per forzare un rendering aggiuntivo del component con passaggio dei nuovi parametri
-    this.setState(state => (state.stationInfo.open  = true, state));
-    this.setState(state => (state.stationInfo.stationId  = id, state));
+    this.setState(state => (state.stationInfo.open  = true));
+    this.setState(state => (state.stationInfo.stationId  = id));
   }
 
   // Funzione duale di openStationInfo
   closeStationInfo = () => {
-    this.setState(state => (state.stationInfo.open  = false, state));
-    this.setState(state => (state.stationInfo.stationId  = "", state));
+    this.setState(state => (state.stationInfo.open  = false));
+    this.setState(state => (state.stationInfo.stationId  = ""));
   }
 
   // Funziona chiamata per aprire la sezione di "Aggiungi Operazione" della stazione
   // Come parametro prende l'identificativo della stazione Ex. "IOCA"
   openAddOperation = (id) => {
-    this.setState(state => (state.addOperation.open  = true, state));
-    this.setState(state => (state.addOperation.stationId  = id, state));
+    this.setState(state => (state.addOperation.open  = true));
+    this.setState(state => (state.addOperation.stationId  = id));
   }
 
   // Funzione duale di openAddOperation
   closeAddOperation = () => {
-    this.setState(state => (state.addOperation.open  = false, state));
-    this.setState(state => (state.addOperation.stationId  = "", state));
-    this.retrieveStationInfo()
+    this.setState(state => (state.addOperation.open  = false));
+    this.setState(state => (state.addOperation.stationId  = ""));
+    this.retrieveStationInfo("")
   }
 
   
@@ -115,6 +123,10 @@ export default class Main extends React.Component{
     this._isMounted=false;
   }
 
+  //Funzione che intercetta eventuali ricerca sulla textbox
+  handleSearchCodeFilter = (value) => {
+    this.retrieveStationInfo(value)
+  }
 
   // Funzione che forza il component a renderizzarsi di nuovo
   forceReRender = () => {
@@ -123,13 +135,18 @@ export default class Main extends React.Component{
 
   componentDidMount() {
     this._isMounted=true;
-    this.retrieveStationInfo()
+    this.retrieveStationInfo("")
   }
 
   // Funzione che interroga la web api ottenendo tutte le stazioni attualmente sul database
-  retrieveStationInfo = () =>{
+  retrieveStationInfo = (query) =>{
     console.log("reload UI")
-    axios.get('/api/Stazioni/info')
+    console.log(query)
+    axios.get('/api/Stazioni/info',{
+        params:{
+          q: query === ""?null:query
+          }
+        })
         .then((response) => {
           if(this._isMounted){
             console.log(response.data["data"]);
@@ -152,7 +169,7 @@ export default class Main extends React.Component{
             <React.Fragment>
               <Grid padded columns="1" centered style={{minWidth:"25vw", maxHeight:"90vh",overflow:"auto"}}>
                 <Grid.Column mobile={16} tablet={5} computer={4} style={{flexGrow:1,maxHeight:"100%"}} >
-                <CustomizedInputBase/>
+                <CustomizedInputBase setFilter={this.handleSearchCodeFilter}/>
                 <Divider />
                     {
                       this.state.stations.map((station) => 

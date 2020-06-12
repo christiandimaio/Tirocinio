@@ -1,11 +1,9 @@
-import React,{Component} from 'react';
+import React from 'react';
 import Selecter from '../element/utils/selecter';
 import DateTimePicker from '../element/utils/date_picker';
-import {TextField,Box,Snackbar,InputAdornment,Grid,Button, FormControl} from '@material-ui/core';
+import {TextField,Box,Snackbar,InputAdornment,Grid,Button} from '@material-ui/core';
 import axios from 'axios';
-import Paper from '@material-ui/core/Paper'
   import MuiALert from '@material-ui/lab/Alert';
-  import itLocale from "date-fns/locale/it";
   import InputLabel from '@material-ui/core/InputLabel';
   import Fade from '@material-ui/core/Fade';
 
@@ -19,7 +17,7 @@ const operatore_style = {
 // PROPS RICEVUTE :
 //                  1)changeView : procedura che si occupa di avvisare il padre del componente che è stato generato un evento di cambio contesto
 
-export default class Sign_Up extends React.Component{
+export default class SignUp extends React.Component{
     _isMounted = false;
     constructor(props){
         super(props);   
@@ -85,7 +83,7 @@ export default class Sign_Up extends React.Component{
     handleChange = (event,name) => {
         let {value} = event.target;
         // Espressione regolare per verificare la correttezza di una mail
-        const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const email_regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let error = this.state.error;
         let visibility = this.state.visibility;
         console.log(name);
@@ -123,7 +121,7 @@ export default class Sign_Up extends React.Component{
                 }
                 break;
             case "password_confirm":
-                if (value == this.state.password){
+                if (value === this.state.password){
                     error.password_confirm.status = false;
                     error.password_confirm.message="Password Confermata";
                 }else{
@@ -133,7 +131,7 @@ export default class Sign_Up extends React.Component{
                 break;
             case "userType":
                     error.userType.status = false
-                if ( value == "Esterno"){
+                if ( value === "Esterno"){
                     visibility.externalUserCompany=true;
                 }else{
                     visibility.externalUserCompany=false;
@@ -160,9 +158,9 @@ export default class Sign_Up extends React.Component{
         if(value instanceof Date && !isNaN(value)){
             console.log(value);
             this.setState({birthday:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
-            this.setState(state => (state.error.birthday.status=false,state));
+            this.setState(state => (state.error.birthday.status=false));
         }else{
-            this.setState(state => (state.error.birthday.status=true,state));
+            this.setState(state => (state.error.birthday.status=true));
         }
     }
 
@@ -171,16 +169,15 @@ export default class Sign_Up extends React.Component{
         this._isMounted=true;
         console.log(this.state);
         let {error} = this.state;
-        let {sign_in} = this.state;
 
         // Verifico sè tutti i campi necessari sono stati inizializzati
         if (error.name.status || error.surname.status || error.password.status || error.password_confirm.status || error.userType.status || error.birthday.status
-            || (this.state.userType=="Esterno" && error.externalUserCompany.status)){
+            || (this.state.userType==="Esterno" && error.externalUserCompany.status)){
             if(this._isMounted){
-                this.setState(state => (state.sign_in.called  = true, state));
-                this.setState(state => (state.sign_in.successful=false, state));
+                this.setState(state => (state.sign_in.called  = true));
+                this.setState(state => (state.sign_in.successful=false));
                 this.setState(state => (state.sign_in.message=
-                    "Non posso proseguire, c'è qualche errore sui campi!", state));
+                    "Non posso proseguire, c'è qualche errore sui campi!"));
             }
             return
         }
@@ -196,26 +193,26 @@ export default class Sign_Up extends React.Component{
             userTelephone: this.state.userTelephone
           })
           .then((response) => {
-            if (response.data["operationCode"] != 200 && this._isMounted){
-                this.setState(state => (state.sign_in.called  = true, state));
-                this.setState(state => (state.sign_in.successful=false, state));
+            if (response.data["operationCode"] !== 200 && this._isMounted){
+                this.setState(state => (state.sign_in.called  = true));
+                this.setState(state => (state.sign_in.successful=false));
                 this.setState(state => (state.sign_in.message=
-                            response.data["message"], state));
+                            response.data["message"]));
             }else{
                 if(this._isMounted){
-                    this.setState(state => (state.sign_in.called  = true, state));
-                    this.setState(state => (state.sign_in.successful=true, state));
+                    this.setState(state => (state.sign_in.called  = true));
+                    this.setState(state => (state.sign_in.successful=true));
                     this.setState(state => (state.sign_in.message = 
-                        "Registrazione Avvenuta con successo, sarai re-indirizzato alla pagina di login tra 3 secondi!", state));
+                        "Registrazione Avvenuta con successo, sarai re-indirizzato alla pagina di login tra 3 secondi!"));
                 }
             }
           })
           .catch((error) => {
               if(this._isMounted){
-                    this.setState(state => (state.sign_in.called  = true, state));
-                    this.setState(state => (state.sign_in.successful=false, state));
+                    this.setState(state => (state.sign_in.called  = true));
+                    this.setState(state => (state.sign_in.successful=false));
                     this.setState(state => (state.sign_in.message=
-                                    "Registrazione non riuscita a causa di qualche errore, riprovare più tardi!", state));
+                                    "Registrazione non riuscita a causa di qualche errore, riprovare più tardi!"));
                 }
             console.log(error);
           });
@@ -240,7 +237,7 @@ export default class Sign_Up extends React.Component{
                     })
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 if(this._isMounted){
                     this.setState({operatorType:["Default"]})
                 }
@@ -419,7 +416,7 @@ export default class Sign_Up extends React.Component{
                 <div> 
                     {
                         this.state.sign_in.called
-                        ?<Snackbar open={this.state.sign_in.called} autoHideDuration={2000} onClose={() => { if(this.state.sign_in.successful){this.switchToLogIn()}else{this.setState(state => (state.sign_in.called  = false, state))} }}>
+                        ?<Snackbar open={this.state.sign_in.called} autoHideDuration={2000} onClose={() => { if(this.state.sign_in.successful){this.switchToLogIn()}else{this.setState(state => (state.sign_in.called  = false))} }}>
                             <MuiALert elevation={9} variant="filled" severity={this.state.sign_in.successful?"success":"error"}>
                                 {this.state.sign_in.message}
                             </MuiALert>

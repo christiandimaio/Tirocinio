@@ -50,7 +50,7 @@ export default class AddNewStation extends Component {
             this.props.callReRender()
         }
         else{
-            this.setState(state => (state.registrazione.chiamata  = false, state));
+            this.setState(state => (state.registrazione.chiamata  = false));
         }
     }
     
@@ -79,7 +79,7 @@ export default class AddNewStation extends Component {
     
     handleLongitudineChange = (event) => this.setState({longitudine:event.target.value})
 
-    handleCodiceStazioneChange = (event) => this.setState({codice_stazione:event.target.value})
+    handleCodiceStazioneChange = (event) => this.setState({codice_stazione:event.target.toUpperCase()})
 
     handleEllissoideChange = (event) => this.setState({ellissoide:event.target.value})
 
@@ -95,12 +95,12 @@ export default class AddNewStation extends Component {
 
     makeRequestInsert = () => {
         var info = this.state;
-        if (info.codice_stazione == "" || info.tipo_stazione == "" || 
-            !(info.latitudine.includes(".")) || info.latitudine == "" || !(info.longitudine.includes(".")) || info.longitudine == "" || 
-            info.responsabile_1 == "" || info.operatore_installazione == ""){
-                this.setState(state => (state.registrazione.chiamata  = true, state));
-                this.setState(state => (state.registrazione.stato  = false, state));
-                this.setState(state => (state.registrazione.messaggio  = "Alcuni campi sono errati, seguire indicazioni!", state));
+        if (info.codice_stazione === "" || info.tipo_stazione === "" || 
+            !(info.latitudine.includes(".")) || info.latitudine === "" || !(info.longitudine.includes(".")) || info.longitudine === "" || 
+            info.responsabile_1 === "" || info.operatore_installazione === ""){
+                this.setState(state => (state.registrazione.chiamata  = true));
+                this.setState(state => (state.registrazione.stato  = false));
+                this.setState(state => (state.registrazione.messaggio  = "Alcuni campi sono errati, seguire indicazioni!"));
                 return 
             }
         axios.post('/api/Stazione', {
@@ -119,16 +119,16 @@ export default class AddNewStation extends Component {
             operatore_installazione:info.operatore_installazione
           })
           .then((response) => {
-            this.setState(state => (state.registrazione.chiamata  = true, state));
+            this.setState(state => (state.registrazione.chiamata  = true));
             
-            if (response.data["operationCode"] != 200){
-                this.setState(state => (state.registrazione.stato  = false, state));
-                this.setState(state => (state.registrazione.messaggio  = response.data.message, state));
+            if (response.data["operationCode"] !== 200){
+                this.setState(state => (state.registrazione.stato  = false));
+                this.setState(state => (state.registrazione.messaggio  = response.data.message));
             
             }else{
                 if(this._isMounted){
-                    this.setState(state => (state.registrazione.stato  = true, state));
-                this.setState(state => (state.registrazione.messaggio  = "Registrazione avvenuta con successo", state));
+                    this.setState(state => (state.registrazione.stato  = true));
+                this.setState(state => (state.registrazione.messaggio  = "Registrazione avvenuta con successo"));
             
                 }
             }

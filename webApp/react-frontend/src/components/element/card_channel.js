@@ -135,7 +135,7 @@ export default function Channels(props) {
         </Box>
      
       <Box display="flex" justifyContent="center" alignItems="flexe-end" width={1} paddingTop={1}>
-        <Pagination color="primary" count={10} onChange={handlePageChange} count={props.channels.length % rowsPerPage}
+        <Pagination color="primary" onChange={handlePageChange} count={props.channels.length % rowsPerPage}
                             rowsPerPage={rowsPerPage}
                             page={page}/>
       </Box>

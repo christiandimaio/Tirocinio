@@ -2,10 +2,11 @@
 //Componente per la visualizzazione delle informazioni stazione sotto forma di card 
 import React from 'react';
 
-import { Button, Icon, Image, Item, Label } from 'semantic-ui-react'
+import { Button, Icon, Image } from 'semantic-ui-react'
 
 import { Card,Grid } from 'semantic-ui-react'
 import DefaultComponentImage from '../../images/components/default.png'
+
 const ComponentCard = (props) => (
   <Card>
     <Image src={DefaultComponentImage} wrapped ui={false} />
@@ -24,18 +25,14 @@ const ComponentCard = (props) => (
         <Grid>
             <Grid.Row>
                 <Grid.Column>
-                    <a>
-                        <Icon name='setting' />
-                        {props.classNumberElement}
-                    </a> 
+                  <Icon name='setting' />
+                  {props.classNumberElement}
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column>
-                    <a>
-                        <Icon name='setting' />
-                        {props.classNumberElement}
-                    </a> 
+                  <Icon name='setting' />
+                  {props.classNumberElement}
                 </Grid.Column>
             </Grid.Row>
         </Grid>
@@ -52,10 +49,6 @@ const ComponentCard = (props) => (
 // classImagePath: immagine di default del componente
 //  
 export default class ComponentCardInfo extends React.Component {
-
-  constructor(props){
-    super(props);
-  }
   
 
   render(){

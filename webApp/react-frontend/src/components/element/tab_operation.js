@@ -134,7 +134,7 @@ function Row(props) {
               <TableCell align="center">{operation["operazione"]["tipo_operazione"]}</TableCell>
               <TableCell align="center">{operation["operatore"]["nome_cognome"]}</TableCell>
               <TableCell align="center">{startDate.getFullYear()+"/"+(startDate.getMonth()+1)+"/"+startDate.getDate()}</TableCell>
-              <TableCell align="center">{endDate!=""?endDate.getFullYear()+"/"+(endDate.getMonth()+1)+"/"+endDate.getDate():""}</TableCell>
+              <TableCell align="center">{endDate!==""?endDate.getFullYear()+"/"+(endDate.getMonth()+1)+"/"+endDate.getDate():""}</TableCell>
             </TableRow>
             <TableRow style={{width:"50%"}}>
               <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -164,7 +164,7 @@ export default function OperazioniTab(props) {
     setCollapseAll(event.target.checked);
   };
   
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, props.stationOperations.length - page * rowsPerPage);
+  // MAI USATO, PUÒ TORNARE UTILE const emptyRows = rowsPerPage - Math.min(rowsPerPage, props.stationOperations.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -210,8 +210,8 @@ export default function OperazioniTab(props) {
                             : props.stationOperations
                           ).map( (operation) => {
                             
-                            const data_fine = operation["operazione"]["data_fine_operazione"]!=null ? new Date(operation["operazione"]["data_fine_operazione"]):"";
-                            const data_inizio = operation["operazione"]["data_inizio_operazione"]!=null ? new Date(operation["operazione"]["data_inizio_operazione"]):"" ;
+                            const data_fine = operation["operazione"]["data_fine_operazione"]!==null ? new Date(operation["operazione"]["data_fine_operazione"]):"";
+                            const data_inizio = operation["operazione"]["data_inizio_operazione"]!==null ? new Date(operation["operazione"]["data_inizio_operazione"]):"" ;
                             
                             return(
                               <Row operation={operation} collapseAll={collapseAll} startDate={data_inizio} endDate={data_fine}/>
