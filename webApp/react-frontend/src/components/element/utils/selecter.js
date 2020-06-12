@@ -4,18 +4,6 @@ import axios from 'axios';
 import {FormControl,InputLabel,Select,FormHelperText,MenuItem} from '@material-ui/core';
 
 
-{/* <Selecter
-            properties = {{labelId:"label-selecter-id",
-                            id:"selecter",
-                            inputLabel:"Tipo Utente",
-                            style:operatore_style,
-                            value:this.state.tipo_utente,
-            customHandler:this.handleChange,
-            helperText:error.tipo_utente.message,
-            name:"tipo_utente",
-            error:error.tipo_utente.state}}
-            item= '/database/select/user/type'/> 
-        required*/}
 
 export default class Selecter extends React.Component{
     constructor(props){

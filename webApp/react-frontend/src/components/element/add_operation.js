@@ -2,20 +2,14 @@
 
 import React, { Component } from 'react'
 import { Header, Icon, Modal,Button } from 'semantic-ui-react'
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Tooltip';
 import {TextField,Snackbar} from '@material-ui/core';
-import {Grid,Image} from 'semantic-ui-react';
-import Selecter from './selecter';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
+import {Grid} from 'semantic-ui-react';
+import Selecter from './utils/selecter';
 import IconButton from '@material-ui/core/IconButton';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { green,red } from '@material-ui/core/colors';
 import { Divider } from 'semantic-ui-react'
-import TransferList from './transfer_list.js'
-import DateTimePicker from './date_picker.js'
+import DateTimePicker from './utils/date_picker.js'
 import MuiALert from '@material-ui/lab/Alert';
 import axios from 'axios';
 export default class AddOperation extends Component {
@@ -80,7 +74,7 @@ export default class AddOperation extends Component {
                     })
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 if(this._isMounted){
                     this.setState({database_operatori:["Default"]})
                 }
@@ -141,7 +135,7 @@ export default class AddOperation extends Component {
     }
 
     // Gestore evento : modifica al tipo operazione component Selecter
-    handleTipoOperazioneChange = (event,name) => {
+    handleTipoOperazioneChange = (event) => {
         // Procedura che tiene traccia degli eventi di modifica sul selecter Tipo Operazione
         // Nel caso in cui si seleziona:
         //      Altro : La verifica del seriale non deve essere eseguita, imposto la verifica a true implicitamente

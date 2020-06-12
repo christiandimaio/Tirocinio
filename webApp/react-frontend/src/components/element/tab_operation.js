@@ -30,6 +30,15 @@ const useStyles1 = makeStyles((theme) => ({
   },
 }));
 
+// Componente locale Hook per la gestione della paginazione della tabella
+//  Props:
+//        Metodi:
+//              1) onChangePage : richiamata alla richiesta di cambio pagina
+//        Attributi:
+//              1) count : numero pagine
+//              2) page : pagina attuale
+//              3) rowsPerPage : numero di righe per pagina
+//        
 function TablePaginationActions(props) {
   const classes = useStyles1();
   const theme = useTheme();
@@ -95,14 +104,20 @@ const useStyles = makeStyles({
   },
 });
 
-
+// Componente locale Hook per la gestione di ogni singola riga della tabella 
+// Props:
+//      Attributi:
+//                1) operation : singola operazione in formato struct
+//                2) startDate : data inizio operazione
+//                3) endDate : data di fine operazione
+//                4) collapseAll : indica se è stato richiesto un collasso della riga -> booleano
 function Row(props) {
-  const { operazione } = props;
-  const { data_inizio } = props;
-  const { data_fine } = props;
+  const { operation } = props;
+  const { startDate } = props;
+  const { endDate } = props;
   const [open, setOpen] = React.useState();
 
-  React.useEffect(() => {
+  React.useEffect(() => { // aggiorno collapse in funzione di una chiamata dal padre
     setOpen(props.collapseAll);
   }, [props.collapseAll])
 
@@ -115,17 +130,17 @@ function Row(props) {
                 </IconButton>
               </TableCell>
               
-              <TableCell align="center">{operazione["componente"]["seriale"]}</TableCell>
-              <TableCell align="center">{operazione["operazione"]["tipo_operazione"]}</TableCell>
-              <TableCell align="center">{operazione["operatore"]["nome_cognome"]}</TableCell>
-              <TableCell align="center">{data_inizio.getFullYear()+"/"+(data_inizio.getMonth()+1)+"/"+data_inizio.getDate()}</TableCell>
-              <TableCell align="center">{data_fine!=""?data_fine.getFullYear()+"/"+(data_fine.getMonth()+1)+"/"+data_fine.getDate():""}</TableCell>
+              <TableCell align="center">{operation["componente"]["seriale"]}</TableCell>
+              <TableCell align="center">{operation["operazione"]["tipo_operazione"]}</TableCell>
+              <TableCell align="center">{operation["operatore"]["nome_cognome"]}</TableCell>
+              <TableCell align="center">{startDate.getFullYear()+"/"+(startDate.getMonth()+1)+"/"+startDate.getDate()}</TableCell>
+              <TableCell align="center">{endDate!=""?endDate.getFullYear()+"/"+(endDate.getMonth()+1)+"/"+endDate.getDate():""}</TableCell>
             </TableRow>
             <TableRow style={{width:"50%"}}>
               <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                   <Box  justifyContent="center" display="flex">
-                    Note : {operazione["operatore"]["note"]}
+                    Note : {operation["operatore"]["note"]}
                   </Box>
                 </Collapse>
               </TableCell>
@@ -134,9 +149,13 @@ function Row(props) {
   );
 }
 
+// Componente Hook per la gestione del tab operazioni, composto adesso unicamente dalla tabella delle operazioni
+// Props
+//      Attributi:
+//                1) stationOperations : array di tutte le operazioni(interventi) afferenti alla stazione
 export default function OperazioniTab(props) {
   const classes = useStyles();
-  const [collapseAll, setCollapseAll] = React.useState(false);
+  const [collapseAll, setCollapseAll] = React.useState(false); // Serve per gestire il collasso contemporaneo di tutte le righe della pagina
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -145,7 +164,7 @@ export default function OperazioniTab(props) {
     setCollapseAll(event.target.checked);
   };
   
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, props.operazioni.length - page * rowsPerPage);
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, props.stationOperations.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -187,15 +206,15 @@ export default function OperazioniTab(props) {
                         {
                           (
                             rowsPerPage > 0
-                            ? props.operazioni.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            : props.operazioni
-                          ).map( (operazione) => {
-                            console.log(operazione)
-                            const data_fine = operazione["operazione"]["data_fine_operazione"]!=null ? new Date(operazione["operazione"]["data_fine_operazione"]):"";
-                            const data_inizio = operazione["operazione"]["data_inizio_operazione"]!=null ? new Date(operazione["operazione"]["data_inizio_operazione"]):"" ;
+                            ? props.stationOperations.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            : props.stationOperations
+                          ).map( (operation) => {
+                            
+                            const data_fine = operation["operazione"]["data_fine_operazione"]!=null ? new Date(operation["operazione"]["data_fine_operazione"]):"";
+                            const data_inizio = operation["operazione"]["data_inizio_operazione"]!=null ? new Date(operation["operazione"]["data_inizio_operazione"]):"" ;
                             
                             return(
-                              <Row operazione={operazione} collapseAll={collapseAll} data_inizio={data_inizio} data_fine={data_fine}/>
+                              <Row operation={operation} collapseAll={collapseAll} startDate={data_inizio} endDate={data_fine}/>
                             )
                           })
                         }
@@ -205,7 +224,7 @@ export default function OperazioniTab(props) {
                           <TablePagination
                             rowsPerPageOptions={[5, 10, 25, { label: 'Tutte', value: -1 }]}
                             colSpan={3}
-                            count={props.operazioni.length}
+                            count={props.stationOperations.length}
                             rowsPerPage={rowsPerPage}
                             page={page}
                             labelRowsPerPage="Righe per pagina"

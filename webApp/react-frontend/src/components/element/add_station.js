@@ -3,16 +3,12 @@ import { Header, Icon, Modal,Button } from 'semantic-ui-react'
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
-import {TextField,Box, FormControl,Snackbar} from '@material-ui/core';
-import {Grid,Image} from 'semantic-ui-react';
-import Selecter from '../element/selecter';
+import {TextField,Box, Snackbar} from '@material-ui/core';
+import {Grid} from 'semantic-ui-react';
+import Selecter from './utils/selecter';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-import IconButton from '@material-ui/core/IconButton';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import { green,red } from '@material-ui/core/colors';
 import { Divider } from 'semantic-ui-react'
-import TransferList from '../element/transfer_list.js'
 import MuiALert from '@material-ui/lab/Alert';
 import axios from 'axios';
 export default class AddNewStation extends Component {
@@ -87,7 +83,7 @@ export default class AddNewStation extends Component {
 
     handleEllissoideChange = (event) => this.setState({ellissoide:event.target.value})
 
-    handleTipoStazioneChange = (event,name) => this.setState({tipo_stazione:event.target.value})
+    handleTipoStazioneChange = (event) => this.setState({tipo_stazione:event.target.value})
 
     handleAltezzaMareChange = (event,newValue) => this.setState({altezza_lv_mare:newValue})
     
@@ -150,7 +146,7 @@ export default class AddNewStation extends Component {
                     })
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 if(this._isMounted){
                     this.setState({database_operatori:["Default"]})
                 }
@@ -201,7 +197,7 @@ export default class AddNewStation extends Component {
                                 </Typography>
                                 <Slider
                                     defaultValue={1}
-                                    getAriaValueText={(value) => {return '$(value)M'}}
+                                    getAriaValueText={() => {return '$(value)M'}}
                                     aria-labelledby="discrete-slider-small-steps"
                                     step={1}
                                     value={this.state.periodo_manutenzione}

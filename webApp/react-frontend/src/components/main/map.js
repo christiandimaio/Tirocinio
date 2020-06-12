@@ -1,7 +1,9 @@
-import React,{ useState ,Component}  from 'react';
-import ReactDOM from 'react-dom';
+import React,{ }  from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
+// Componente che gestisce la mappa
+//  Props:
+//        stations : rappresenta tutte le stazioni da dover renderizzare
 export default class StationMap extends React.Component {
   constructor() {
     super()
@@ -21,10 +23,10 @@ export default class StationMap extends React.Component {
           url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
         {
-          this.props.stations_info.map((item) => (
-            <Marker position={[item["latitudine"],item["longitudine"]]} >
+          this.props.stations.map((station) => (
+            <Marker position={[station["latitudine"],station["longitudine"]]} >
             <Popup zoomAnimation >
-              {item["codice"]}
+              {station["codice"]}
             </Popup>
           </Marker>
           ))

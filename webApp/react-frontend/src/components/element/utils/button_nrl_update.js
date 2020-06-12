@@ -8,27 +8,28 @@ const styles = {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
 }
+
+// Componente per la gestione delle operazioni di aggiornamento di NRL
 class NrlComponent extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            call_request: false,
+            callRequest: false,
             inWaitingResponseState : false,
             result: undefined,
-            waiting_animation: undefined,
-            alert_visibile : false
+            waitingAnimation: undefined,
         }
     }
 
     onShowAlert = ()=>{
           window.setTimeout(()=>{
-            this.setState({call_request:false})
+            this.setState({callRequest:false})
           },3000)
 
       }
     updateNrlCall = async () => {
         event.preventDefault();
-        this.setState({call_request:true});
+        this.setState({callRequest:true});
         axios.get('/api/NRL/update', {
           })
           .then((response) => {
@@ -71,7 +72,7 @@ class NrlComponent extends React.Component{
           });
         this.setState({inWaitingResponseState : true}, () => { this.props.nrlChangeState(this.state.inWaitingResponseState); });
         this.setState({ 
-                        waiting_animation : (<div>
+                        waitingAnimation : (<div>
                             <Spinner animation="grow" variant="success" />
                             <Spinner animation="grow" variant="danger" />
                             <Spinner animation="grow" variant="warning" /></div>)
@@ -79,7 +80,7 @@ class NrlComponent extends React.Component{
     }
 
     render() {
-        const {result,waiting_animation,call_request} = this.state;
+        const {result,waitingAnimation,callRequest} = this.state;
         const waiting = this.state.inWaitingResponseState;
         return (
                 <div class="container">
@@ -89,12 +90,11 @@ class NrlComponent extends React.Component{
                         </div>
                         <div class="col-xl-4 col-sm-4">
                         {
-                            call_request ?
+                            callRequest ?
                               waiting?  
-                                waiting_animation
+                                waitingAnimation
                                 :result
                             : <div></div>
-
                         }
                         </div>
                 </div>

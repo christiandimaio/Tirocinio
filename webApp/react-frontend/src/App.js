@@ -6,7 +6,7 @@ import {Box} from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import ParticlesBg from 'particles-bg'
 import TopBar from './components/element/topbar.js';
-import AnimatedLoader from './components/element/loader.js'
+import AnimatedLoader from './components/element/utils/loader.js'
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import 'semantic-ui-css/semantic.min.css'

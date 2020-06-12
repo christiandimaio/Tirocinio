@@ -4,22 +4,22 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PermDataSettingIcon from '@material-ui/icons/PermDataSetting';
 import { Grid } from 'semantic-ui-react';
-import StationInfo from '../element/station_info.js';
+import StationInfo from '../element/tab_station_info.js';
 import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import OperazioniTab from '../element/operazioni_tab.js';
+import OperazioniTab from '../element/tab_operation.js';
 import axios from 'axios';
-import zIndex from '@material-ui/core/styles/zIndex';
 import HomeIcon from '@material-ui/icons/Home';
-import CanaliTab from '../element/canali_tab.js';
+import CanaliTab from '../element/tab_channel.js';
+
+// Componente con design Hooks per la renderizzazione del pannello tab nella schermata di informazione stazione
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
   
@@ -53,13 +53,18 @@ function TabPanel(props) {
     };
   }
   
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(() => ({
     root: {
       flexGrow:1,
       maxWidth: '100%'
     },
   }));
-  
+
+// Componente design Hooks per la renderizzazione di tutte le sezioni del tab
+//  Props:
+//        Attributi:
+//                  1) stationId : codice identificativo stazione
+//                  2) stationOperations : operazioni su stazione -> array di struct
 function ScrollableTabsButtonForce(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
@@ -93,82 +98,80 @@ function ScrollableTabsButtonForce(props) {
         <TabPanel value={value} index={0}>
           <Box display="flex" flexGrow={1} height={0.5}>
               <Paper elevation={3} style={{padding:6,flexGrow:1,width:"100%",height:"100%"}}>
-                  <StationInfo id_station={props.id_station}/>
+                  <StationInfo stationId={props.stationId}/>
               </Paper>
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1} >
-          <OperazioniTab operazioni = {props.operazioni}/>             
+          <OperazioniTab stationOperations = {props.stationOperations}/>             
         </TabPanel>
         <TabPanel value={value} index={2}>
             In costruzione
         </TabPanel>
         <TabPanel value={value} index={3}>
             <Box display="flex" flexGrow={1} width={1}>
-              <CanaliTab nome_stazione={props.id_station}/>
+              <CanaliTab stationId={props.stationId}/>
             </Box>
         </TabPanel>
      
         </Grid.Column>
-      </Grid.Row>
-     
+      </Grid.Row> 
       </Grid>
       </div>
     );
   }
 
+
+// Componente che si occupa della gestione e visualizzazione delle informazioni della stazione
+//  Props:
+//        Metodi:
+//              1) close : metodo per richiedere della chiusura della sezione informazioni della stazione in question
+//        Attributi:
+//              1) stationId : codice univoco della stazione della quale visualizzare le informazioni
 export default class StationViewer extends React.Component{
     _isMounted=false
     constructor(props){
-        super(props)
-        this.state={
-            operazioni_stazione : [],
-            info_stazione: null
-        }
+      super(props)
+      this.state={
+          stationOperations : [], // Attributo di stato circa tutte le operazioni svolte sulla stazione
+          stationInfo: null
+      }
     }
 
     componentDidUpdate(prevProps,prevState) {
-        if (this.props.id_station !== prevProps.id_station) {
-            this.getOperazioniStazione()
-            
-        }
+      if (this.props.stationId !== prevProps.stationId) {
+          this.getOperazioniStazione()
+          
+      }
     }
 
     componentDidMount(){
         console.log("-------------------------------------------------");
         this.getOperazioniStazione()
-        
     }
 
     getOperazioniStazione = () => {
-        axios.get('/api/Stazione/'+this.props.id_station+'/Operazioni')
+        axios.get('/api/Stazione/'+this.props.stationId+'/Operazioni')
         .then((response) => {
             console.log(response.data["data"]);
                 this.setState({
-                    operazioni_stazione: response.data["data"]
+                  stationOperations: response.data["data"]
                 }); 
         })
-        .catch((error) => {
-            
-        }
-        );
     }
 
     
 
     render(){
         return(
-            <Box display="flex" width="100%" height="100%" flexDirection="column">
-                
-                <Box display="flex" flexGrow={1}  >
-                    <ScrollableTabsButtonForce operazioni = {this.state.operazioni_stazione} id_station={this.props.id_station}></ScrollableTabsButtonForce>
-                </Box>
-                
-                    <Fab variant="extended" style={{width:"5%",marginLeft:6,marginBottom:9}} onClick={() => this.props.close()}>
-                        <ArrowBackIosIcon  />
-                        Map
-                    </Fab>
-                
+            <Box display="flex" width="100%" height="100%" flexDirection="column">             
+              <Box display="flex" flexGrow={1}  >
+                <ScrollableTabsButtonForce stationOperations = {this.state.stationOperations} stationId={this.props.stationId}/>
+              </Box>
+              <Fab variant="extended" style={{width:"5%",marginLeft:6,marginBottom:9}} onClick={() => this.props.close()}>
+                <ArrowBackIosIcon  />
+                Map
+              </Fab>
             </Box>
         );
     }

@@ -2,24 +2,21 @@ import React from 'react';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper'
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { sizing } from '@material-ui/system';
 import MuiALert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar'
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-const paperStyle = {};
-const styles = theme => ({
+
+const styles = () => ({
 	root: {
 		flexGrow: 1
 	}
@@ -56,7 +53,7 @@ class Login extends React.Component{
         this.tryLogIn = this.tryLogIn.bind(this);
         }
     
-        // Funzione che segue lo stesso criterio di funzionamento di quella nel componente sign_uo
+        // Funzione che segue lo stesso criterio di funzionamento di quella nel componente sign_up
     handleChange(event,name){
         const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let formErrors = this.state.formErrors;
@@ -90,6 +87,7 @@ class Login extends React.Component{
         this.setState({formErrors, [name]: value});
     }
 
+    // Funzione che permette di effettuare la chiamata alla web api per verificare la correttezza dei valori di login
     tryLogIn(){
         this._isMounted = true;
         let serverResponse = this.state.serverResponse;
@@ -137,13 +135,9 @@ class Login extends React.Component{
     
     componentWillUnmount() {
         this._isMounted = false;
-      }
+    }
 
     render(){
-        const {disableButtonLogIn} = this.props;
-        const {email,password} = this.state;
-        let {formErrors} = this.state.formErrors;
-        const { classes } = this.props;
         return  (
             <React.Fragment>
                 <Grid container direction="column" spacing={3} justify="center" alignItems="center" >
@@ -152,10 +146,9 @@ class Login extends React.Component{
                             <Paper>
                                 <TextField
                                     variant="outlined"
-                                    id="input-with-icon-textfield"
+                                    id="email-textfield"
                                     label="E-Mail"
-                                    fullWidth
-                                    
+                                    fullWidth                                    
                                     onChange={e => this.handleChange(e,'email')} 
                                     InputProps={{
                                         startAdornment: (
@@ -174,7 +167,7 @@ class Login extends React.Component{
                             <Paper>
                                 <TextField 
                                     variant="outlined" 
-                                    id="standard-basic" 
+                                    id="password-basic" 
                                     type={'password'} 
                                     label="Password" 
                                     fullWidth  

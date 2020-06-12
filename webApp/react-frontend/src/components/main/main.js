@@ -1,32 +1,24 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import { Wrapper } from '@material-ui/pickers/wrappers/Wrapper';
-import {Grid,Image} from 'semantic-ui-react';
-import TopBar from '../element/topbar.js';
+import {Grid} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
 import {Box} from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
-import Adder from '../element/adder.js';
-import StationCard from '../element/station_card.js';
+import StationCard from '../element/card_station.js';
 import StationMap from './map.js';
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Tooltip';
 import axios from 'axios';
 import AddNewStation from '../element/add_station.js';
-import { Divider,Header } from 'semantic-ui-react'
-import Button from '@material-ui/core/Button';
+import { Divider } from 'semantic-ui-react'
 import AddOperation from '../element/add_operation.js';
-import StationViewer from '../element/station_viewer.js';
+import StationViewer from './station_viewer.js';
 import 'typeface-roboto';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import StreetviewIcon from '@material-ui/icons/Streetview';
 import SearchIcon from '@material-ui/icons/Search';
-import DirectionsIcon from '@material-ui/icons/Directions';
 
+// Componente con design Hooks innestato per la ricerca delle spazioni  ///////////////////
+/// Material UI I'm in love with u :)
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: '2px 4px',
@@ -67,39 +59,54 @@ function CustomizedInputBase() {
     </Paper>
   );
 }
+/////////////////////////////////////////////////////////////////////
+//  Componente che gestisce la parte vera e propria dell'applicazione,
+//   ovvero la schermata principale dalla quale è possibile effettuare tutte le operazioni 
+
 export default class Main extends React.Component{
   _isMounted=false;
   constructor(props){
     super(props);
     this.state={
       ...props,
-      openAddStation:false,
-      station_summary:[],
-      openAddOperationModal:false,
-      addOperation_StationId:null,
-      open_station_info:{
+      addStation:false, //Attributo per la gestione dell'inserimento di una nuova stazione
+      stations:[], // Attributo che detiene tutte le stazioni da dover renderizzare
+      addOperation:{  // Attributo che gestisce l'aggiunta di una nuova operazione per la stazione
         open:false,
-        id_station:""
+        stationId:""
+      },
+      stationInfo:{ // Attributo che gestisce la visualizzazione delle informazioni della stazione
+        open:false, // Booleano che mi permette di capire quando viene richiesta l'apertura della sezione "informazioni stazione"
+        stationId:"" // Identificativo della stazione
       }
     }
   }
 
-  openStationInfo = (id_stazione) => {
-    this.closeStationInfo()
-    this.setState(state => (state.open_station_info.open  = true, state));
-    this.setState(state => (state.open_station_info.id_station  = id_stazione, state));
+  // Funziona chiamata per aprire la sezione di "Visualizza Informazioni" della stazione
+  // Come parametro prende l'identificativo della stazione Ex. "IOCA"
+  openStationInfo = (id) => {
+    this.closeStationInfo() // Necessario per forzare un rendering aggiuntivo del component con passaggio dei nuovi parametri
+    this.setState(state => (state.stationInfo.open  = true, state));
+    this.setState(state => (state.stationInfo.stationId  = id, state));
   }
 
+  // Funzione duale di openStationInfo
   closeStationInfo = () => {
-    this.setState(state => (state.open_station_info.open  = false, state));
-    this.setState(state => (state.open_station_info.id_station  = "", state));
+    this.setState(state => (state.stationInfo.open  = false, state));
+    this.setState(state => (state.stationInfo.stationId  = "", state));
   }
 
-  addOperationDialogOpen = (nome_stazione) => {
-    this.setState({openAddOperationModal:true,addOperation_StationId:nome_stazione});
+  // Funziona chiamata per aprire la sezione di "Aggiungi Operazione" della stazione
+  // Come parametro prende l'identificativo della stazione Ex. "IOCA"
+  openAddOperation = (id) => {
+    this.setState(state => (state.addOperation.open  = true, state));
+    this.setState(state => (state.addOperation.stationId  = id, state));
   }
-  addOperationDialogClose = () => {
-    this.setState({openAddOperationModal:false,addOperation_StationId:""});
+
+  // Funzione duale di openAddOperation
+  closeAddOperation = () => {
+    this.setState(state => (state.addOperation.open  = false, state));
+    this.setState(state => (state.addOperation.stationId  = "", state));
     this.retrieveStationInfo()
   }
 
@@ -108,8 +115,9 @@ export default class Main extends React.Component{
     this._isMounted=false;
   }
 
+
+  // Funzione che forza il component a renderizzarsi di nuovo
   forceReRender = () => {
-    
     this.setState({state:this.state})
   }
 
@@ -118,6 +126,7 @@ export default class Main extends React.Component{
     this.retrieveStationInfo()
   }
 
+  // Funzione che interroga la web api ottenendo tutte le stazioni attualmente sul database
   retrieveStationInfo = () =>{
     console.log("reload UI")
     axios.get('/api/Stazioni/info')
@@ -125,76 +134,64 @@ export default class Main extends React.Component{
           if(this._isMounted){
             console.log(response.data["data"]);
               this.setState({
-                station_summary: response.data["data"]
+                stations: response.data["data"]
               });
           }
-          
       })
-      .catch((error) => {
-   
-      }
-    );
   }
 
   createStation = (state) => {
     if(this._isMounted){
-      this.setState({openAddStation:state})
+      this.setState({addStation:state})
     }
   }
 
 
   render(){
-    console.log(this.state.openAddOperationModal);
-    console.log(this.state.station_summary);
     return (
-     
-            <>
+            <React.Fragment>
               <Grid padded columns="1" centered style={{minWidth:"25vw", maxHeight:"90vh",overflow:"auto"}}>
-                
                 <Grid.Column mobile={16} tablet={5} computer={4} style={{flexGrow:1,maxHeight:"100%"}} >
                 <CustomizedInputBase/>
                 <Divider />
                     {
-                      this.state.station_summary.map((item) => 
-                      <>
-                      <Paper elevation={3} style={{padding:7}}>
-                        <StationCard properties={{id_stazione:item["id_univoco"],
-                                                nome_stazione:item["codice"],
-                                              tipo_stazione:item["tipo_stazione"],
-                                              messa_funzione:item["data_messa_funzione"],
-                                              numero_operazioni_svolte:item["numero_operazioni"],
-                                              is_attiva:item["is_attiva"],
-                                            getInfo:this.openStationInfo,
-                                            openAddOperationModal:this.addOperationDialogOpen}}
+                      this.state.stations.map((station) => 
+                      <React.Fragment>
+                        <Paper elevation={3} style={{padding:7}}>
+                          <StationCard properties={{
+                                        uid:station["id_univoco"],
+                                        stationId:station["codice"],
+                                        stationType:station["tipo_stazione"],
+                                        startDate:station["data_messa_funzione"],
+                                        operationCount:station["numero_operazioni"],
+                                        isActive:station["is_attiva"],
+                                        openStationInfo:this.openStationInfo,
+                                        openAddOperation:this.openAddOperation
+                                      }}
                           />
-                      </Paper>
-                      <Divider />
-                      
-                    </>
+                        </Paper>
+                        <Divider />
+                      </React.Fragment>
                       )
                     }
-                    <AddOperation open={this.state.openAddOperationModal} handleClose={this.addOperationDialogClose} station_id={this.state.addOperation_StationId}/>
+                    <AddOperation open={this.state.addOperation.open} handleClose={this.closeAddOperation} stationId={this.state.addOperation.stationId}/>
                     <AddNewStation callReRender={this.retrieveStationInfo}/>
                 </Grid.Column>
-              </Grid>                       
-                        
+              </Grid>                            
               <Grid padded columns="1" style={{flexGrow:1,maxHeight:"100%"}}>
                 <Grid.Column stretched mobile={16} tablet={16} computer={16}>
                   <Box display="flex" flexGrow={1}>
                     <Paper elevation={3} style={{flexGrow:1}}>
                       {
-                        this.state.open_station_info.open
-                        ?<StationViewer close={this.closeStationInfo} id_station={this.state.open_station_info.id_station}></StationViewer>
-                        :<StationMap stations_info={this.state.station_summary}/>
-                      }
-                      
+                        this.state.stationInfo.open
+                          ?<StationViewer close={this.closeStationInfo} stationId={this.state.stationInfo.stationId}/>
+                          :<StationMap stations={this.state.stations}/>
+                      } 
                     </Paper>
                   </Box>              
                 </Grid.Column>                 
               </Grid>
-              
-            
-            </>
+            </React.Fragment>
             );
     } 
 

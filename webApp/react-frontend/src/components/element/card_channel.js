@@ -8,46 +8,39 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Pagination from '@material-ui/lab/Pagination';
 import { Box } from '@material-ui/core';
 import { Grid,Icon,Divider,Header } from 'semantic-ui-react';
-import IconButton from '@material-ui/core/IconButton';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AddChannel from './add_channel.js';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
   }
 }));
-
-export default function CardExampleFluid(props) {
+//Componente in versione Hook per la visualizzazione e gestione di tutti i canali
+// afferenti alla stazione sismica 
+//  Props:
+//        Attributi:
+//                  1) channels : tutti i canali dismessi e non afferenti alla stazione
+//                  2) station : informazioni della stazione in formato struct
+export default function Channels(props) {
     const classes = useStyles();
-    const [rowsPerPage, setRowsPerPage] = React.useState(4);
+    const [rowsPerPage] = React.useState(4);
     const [page, setPage] = React.useState(1);
-    const [apriFormCanale, openForm] = React.useState(false)
+
+
     const handlePageChange = (event,newPage) => {
         setPage(newPage)
     } 
 
-    const openCreaCanaleForm = () => {
-        openForm(true)
-    }
-
-    const closeCreaCanaleForm = () => {
-        openForm(false)
-    }
-
-    
-
   return (
     <div className={classes.root}>
-        {console.log(props.stazione)}
-        <AddChannel station_id={props.stazione.codice_stazione} />
+        <AddChannel stationId={props.station.codice_stazione} />
         <Box>
             {
                 (
                     rowsPerPage > 0
-                    ? props.canali.slice((page-1) * rowsPerPage, (page-1) * rowsPerPage + rowsPerPage)
-                    : props.canali
-                ).map((canale) => {
+                    ? props.channels.slice((page-1) * rowsPerPage, (page-1) * rowsPerPage + rowsPerPage)
+                    : props.channels
+                ).map((channel) => {
                     return (
                         <ExpansionPanel>
                             <ExpansionPanelSummary
@@ -55,7 +48,7 @@ export default function CardExampleFluid(props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                             >
-                            <Typography variant="h5" >{canale.info.location_code}</Typography>
+                            <Typography variant="h5" >{channel.info.location_code}</Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails>
                                 <Grid>
@@ -67,10 +60,10 @@ export default function CardExampleFluid(props) {
                                     </Divider>
                                     <Grid.Row columns={2}>
                                         <Grid.Column width={8}>
-                                            <h3>Data Creazione:</h3><h5>{canale.info.data_creazione_canale}</h5>
+                                            <h3>Data Creazione:</h3><h5>{channel.info.data_creazione_canale}</h5>
                                         </Grid.Column>
                                         <Grid.Column  width={8}>
-                                            <h3>Data Dismessa:</h3><h5>{canale.info.data_dismessa_canale}</h5>
+                                            <h3>Data Dismessa:</h3><h5>{channel.info.data_dismessa_canale}</h5>
                                         </Grid.Column>
                                     </Grid.Row>
                                     <Divider horizontal>
@@ -84,16 +77,16 @@ export default function CardExampleFluid(props) {
                                             <h3>Sensore:</h3>
                                         </Grid.Column>
                                         <Grid.Column>
-                                            <h4>Seriale: {canale.sensore.seriale}</h4>
+                                            <h4>Seriale: {channel.sensore.seriale}</h4>
                                         </Grid.Column>
                                         <Grid.Column>
-                                            <h4>Produttore: {canale.sensore.produttore}</h4>
+                                            <h4>Produttore: {channel.sensore.produttore}</h4>
                                         </Grid.Column>
                                         <Grid.Column>
-                                            <h4>Nome: {canale.sensore.nome}</h4>
+                                            <h4>Nome: {channel.sensore.nome}</h4>
                                         </Grid.Column>
                                         <Grid.Column>
-                                            <h4>Componente: {canale.info.componente_sensore}</h4>
+                                            <h4>Componente: {channel.info.componente_sensore}</h4>
                                         </Grid.Column>
                                     </Grid.Row>
                                     <Grid.Row columns={5}>
@@ -101,16 +94,16 @@ export default function CardExampleFluid(props) {
                                             <h3>Acquisitore:</h3>
                                         </Grid.Column>
                                         <Grid.Column>
-                                            <h4>Seriale: {canale.acquisitore.seriale}</h4>
+                                            <h4>Seriale: {channel.acquisitore.seriale}</h4>
                                         </Grid.Column>
                                         <Grid.Column>
-                                            <h4>Produttore: {canale.acquisitore.produttore}</h4>
+                                            <h4>Produttore: {channel.acquisitore.produttore}</h4>
                                         </Grid.Column>
                                         <Grid.Column>
-                                            <h4>Nome: {canale.acquisitore.nome}</h4>
+                                            <h4>Nome: {channel.acquisitore.nome}</h4>
                                         </Grid.Column>
                                         <Grid.Column>
-                                            <h4>Canale: {canale.info.n_canale_acquisitore}</h4>
+                                            <h4>Canale: {channel.info.n_canale_acquisitore}</h4>
                                         </Grid.Column>
                                     </Grid.Row>
                                     <Divider horizontal>
@@ -121,16 +114,16 @@ export default function CardExampleFluid(props) {
                                     </Divider>
                                     <Grid.Row columns={4}>
                                         <Grid.Column width={3}>
-                                            <h3>Azimuth: {canale.info.azimuth}°</h3>
+                                            <h3>Azimuth: {channel.info.azimuth}°</h3>
                                         </Grid.Column>
                                         <Grid.Column width={3}>
-                                            <h3>Inclinazione: {canale.info.inclinazione}°</h3>
+                                            <h3>Inclinazione: {channel.info.inclinazione}°</h3>
                                         </Grid.Column >
                                         <Grid.Column width={5}>
-                                            <h3>Profondità(rispetto al piano stazione): {canale.info.profondita} mt.</h3>
+                                            <h3>Profondità(rispetto al piano stazione): {channel.info.profondita} mt.</h3>
                                         </Grid.Column>
                                         <Grid.Column width={5}>
-                                            <h3>Altezza lv mare: {props.stazione.altezza_lv_mare - canale.info.profondita} mt.</h3>
+                                            <h3>Altezza lv mare: {props.station.altezza_lv_mare - channel.info.profondita} mt.</h3>
                                         </Grid.Column>
                                     </Grid.Row>
                                 </Grid>
@@ -142,7 +135,7 @@ export default function CardExampleFluid(props) {
         </Box>
      
       <Box display="flex" justifyContent="center" alignItems="flexe-end" width={1} paddingTop={1}>
-        <Pagination color="primary" count={10} onChange={handlePageChange} count={props.canali.length % rowsPerPage}
+        <Pagination color="primary" count={10} onChange={handlePageChange} count={props.channels.length % rowsPerPage}
                             rowsPerPage={rowsPerPage}
                             page={page}/>
       </Box>

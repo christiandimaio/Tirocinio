@@ -9,10 +9,16 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Divider,Header,Icon } from 'semantic-ui-react'
+import { Divider,Header } from 'semantic-ui-react'
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
-import DateTimePicker from './date_picker';
-import { Button, Image, Item, Label } from 'semantic-ui-react'
+import DateTimePicker from './utils/date_picker';
+import { Button } from 'semantic-ui-react'
+
+// Componente per la visualizzazione della scheda riassuntiva della stazione sismica
+// Props:
+//      Attributi:
+//              1) stationId : codice della stazione sismica in oggetto
+
 export default class StationInfo extends React.Component{
     _isMounted=false
     constructor(props){
@@ -20,46 +26,47 @@ export default class StationInfo extends React.Component{
         var today=new Date();
         this.state={
             stationxml_filter:{
-                da:today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate(),
-                a:today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate()
-            },
-            codice_stazione:"",
-            altezza_lv_mare:"",
-            freq_manutenzione:"",
-            tipo_stazione:"",
-            nota_stazione:"",
-            responsabili:[],
-            storico_coordinate:[]
+                from:today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate(),
+                to:today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate()
+            }, // Attributo di stato che conserva il limite inferiore e superiore del filtro su stationXml
+            heightAboveSeaLevel:"", // altezza livello mare stazione
+            maintenancePeriod:"", // Frequenza di manutenzione stazione
+            stationType:"", // Tipologia stazione
+            note:"", // Eventuali note relative alla stazione
+            supervisors:[], // Responsabili -> array di struct
+            geoLocationsHistory:[] // Storico delle coordinate della stazione -> array di struct
         }
         
     }
 
+    // Metodi di controllo dati 
     handleDataStationXmlLowBound = (value) => {
         let {stationxml_filter} = this.state;
-        stationxml_filter.da =value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate()
+        stationxml_filter.from =value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate()
         this.setState({stationxml_filter})
     }
 
     handleDataStationXmlUpperBound = (value) => {
         let {stationxml_filter} = this.state;
-        stationxml_filter.a =value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate()
+        stationxml_filter.to =value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate()
         this.setState({stationxml_filter})
     }
+    ///
 
     componentDidUpdate(prevProps,prevState) {
-        if (this.props.id_station !== prevProps.id_station) {
+        if (this.props.stationId !== prevProps.stationId) {
             this.getStazione()
         }
     }
 
+    // Metodo per il download dello station xml 
     getStationXml = () => {
         var fileDownload = require('js-file-download');
-        axios.get('/api/Stazione/'+this.state.codice_stazione+'/StationXml',{
+        axios.get('/api/Stazione/'+this.props.stationId+'/StationXml',{
             params:{
-                data_creazione_canale:this.state.stationxml_filter.da,
-                data_dismessa_canale:this.state.stationxml_filter.a
+                data_creazione_canale:this.state.stationxml_filter.from,
+                data_dismessa_canale:this.state.stationxml_filter.to
             }
-            
           })
             .then((response) => {
               console.log(response)
@@ -68,32 +75,25 @@ export default class StationInfo extends React.Component{
                 }else{
                   this.setState({errore_download:true});
                 }
-                
-                
           })
-    
       }
+    
 
     getStazione = () => {
-        axios.get('/api/Stazione/'+this.props.id_station)
+        axios.get('/api/Stazione/'+this.props.stationId)
         .then((response) => {
             console.log(response.data.item);
             if(this._isMounted){
                 this.setState({
-                    codice_stazione: response.data.item.codice_stazione,
-                    altezza_lv_mare:response.data.item.altezza_lv_mare,
-                    freq_manutenzione:response.data.item.frequenza_manutenzione,
-                    tipo_stazione:response.data.item.tipo_stazione,
-                    nota_stazione:response.data.nota,
-                    responsabili:response.data.responsabili,
-                    storico_coordinate:response.data.storico_coordinate
+                    heightAboveSeaLevel:response.data.item.altezza_lv_mare,
+                    maintenancePeriod:response.data.item.frequenza_manutenzione,
+                    stationType:response.data.item.tipo_stazione,
+                    note:response.data.nota,
+                    supervisors:response.data.responsabili,
+                    geoLocationsHistory:response.data.storico_coordinate
                   });
             }
         })
-        .catch((error) => {
-            
-        }
-        );
     }
     componentWillMount(){
         this._isMounted=true
@@ -101,14 +101,12 @@ export default class StationInfo extends React.Component{
     }
 
     render(){
-       console.log(this.state.codice_stazione)
-        
         return(
             <React.Fragment>
                 <Grid padded >
                     <Grid.Row columns={1} >
                         <Grid.Column width={5} floated="right">
-                            <h1>{this.state.codice_stazione}</h1>
+                            <h1>{this.props.stationId}</h1>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row columns={1} >
@@ -116,7 +114,7 @@ export default class StationInfo extends React.Component{
                             <h4>Altezza livello mare:</h4>
                         </Grid.Column>
                         <Grid.Column width={13} >
-                            <h5>{this.state.altezza_lv_mare} mt.</h5>
+                            <h5>{this.state.heightAboveSeaLevel} mt.</h5>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row columns={1} >
@@ -124,7 +122,7 @@ export default class StationInfo extends React.Component{
                             <h4>Frequenza manutenzione:</h4>
                         </Grid.Column>
                         <Grid.Column width={13} >
-                            <h5>{this.state.freq_manutenzione} mese/i</h5>
+                            <h5>{this.state.maintenancePeriod} mese/i</h5>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row columns={1} >
@@ -132,7 +130,7 @@ export default class StationInfo extends React.Component{
                             <h4>Tipologia stazione:</h4>
                         </Grid.Column>
                         <Grid.Column width={13} >
-                            <h5>{this.state.tipo_stazione}</h5>
+                            <h5>{this.state.stationType}</h5>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row columns={2} >
@@ -140,17 +138,17 @@ export default class StationInfo extends React.Component{
                             <h4>Nota stazione:</h4>
                         </Grid.Column>
                         <Grid.Column width={13} >
-                            <h5>{this.state.nota_stazione}</h5>
+                            <h5>{this.state.note}</h5>
                         </Grid.Column>
                     </Grid.Row>
-                    <Grid.Row columns={1+this.state.responsabili.length} >
+                    <Grid.Row columns={1+this.state.supervisors.length} >
                         <Grid.Column width={3} >
                         <h4>Responsabili:</h4>
                         </Grid.Column>
                         {
-                            this.state.responsabili.map((responsabile) => {
+                            this.state.supervisors.map((supervisor) => {
                                 return(<Grid.Column width={3} >
-                                    <h5>{responsabile}</h5>
+                                    <h5>{supervisor}</h5>
                                 </Grid.Column>
                                 )
                             })
@@ -177,12 +175,12 @@ export default class StationInfo extends React.Component{
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                        {this.state.storico_coordinate.map((localizzazione) => (
-                                            <TableRow key={localizzazione.id}>
-                                            <TableCell >{localizzazione.ultimo_aggiornamento}</TableCell>
-                                            <TableCell >{localizzazione.latitudine}</TableCell>
-                                            <TableCell >{localizzazione.longitudine}</TableCell>
-                                            <TableCell>{localizzazione.ellissoide}</TableCell>
+                                        {this.state.geoLocationsHistory.map((geoLoc) => (
+                                            <TableRow key={geoLoc.id}>
+                                            <TableCell >{geoLoc.ultimo_aggiornamento}</TableCell>
+                                            <TableCell >{geoLoc.latitudine}</TableCell>
+                                            <TableCell >{geoLoc.longitudine}</TableCell>
+                                            <TableCell>{geoLoc.ellissoide}</TableCell>
                                             </TableRow>
                                         ))}
                                         </TableBody>
