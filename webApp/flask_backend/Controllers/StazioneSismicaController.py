@@ -21,6 +21,10 @@ class PostStazioneSismica(Resource):
             with db_session:
                 operatore_installazione = Operatore[request.json["operatore_installazione"]]
                 operatori = []
+                """
+                    Creo una lista di operatori in modo di essere flessibile sul numero di responsabili
+                    che comunque è limitato a 4 dal frontend
+                """
                 if request.json["responsabile_1"]:
                     operatori.append(Operatore[request.json["responsabile_1"]])
                 if request.json["responsabile_2"]:
@@ -53,6 +57,10 @@ class GetStazioneSismicaInfo(Resource):
     @staticmethod
     def get():
         with db_session:
+            """
+                q : parametro di filtraggio sul codice stazione attraverso un controllo sulla presenza di q all'interno
+                    del campo "codice stazione"
+            """
             if not request.args.get("q") is None:
                 filtro_codice = request.args.get("q")
                 stazioni = select((stazione, localizzazione.latitudine,
@@ -106,7 +114,7 @@ class GetStazione(Resource):
                                    item=stazione.to_dict(),
                                    responsabili=operatori,
                                    nota=stazione.note.nota,
-                                   storico_coordinate=[localizzazione.to_dict() for localizzazione in
+                                   storico_coordinate=[localizzazione.to_dict() for localizzazione in #ciclo inline
                                                        storico_coordinate])
                 else:
                     return jsonify(operationCode=404)
@@ -146,14 +154,19 @@ class GetComponenteStazione(Resource):
     @staticmethod
     @db_session
     def get(codice_stazione, seriale):
+        # Max_data mi serve per capire l'ultima operazione fatta su quel componente all'interno della stazione
         max_data = max((operazione.data_inizio_operazione) for operazione in Operazione
                        if operazione.stazione_sismica.codice_stazione == codice_stazione
                        and operazione.componente.seriale == seriale)
+
+        # Recupero l'ultima operazione sul componente
         operazione = select((operazione) for operazione in Operazione
                             if operazione.stazione_sismica.codice_stazione == codice_stazione
                             and operazione.componente.seriale == seriale
                             and operazione.data_inizio_operazione == max_data).first()
-
+        """
+            Sè l'operazione è di rimozione significa che il componente non è più presente in stazione 
+        """
         if operazione and operazione.tipo_operazione != "Rimozione":
             return jsonify(operationCode=200, item=operazione.componente.to_dict())
         else:
@@ -165,21 +178,35 @@ class GetSensoriStazione(Resource):
     @staticmethod
     @db_session
     def get(codice_stazione):
+        """
+        Metodo per recuperare tutti i sensori installati nella stazione
+        :param codice_stazione:
+        :return:
+        """
+        # recupero tutte le operazioni che riguardano un sensore relative alla stazione in oggetto
         operazioni = select((operazione) for operazione in Operazione
                             if operazione.stazione_sismica.codice_stazione == codice_stazione
                             and operazione.componente.sensore is not None
                             )
         sensori = []
+        #per ogni operazione
         for _operazione in operazioni:
+            # se il componente relativo all'operazione non è già presente all'interno dell'insieme dei sensori allora lo elaboro
             if _operazione.componente not in sensori:
+                # Mi calcolo per quel sensore quante operazioni di installazione sono state svolte in quella stazione
                 n_installazioni_sensore = count(operazione.tipo_operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
                                                 and operazione.componente.seriale == _operazione.componente.seriale
                                                 and operazione.tipo_operazione == "Installazione")
+
+                # Mi calcolo per quel sensore quante operazioni di rimozione sono state svolte in quella stazione
                 n_rimozioni_sensore = count(operazione.tipo_operazione for operazione in Operazione
                                             if operazione.stazione_sismica.codice_stazione == codice_stazione
                                             and operazione.componente.seriale == _operazione.componente.seriale
                                             and operazione.tipo_operazione == "Rimozione")
+
+                # sè ho più installazioni che rimozioni significa che il sensore è presente, questo mi permette di verificare
+                # anche il caso limite in cui uno stesso sensore sia rimosso ed installato più volte nella stessa stazione
                 if n_installazioni_sensore > n_rimozioni_sensore:
                     sensori.append(_operazione.componente)
         if len(sensori) > 0:
@@ -195,6 +222,9 @@ class GetAcquisitoriStazione(Resource):
     @staticmethod
     @db_session
     def get(codice_stazione):
+        #########
+        # Il procedimento è il medesimo della ricerca dei sensori
+        
         operazioni = select((operazione) for operazione in Operazione
                             if operazione.stazione_sismica.codice_stazione == codice_stazione
                             and operazione.componente.acquisitore is not None

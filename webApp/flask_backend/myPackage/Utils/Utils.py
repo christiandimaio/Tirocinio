@@ -18,6 +18,11 @@ def custom_bar(current, total, width=80):
 
 
 def retrieve_config_value(search_keys):
+    '''
+    Metodo che permette l'accesso ai valori di configurazione del file configuration.json [chiave1,chiave2,..]
+    :param search_keys:
+    :return:
+    '''
     with open(os.path.join("./cfg", "configuration.json"),
               "r") as config_file:
         config = json.load(config_file)
@@ -32,6 +37,6 @@ def retrieve_config_value(search_keys):
 
 def update_nrl_structure():
     """
-
+        Metodo che effettua l'aggiornamento di NRL
     """
     NRLWrap.update_local_library()

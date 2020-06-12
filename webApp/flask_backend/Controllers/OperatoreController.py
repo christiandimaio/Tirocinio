@@ -37,6 +37,10 @@ class InsertOperatore(Resource):
 class GetTipologieOperatore(Resource):
     @staticmethod
     def get():
+        """
+        Valore di default sono Esterno - Operatore Semplice - Autorizzato
+        :return:
+        """
         return jsonify(operationCode=200, items=[{"key":"Esterno","value":"Esterno"},
                                                  {"key":"Operatore Semplice","value":"Operatore Semplice"},
                                                  {"key":"Autorizzato","value":"Autorizzato"}])

@@ -22,7 +22,7 @@ class InsertOperazione(Resource):
                 stazione = Stazione_Sismica.select(lambda stazione:stazione.codice_stazione==codice_stazione)\
                                             .first()
                 operatore_incaricato = Operatore[request.json["operatore_incaricato"]]
-
+                #Inserisco un'operazione solo se ho validato stazione ed operatore
                 if stazione and operatore_incaricato:
                     operazione = Operazione(stazione_sismica=stazione,
                                             operatore=operatore_incaricato,
@@ -30,7 +30,7 @@ class InsertOperazione(Resource):
                                             data_fine_operazione=request.json["data_fine_operazione"],
                                             tipo_operazione=request.json["tipo_operazione"],
                                             note_operazione=request.json["note"])
-
+                # Inserisco un componente solo sè il tipo di operazione lo prevede
                 if request.json["seriale_componente"] != "" and request.json["tipo_operazione"] != "Altro":
                     componente = Componente.select(lambda componente: componente.seriale == request.json["seriale_componente"])\
                                             .first()
