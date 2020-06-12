@@ -17,13 +17,15 @@ class InsertOperatore(Resource):
         print(request.json)
         try:
             with db_session:
-                user = Operatore(nome=request.json["nome"], cognome=request.json["cognome"],
-                                 data_nascita=request.json["data_nascita"], tipo=request.json["tipo_utente"])
-                if request.json["tipo_utente"] == "Esterno":
-                    operatore_esterno = Esterno(provenienza=request.json["provenienza_esterno"], operatore=user)
+                user = Operatore(nome=request.json["name"],
+                                 cognome=request.json["surname"],
+                                 data_nascita=request.json["birthday"],
+                                 tipo=request.json["userType"])
+                if user.tipo == "Esterno":
+                    operatore_esterno = Esterno(provenienza=request.json["externalUserCompany"], operatore=user)
                 log_in = Log_In(email=request.json["email"], password=request.json["password"], operatore=user)
-                if request.json["telefono_utente"] != "":
-                    telefono = Recapito(numero_telefonico=request.json["telefono_utente"], operatore=user)
+                if request.json["userTelephone"] != "":
+                    telefono = Recapito(numero_telefonico=request.json["userTelephone"], operatore=user)
             commit()
         except Exception as ex:
             if ex.original_exc.original_exc.__class__ == psycopg2.errors.UniqueViolation:

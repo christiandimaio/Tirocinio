@@ -2,29 +2,29 @@ import React from 'react';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper'
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { sizing } from '@material-ui/system';
 import MuiALert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar'
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-const paperStyle = {};
-const styles = theme => ({
+
+const styles = () => ({
 	root: {
 		flexGrow: 1
 	}
 });
 
+// COMPONENTE PER LA GESTIONE DEL LOGIN
+// PROPS RICEVUTE :
+//                  1)changeView : procedura che si occupa di avvisare il padre del componente che è stato generato un evento di cambio contesto
 class Login extends React.Component{
     _isMounted = false;
     constructor(props){
@@ -32,7 +32,7 @@ class Login extends React.Component{
         this.state = {
             email: "",
             password : "",
-            rememberme: false,
+            rememberMe: false,
             formErrors : {
                 email:{
                     error:true,
@@ -52,9 +52,10 @@ class Login extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.tryLogIn = this.tryLogIn.bind(this);
         }
-
+    
+        // Funzione che segue lo stesso criterio di funzionamento di quella nel componente sign_up
     handleChange(event,name){
-        const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const email_regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let formErrors = this.state.formErrors;
         
         let {value} = event.target;
@@ -77,15 +78,17 @@ class Login extends React.Component{
                     formErrors.password.message="Caratteri insufficienti per il campo password, mancanti:"+(6-value.length)+"";
                 }
                 break;
-            case "rememberme":
+            case "rememberMe":
                 console.log(event.target.checked);
                 value = event.target.checked;
+                break;
             default:
                 break;
         }
         this.setState({formErrors, [name]: value});
     }
 
+    // Funzione che permette di effettuare la chiamata alla web api per verificare la correttezza dei valori di login
     tryLogIn(){
         this._isMounted = true;
         let serverResponse = this.state.serverResponse;
@@ -97,17 +100,16 @@ class Login extends React.Component{
             if(this._isMounted){
                 this.setState({serverResponse});
             }
-            
         }
         else{
             console.log("Try log in :"+this.state.email)
             axios.post('api/login', {
-                            email : this.state.email,
-                            password: this.state.password,
-                            rememberME : this.state.rememberme
+                email : this.state.email,
+                password: this.state.password,
+                rememberMe : this.state.rememberMe
             })
             .then((response) => {
-                if (response.data["operationCode"] != 200){
+                if (response.data["operationCode"] !== 200){
                     console.log(response.data["operationCode"]);
                     console.log(response.data["message"]);
                     serverResponse.response=true;
@@ -134,98 +136,92 @@ class Login extends React.Component{
     
     componentWillUnmount() {
         this._isMounted = false;
-      }
+    }
 
     render(){
-        const {disableButtonLogIn} = this.props;
-        const {email,password} = this.state;
-        let {formErrors} = this.state.formErrors;
-        const { classes } = this.props;
         return  (
-               
-            <>
-                    <Grid container direction="column" spacing={3} justify="center" alignItems="center" >
-                        
-                            <Grid item style={{maxWidth:"100%"}}>
-                                <FormControl fullWidth>
-                                    <Paper>
-                                        <TextField
-                                            variant="outlined"
-                                            id="input-with-icon-textfield"
-                                            label="E-Mail"
-                                            fullWidth
-                                            
-                                            onChange={e => this.handleChange(e,'email')} 
-                                            InputProps={{
-                                                startAdornment: (
-                                                    <InputAdornment position="start">
-                                                    <AccountCircle style={{fill: "#1a237e"}} />
-                                                    </InputAdornment>
-                                                ),
-                                                }}
-                                    />
-                                    </Paper>
-                                    <FormHelperText>{this.state.formErrors.email.message}</FormHelperText>                
-                                </FormControl>       
-                            
-                        </Grid>    
-                        
-                        <Grid item style={{maxWidth:"100%"}}>
-                            <FormControl fullWidth>
-                                <Paper>
-                                    <TextField 
-                                        variant="outlined" 
-                                        id="standard-basic" 
-                                        type={'password'} 
-                                        label="Password" 
-                                        fullWidth  
-                                        onChange={e => this.handleChange(e,'password')} 
-                                        
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <VpnKeyIcon style={{fill: "#1a237e"}}  />
-                                                </InputAdornment>
-                                            ),
-                                            }}/>
-                                </Paper>
-                                    <FormHelperText>{this.state.formErrors.password.message}</FormHelperText>
-                            </FormControl>
-                        </Grid>
-
-                        <Grid item style={{maxWidth:"60%"}} >
-                                <FormControlLabel
-                                control={<Checkbox checked={this.state.rememberme} onChange={e => this.handleChange(e,'rememberme')} name="rememberme" />}
-                                label="Ricordami"
-                            />
-                        </Grid>
-                        
-                        <Grid item style={{maxWidth:"100%"}}>
-                            <Button fullWidth variant="contained" fullWidth  onClick={() => {this.props.changeView("signUP")}}>Registrati</Button>
-                        </Grid>
-                        
-                        <Grid item style={{maxWidth:"100%"}}>
-                            <Button fullWidth variant="contained" color="primary" fullWidth 
-                                    onClick={() => {this.tryLogIn()}}>Entra</Button>
-                        </Grid>
-
+            <React.Fragment>
+                <Grid container direction="column" spacing={3} justify="center" alignItems="center" >
+                    <Grid item style={{maxWidth:"100%"}}>
+                        <FormControl fullWidth>
+                            <Paper>
+                                <TextField
+                                    variant="outlined"
+                                    id="email-textfield"
+                                    label="E-Mail"
+                                    fullWidth                                    
+                                    onChange={e => this.handleChange(e,'email')} 
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                            <AccountCircle style={{fill: "#1a237e"}} />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                            </Paper>
+                            <FormHelperText>{this.state.formErrors.email.message}</FormHelperText>                
+                        </FormControl>       
+                    </Grid>    
+                    <Grid item style={{maxWidth:"100%"}}>
+                        <FormControl fullWidth>
+                            <Paper>
+                                <TextField 
+                                    variant="outlined" 
+                                    id="password-basic" 
+                                    type={'password'} 
+                                    label="Password" 
+                                    fullWidth  
+                                    onChange={e => this.handleChange(e,'password')} 
+                                    
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <VpnKeyIcon style={{fill: "#1a237e"}}  />
+                                            </InputAdornment>
+                                        ),
+                                        }}
+                                />
+                            </Paper>
+                            <FormHelperText>{this.state.formErrors.password.message}</FormHelperText>
+                        </FormControl>
+                    </Grid>
+                    <Grid item style={{maxWidth:"60%"}} >
+                        <FormControlLabel
+                            control={<Checkbox checked={this.state.rememberMe} onChange={e => this.handleChange(e,'rememberMe')} name="rememberMe" />}
+                            label="Ricordami"
+                        />
+                    </Grid>
+                    
+                    <Grid item style={{maxWidth:"100%"}}>
+                        <Button 
+                            fullWidth 
+                            variant="contained"  
+                            onClick={() => {this.props.changeView("signUP")}}
+                        >
+                            Registrati
+                        </Button>
+                    </Grid>
+                    
+                    <Grid item style={{maxWidth:"100%"}}>
+                        <Button 
+                            fullWidth 
+                            variant="contained" 
+                            color="primary" 
+                            onClick={() => {this.tryLogIn()}}
+                        >
+                            Entra
+                        </Button>
                     </Grid>
 
-                    <Snackbar open={this.state.serverResponse.response} autoHideDuration={3000} onClose={() => { this.setState(state => (state.serverResponse.response  = false, state))}} >
-                            <MuiALert elevation={9} variant="filled" severity={this.state.serverResponse.error?"error":"success"}>
-                                {this.state.serverResponse.message}
-                            </MuiALert>
-                    </Snackbar>                    
-                    
+                </Grid>
 
-                    </>
-            
-                
-                    
-                    
-                    
-                   
-
+                <Snackbar open={this.state.serverResponse.response} autoHideDuration={3000} onClose={() => { this.setState(state => (state.serverResponse.response  = false))}} >
+                        <MuiALert elevation={9} variant="filled" severity={this.state.serverResponse.error?"error":"success"}>
+                            {this.state.serverResponse.message}
+                        </MuiALert>
+                </Snackbar>                    
+            </React.Fragment>
         );
                 
     }
@@ -236,114 +232,3 @@ Login.propTypes = {
 };
 
 export default withStyles(styles)(Login);
-
-
-
-// <div>
-//                 <Box minHeight={1} my={2}>
-//                     <Grid containter direction="column" alignItems="center" justify="center" spacing={2} >
-//                         <Grid item xs={9} xl={9} >
-//                             <Paper>
-//                                 <TextField
-//                                 fullWidth
-//                                 variant="outlined"
-//                                 id="input-with-icon-textfield"
-//                                 label="TextField"
-//                                 InputProps={{
-//                                 startAdornment: (
-//                                     <InputAdornment position="start">
-//                                     <AccountCircle />
-//                                     </InputAdornment>
-//                                 ),
-//                                 }}
-//                             />
-//                             </Paper>
-//                         </Grid>    
-                        
-//                         <Grid item xs={6} xl={5} >
-//                             <TextField variant="outlined" id="standard-basic" type={'password'} label="Password" fullWidth  onChange={e => this.handleChange(e,'password')} helperText={this.state.formErrors.email_error} autoComplete></TextField>
-//                         </Grid>
-
-//                         <Grid item xs={6} xl={5} >
-//                                 <FormControlLabel
-//                                 control={<Checkbox checked={this.state.rememberme} onChange={e => this.handleChange(e,'rememberme')} name="rememberme" />}
-//                                 label="Ricordami"
-//                             />
-//                         </Grid>
-//                         <Grid container spacing={4}>
-
-//                                     <Grid item xs={6} xl={5}>
-
-//             <Button variant="contained" color="primary" fullWidth disabled={disableButtonLogIn ? 'true' : ''}>Entra</Button>
-
-//             </Grid>
-
-//                         </Grid>
-                        
-//                     </Grid>
-//                     </Box>
-//                 </div>   
-
-// class Login_SignIn extends React.Component{
-//     constructor() {
-//         super();
-        
-
-//         this.state = {
-//           nrlUpdating : false,
-//           signUpClicked:false
-//         }
-//     }
-
-//     handleSignInClick = () => {
-//         console.log(this.state.signUpClicked)
-//         this.setState({
-//             signUpClicked: !this.state.signUpClicked
-//           });
-//       }
-
-//     loginCheck = (result) => {
-//         this.setState({loginFailed : result});
-//     }  
-
-//     nrlChangeState = (state) => {
-//         this.setState({nrlUpdating : state});
-//     }
-    
-//     render(){
-//         const nrlUpdating = this.state.nrlUpdating;
-//         return (    
-//                 <div id="log_in" class="h-100"> 
-//                     <div class="row align-items-center h-100">
-//                         {   this.state.signUpClicked
-//                             ?   <div class="col-xl-6 col-sm-5 col-lg-4 col-md-4 mx-auto">
-//                                     <Sign_In_Form logInFormCaller={this.handleSignInClick} >
-                                        
-//                                     </Sign_In_Form>
-//                                 </div>
-
-//                             :    <div class="col-xl-4 col-sm-4 col-lg-4 col-md-4 mx-auto">
-//                                         <Grow in={true} style={{transitionDelay:"10000ms"}}>
-//                                             <NrlComponent nrlChangeState={this.nrlChangeState}></NrlComponent>
-//                                         </Grow>
-//                                         <div class="border rounded-top jumbotron ">
-//                                             <Login_Form loginCheck={this.loginCheck} disableButtonLogIn={nrlUpdating}></Login_Form> 
-//                                             <Button variant="outline-primary" className="rounded-pill mt-4" size="lg" block onClick={this.handleSignInClick} disabled={nrlUpdating ? 'true' : '' } >Registrati</Button>
-//                                         </div>
-//                                         {
-//                                             this.state.loginFailed ?
-//                                             <Alert variant="warning" className=" w-20 alert-dismissible fade show" >
-//                                                 Accesso non riuscito, controllare email o password!
-//                                             </Alert> 
-//                                             : <div></div>
-//                                         }            
-//                                 </div> 
-                              
-//                         }
-//                     </div>
-//                 </div>
-//         );
-//     }
-// }
-
-// export default Login_SignIn

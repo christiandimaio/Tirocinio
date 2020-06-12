@@ -1,19 +1,15 @@
+// Component per la gestione dell'inserimento operazioni della stazione, si basa su di un modal 
+
 import React, { Component } from 'react'
 import { Header, Icon, Modal,Button } from 'semantic-ui-react'
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Tooltip';
 import {TextField,Snackbar} from '@material-ui/core';
-import {Grid,Image} from 'semantic-ui-react';
-import Selecter from './selecter';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
+import {Grid} from 'semantic-ui-react';
+import Selecter from './utils/selecter';
 import IconButton from '@material-ui/core/IconButton';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { green,red } from '@material-ui/core/colors';
 import { Divider } from 'semantic-ui-react'
-import TransferList from './transfer_list.js'
-import DateTimePicker from './date_picker.js'
+import DateTimePicker from './utils/date_picker.js'
 import MuiALert from '@material-ui/lab/Alert';
 import axios from 'axios';
 export default class AddOperation extends Component {
@@ -52,12 +48,14 @@ export default class AddOperation extends Component {
 
     componentWillReceiveProps(nextProps){
         if(nextProps.open!==this.props.open){
-            //Perform some operation
+            //Verifica sè è stata chiamata la chiusura del modal 
             this.setState({modalOpen: nextProps.open });
           
         }
         }
     componentDidMount(){
+        // Procedura invocata dopo componentWillMount, imposta un valore di default per le date di inizio e fine operazione
+        // a data odierna
         this._isMounted=true
 
         if(this._isMounted){
@@ -66,6 +64,7 @@ export default class AddOperation extends Component {
                             data_fine_operazione:this.today.getFullYear()+"/"+(this.today.getMonth()+1)+"/"+this.today.getDate()})
         }
 
+        //Invocazione chiamata alla web api per la lista degli operatori 
         axios.get("api/Operatori/selecter")
             .then((response) => {
                 console.log(response.data);
@@ -75,7 +74,7 @@ export default class AddOperation extends Component {
                     })
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 if(this._isMounted){
                     this.setState({database_operatori:["Default"]})
                 }
@@ -83,65 +82,116 @@ export default class AddOperation extends Component {
             });
     }
 
+    // Gestore evento : chiusura component
     handleClose = () => {
+        // procedura chiamata alla richiesta di uscita dal modal, può avvenire in due casi:
+        // 1) Premo il tasto cancella
+        // 2) Premo su salva -> Tutto okay : si chiude il form
+        //                   -> Qualcosa va storto : annullo la chiamata e resetto le variabili 
         let {registrazione} = this.state;
         console.log(registrazione.stato)
-        registrazione.chiamata=false;
         
-        if (registrazione.stato){
-            registrazione.stato=false;
-            this.setState({registrazione})
-            this.props.handleClose()
+        
+        if (registrazione.chiamata){
+            registrazione.chiamata=false;
+            if (registrazione.stato){
+                registrazione.stato=false;
+                this.setState({registrazione})
+                this.resetData()
+                this.props.handleClose()
+            }else{
+                this.setState({registrazione})
+            }
         }else{
-            this.setState({registrazione})
+            this.resetData()
+            this.props.handleClose()
         }
-            
+    }
+
+    resetData = () => {
+        let {verifica_componente} = this.state;
+        verifica_componente.verificato = false;
+        verifica_componente.messaggio = "*Campo Richiesto";
+
+        let {componente} = this.state;
+        componente.produttore = "";
+        componente.nome="";
+        componente.larghezza="";
+        componente.altezza ="";
+        componente.profondita = "";
+
+        this.setState({
+            tipo_operazione:"Installazione",
+            data_inizio_operazione:"",
+            data_fine_operazione:"",
+            seriale_componente:"",
+            disabilita_controllo_componente:false,
+            operatore_incaricato:"",
+            note:"",
+            verifica_componente,
+            componente
+        })
         
     }
 
-    handleTipoOperazioneChange = (event,name) => {
-        if (event.target.value != "Altro"){
-            this.setState(state => (state.verifica_componente.verificato  = false, state));
-            this.setState(state => (state.verifica_componente.messaggio  = "Verifica", state));
+    // Gestore evento : modifica al tipo operazione component Selecter
+    handleTipoOperazioneChange = (event) => {
+        // Procedura che tiene traccia degli eventi di modifica sul selecter Tipo Operazione
+        // Nel caso in cui si seleziona:
+        //      Altro : La verifica del seriale non deve essere eseguita, imposto la verifica a true implicitamente
+        //      Altrimenti : La verifica del seriale deve avvenire per poter registrare l'operazione
+        if (event.target.value !== "Altro"){
+            this.setState(state => (state.verifica_componente.verificato  = false));
+            this.setState(state => (state.verifica_componente.messaggio  = "Verifica"));
             this.setState({disabilita_controllo_componente:false});
         }else{
-            this.setState(state => (state.verifica_componente.verificato  = true, state));
-            this.setState(state => (state.verifica_componente.messaggio  = "Non necessario", state));
+            this.setState(state => (state.verifica_componente.verificato  = true));
+            this.setState(state => (state.verifica_componente.messaggio  = "Non necessario"));
             this.setState({disabilita_controllo_componente:true});
         }
             this.setState({tipo_operazione:event.target.value});
             
     }
 
+    // Gestore evento : modifica seriale componente
     handleSerialeChange = (event) => this.setState({seriale_componente:event.target.value})
 
+    // Gestore evento : modifica component DateTimePicker su stato data_inizio_operazione
     handleDateInzioOperazioniChange = (value) => {
         if(value instanceof Date && !isNaN(value)){
             this.setState({data_inizio_operazione:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
+
+            //Implicitamente setto anche data_fine_operazione per non avere stati incoerenti sul database
             this.setState({data_fine_operazione:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
         }
     }
+
+    // Gestore evento : modifica component DateTimePicker su stato data_fine_operazione
     handleDateFineOperazioniChange = (value) => {
         if(value instanceof Date && !isNaN(value)){
             this.setState({data_fine_operazione:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
         }
     }
 
+    // Gestore evento : modifica component Selecter su stato operatore incaricato
     handleOperatoreIncaricatoChange = (event) => this.setState({operatore_incaricato:event.target.value})
 
+    // Gestore evento : modifica component TextArea su stato nota
     handleNotaChange = (event) => this.setState({note:event.target.value})
 
+    // Gestore evento : click sul bottone "Verifica seriale"
     handleCheckComponenteSeriale = () => {
         let {componente} = this.state;
         axios.get("api/Stazione/"+this.props.station_id+"/Componente/"+this.state.seriale_componente)
             .then((response) => {
-                if((response.data.item != null)){
-                    if (this.state.tipo_operazione == "Installazione"){
-                        this.setState(state => (state.verifica_componente.verificato  = false, state));
-                        this.setState(state => (state.verifica_componente.messaggio  = "Già installato!", state));
+                if((response.data.item !== null)){
+                    // Se la web api mi ritorna un componente verifico il tipo di operazione
+                    if (this.state.tipo_operazione === "Installazione"){
+                        this.setState(state => (state.verifica_componente.verificato  = false));
+                        this.setState(state => (state.verifica_componente.messaggio  = "Già installato!"));
                     }else{
-                        this.setState(state => (state.verifica_componente.verificato  = true, state));
-                        this.setState(state => (state.verifica_componente.messaggio  = "Ok!", state));
+                        this.setState(state => (state.verifica_componente.verificato  = true));
+                        this.setState(state => (state.verifica_componente.messaggio  = "Ok!"));
                     }
                     componente.produttore = response.data.item.produttore;
                     componente.nome = response.data.item.nome;
@@ -150,19 +200,21 @@ export default class AddOperation extends Component {
                     componente.profondita = response.data.item.profondita_mm;
                     this.setState({componente});
                 }else{
+                    // Se la web api non ritorna un componente significa che quel componente non è installato in quella stazione
+                    //  procedo ad interrogare il database sull'effettiva presenza del componente in altre stazioni o in magazzino
                     axios.get("api/Componente/"+this.state.seriale_componente)
                     .then((response) => {
                         
-                        if(response.data.item != null){
-                            if(this.state.tipo_operazione == "Installazione" && response.data.possible_to_install){
-                                this.setState(state => (state.verifica_componente.verificato  = true, state));
-                                this.setState(state => (state.verifica_componente.messaggio  = "Installabile!", state));
-                            }else if(this.state.tipo_operazione != "Installazione" && response.data.possible_to_install){
-                                this.setState(state => (state.verifica_componente.verificato  = false, state));
-                                this.setState(state => (state.verifica_componente.messaggio  = "Non presente in stazione!", state));
+                        if(response.data.item !== null){
+                            if(this.state.tipo_operazione === "Installazione" && response.data.possible_to_install){
+                                this.setState(state => (state.verifica_componente.verificato  = true));
+                                this.setState(state => (state.verifica_componente.messaggio  = "Installabile!"));
+                            }else if(this.state.tipo_operazione !== "Installazione" && response.data.possible_to_install){
+                                this.setState(state => (state.verifica_componente.verificato  = false));
+                                this.setState(state => (state.verifica_componente.messaggio  = "Non presente in stazione!"));
                             }else{
-                                this.setState(state => (state.verifica_componente.verificato  = false, state));
-                                this.setState(state => (state.verifica_componente.messaggio  = "Installato in altra stazione!", state));
+                                this.setState(state => (state.verifica_componente.verificato  = false));
+                                this.setState(state => (state.verifica_componente.messaggio  = "Installato in altra stazione!"));
                             }
                             componente.produttore = response.data.item.produttore;
                             componente.nome = response.data.item.nome;
@@ -171,8 +223,8 @@ export default class AddOperation extends Component {
                             componente.profondita = response.data.item.profondita_mm;
                             this.setState({componente});
                         }else{
-                            this.setState(state => (state.verifica_componente.verificato  = false, state));
-                            this.setState(state => (state.verifica_componente.messaggio  = "Questo seriale non appartiene a nessun componente", state));
+                            this.setState(state => (state.verifica_componente.verificato  = false));
+                            this.setState(state => (state.verifica_componente.messaggio  = "Questo seriale non appartiene a nessun componente"));
                         }
 
                     })
@@ -183,42 +235,47 @@ export default class AddOperation extends Component {
             })
     }
 
+    // Gestore evento : click sul bottone "salva"
     addOperation = () => {
         var info = this.state;
-        if (info.tipo_operazione == "" || info.data_inizio_operazione == "" || info.data_fine_operazione == "" || !(info.verifica_componente.verificato) || 
-            info.operatore_incaricato == "" || (info.seriale_componente == "" && info.tipo_operazione !="Altro")){
-                this.setState(state => (state.registrazione.chiamata  = true, state));
-                this.setState(state => (state.registrazione.stato  = false, state));
-                this.setState(state => (state.registrazione.messaggio  = "Campi richiesti non inseriti!", state));
+
+        // Verifica sè tutti i campi richiesti sono inseriti e validi
+        if (info.tipo_operazione === "" || info.data_inizio_operazione === "" || info.data_fine_operazione === "" || !(info.verifica_componente.verificato) || 
+            info.operatore_incaricato === "" || (info.seriale_componente === "" && info.tipo_operazione !=="Altro")){
+                this.setState(state => (state.registrazione.chiamata  = true));
+                this.setState(state => (state.registrazione.stato  = false));
+                this.setState(state => (state.registrazione.messaggio  = "Campi richiesti non inseriti!"));
                 return 
             }
         axios.post('/api/Stazione/'+this.props.station_id+'/Operazione', {
             tipo_operazione:info.tipo_operazione,
             data_inizio_operazione:info.data_inizio_operazione,
             data_fine_operazione:info.data_fine_operazione,
-            seriale_componente:this.state.tipo_operazione != "Altro"?info.seriale_componente:"",
+            seriale_componente:this.state.tipo_operazione !== "Altro"?info.seriale_componente:"", //Nel caso in cui il tipo di operazione sia "Altro" il seriale va inviato vuoto
             operatore_incaricato:info.operatore_incaricato,
             note:info.note,
           })
           .then((response) => {
-            this.setState(state => (state.registrazione.chiamata  = true, state));
-            
-            if (response.data["operationCode"] != 200){
-                this.setState(state => (state.registrazione.stato  = false, state));
-                this.setState(state => (state.registrazione.messaggio  = response.data.message, state));
+            this.setState(state => (state.registrazione.chiamata  = true));
+            // Codici di verifica :
+            //      200 : Tutto okay
+            if (response.data["operationCode"] !== 200){
+                this.setState(state => (state.registrazione.stato  = false));
+                this.setState(state => (state.registrazione.messaggio  = response.data.message));
             
             }else{
                 if(this._isMounted){
-                    this.setState(state => (state.registrazione.stato  = true, state));
-                this.setState(state => (state.registrazione.messaggio  = "Registrazione avvenuta con successo", state));
+                    this.setState(state => (state.registrazione.stato  = true));
+                this.setState(state => (state.registrazione.messaggio  = "Registrazione avvenuta con successo"));
             
                 }
             }
           })
          
     }
+
     render() {
-        
+        // Per il render guardare JSX + Material UI + Semantic UI React + eventuali componenti custom
         return (
             <>
                 <Modal   open={this.state.modalOpen}
@@ -261,7 +318,7 @@ export default class AddOperation extends Component {
                                     Selezione Componente
                                 </Header>
                             </Divider>
-                            <Grid.Row style={{paddingBottom:0}} style={{paddingBottom:0}}>
+                            <Grid.Row style={{paddingBottom:0}} >
                                     <Grid.Column width={5}  >   
                                         <TextField  id="seriale_componente_textfield" label="N. Seriale Componente" variant="outlined" required 
                                             helperText={this.state.verifica_componente.messaggio} error={this.state.verifica_componente.verificato?false:true
@@ -316,7 +373,7 @@ export default class AddOperation extends Component {
                             <Grid.Row >
                                 <Grid.Column width={6}>
                                 <Selecter
-                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Operatore",style:{flexGrow:1},value:"",
+                                    properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Operatore",style:{flexGrow:1},value:this.state.operatore_incaricato,
                                     customHandler:this.handleOperatoreIncaricatoChange,helperText:"*Campo richiesto",required:true,name:"Operatore",error:false}}
                                     items={this.state.operatori_list}/>
                                 </Grid.Column>
@@ -346,7 +403,7 @@ export default class AddOperation extends Component {
                     </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button negative onClick={() => {this.props.handleClose()}}>
+                        <Button negative onClick={this.handleClose}>
                             Cancella
                         </Button>
                         <Button

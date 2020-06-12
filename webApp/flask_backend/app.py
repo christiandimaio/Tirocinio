@@ -9,6 +9,8 @@ sys.path.append('./Model/')
 sys.path.append('./Controllers/')
 sys.path.append('./cfg/')
 
+from Controllers.CanaleController import *
+from Controllers.OperazioneController import *
 from Controllers.OperatoreController import *
 from Controllers.StazioneSismicaController import *
 from Controllers.LogInController import *
@@ -63,8 +65,14 @@ api.add_resource(PostStazioneSismica, '/api/Stazione')
 api.add_resource(GetStazioneSismicaInfo, '/api/Stazioni/info')
 api.add_resource(GetOperazioniStazione, "/api/Stazione/<string:codice_stazione>/Operazioni")
 api.add_resource(GetStazione, "/api/Stazione/<string:codice_stazione>")
-api.add_resource(GetComponenteStazione, '/api/Stazione/<string:codice_stazione>/Componente/<string:seriale>')
 api.add_resource(InsertOperazione, "/api/Stazione/<string:codice_stazione>/Operazione")
+api.add_resource(GetCanali,"/api/Stazione/<string:codice_stazione>/Canali")
+api.add_resource(PostCanale,"/api/Stazione/<string:codice_stazione>/Canale")
+# Rotte componentistica stazione
+api.add_resource(GetComponenteStazione, '/api/Stazione/<string:codice_stazione>/Componente/<string:seriale>')
+api.add_resource(GetSensoriStazione,"/api/Stazione/<string:codice_stazione>/Sensori")
+api.add_resource(GetAcquisitoriStazione,"/api/Stazione/<string:codice_stazione>/Acquisitori")
+
 """______----------------------------------------------------------------------"""
 """    NRL    """
 

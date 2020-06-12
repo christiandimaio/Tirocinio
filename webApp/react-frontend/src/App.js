@@ -1,27 +1,19 @@
-import React,{ useState ,Component}  from 'react';
-import ReactDOM from 'react-dom';
-import Sign_Up from './components/sign_up/sign_up';
+import React from 'react';
+import SignUp from './components/sign_up/sign_up';
 import Login from './components/log_in/login.js'
 import {Box} from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
-import Container from '@material-ui/core/Container';
 import ParticlesBg from 'particles-bg'
 import TopBar from './components/element/topbar.js';
-import AnimatedLoader from './components/element/loader.js'
-import axios from 'axios';
-import GridList from '@material-ui/core/GridList';
-import { sizing } from '@material-ui/system';
-import ImageGridList from './components/main/main.js'
+import AnimatedLoader from './components/element/utils/loader.js'
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import 'semantic-ui-css/semantic.min.css'
-import {Grid,Image} from 'semantic-ui-react';
-
+import {Grid} from 'semantic-ui-react';
 import Request from 'axios-request-handler';
 import Main from './components/main/main.js'
 
-const paperStyle = {};
-const styles = theme => ({
+const styles = () => ({
 	root: {
         flexGrow: 1,
     },
@@ -31,28 +23,34 @@ const styles = theme => ({
 const reviews = new Request('/api/NRL/update/status');
 
 
-
+// Classe principale dell'applicazione, regola il log in, la registrazione degli utenti e la visualizzazione dell'app 
 class App extends React.Component{
     _isMounted = false;
     constructor(){
         super();
         this.state = {
-            visibleSection : "main",
-            lockApp: {
+            visibleSection : "main", //main - logIN - signIn : Rappresenta i tre stati in cui l'app può trovarsi all'apertura
+            lockApp: {  //stato che permette di bloccare l'app nel caso di operazioni delicate lato server
                 lockState:false,
                 lockMessage:""
             }
         };
         
     }
+
+    //Per capire la funzione di componentDidMount guardare la documentazione di react sui life cycle methods
     componentDidMount(){
+
+        //Chiamata polling per conoscere lo stato di eventuale aggiornamento del database NRL
         reviews.poll(20000).get((response) => {
             const {result} = response.data;
-            console.log(result);
-            if (result == 201){     //Aggiornamento già in corso
+            // Risposte - 200 Nessun aggiornamento
+            //            201 Aggiornamento in corso
+            //            199 Errore durante la richiesta
+            if (result === 201){    
                 this.lockAppRequest("Aggiornamento NRL in corso,attendere..")         
 
-            }else if (result == 199){
+            }else if (result === 199){
                 //Errore
             }else{
                 this.releaseLockApp();
@@ -62,22 +60,25 @@ class App extends React.Component{
         
     }
 
+    // Funzione chiamata quando è necessario bloccare l'interfaccia dell'app
     lockAppRequest = (message) => {
-        this.setState(state => (state.lockApp.lockState  = true, state));
-        this.setState(state => (state.lockApp.lockMessage  = message, state))
+        this.setState(state => (state.lockApp.lockState  = true));
+        this.setState(state => (state.lockApp.lockMessage  = message))
     }
 
+    // Funzione chiamata quando bisogna sbloccare l'interfaccia dell'app
     releaseLockApp = () => {
-        this.setState(state => (state.lockApp.lockState  = false, state));
-        this.setState(state => (state.lockApp.lockMessage  = "", state))
+        this.setState(state => (state.lockApp.lockState  = false));
+        this.setState(state => (state.lockApp.lockMessage  = ""))
     }
 
+    // Funzione cambiata quando viene richiesto di cambiare stato dell'app tra main - logIN e signUP
     changeView = (value) => { 
         this.setState({visibleSection:value});
     }
 
+    // Funzione che renderizza tramite JSX la parte di html dedicata al contesto da dover visualizzare
     renderSwitch = () => {
-        const { classes } = this.props;
         switch(this.state.visibleSection){
             case "signUP" :
                 return (
@@ -89,7 +90,7 @@ class App extends React.Component{
                                 <Grid.Row>
                                     <Grid.Column mobile={16} tablet={8} computer={6} >
                                         <Paper elevation={3} >
-                                            <Sign_Up changeView={this.changeView}  dadProps={this.state} />           
+                                            <SignUp changeView={this.changeView}/>           
                                         </Paper>
                                     </Grid.Column>
                                 </Grid.Row>
@@ -98,7 +99,6 @@ class App extends React.Component{
                         <>
                         <ParticlesBg type="cobweb"  color="#1a237e" bg={true} /> 
                         </>
-                        
                         <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:this.state.lockApp.lockState}}/>
                     </>
                 );
@@ -122,22 +122,22 @@ class App extends React.Component{
                     <>
                         <Main/> 
                         <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:this.state.lockApp.lockState}}/>
-                    
                     </>
                 );
-            case "default":
+            default:
                 return(<div></div>);
         }
             
-    }           
+    }       
+    
+    // Funzione richiamata seguendo il life cycle della classe, renderizza il componente
     render(){
-        const { classes } = this.props;
         return (
                     <Box display="flex" flexDirection="column" style={{height:"100vh"}}>
                         <Grid >
                             <Grid.Row >
                                 <Grid.Column mobile={16} tablet={16} computer={16}>
-                                    <TopBar isMain={this.state.visibleSection=="main"?true:false} nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>
+                                    <TopBar isMain={this.state.visibleSection==="main"?true:false} nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>
                                 </Grid.Column>                     
                             </Grid.Row>
                         </Grid>
@@ -151,6 +151,7 @@ class App extends React.Component{
                 );
     }
 }
+
 App.propTypes = {
 	classes: PropTypes.object.isRequired
 };

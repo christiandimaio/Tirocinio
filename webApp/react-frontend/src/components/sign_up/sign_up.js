@@ -1,20 +1,23 @@
-import React,{Component} from 'react';
-import Selecter from '../element/selecter';
-import DateTimePicker from '../element/date_picker';
-import {TextField,Box,Snackbar,InputAdornment,Grid,Button, FormControl} from '@material-ui/core';
+import React from 'react';
+import Selecter from '../element/utils/selecter';
+import DateTimePicker from '../element/utils/date_picker';
+import {TextField,Box,Snackbar,InputAdornment,Grid,Button} from '@material-ui/core';
 import axios from 'axios';
-import Paper from '@material-ui/core/Paper'
   import MuiALert from '@material-ui/lab/Alert';
-  import itLocale from "date-fns/locale/it";
   import InputLabel from '@material-ui/core/InputLabel';
   import Fade from '@material-ui/core/Fade';
+
 const operatore_style = {
     borderColor:'green',
     color:'green',
     fullWidth:200
 }
 
-export default class Sign_Up extends React.Component{
+// COMPONENTE PER LA GESTIONE DI NUOVE REGISTRAZIONI OPERATORI
+// PROPS RICEVUTE :
+//                  1)changeView : procedura che si occupa di avvisare il padre del componente che è stato generato un evento di cambio contesto
+
+export default class SignUp extends React.Component{
     _isMounted = false;
     constructor(props){
         super(props);   
@@ -24,28 +27,28 @@ export default class Sign_Up extends React.Component{
                 successful:false,
                 message:""
             },
-            nome:"",
-            cognome:"",
-            email:"",
-            password:"",
-            password_conferma:"",
-            tipo_utente:"",
-            provenienza_esterno:"",
-            telefono_utente:"",
-            data_nascita:null,
-            visibility:{
-                provenienza_esterno:false
+            name:"", // Nome utente
+            surname:"", // Cognome utente
+            email:"", // Email utente
+            password:"", // Password utente
+            password_confirm:"", // Conferma della password assert(Deve essere uguale a password)
+            userType:"", // Tipologia di operatore Semplice-Autorizzato-Esterno
+            externalUserCompany:"", // Azienda di provenienza operatore esterno - se userType != "Esterno" allora campo VUOTO
+            userTelephone:"", // Numero telefono utente, non obbligatorio
+            birthday:null, // Data nascita operatore
+            visibility:{ // Stato che verifica sè un campo debba essere visualizzato
+                externalUserCompany:false // Stato di verifica per lo stato azienda operatore
             },
-            error:{
-                nome:{
+            error:{ // Stato che tiene traccia di tutti i possibili errori negli stati necessari alla registrazione di un utente
+                name:{
+                    status:true, // Stato del campo
+                    message:"" // Eventuale messaggio di errore associato
+                },
+                surname:{
                     status:true,
                     message:""
                 },
-                cognome:{
-                    status:true,
-                    message:""
-                },
-                tipo_utente:{
+                userType:{
                     status:true,
                     message:""
                 },
@@ -57,45 +60,46 @@ export default class Sign_Up extends React.Component{
                     status:true,
                     message:""
                 },
-                password_conferma:{
+                password_confirm:{
                     status:true,
                     message:""
                 },
-                data_nascita:{
+                birthday:{
                     status:false,
                     message:""
                 },
-                provenienza_esterno:{
+                externalUserCompany:{
                     status:true,
                     message:""
                 }
 
             },
-            database_operatori:[]
+            operatorType:[] // Lista di tutti i possibili tipi di operatore
             
         };
     }
 
+    // Funzione che si occupa di gestire tutti gli eventi di interazione con l'interfaccia da parte dell'utente 
     handleChange = (event,name) => {
-
         let {value} = event.target;
-        const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        // Espressione regolare per verificare la correttezza di una mail
+        const email_regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let error = this.state.error;
         let visibility = this.state.visibility;
         console.log(name);
         switch(name){
-            case "nome":
+            case "name":
                 if (value.length <= 0){
-                    error.nome.status = true
+                    error.name.status = true
                 }else{
-                    error.nome.status = false
+                    error.name.status = false
                 }
                 break;
-            case "cognome":
+            case "surname":
                 if (value.length <= 0){
-                    error.cognome.status = true
+                    error.surname.status = true
                 }else{
-                    error.cognome.status = false
+                    error.surname.status = false
                 }
                 break;
             case "email":
@@ -116,31 +120,31 @@ export default class Sign_Up extends React.Component{
                     error.password.message="ok!";
                 }
                 break;
-            case "password_conferma":
-                if (value == this.state.password){
-                    error.password_conferma.status = false;
-                    error.password_conferma.message="Password Confermata";
+            case "password_confirm":
+                if (value === this.state.password){
+                    error.password_confirm.status = false;
+                    error.password_confirm.message="Password Confermata";
                 }else{
-                    error.password_conferma.status = true;
-                    error.password_conferma.message="Password diversa";
+                    error.password_confirm.status = true;
+                    error.password_confirm.message="Password diversa";
                 }
                 break;
-            case "tipo_utente":
-                    error.tipo_utente.status = false
-                if ( value == "Esterno"){
-                    visibility.provenienza_esterno=true;
+            case "userType":
+                    error.userType.status = false
+                if ( value === "Esterno"){
+                    visibility.externalUserCompany=true;
                 }else{
-                    visibility.provenienza_esterno=false;
+                    visibility.externalUserCompany=false;
                 }
                 break;
-            case "provenienza_esterno":
+            case "externalUserCompany":
                 console.log(value);
                 if (value.length <=1){
-                    error.provenienza_esterno.status = true;
-                    error.provenienza_esterno.message="Campo Richiesto per un utente Esterno!";
+                    error.externalUserCompany.status = true;
+                    error.externalUserCompany.message="Campo Richiesto per un utente Esterno!";
                 }else{
-                    error.provenienza_esterno.status = false;
-                    error.provenienza_esterno.message="ok!";
+                    error.externalUserCompany.status = false;
+                    error.externalUserCompany.message="ok!";
                 }
                 break;
             default:
@@ -149,73 +153,78 @@ export default class Sign_Up extends React.Component{
         this.setState({error,visibility,[name]: value},(name,value) => {console.log(name+":"+value)});
     }
 
+    // Funzione che rileva sè il datetimepicker è stato invocato
     handleDateChange = (value) => {
-        
         if(value instanceof Date && !isNaN(value)){
             console.log(value);
-            this.setState({data_nascita:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
-            this.setState(state => (state.error.data_nascita.status=false,state));
+            this.setState({birthday:(value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate())});
+            this.setState(state => (state.error.birthday.status=false));
         }else{
-            this.setState(state => (state.error.data_nascita.status=true,state));
+            this.setState(state => (state.error.birthday.status=true));
         }
     }
+
+    // Funzione invocata quando viene cliccato il tasto di registrazione
     trySignUp = () => {
         this._isMounted=true;
         console.log(this.state);
         let {error} = this.state;
-        let {sign_in} = this.state;
 
-        if (error.nome.status || error.cognome.status || error.password.status || error.password_conferma.status || error.tipo_utente.status || error.data_nascita.status
-            || (this.state.tipo_utente=="Esterno" && error.provenienza_esterno.status)){
+        // Verifico sè tutti i campi necessari sono stati inizializzati
+        if (error.name.status || error.surname.status || error.password.status || error.password_confirm.status || error.userType.status || error.birthday.status
+            || (this.state.userType==="Esterno" && error.externalUserCompany.status)){
             if(this._isMounted){
-                this.setState(state => (state.sign_in.called  = true, state));
-                this.setState(state => (state.sign_in.successful=false, state));
+                this.setState(state => (state.sign_in.called  = true));
+                this.setState(state => (state.sign_in.successful=false));
                 this.setState(state => (state.sign_in.message=
-                    "Non posso proseguire, c'è qualche errore sui campi!", state));
+                    "Non posso proseguire, c'è qualche errore sui campi!"));
             }
             return
         }
+        // Chiamata alla web api 
         axios.post('/api/Operatore/insert', {
-            nome: this.state.nome,
-            cognome: this.state.cognome,
+            name: this.state.name,
+            surname: this.state.surname,
             email : this.state.email,
             password: this.state.password,
-            tipo_utente: this.state.tipo_utente,
-            provenienza_esterno: this.state.visibility.provenienza_esterno?this.state.provenienza_esterno:"",
-            data_nascita: this.state.data_nascita,
-            telefono_utente: this.state.telefono_utente
+            userType: this.state.userType,
+            externalUserCompany: this.state.visibility.externalUserCompany?this.state.externalUserCompany:"",
+            birthday: this.state.birthday,
+            userTelephone: this.state.userTelephone
           })
           .then((response) => {
-            if (response.data["operationCode"] != 200 && this._isMounted){
-                this.setState(state => (state.sign_in.called  = true, state));
-                this.setState(state => (state.sign_in.successful=false, state));
+            if (response.data["operationCode"] !== 200 && this._isMounted){
+                this.setState(state => (state.sign_in.called  = true));
+                this.setState(state => (state.sign_in.successful=false));
                 this.setState(state => (state.sign_in.message=
-                            response.data["message"], state));
+                            response.data["message"]));
             }else{
                 if(this._isMounted){
-                    this.setState(state => (state.sign_in.called  = true, state));
-                    this.setState(state => (state.sign_in.successful=true, state));
+                    this.setState(state => (state.sign_in.called  = true));
+                    this.setState(state => (state.sign_in.successful=true));
                     this.setState(state => (state.sign_in.message = 
-                        "Registrazione Avvenuta con successo, sarai re-indirizzato alla pagina di login tra 3 secondi!", state));
+                        "Registrazione Avvenuta con successo, sarai re-indirizzato alla pagina di login tra 3 secondi!"));
                 }
             }
           })
           .catch((error) => {
               if(this._isMounted){
-                    this.setState(state => (state.sign_in.called  = true, state));
-                    this.setState(state => (state.sign_in.successful=false, state));
+                    this.setState(state => (state.sign_in.called  = true));
+                    this.setState(state => (state.sign_in.successful=false));
                     this.setState(state => (state.sign_in.message=
-                                    "Registrazione non riuscita a causa di qualche errore, riprovare più tardi!", state));
+                                    "Registrazione non riuscita a causa di qualche errore, riprovare più tardi!"));
                 }
             console.log(error);
           });
           
     }
 
+    // Funzione che invoca il metodo del padre per richiedere una nuova pagina
     switchToLogIn = () => {
         this.props.changeView("logIN");
     }
     
+
     componentDidMount(){
         this._isMounted=true;
         console.log("Richieste le tipologie di operatori disponibili al server");
@@ -224,13 +233,13 @@ export default class Sign_Up extends React.Component{
                 console.log(response.data);
                 if(this._isMounted){
                     this.setState({
-                        database_operatori: response.data.items
+                        operatorType: response.data.items
                     })
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 if(this._isMounted){
-                    this.setState({database_operatori:["Default"]})
+                    this.setState({operatorType:["Default"]})
                 }
                
             });
@@ -251,7 +260,6 @@ export default class Sign_Up extends React.Component{
                             <Button
                                 variant="contained" 
                                 onClick={this.switchToLogIn}
-                                
                             >
                                 Ritorna al login
                             </Button>
@@ -266,86 +274,134 @@ export default class Sign_Up extends React.Component{
                         alignItems="baseline"
                     >
                         <Grid item xl={5} xs={5}>
-                                <TextField id="nome_textfield" error={error.nome.status} onChange={(e) => this.handleChange(e,'nome')} label="Nome" variant="outlined" required fullWidth
-                                helperText="*Campo Richiesto">
-
-                                </TextField>
-                            
+                                <TextField 
+                                    id="name_textfield" 
+                                    error={error.name.status} 
+                                    onChange={(e) => this.handleChange(e,'name')} 
+                                    label="Nome" 
+                                    variant="outlined" 
+                                    required 
+                                    fullWidth
+                                    helperText="*Campo Richiesto"
+                                />
                         </Grid>
                         <Grid item xl={5} xs={6}>
-                            <TextField id="cognome_textfield" error={error.cognome.status} onChange={(e) => this.handleChange(e,'cognome')} label="Cognome" variant="outlined" required fullWidth
-                            helperText="*Campo Richiesto">
-
-                            </TextField>
+                            <TextField 
+                                id="surname_textfield" 
+                                error={error.surname.status} 
+                                onChange={(e) => this.handleChange(e,'surname')} 
+                                label="Cognome" 
+                                variant="outlined" 
+                                required 
+                                fullWidth
+                                helperText="*Campo Richiesto"
+                            />
                         </Grid>
                         
                         <Grid item xl={10} xs={11}>
-                            <TextField id="email_textfield" error={error.email.status} name="email" onChange={(e) => this.handleChange(e,'email')} label="Indirizzo Email" variant="outlined" required fullWidth
-                             helperText={error.email.message}>
-
-                            </TextField>
+                            <TextField 
+                                id="email_textfield" 
+                                error={error.email.status} 
+                                name="email" 
+                                onChange={(e) => this.handleChange(e,'email')} 
+                                label="Indirizzo Email" 
+                                variant="outlined" 
+                                required 
+                                fullWidth
+                                helperText={error.email.message}
+                            />
                         </Grid>
 
                         <Grid item xl={5} xs={5}>
-                            <TextField id="password_textfield" error={error.password.status} onChange={(e) => this.handleChange(e,'password')} type="text" label="Password" variant="outlined" required fullWidth
-                            helperText={error.password.message}>
-                            </TextField>
+                            <TextField 
+                                id="password_textfield" 
+                                error={error.password.status} 
+                                onChange={(e) => this.handleChange(e,'password')} 
+                                type="text" 
+                                label="Password" 
+                                variant="outlined" 
+                                required 
+                                fullWidth
+                                helperText={error.password.message}
+                            />
                         </Grid>
                         <Grid item xl={5} xs={6}>
-
-                            <TextField id="password_conferma_textfield"  error={error.password_conferma.status} onChange={(e) => this.handleChange(e,'password_conferma')} type="text" label="Conferma Password" variant="outlined" required fullWidth
-                            helperText={error.password_conferma.message}>
-                            </TextField>
+                            <TextField 
+                                id="password_confirm_textfield"  
+                                error={error.password_confirm.status} 
+                                onChange={(e) => this.handleChange(e,'password_confirm')} 
+                                type="text" 
+                                label="Conferma Password" 
+                                variant="outlined" 
+                                required fullWidth
+                                helperText={error.password_confirm.message}
+                            />
                         </Grid>
 
                         <Grid container direction="row" justify="center" alignItems="center">
                            <Grid item xl={2} xs={2} container alignItems="center" style={{marginTop:"3%"}}>
                                 <InputLabel>Data Nascita</InputLabel>
                            </Grid>
-                            <Grid   item xl={5} xs={5} >
-                                
-                                    <DateTimePicker properties={{
-                                                                width:"90%",
-                                                                id:"data-nascita_picker",
-                                                                label:"",
-                                                                name:"data_nascita"
-                                                                }}
-                                                    onChange={this.handleDateChange}/>
-                                
+                            <Grid item xl={5} xs={5} >
+                                <DateTimePicker 
+                                    properties={{
+                                                width:"90%",
+                                                id:"data-nascita_picker",
+                                                label:"",
+                                                name:"birthday"
+                                                }}
+                                    onChange={this.handleDateChange}/>
                             </Grid>
                         </Grid>               
-
-                        <Grid xl={5} xs={5} item  container direction="row">
+                        <Grid xl={5} xs={5} item container direction="row">
                             <Grid item xl={12} xs={12}>
-                               
-                                    <Selecter
-                                                properties = {{labelId:"label-selecter-id",id:"selecter",inputLabel:"Tipo Utente",style:operatore_style,value:this.state.tipo_utente,
-                                                customHandler:this.handleChange,helperText:error.tipo_utente.message,name:"tipo_utente",error:error.tipo_utente.status}}
-                                                items={this.state.database_operatori}/>
+                                <Selecter
+                                    properties ={{
+                                                labelId:"label-selecter-id",
+                                                id:"selecter",
+                                                inputLabel:"Tipo Utente",
+                                                style:operatore_style,
+                                                value:this.state.userType,
+                                                customHandler:this.handleChange,
+                                                helperText:error.userType.message,
+                                                name:"userType",
+                                                error:error.userType.status
+                                                }}
+                                    items={this.state.operatorType}/>
                             </Grid>
-                            <Fade in={this.state.visibility.provenienza_esterno} timeout={1000}>
+                            <Fade in={this.state.visibility.externalUserCompany} timeout={1000}>
                             {
-                                this.state.visibility.provenienza_esterno?
+                                this.state.visibility.externalUserCompany?
                                 <Grid item xl={12} xs={12}>
-                                    <TextField  value={this.state.provenienza_esterno} id="provenienza_esterno_textfield" error={error.provenienza_esterno.status} onChange={(e) => this.handleChange(e,'provenienza_esterno')} label="Ente Appartenenza" variant="standard" required fullWidth
-                                    helperText={error.provenienza_esterno.message}>
-
-                                    </TextField>
+                                    <TextField 
+                                        value={this.state.externalUserCompany} 
+                                        id="externalUserCompany_textfield" 
+                                        error={error.externalUserCompany.status} 
+                                        onChange={(e) => this.handleChange(e,'externalUserCompany')} 
+                                        label="Ente Appartenenza" 
+                                        variant="standard" 
+                                        required 
+                                        fullWidth
+                                        helperText={error.externalUserCompany.message}
+                                    />
                                 </Grid>
-                                :<div></div>
-                                
+                                :<div></div>  
                             }
                             </Fade>         
                             
                             
                         </Grid>
                         <Grid item xl={5} xs={6}>
-                                <TextField id="outlined-full-width" onChange={(e) => this.handleChange(e,'telefono_utente')} label="Telefono" variant="outlined" fullWidth
+                            <TextField 
+                                id="outlined-full-width" 
+                                onChange={(e) => this.handleChange(e,'userTelephone')} 
+                                label="Telefono" 
+                                variant="outlined" 
+                                fullWidth
                                 InputProps={{
-                                    startAdornment: <InputAdornment position="start">+39</InputAdornment>,
-                                    }}>
-
-                                </TextField>
+                                            startAdornment: <InputAdornment position="start">+39</InputAdornment>,
+                                            }}
+                            />
                         </Grid>
                     </Grid>
                     <Box mt={3}>
@@ -360,7 +416,7 @@ export default class Sign_Up extends React.Component{
                 <div> 
                     {
                         this.state.sign_in.called
-                        ?<Snackbar open={this.state.sign_in.called} autoHideDuration={2000} onClose={() => { if(this.state.sign_in.successful){this.switchToLogIn()}else{this.setState(state => (state.sign_in.called  = false, state))} }}>
+                        ?<Snackbar open={this.state.sign_in.called} autoHideDuration={2000} onClose={() => { if(this.state.sign_in.successful){this.switchToLogIn()}else{this.setState(state => (state.sign_in.called  = false))} }}>
                             <MuiALert elevation={9} variant="filled" severity={this.state.sign_in.successful?"success":"error"}>
                                 {this.state.sign_in.message}
                             </MuiALert>
@@ -368,7 +424,6 @@ export default class Sign_Up extends React.Component{
                         :<div></div>
                     }   
                 </div>
-                
             </div>
                 );
     }

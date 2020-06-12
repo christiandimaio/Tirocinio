@@ -18,6 +18,7 @@
     "axios": "^0.19.2",
     "axios-request-handler": "^1.0.4",
     "date-fns": "^2.13.0",
+    "js-file-download": "^0.4.12",
     "leaflet": "^1.6.0",
     "particles-bg": "^2.5.0",
     "prop-types": "15.6.0",
