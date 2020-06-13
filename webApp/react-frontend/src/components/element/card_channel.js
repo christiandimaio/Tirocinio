@@ -41,6 +41,7 @@ export default function Channels(props) {
                     ? props.channels.slice((page-1) * rowsPerPage, (page-1) * rowsPerPage + rowsPerPage)
                     : props.channels
                 ).map((channel) => {
+                    console.log(channel)
                     return (
                         <ExpansionPanel>
                             <ExpansionPanelSummary
@@ -48,7 +49,9 @@ export default function Channels(props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                             >
-                            <Typography variant="h5" >{channel.info.location_code}</Typography>
+                            <Typography variant="h5" >{channel.info.location_code}
+                                <Typography variant="h6" color="secondary">{channel.info.data_dismessa_canale !== null?"Dismesso":""}</Typography>
+                            </Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails>
                                 <Grid>

@@ -18,7 +18,7 @@ import OperazioniTab from '../element/tab_operation.js';
 import axios from 'axios';
 import HomeIcon from '@material-ui/icons/Home';
 import CanaliTab from '../element/tab_channel.js';
-
+import ComponentTab from '../element/tab_component.js'
 // Componente con design Hooks per la renderizzazione del pannello tab nella schermata di informazione stazione
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -110,7 +110,9 @@ function ScrollableTabsButtonForce(props) {
           <OperazioniTab stationOperations = {props.stationOperations}/>             
         </TabPanel>
         <TabPanel value={value} index={2}>
-            In costruzione
+          <Box display="flex" flexDirection="column" maxHeight="70vh" overflow="auto">
+            <ComponentTab stationId={props.stationId}/>
+          </Box>
         </TabPanel>
         <TabPanel value={value} index={3}>
             <Box display="flex" flexGrow={1} width={1}>
