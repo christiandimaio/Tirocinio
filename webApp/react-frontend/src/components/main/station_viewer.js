@@ -100,22 +100,25 @@ function ScrollableTabsButtonForce(props) {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <Box display="flex" flexGrow={1} height={0.5}> {/*height="60vh" overflow="auto"*/}
-              <Paper elevation={3} style={{padding:6,flexGrow:1,width:"100%",height:"100%"}}>
+          <Box display="flex" flexGrow={1} height="68vh" style={{overflowY:"auto",overflowX:"hidden"}}> {/**/}
+            
                   <StationInfo stationId={props.stationId}/>
-              </Paper>
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1} >
-          <OperazioniTab stationOperations = {props.stationOperations}/>             
+          <Box display="flex" flexGrow={1} height="68vh" style={{overflowY:"auto",overflowX:"hidden"}}> 
+         
+            <OperazioniTab stationOperations = {props.stationOperations}/>  
+           
+          </Box>           
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Box display="flex" flexDirection="column" maxHeight="70vh" overflow="auto">
+          <Box display="flex" flexDirection="column" height="68vh" style={{overflowY:"auto",overflowX:"hidden"}}>
             <ComponentTab stationId={props.stationId}/>
           </Box>
         </TabPanel>
         <TabPanel value={value} index={3}>
-            <Box display="flex" flexGrow={1} width={1}>
+            <Box display="flex" flexGrow={1} width={1} height="68vh" style={{overflowY:"auto",overflowX:"hidden"}}>
               <CanaliTab stationId={props.stationId}/>
             </Box>
         </TabPanel>
