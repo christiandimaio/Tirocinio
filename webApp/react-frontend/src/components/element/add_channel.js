@@ -140,6 +140,11 @@ function VerticalLinearStepper(props) {
       profondita:depth,
       location_code:locationCode
     })
+    .then((response) => {
+      if (response.data.operationCode === 200){
+        props.handleClose()
+      }
+    })
   }
 
 
@@ -395,6 +400,7 @@ function VerticalLinearStepper(props) {
 
 // Componente per la gestione dell'inserimento di un nuovo canale
 // Props: Attributi: stationId: codice della stazione
+//        Metodi : callRender : Notifica una richiesta di rendering
 export default class AddChannel extends Component {
     _isMounted=false;
     today=new Date();
@@ -416,6 +422,7 @@ export default class AddChannel extends Component {
     }
     handleClose =() =>{
         this.setState({modalOpen:false})
+        this.props.callRender()
     }
 
     componentDidUpdate(prevProps,prevState) {
@@ -465,7 +472,7 @@ export default class AddChannel extends Component {
                     <Modal.Content scrolling>
                     
                     <Modal.Description>
-                        <VerticalLinearStepper stationId ={this.props.stationId} sensors={this.state.sensors} dataloggers={this.state.dataloggers}/>
+                        <VerticalLinearStepper handleClose={this.handleClose} stationId ={this.props.stationId} sensors={this.state.sensors} dataloggers={this.state.dataloggers}/>
                     </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>

@@ -36,7 +36,7 @@ class InsertOperazione(Resource):
                                             .first()
                     operazione.componente=componente
 
-                return jsonify(operationCode="200")
+                return jsonify(operationCode=200)
             except Exception as ex:
                 rollback()
                 return jsonify(operationCode=500, message="OPS! Qualcosa è andato storto")

@@ -18,6 +18,8 @@ const useStyles = makeStyles(() => ({
 //Componente in versione Hook per la visualizzazione e gestione di tutti i canali
 // afferenti alla stazione sismica 
 //  Props:
+//        Metodi:
+//                  1) callRender: Notifica la richiesta di renderizzazione del padre
 //        Attributi:
 //                  1) channels : tutti i canali dismessi e non afferenti alla stazione
 //                  2) station : informazioni della stazione in formato struct
@@ -33,7 +35,7 @@ export default function Channels(props) {
 
   return (
     <div className={classes.root}>
-        <AddChannel stationId={props.station.codice_stazione} />
+        <AddChannel callRender={props.callRender} stationId={props.station.codice_stazione} />
         <Box>
             {
                 (
@@ -138,7 +140,7 @@ export default function Channels(props) {
         </Box>
      
       <Box display="flex" justifyContent="center" alignItems="flexe-end" width={1} paddingTop={1}>
-        <Pagination color="primary" onChange={handlePageChange} count={props.channels.length % rowsPerPage}
+        <Pagination color="primary" onChange={handlePageChange} count={Math.ceil(props.channels.length /rowsPerPage) } //Approssimo per eccesso
                             rowsPerPage={rowsPerPage}
                             page={page}/>
       </Box>

@@ -100,7 +100,7 @@ function ScrollableTabsButtonForce(props) {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <Box display="flex" flexGrow={1} height={0.5}>
+          <Box display="flex" flexGrow={1} height={0.5}> {/*height="60vh" overflow="auto"*/}
               <Paper elevation={3} style={{padding:6,flexGrow:1,width:"100%",height:"100%"}}>
                   <StationInfo stationId={props.stationId}/>
               </Paper>
@@ -171,7 +171,7 @@ export default class StationViewer extends React.Component{
     render(){
         return(
             <Box display="flex" width="100%" height="100%" flexDirection="column">             
-              <Box display="flex" flexGrow={1}  >
+              <Box display="flex" flexGrow={1}>
                 <ScrollableTabsButtonForce stationOperations = {this.state.stationOperations} stationId={this.props.stationId}/>
               </Box>
               <Fab variant="extended" style={{width:"5%",marginLeft:6,marginBottom:9}} onClick={() => this.props.close()}>

@@ -20,6 +20,13 @@ export default class CanaliTab extends React.Component {
     //  comunque questo metodo permette di recuperare tutti i cananli della stazione
     componentWillMount(){
         this._isMounted=true
+        this.getChannels()
+    }
+
+    forceReRender = () => {
+        this.getChannels()
+    }
+    getChannels = () => {
         axios.get('/api/Stazione/'+this.props.stationId+"/Canali")
         .then((response) => {
             console.log(response.data.item);
@@ -37,7 +44,7 @@ export default class CanaliTab extends React.Component {
         return(
             <React.Fragment>
                 <Box display="flex" flexGrow={1} width={1} height={1}>
-                    <Channels station={this.state.station} channels={this.state.channels}/>
+                    <Channels callRender={this.forceReRender} station={this.state.station} channels={this.state.channels}/>
                 </Box>
             </React.Fragment>
             

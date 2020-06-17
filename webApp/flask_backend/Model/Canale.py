@@ -17,4 +17,4 @@ class Canale(db.Entity):
     data_creazione_canale = Required(date, default=lambda: date.today())
     data_dismessa_canale = Optional(date)
     profondita = Required(int, size=8)  # in metri
-    location_code= Required(str,30, unique=True)
+    location_code= Required(str,30)

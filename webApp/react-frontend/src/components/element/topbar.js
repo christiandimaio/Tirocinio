@@ -7,6 +7,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 import FullScreenDialog from './magazzino.js'
 import StoreIcon from '@material-ui/icons/Store';
+import INGVLogo from '../../images/logo.png';
+import { Image } from 'semantic-ui-react';
 // const {MenuIcon} = MaterialUI.Menu;
 
 // Guardare la documentazione di material ui per la parte di gestione temi :)
@@ -98,11 +100,9 @@ export default class TopBar extends React.Component{
             <AppBar position="static" style={{background:"#3f51b5"}}>
               <Toolbar >
                 <Box display="flex" style={{flexGrow:1}}>
-                    <Typography variant="h5" >
-                    INGV
-                    </Typography>
-                    <Typography variant="h2" style={{marginLeft:4}} spacing={2}>
-                    {this.props.username}
+                    <Image src={INGVLogo} size="mini" fluid/>
+                    <Typography variant="h5" style={{paddingLeft:4}}>
+                    Istituto Nazionale Geofisica e Vulcanologia
                     </Typography>
                 </Box>
                 <Button 

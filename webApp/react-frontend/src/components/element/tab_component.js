@@ -39,7 +39,7 @@ function RenderBatteries(props){
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography className={classes.heading}>Batterie</Typography>
+        <Typography className={classes.heading}>Batterie : {props.items.length}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{overflowX:"auto"}}>
           <Box display="flex" minWidth="65vw" flexDirection="row" maxHeight="20vh" flexWrap="wrap">
@@ -78,7 +78,7 @@ function RenderChargeRegolator(props){
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography className={classes.heading}>Regolatori di carica</Typography>
+        <Typography className={classes.heading}>Regolatori di carica : {props.items.length}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{overflowX:"auto"}}>
           <Box display="flex" minWidth="65vw" flexDirection="row" maxHeight="20vh" flexWrap="wrap">
@@ -117,7 +117,7 @@ function RenderDataloggers(props){
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography className={classes.heading}>Acquisitori</Typography>
+        <Typography className={classes.heading}>Acquisitori : {props.items.length}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{overflowX:"auto"}}>
           <Box display="flex" minWidth="65vw" flexDirection="row" maxHeight="20vh" flexWrap="wrap">
@@ -155,7 +155,7 @@ function RenderGps(props){
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography className={classes.heading}>Gps</Typography>
+        <Typography className={classes.heading}>Gps : {props.items.length}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{overflowX:"auto"}}>
           <Box display="flex" minWidth="65vw" flexDirection="row" maxHeight="20vh" flexWrap="wrap">
@@ -192,7 +192,7 @@ function RenderHardDrive(props){
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography className={classes.heading}>Memorie di massa</Typography>
+        <Typography className={classes.heading}>Memorie di massa : {props.items.length} </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{overflowX:"auto"}}>
           <Box display="flex" minWidth="65vw" flexDirection="row" maxHeight="20vh" flexWrap="wrap">
@@ -231,7 +231,7 @@ function RenderSensors(props){
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography className={classes.heading}>Sensori</Typography>
+        <Typography className={classes.heading}>Sensori : {props.items.length}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{overflowX:"auto"}}>
           <Box display="flex" minWidth="65vw" flexDirection="row" maxHeight="20vh" flexWrap="wrap">
@@ -270,7 +270,7 @@ function RenderSolarPanels(props){
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography className={classes.heading}>Pannelli Solari</Typography>
+        <Typography className={classes.heading}>Pannelli Solari : {props.items.length}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{overflowX:"auto"}}>
           <Box display="flex" minWidth="65vw" flexDirection="row" maxHeight="20vh" flexWrap="wrap">
@@ -310,7 +310,7 @@ function RenderWires(props){
         style={{borderColor:"green"}}
         
       >
-        <Typography className={classes.heading}>Cavi</Typography>
+        <Typography className={classes.heading}>Cavi : {props.items.length}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{overflowX:"auto"}}>
           <Box display="flex" minWidth="65vw" flexDirection="row" maxHeight="20vh" flexWrap="wrap">
