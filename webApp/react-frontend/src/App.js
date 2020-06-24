@@ -33,7 +33,8 @@ class App extends React.Component{
         this.state = {
             modalFullScreenOpen:true,
             fullScreen:false,
-            visibleSection : "main", //main - logIN - signIn : Rappresenta i tre stati in cui l'app può trovarsi all'apertura
+
+            visibleSection : "logIN", //main - logIN - signIn : Rappresenta i tre stati in cui l'app può trovarsi all'apertura
             lockApp: {  //stato che permette di bloccare l'app nel caso di operazioni delicate lato server
                 lockState:false,
                 lockMessage:""
