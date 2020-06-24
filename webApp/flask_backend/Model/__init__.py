@@ -11,10 +11,10 @@ from Model.Foto import Foto
 from Model.Nota import Nota
 from Model.Componente import Componente
 from Model.Componenti.Batteria import Batteria
-from Model.Componenti.Memoria_Massa import Memoria_Massa
-from Model.Componenti.Pannello_Solare import Pannello_Solare
+from Model.Componenti.MemoriaMassa import Memoria_Massa
+from Model.Componenti.PannelloSolare import Pannello_Solare
 from Model.Componenti.Cavo import Cavo
-from Model.Componenti.Regolatore_Carica import Regolatore_Carica
+from Model.Componenti.RegolatoreCarica import Regolatore_Carica
 from Model.Componenti.Gps import Gps
 from Model.Componenti.Sensore import Sensore
 from Model.Componenti.Acquisitore import Acquisitore

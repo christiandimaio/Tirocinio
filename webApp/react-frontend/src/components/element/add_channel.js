@@ -109,22 +109,19 @@ function VerticalLinearStepper(props) {
     setLocationCode(event.target.value)
   }
 
+  //Funzione che ritorna true sè la verifica ha dato esito positivo
   const formVerify = (step) => {
     switch(step){
       case 0:
         if (sensorSerial === "" || dataloggerSerial === ""){
-          return true
-        }else{
           return false
+        }else{
+          return true
         }
       case 1:
-        if (locationCode === ""){
           return true
-        }else{
-          return false
-        }
       default:
-        return false
+        return true
     }
   }
 
@@ -139,6 +136,11 @@ function VerticalLinearStepper(props) {
       data_creazione_canale:channelCreationDate,
       profondita:depth,
       location_code:locationCode
+    })
+    .then((response) => {
+      if (response.data.operationCode === 200){
+        props.handleClose()
+      }
     })
   }
 
@@ -233,7 +235,7 @@ function VerticalLinearStepper(props) {
                       value={locationCode}  
                       fullWidth 
                       onChange={handleLocationCodeChange}
-                      helperText="*Campo Richiesto" 
+                      
                       required
                     />
                   </Grid.Column>
@@ -367,7 +369,7 @@ function VerticalLinearStepper(props) {
                     color="primary"
                     onClick={handleNext}
                     className={classes.button}
-                    disabled={formVerify(activeStep)}
+                    disabled={!formVerify(activeStep)}
                   >
                     {activeStep === steps.length - 1 ? 'Conferma' : 'Avanti'}
                   </Button>
@@ -395,6 +397,7 @@ function VerticalLinearStepper(props) {
 
 // Componente per la gestione dell'inserimento di un nuovo canale
 // Props: Attributi: stationId: codice della stazione
+//        Metodi : callRender : Notifica una richiesta di rendering
 export default class AddChannel extends Component {
     _isMounted=false;
     today=new Date();
@@ -416,6 +419,7 @@ export default class AddChannel extends Component {
     }
     handleClose =() =>{
         this.setState({modalOpen:false})
+        this.props.callRender()
     }
 
     componentDidUpdate(prevProps,prevState) {
@@ -465,7 +469,7 @@ export default class AddChannel extends Component {
                     <Modal.Content scrolling>
                     
                     <Modal.Description>
-                        <VerticalLinearStepper stationId ={this.props.stationId} sensors={this.state.sensors} dataloggers={this.state.dataloggers}/>
+                        <VerticalLinearStepper handleClose={this.handleClose} stationId ={this.props.stationId} sensors={this.state.sensors} dataloggers={this.state.dataloggers}/>
                     </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>

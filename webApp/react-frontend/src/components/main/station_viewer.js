@@ -11,14 +11,13 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import PermDataSettingIcon from '@material-ui/icons/PermDataSetting';
 import { Grid } from 'semantic-ui-react';
 import StationInfo from '../element/tab_station_info.js';
-import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import OperazioniTab from '../element/tab_operation.js';
 import axios from 'axios';
 import HomeIcon from '@material-ui/icons/Home';
 import CanaliTab from '../element/tab_channel.js';
-
+import ComponentTab from '../element/tab_component.js'
 // Componente con design Hooks per la renderizzazione del pannello tab nella schermata di informazione stazione
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -100,20 +99,25 @@ function ScrollableTabsButtonForce(props) {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <Box display="flex" flexGrow={1} height={0.5}>
-              <Paper elevation={3} style={{padding:6,flexGrow:1,width:"100%",height:"100%"}}>
+          <Box display="flex" flexGrow={1} height="68vh" style={{overflowY:"auto",overflowX:"hidden"}}> {/**/}
+            
                   <StationInfo stationId={props.stationId}/>
-              </Paper>
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1} >
-          <OperazioniTab stationOperations = {props.stationOperations}/>             
+          <Box display="flex" flexGrow={1} height="68vh" style={{overflowY:"auto",overflowX:"hidden"}}> 
+         
+            <OperazioniTab stationOperations = {props.stationOperations}/>  
+           
+          </Box>           
         </TabPanel>
         <TabPanel value={value} index={2}>
-            In costruzione
+          <Box display="flex" flexDirection="column" height="68vh" style={{overflowY:"auto",overflowX:"hidden"}}>
+            <ComponentTab stationId={props.stationId}/>
+          </Box>
         </TabPanel>
         <TabPanel value={value} index={3}>
-            <Box display="flex" flexGrow={1} width={1}>
+            <Box display="flex" flexGrow={1} width={1} height="68vh" style={{overflowY:"auto",overflowX:"hidden"}}>
               <CanaliTab stationId={props.stationId}/>
             </Box>
         </TabPanel>
@@ -169,7 +173,7 @@ export default class StationViewer extends React.Component{
     render(){
         return(
             <Box display="flex" width="100%" height="100%" flexDirection="column">             
-              <Box display="flex" flexGrow={1}  >
+              <Box display="flex" flexGrow={1}>
                 <ScrollableTabsButtonForce stationOperations = {this.state.stationOperations} stationId={this.props.stationId}/>
               </Box>
               <Fab variant="extended" style={{width:"5%",marginLeft:6,marginBottom:9}} onClick={() => this.props.close()}>

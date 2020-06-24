@@ -18,6 +18,8 @@ const useStyles = makeStyles(() => ({
 //Componente in versione Hook per la visualizzazione e gestione di tutti i canali
 // afferenti alla stazione sismica 
 //  Props:
+//        Metodi:
+//                  1) callRender: Notifica la richiesta di renderizzazione del padre
 //        Attributi:
 //                  1) channels : tutti i canali dismessi e non afferenti alla stazione
 //                  2) station : informazioni della stazione in formato struct
@@ -33,7 +35,7 @@ export default function Channels(props) {
 
   return (
     <div className={classes.root}>
-        <AddChannel stationId={props.station.codice_stazione} />
+        <AddChannel callRender={props.callRender} stationId={props.station.codice_stazione} />
         <Box>
             {
                 (
@@ -41,6 +43,7 @@ export default function Channels(props) {
                     ? props.channels.slice((page-1) * rowsPerPage, (page-1) * rowsPerPage + rowsPerPage)
                     : props.channels
                 ).map((channel) => {
+                    console.log(channel)
                     return (
                         <ExpansionPanel>
                             <ExpansionPanelSummary
@@ -48,7 +51,11 @@ export default function Channels(props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                             >
-                            <Typography variant="h5" >{channel.info.location_code}</Typography>
+                                <Typography variant="h5" >{channel.info.location_code !== ""?channel.info.location_code + " - ":""}{channel.acquisitore.seriale} - {channel.sensore.seriale} - {channel.info.componente_sensore}
+                                    <Typography variant="h6" color="secondary">{channel.info.data_dismessa_canale !== null?"Dismesso":""}</Typography>
+                                </Typography>
+
+                                
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails>
                                 <Grid>
@@ -135,7 +142,7 @@ export default function Channels(props) {
         </Box>
      
       <Box display="flex" justifyContent="center" alignItems="flexe-end" width={1} paddingTop={1}>
-        <Pagination color="primary" onChange={handlePageChange} count={props.channels.length % rowsPerPage}
+        <Pagination color="primary" onChange={handlePageChange} count={Math.ceil(props.channels.length /rowsPerPage) } //Approssimo per eccesso
                             rowsPerPage={rowsPerPage}
                             page={page}/>
       </Box>
