@@ -109,22 +109,19 @@ function VerticalLinearStepper(props) {
     setLocationCode(event.target.value)
   }
 
+  //Funzione che ritorna true sè la verifica ha dato esito positivo
   const formVerify = (step) => {
     switch(step){
       case 0:
         if (sensorSerial === "" || dataloggerSerial === ""){
-          return true
-        }else{
           return false
+        }else{
+          return true
         }
       case 1:
-        if (locationCode === ""){
           return true
-        }else{
-          return false
-        }
       default:
-        return false
+        return true
     }
   }
 
@@ -238,7 +235,7 @@ function VerticalLinearStepper(props) {
                       value={locationCode}  
                       fullWidth 
                       onChange={handleLocationCodeChange}
-                      helperText="*Campo Richiesto" 
+                      
                       required
                     />
                   </Grid.Column>
@@ -372,7 +369,7 @@ function VerticalLinearStepper(props) {
                     color="primary"
                     onClick={handleNext}
                     className={classes.button}
-                    disabled={formVerify(activeStep)}
+                    disabled={!formVerify(activeStep)}
                   >
                     {activeStep === steps.length - 1 ? 'Conferma' : 'Avanti'}
                   </Button>
