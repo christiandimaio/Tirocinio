@@ -11,7 +11,6 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import PermDataSettingIcon from '@material-ui/icons/PermDataSetting';
 import { Grid } from 'semantic-ui-react';
 import StationInfo from '../element/tab_station_info.js';
-import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import OperazioniTab from '../element/tab_operation.js';

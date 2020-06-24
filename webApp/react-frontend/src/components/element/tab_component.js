@@ -13,7 +13,7 @@ import HardDriveCard from './utils/card_harddrive.js';
 import SensorCard from './utils/card_sensor.js';
 import SolarPanelCard from './utils/card_solarpanel.js';
 import WireCard from './utils/card_wire.js';
-import { Box,Paper } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import axios from 'axios';
 import { Divider } from 'semantic-ui-react'
 const useStyles = makeStyles((theme) => ({

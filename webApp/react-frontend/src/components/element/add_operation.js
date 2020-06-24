@@ -12,12 +12,13 @@ import { Divider } from 'semantic-ui-react'
 import DateTimePicker from './utils/date_picker.js'
 import MuiALert from '@material-ui/lab/Alert';
 import axios from 'axios';
+var today = new Date();
 export default class AddOperation extends Component {
     _isMounted=false;
     today=new Date();
     constructor(props){
         super(props);
-        var today = new Date();
+        
         this.state={ 
             operationType:"Installazione",
             startOperationDate:today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate(),
@@ -122,8 +123,8 @@ export default class AddOperation extends Component {
 
         this.setState({
             operationType:"Installazione",
-            startOperationDate:"",
-            endOperationDate:"",
+            startOperationDate:today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate(),
+            endOperationDate:today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate(),
             componentSerial:"",
             componentCheckEnabled:false,
             operator:"",
@@ -251,7 +252,7 @@ export default class AddOperation extends Component {
             tipo_operazione:info.operationType,
             data_inizio_operazione:info.startOperationDate,
             data_fine_operazione:info.endOperationDate,
-            seriale_component:this.state.operationType !== "Altro"?info.componentSerial:"", //Nel caso in cui il tipo di operazione sia "Altro" il seriale va inviato vuoto
+            seriale_componente:this.state.operationType !== "Altro"?info.componentSerial:"", //Nel caso in cui il tipo di operazione sia "Altro" il seriale va inviato vuoto
             operatore_incaricato:info.operator,
             note:info.note,
           })

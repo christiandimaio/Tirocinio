@@ -10,10 +10,9 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import 'semantic-ui-css/semantic.min.css'
 import {Grid} from 'semantic-ui-react';
-import Request, { transformRequest } from 'axios-request-handler';
+import Request from 'axios-request-handler';
 import Main from './components/main/main.js';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
-import Fullscreen from "react-full-screen";
 
 
 const styles = () => ({
@@ -34,7 +33,7 @@ class App extends React.Component{
         this.state = {
             modalFullScreenOpen:true,
             fullScreen:false,
-            visibleSection : "logIN", //main - logIN - signIn : Rappresenta i tre stati in cui l'app può trovarsi all'apertura
+            visibleSection : "main", //main - logIN - signIn : Rappresenta i tre stati in cui l'app può trovarsi all'apertura
             lockApp: {  //stato che permette di bloccare l'app nel caso di operazioni delicate lato server
                 lockState:false,
                 lockMessage:""
