@@ -11,7 +11,9 @@ import { withStyles } from "@material-ui/core/styles";
 import 'semantic-ui-css/semantic.min.css'
 import {Grid} from 'semantic-ui-react';
 import Request from 'axios-request-handler';
-import Main from './components/main/main.js'
+import Main from './components/main/main.js';
+import { Button, Header, Icon, Modal } from 'semantic-ui-react';
+
 
 const styles = () => ({
 	root: {
@@ -29,7 +31,10 @@ class App extends React.Component{
     constructor(){
         super();
         this.state = {
-            visibleSection : "main", //main - logIN - signIn : Rappresenta i tre stati in cui l'app può trovarsi all'apertura
+            modalFullScreenOpen:true,
+            fullScreen:false,
+
+            visibleSection : "logIN", //main - logIN - signIn : Rappresenta i tre stati in cui l'app può trovarsi all'apertura
             lockApp: {  //stato che permette di bloccare l'app nel caso di operazioni delicate lato server
                 lockState:false,
                 lockMessage:""
@@ -40,7 +45,6 @@ class App extends React.Component{
 
     //Per capire la funzione di componentDidMount guardare la documentazione di react sui life cycle methods
     componentDidMount(){
-
         //Chiamata polling per conoscere lo stato di eventuale aggiornamento del database NRL
         reviews.poll(20000).get((response) => {
             const {result} = response.data;
@@ -57,7 +61,30 @@ class App extends React.Component{
             }
             
           });
-        
+    }
+
+    componentDidUpdate(prevProps,prevState){
+        if (prevState.visibleSection === "logIN" && this.state.visibleSection === "main") {
+            if (document.body.requestFullscreen) {
+                document.body.requestFullscreen();
+            } else if (document.body.mozRequestFullScreen) { /* Firefox */
+                document.body.mozRequestFullScreen();
+            } else if (document.body.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                document.body.webkitRequestFullscreen();
+            } else if (document.body.msRequestFullscreen) { /* IE/Edge */
+                document.body.msRequestFullscreen();
+            }
+        }else{
+            if (document.body.exitFullscreen) {
+                document.body.exitFullscreen();
+            } else if (document.body.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.body.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.body.msExitFullscreen) {
+                document.body.msExitFullscreen();
+            }
+        }
     }
 
     // Funzione chiamata quando è necessario bloccare l'interfaccia dell'app
@@ -120,6 +147,23 @@ class App extends React.Component{
             case "main":
                 return(
                     <>
+                        <Modal open={this.state.modalFullScreenOpen} basic size='small'>
+                            <Header icon='archive' content="Messaggio dall'app" />
+                            <Modal.Content>
+                            <p>
+                                Questa applicazione richiede l'utilizzo del browser in modalità full screen,
+                                procedere?
+                            </p>
+                            </Modal.Content>
+                            <Modal.Actions>
+                            <Button basic color='red' inverted onClick={() => {this.changeView("logIN")}}>
+                                <Icon name='remove' /> No
+                            </Button>
+                            <Button color='green' inverted onClick={() => {this.setState({modalFullScreenOpen:false});this.setState({fullScreen:true})}}>
+                                <Icon name='checkmark' /> Si
+                            </Button>
+                            </Modal.Actions>
+                        </Modal>
                         <Main/> 
                         <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:this.state.lockApp.lockState}}/>
                     </>
@@ -132,8 +176,9 @@ class App extends React.Component{
     
     // Funzione richiamata seguendo il life cycle della classe, renderizza il componente
     render(){
+
         return (
-                    <Box display="flex" flexDirection="column" style={{height:"100vh"}} overflow="hidden">
+                    <Box display="flex" flexDirection="column" style={{height:"100vh",backgroundColor:this.state.visibleSection==="main"?"white":"transparent"}} overflow="hidden">
                         <Grid >
                             <Grid.Row >
                                 <Grid.Column mobile={16} tablet={16} computer={16}>
@@ -148,6 +193,7 @@ class App extends React.Component{
                         </Box>
                         
                     </Box> 
+             
                 );
     }
 }

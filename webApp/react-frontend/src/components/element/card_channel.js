@@ -51,9 +51,11 @@ export default function Channels(props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                             >
-                            <Typography variant="h5" >{channel.info.location_code}
-                                <Typography variant="h6" color="secondary">{channel.info.data_dismessa_canale !== null?"Dismesso":""}</Typography>
-                            </Typography>
+                                <Typography variant="h5" >{channel.info.location_code !== ""?channel.info.location_code + " - ":""}{channel.acquisitore.seriale} - {channel.sensore.seriale} - {channel.info.componente_sensore}
+                                    <Typography variant="h6" color="secondary">{channel.info.data_dismessa_canale !== null?"Dismesso":""}</Typography>
+                                </Typography>
+
+                                
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails>
                                 <Grid>
