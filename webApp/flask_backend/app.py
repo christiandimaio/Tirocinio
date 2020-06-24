@@ -68,10 +68,18 @@ api.add_resource(GetStazione, "/api/Stazione/<string:codice_stazione>")
 api.add_resource(InsertOperazione, "/api/Stazione/<string:codice_stazione>/Operazione")
 api.add_resource(GetCanali,"/api/Stazione/<string:codice_stazione>/Canali")
 api.add_resource(PostCanale,"/api/Stazione/<string:codice_stazione>/Canale")
+
 # Rotte componentistica stazione
 api.add_resource(GetComponenteStazione, '/api/Stazione/<string:codice_stazione>/Componente/<string:seriale>')
+
 api.add_resource(GetSensoriStazione,"/api/Stazione/<string:codice_stazione>/Sensori")
 api.add_resource(GetAcquisitoriStazione,"/api/Stazione/<string:codice_stazione>/Acquisitori")
+api.add_resource(GetBatterieStazione,"/api/Stazione/<string:codice_stazione>/Batterie")
+api.add_resource(GetRegolatoriCaricaStazione,"/api/Stazione/<string:codice_stazione>/RegolatoriCarica")
+api.add_resource(GetGpsStazione,"/api/Stazione/<string:codice_stazione>/Gps")
+api.add_resource(GetMemorieMassaStazione,"/api/Stazione/<string:codice_stazione>/MemorieMassa")
+api.add_resource(GetPannelliSolariStazione,"/api/Stazione/<string:codice_stazione>/PannelliSolari")
+api.add_resource(GetCaviStazione,"/api/Stazione/<string:codice_stazione>/Cavi")
 
 """______----------------------------------------------------------------------"""
 """    NRL    """

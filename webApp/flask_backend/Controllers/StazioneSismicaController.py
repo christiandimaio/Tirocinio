@@ -194,13 +194,13 @@ class GetSensoriStazione(Resource):
             # se il componente relativo all'operazione non è già presente all'interno dell'insieme dei sensori allora lo elaboro
             if _operazione.componente not in sensori:
                 # Mi calcolo per quel sensore quante operazioni di installazione sono state svolte in quella stazione
-                n_installazioni_sensore = count(operazione.tipo_operazione for operazione in Operazione
+                n_installazioni_sensore = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
                                                 and operazione.componente.seriale == _operazione.componente.seriale
                                                 and operazione.tipo_operazione == "Installazione")
 
                 # Mi calcolo per quel sensore quante operazioni di rimozione sono state svolte in quella stazione
-                n_rimozioni_sensore = count(operazione.tipo_operazione for operazione in Operazione
+                n_rimozioni_sensore = count(operazione for operazione in Operazione
                                             if operazione.stazione_sismica.codice_stazione == codice_stazione
                                             and operazione.componente.seriale == _operazione.componente.seriale
                                             and operazione.tipo_operazione == "Rimozione")
@@ -211,11 +211,11 @@ class GetSensoriStazione(Resource):
                     sensori.append(_operazione.componente)
         if len(sensori) > 0:
             return jsonify(operationCode=200, items=[{"componente": sensore.to_dict(),
-                                                      "sensore": sensore.sensore.to_dict(),
+                                                      "info": sensore.sensore.to_dict(),
                                                       "NRL": sensore.sensore.nrl.to_dict()} for sensore in sensori])
         else:
-            return jsonify(operationCode=404, message="Not Found")
-        return jsonify(operationCode=500, message="Internal Error")
+            return jsonify(operationCode=404,items=[] ,message="Not Found")
+        return jsonify(operationCode=500,items=[] , message="Internal Error")
 
 
 class GetAcquisitoriStazione(Resource):
@@ -233,12 +233,12 @@ class GetAcquisitoriStazione(Resource):
         try:
             for _operazione in operazioni:
                 if _operazione.componente not in acquisitori:
-                    n_installazioni_acquisitore = count(operazione.tipo_operazione for operazione in Operazione
+                    n_installazioni_acquisitore = count(operazione for operazione in Operazione
                                                         if
                                                         operazione.stazione_sismica.codice_stazione == codice_stazione
                                                         and operazione.componente.seriale == _operazione.componente.seriale
                                                         and operazione.tipo_operazione == "Installazione")
-                    n_rimozioni_acquisitore = count(operazione.tipo_operazione for operazione in Operazione
+                    n_rimozioni_acquisitore = count(operazione for operazione in Operazione
                                                     if operazione.stazione_sismica.codice_stazione == codice_stazione
                                                     and operazione.componente.seriale == _operazione.componente.seriale
                                                     and operazione.tipo_operazione == "Rimozione")
@@ -246,10 +246,221 @@ class GetAcquisitoriStazione(Resource):
                         acquisitori.append(_operazione.componente)
             if len(acquisitori) > 0:
                 return jsonify(operationCode=200, items=[{"componente": acquisitore.to_dict(),
-                                                          "acquisitore": acquisitore.acquisitore.to_dict(),
+                                                          "info": acquisitore.acquisitore.to_dict(),
                                                           "NRL": acquisitore.acquisitore.nrl.to_dict()} for acquisitore
                                                          in acquisitori])
             else:
-                return jsonify(operationCode=404, message="Not Found")
+                return jsonify(operationCode=404, items=[] ,message="Not Found")
         except Exception as ex:
-            return jsonify(operationCode=500, message="Internal Error")
+            return jsonify(operationCode=500, items=[] ,message="Internal Error")
+
+
+class GetBatterieStazione(Resource):
+    @staticmethod
+    @db_session
+    def get(codice_stazione):
+        """
+        Metodo per recuperare tutti le batterie installate nella stazione
+        :param codice_stazione:
+        :return:
+        """
+        # recupero tutte le operazioni che riguardano un sensore relative alla stazione in oggetto
+        operazioni = select((operazione) for operazione in Operazione
+                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                            and operazione.componente.batteria is not None
+                            )
+        batterie = []
+        #per ogni operazione
+        for _operazione in operazioni:
+            # se il componente relativo all'operazione non è già presente all'interno dell'insieme delle batterie allora lo elaboro
+            if _operazione.componente not in batterie:
+                n_installazioni_batteria = count(operazione for operazione in Operazione
+                                                if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                                and operazione.componente.seriale == _operazione.componente.seriale
+                                                and operazione.tipo_operazione == "Installazione")
+
+
+                n_rimozioni_batteria = count(operazione for operazione in Operazione
+                                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                            and operazione.componente.seriale == _operazione.componente.seriale
+                                            and operazione.tipo_operazione == "Rimozione")
+
+
+                if n_installazioni_batteria > n_rimozioni_batteria:
+                    batterie.append(_operazione.componente)
+        if len(batterie) > 0:
+            return jsonify(operationCode=200, items=[{"componente": batteria.to_dict(),
+                                                      "info": batteria.batteria.to_dict()} for batteria in batterie])
+        else:
+            return jsonify(operationCode=404,items=[], message="Not Found")
+        return jsonify(operationCode=500,items=[], message="Internal Error")
+
+class GetRegolatoriCaricaStazione(Resource):
+    @staticmethod
+    @db_session
+    def get(codice_stazione):
+        operazioni = select((operazione) for operazione in Operazione
+                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                            and operazione.componente.regolatore_carica is not None
+                            )
+        regolatori_carica = []
+        #per ogni operazione
+        for _operazione in operazioni:
+            # se il componente relativo all'operazione non è già presente all'interno dell'insieme delle batterie allora lo elaboro
+            if _operazione.componente not in regolatori_carica:
+                n_installazioni = count(operazione for operazione in Operazione
+                                                if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                                and operazione.componente.seriale == _operazione.componente.seriale
+                                                and operazione.tipo_operazione == "Installazione")
+
+
+                n_rimozioni = count(operazione for operazione in Operazione
+                                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                            and operazione.componente.seriale == _operazione.componente.seriale
+                                            and operazione.tipo_operazione == "Rimozione")
+
+
+                if n_installazioni > n_rimozioni:
+                    regolatori_carica.append(_operazione.componente)
+        if len(regolatori_carica) > 0:
+            return jsonify(operationCode=200, items=[{"componente": regolatore.to_dict(),
+                                                      "info": regolatore.regolatore_carica.to_dict()} for regolatore in regolatori_carica])
+        else:
+            return jsonify(operationCode=404,items=[], message="Not Found")
+        return jsonify(operationCode=500,items=[], message="Internal Error")
+
+class GetGpsStazione(Resource):
+    @staticmethod
+    @db_session
+    def get(codice_stazione):
+        operazioni = select((operazione) for operazione in Operazione
+                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                            and operazione.componente.gps is not None
+                            )
+        gps = []
+        #per ogni operazione
+        for _operazione in operazioni:
+            # se il componente relativo all'operazione non è già presente all'interno dell'insieme delle batterie allora lo elaboro
+            if _operazione.componente not in gps:
+                n_installazioni = count(operazione for operazione in Operazione
+                                                if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                                and operazione.componente.seriale == _operazione.componente.seriale
+                                                and operazione.tipo_operazione == "Installazione")
+
+
+                n_rimozioni = count(operazione for operazione in Operazione
+                                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                            and operazione.componente.seriale == _operazione.componente.seriale
+                                            and operazione.tipo_operazione == "Rimozione")
+
+
+                if n_installazioni > n_rimozioni:
+                    gps.append(_operazione.componente)
+        if len(gps) > 0:
+            return jsonify(operationCode=200, items=[{"componente": componente.to_dict(),
+                                                      "info": componente.gps.to_dict()} for componente in gps])
+        else:
+            return jsonify(operationCode=404,items=[], message="Not Found")
+        return jsonify(operationCode=500,items=[], message="Internal Error")
+
+class GetMemorieMassaStazione(Resource):
+    @staticmethod
+    @db_session
+    def get(codice_stazione):
+        operazioni = select((operazione) for operazione in Operazione
+                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                            and operazione.componente.memoria_massa is not None
+                            )
+        memorie_massa = []
+        #per ogni operazione
+        for _operazione in operazioni:
+            # se il componente relativo all'operazione non è già presente all'interno dell'insieme delle batterie allora lo elaboro
+            if _operazione.componente not in memorie_massa:
+                n_installazioni = count(operazione for operazione in Operazione
+                                                if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                                and operazione.componente.seriale == _operazione.componente.seriale
+                                                and operazione.tipo_operazione == "Installazione")
+
+
+                n_rimozioni = count(operazione for operazione in Operazione
+                                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                            and operazione.componente.seriale == _operazione.componente.seriale
+                                            and operazione.tipo_operazione == "Rimozione")
+
+
+                if n_installazioni > n_rimozioni:
+                    memorie_massa.append(_operazione.componente)
+        if len(memorie_massa) > 0:
+            return jsonify(operationCode=200, items=[{"componente": componente.to_dict(),
+                                                      "info": componente.gps.to_dict()} for componente in memorie_massa])
+        else:
+            return jsonify(operationCode=404,items=[], message="Not Found")
+        return jsonify(operationCode=500,items=[], message="Internal Error")
+
+class GetPannelliSolariStazione(Resource):
+    @staticmethod
+    @db_session
+    def get(codice_stazione):
+        operazioni = select((operazione) for operazione in Operazione
+                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                            and operazione.componente.pannello_solare is not None
+                            )
+        pannelli_solari = []
+        #per ogni operazione
+        for _operazione in operazioni:
+            # se il componente relativo all'operazione non è già presente all'interno dell'insieme delle batterie allora lo elaboro
+            if _operazione.componente not in pannelli_solari:
+                n_installazioni = count(operazione for operazione in Operazione
+                                                if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                                and operazione.componente.seriale == _operazione.componente.seriale
+                                                and operazione.tipo_operazione == "Installazione")
+
+
+                n_rimozioni = count(operazione for operazione in Operazione
+                                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                            and operazione.componente.seriale == _operazione.componente.seriale
+                                            and operazione.tipo_operazione == "Rimozione")
+
+
+                if n_installazioni > n_rimozioni:
+                    pannelli_solari.append(_operazione.componente)
+        if len(pannelli_solari) > 0:
+            return jsonify(operationCode=200, items=[{"componente": componente.to_dict(),
+                                                      "info": componente.gps.to_dict()} for componente in pannelli_solari])
+        else:
+            return jsonify(operationCode=404,items=[], message="Not Found")
+        return jsonify(operationCode=500,items=[], message="Internal Error")
+
+class GetCaviStazione(Resource):
+    @staticmethod
+    @db_session
+    def get(codice_stazione):
+        operazioni = select((operazione) for operazione in Operazione
+                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                            and operazione.componente.cavo is not None
+                            )
+        cavi = []
+        #per ogni operazione
+        for _operazione in operazioni:
+            # se il componente relativo all'operazione non è già presente all'interno dell'insieme delle batterie allora lo elaboro
+            if _operazione.componente not in cavi:
+                n_installazioni = count(operazione for operazione in Operazione
+                                                if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                                and operazione.componente.seriale == _operazione.componente.seriale
+                                                and operazione.tipo_operazione == "Installazione")
+
+
+                n_rimozioni = count(operazione for operazione in Operazione
+                                            if operazione.stazione_sismica.codice_stazione == codice_stazione
+                                            and operazione.componente.seriale == _operazione.componente.seriale
+                                            and operazione.tipo_operazione == "Rimozione")
+
+
+                if n_installazioni > n_rimozioni:
+                    cavi.append(_operazione.componente)
+        if len(cavi) > 0:
+            return jsonify(operationCode=200, items=[{"componente": componente.to_dict(),
+                                                      "info": componente.gps.to_dict()} for componente in cavi])
+        else:
+            return jsonify(operationCode=404,items=[], message="Not Found")
+        return jsonify(operationCode=500,items=[], message="Internal Error")

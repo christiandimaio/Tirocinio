@@ -40,6 +40,7 @@ class PostCanale(Resource):
                                     data_creazione_canale=request.json["data_creazione_canale"],
                                     profondita=request.json["profondita"],
                                     location_code=request.json["location_code"])
+                    return jsonify(operationCode=200)
             except Exception as ex:
                 return jsonify(operationCode=500)
 

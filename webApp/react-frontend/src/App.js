@@ -133,7 +133,7 @@ class App extends React.Component{
     // Funzione richiamata seguendo il life cycle della classe, renderizza il componente
     render(){
         return (
-                    <Box display="flex" flexDirection="column" style={{height:"100vh"}}>
+                    <Box display="flex" flexDirection="column" style={{height:"100vh"}} overflow="hidden">
                         <Grid >
                             <Grid.Row >
                                 <Grid.Column mobile={16} tablet={16} computer={16}>

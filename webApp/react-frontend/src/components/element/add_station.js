@@ -79,7 +79,7 @@ export default class AddNewStation extends Component {
     
     handleLongitudineChange = (event) => this.setState({longitudine:event.target.value})
 
-    handleCodiceStazioneChange = (event) => this.setState({codice_stazione:event.target.toUpperCase()})
+    handleCodiceStazioneChange = (event) => this.setState({codice_stazione:event.target.value.toUpperCase()})
 
     handleEllissoideChange = (event) => this.setState({ellissoide:event.target.value})
 

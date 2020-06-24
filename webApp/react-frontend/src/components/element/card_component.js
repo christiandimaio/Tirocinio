@@ -20,8 +20,6 @@ const ComponentCard = (props) => (
       </Card.Description>
     </Card.Content>
     <Card.Content extra>
-        
-        
         <Grid>
             <Grid.Row>
                 <Grid.Column>
