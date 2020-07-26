@@ -103,7 +103,7 @@ export default class AddNewStation extends Component {
                 this.setState(state => (state.registrazione.messaggio  = "Alcuni campi sono errati, seguire indicazioni!"));
                 return 
             }
-        axios.post('/api/Stazione', {
+        axios.post('api/Stazione', {
             codice_stazione:info.codice_stazione,
             tipo_stazione:info.tipo_stazione,
             periodo_manutenzione:info.periodo_manutenzione,

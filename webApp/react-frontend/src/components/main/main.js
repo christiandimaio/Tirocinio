@@ -142,7 +142,7 @@ export default class Main extends React.Component{
   retrieveStationInfo = (query) =>{
     console.log("reload UI")
     console.log(query)
-    axios.get('/api/Stazioni/info',{
+    axios.get('api/Stazioni/info',{
         params:{
           q: query === ""?null:query
           }

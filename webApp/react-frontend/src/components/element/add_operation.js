@@ -248,7 +248,7 @@ export default class AddOperation extends Component {
                 this.setState(state => (state.registration.message  = "Campi richiesti non inseriti!"));
                 return 
             }
-        axios.post('/api/Stazione/'+this.props.stationId+'/Operazione', {
+        axios.post('api/Stazione/'+this.props.stationId+'/Operazione', {
             tipo_operazione:info.operationType,
             data_inizio_operazione:info.startOperationDate,
             data_fine_operazione:info.endOperationDate,

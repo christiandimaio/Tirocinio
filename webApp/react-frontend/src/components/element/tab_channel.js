@@ -27,7 +27,7 @@ export default class CanaliTab extends React.Component {
         this.getChannels()
     }
     getChannels = () => {
-        axios.get('/api/Stazione/'+this.props.stationId+"/Canali")
+        axios.get('api/Stazione/'+this.props.stationId+"/Canali")
         .then((response) => {
             console.log(response.data.item);
             if(this._isMounted){

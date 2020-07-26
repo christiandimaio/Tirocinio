@@ -1,4 +1,4 @@
-#!/home/christian/Documenti/GitHub/Tirocinio/venv/bin/python
+#!/home/christian/Documenti/GitHub/Tirocinio/webApp/flask_backend/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

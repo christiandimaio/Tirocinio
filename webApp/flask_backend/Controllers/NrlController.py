@@ -17,7 +17,6 @@ nrl_update_lock = FileLock(os.path.join(Utils.retrieve_config_value(["applicatio
                                             ["application", "module_configuration", "NRLWrap",
                                              "update_in_progress_lock_file"])
                                         ))
-nrl_interface = NRLWrap(Utils.retrieve_config_value(["application", "module_configuration", "NRLWrap", "root"]))
 
 
 class UpdateNrl(Resource):
@@ -65,6 +64,16 @@ class CheckIfNrlIsUpdating(Resource):
 class GetNrlIndex(Resource):
     @staticmethod
     def get(request_type, level_1=None, level_2=None, level_3=None, level_4=None):
+        try:
+            nrl_interface = NRLWrap(
+                Utils.retrieve_config_value(["application", "module_configuration", "NRLWrap", "root"]))
+        except FileNotFoundError as ex:
+            print("NRL Non presente")
+            # print("interfaccia NRL non presente")
+            # nrl_update_lock.acquire()
+            # Utils.update_nrl_structure()
+            # """Rimuovo il lock """
+            # nrl_update_lock.release()
         dict_lv = None
         try:
             if request_type == "sensors":
@@ -96,6 +105,16 @@ class GetNrlIndex(Resource):
 class GetStationXML(Resource):
     @staticmethod
     def get(codice_stazione):
+        try:
+            nrl_interface = NRLWrap(
+                Utils.retrieve_config_value(["application", "module_configuration", "NRLWrap", "root"]))
+        except FileNotFoundError as ex:
+            print("NRL Non presente")
+            # print("interfaccia NRL non presente")
+            # nrl_update_lock.acquire()
+            # Utils.update_nrl_structure()
+            # """Rimuovo il lock """
+            # nrl_update_lock.release()
         da = None
         a = None
         if not request.args.get("data_creazione_canale") is None and \

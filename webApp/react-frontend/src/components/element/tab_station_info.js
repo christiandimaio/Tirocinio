@@ -62,7 +62,7 @@ export default class StationInfo extends React.Component{
     // Metodo per il download dello station xml 
     getStationXml = () => {
         var fileDownload = require('js-file-download');
-        axios.get('/api/Stazione/'+this.props.stationId+'/StationXml',{
+        axios.get('api/Stazione/'+this.props.stationId+'/StationXml',{
             params:{
                 data_creazione_canale:this.state.stationxml_filter.from,
                 data_dismessa_canale:this.state.stationxml_filter.to
@@ -80,7 +80,7 @@ export default class StationInfo extends React.Component{
     
 
     getStazione = () => {
-        axios.get('/api/Stazione/'+this.props.stationId)
+        axios.get('api/Stazione/'+this.props.stationId)
         .then((response) => {
             console.log(response.data.item);
             if(this._isMounted){

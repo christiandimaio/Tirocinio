@@ -159,7 +159,7 @@ export default class StationViewer extends React.Component{
     }
 
     getOperazioniStazione = () => {
-        axios.get('/api/Stazione/'+this.props.stationId+'/Operazioni')
+        axios.get('api/Stazione/'+this.props.stationId+'/Operazioni')
         .then((response) => {
             console.log(response.data["data"]);
                 this.setState({

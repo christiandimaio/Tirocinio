@@ -349,49 +349,49 @@ export default function ComponentTab(props) {
 
   useEffect(() => {
     function getSensors() {
-      axios.get("/api/Stazione/"+props.stationId+"/Sensori")
+      axios.get("api/Stazione/"+props.stationId+"/Sensori")
         .then((response) => {
           setSensors(response.data.items)
         });
     };
     function getDataloggers() {
-      axios.get("/api/Stazione/"+props.stationId+"/Acquisitori")
+      axios.get("api/Stazione/"+props.stationId+"/Acquisitori")
         .then((response) => {
           setDataloggers(response.data.items)
         });
     }
     function getBatteries(){
-      axios.get("/api/Stazione/"+props.stationId+"/Batterie")
+      axios.get("api/Stazione/"+props.stationId+"/Batterie")
         .then((response) => {
           setBatteries(response.data.items)
         });
     }
     function getChargeRegolator() {
-      axios.get("/api/Stazione/"+props.stationId+"/RegolatoriCarica")
+      axios.get("api/Stazione/"+props.stationId+"/RegolatoriCarica")
         .then((response) => {
           setChargeRegolator(response.data.items)
         });
     }
     function getGps(){
-      axios.get("/api/Stazione/"+props.stationId+"/Gps")
+      axios.get("api/Stazione/"+props.stationId+"/Gps")
         .then((response) => {
           setGps(response.data.items)
         });
     }
     function getHardDrive(){
-      axios.get("/api/Stazione/"+props.stationId+"/MemorieMassa")
+      axios.get("api/Stazione/"+props.stationId+"/MemorieMassa")
         .then((response) => {
           setHardDrive(response.data.items)
         });
     }
     function getSolarPanels(){
-      axios.get("/api/Stazione/"+props.stationId+"/PannelliSolari")
+      axios.get("api/Stazione/"+props.stationId+"/PannelliSolari")
         .then((response) => {
           setSolarPanel(response.data.items)
         });
     }
     function getWires () {
-      axios.get("/api/Stazione/"+props.stationId+"/Cavi")
+      axios.get("api/Stazione/"+props.stationId+"/Cavi")
         .then((response) => {
           setWires(response.data.items)
         });

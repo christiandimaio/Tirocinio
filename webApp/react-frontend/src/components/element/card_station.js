@@ -49,7 +49,7 @@ export default class StationCard extends React.Component {
 
   // Metodo per scaricare il file station xml dal server 
   getStationXml = (stationId) => {
-    axios.get('/api/Stazione/'+stationId+'/StationXml')
+    axios.get('api/Stazione/'+stationId+'/StationXml')
         .then((response) => {
           console.log(response)
             if (response.headers["content-type"] === "application/xml; charset=utf-8"){

@@ -182,7 +182,7 @@ export default class SignUp extends React.Component{
             return
         }
         // Chiamata alla web api 
-        axios.post('/api/Operatore/insert', {
+        axios.post('api/Operatore/insert', {
             name: this.state.name,
             surname: this.state.surname,
             email : this.state.email,

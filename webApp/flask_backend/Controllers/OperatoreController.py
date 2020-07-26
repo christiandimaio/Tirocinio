@@ -28,6 +28,7 @@ class InsertOperatore(Resource):
                     telefono = Recapito(numero_telefonico=request.json["userTelephone"], operatore=user)
             commit()
         except Exception as ex:
+            print(ex)
             if ex.original_exc.original_exc.__class__ == psycopg2.errors.UniqueViolation:
                 return jsonify(operationCode=201, message="Utente già registrato!")
             else:
