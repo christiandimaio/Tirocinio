@@ -22,7 +22,7 @@ const styles = () => ({
     
 });
 
-const reviews = new Request('/api/NRL/update/status');
+const reviews = new Request('api/NRL/update/status');
 
 
 // Classe principale dell'applicazione, regola il log in, la registrazione degli utenti e la visualizzazione dell'app 
@@ -164,7 +164,7 @@ class App extends React.Component{
                             </Button>
                             </Modal.Actions>
                         </Modal>
-                        <Main/> 
+                        <Main /> 
                         <AnimatedLoader properties={{message:this.state.lockApp.lockMessage,hidden:this.state.lockApp.lockState}}/>
                     </>
                 );
@@ -182,7 +182,7 @@ class App extends React.Component{
                         <Grid >
                             <Grid.Row >
                                 <Grid.Column mobile={16} tablet={16} computer={16}>
-                                    <TopBar isMain={this.state.visibleSection==="main"?true:false} nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>
+                                    <TopBar changeView={this.changeView} isMain={this.state.visibleSection==="main"?true:false} nrlUpdateEvent={{lockState:this.state.lockApp.lockState,releaseLock:this.releaseLockApp,putLock:this.lockAppRequest}}/>
                                 </Grid.Column>                     
                             </Grid.Row>
                         </Grid>

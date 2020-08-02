@@ -87,10 +87,8 @@ export default class TopBar extends React.Component{
                 ).then((response) => {
                     console.log(response);
                     if (response.data["operationCode"]===200){
-                        console.log("OK, Logout");
-                        window.location = "/login";
+                      this.props.changeView("logIN")
                     }
-
                 })
 
     }
