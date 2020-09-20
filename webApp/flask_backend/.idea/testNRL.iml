@@ -13,7 +13,7 @@
       <sourceFolder url="file://$MODULE_DIR$/cfg" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 (flask_backend)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Unknown virtualenv at ~/Documenti/GitHub/Tirocinio/webApp/flask_backend/venv" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
