@@ -33,7 +33,7 @@ Flask-Security-Too==3.4.5
 Flask-SQLAlchemy==2.1
 Flask-WTF==0.14.2
 future==0.18.2
-httplib2==0.11.3
+httplib2==0.19.0
 idna==2.6
 importlib-metadata==1.6.1
 itsdangerous==1.1.0
