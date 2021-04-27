@@ -1,7 +1,7 @@
 {
   "application": {
     "info": {
-      "name": "NOAH",
+      "name": "Sesame",
       "dev": "Christian Di Maio",
       "tutor": {
         "1": "Francesca Cirillo",
@@ -13,7 +13,7 @@
         "3": "Morpheus"
       },
       "version": "0.0.1",
-      "full_path": "/home/christian/Documenti/GitHub/Tirocinio/webApp/flask_backend/"
+      "full_path": "/home/ingv/Documents/GitHub/Tirocinio/webApp/flask_backend/"
     },
     "module_configuration": {
       "NRLWrap": {

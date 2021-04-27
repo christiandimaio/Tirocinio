@@ -39,7 +39,8 @@ class PostStazioneSismica(Resource):
                                            tipo_stazione=request.json["tipo_stazione"],
                                            altezza_lv_mare=request.json["altezza_lv_mare"],
                                            frequenza_manutenzione=request.json["periodo_manutenzione"])
-                nota = Nota(nota=request.json["note_aggiuntive"], stazione_sismica=station)
+                if request.json["note_aggiuntive"]:
+                    nota = Nota(nota=request.json["note_aggiuntive"], stazione_sismica=station)
                 localizzazione = Localizzazione(stazione_sismica=station, latitudine=request.json["latitudine"],
                                                 longitudine=request.json["longitudine"],
                                                 ellissoide=request.json["ellissoide"])
@@ -113,7 +114,7 @@ class GetStazione(Resource):
                     return jsonify(operationCode=200,
                                    item=stazione.to_dict(),
                                    responsabili=operatori,
-                                   nota=stazione.note.nota,
+                                   nota=stazione.note.nota if stazione.note else "",
                                    storico_coordinate=[localizzazione.to_dict() for localizzazione in #ciclo inline
                                                        storico_coordinate])
                 else:
@@ -160,10 +161,10 @@ class GetComponenteStazione(Resource):
                        and operazione.componente.seriale == seriale)
 
         # Recupero l'ultima operazione sul componente
-        operazione = select((operazione) for operazione in Operazione
+        operazione = list(select((operazione) for operazione in Operazione
                             if operazione.stazione_sismica.codice_stazione == codice_stazione
                             and operazione.componente.seriale == seriale
-                            and operazione.data_inizio_operazione == max_data).first()
+                            and operazione.data_inizio_operazione == max_data))[-1]
         """
             Sè l'operazione è di rimozione significa che il componente non è più presente in stazione 
         """

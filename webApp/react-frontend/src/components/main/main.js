@@ -84,7 +84,8 @@ export default class Main extends React.Component{
       },
       stationInfo:{ // Attributo che gestisce la visualizzazione delle informazioni della stazione
         open:false, // Booleano che mi permette di capire quando viene richiesta l'apertura della sezione "informazioni stazione"
-        stationId:"" // Identificativo della stazione
+        stationId:"", // Identificativo della stazione
+        hasUpdate:false, // Booleano che mi permette di capire quando qualcuno ha modificato qualche informazione della stazione e quindi bisogna ri-renderizzare la pagina
       },
       stationFilter:"" // filtro sul codice della stazione
     }
@@ -96,12 +97,14 @@ export default class Main extends React.Component{
     this.closeStationInfo() // Necessario per forzare un rendering aggiuntivo del component con passaggio dei nuovi parametri
     this.setState(state => (state.stationInfo.open  = true));
     this.setState(state => (state.stationInfo.stationId  = id));
+    this.setState(state => (state.stationInfo.hasUpdate  = false));
   }
 
   // Funzione duale di openStationInfo
   closeStationInfo = () => {
     this.setState(state => (state.stationInfo.open  = false));
     this.setState(state => (state.stationInfo.stationId  = ""));
+    this.setState(state => (state.stationInfo.hasUpdate  = false));
   }
 
   // Funziona chiamata per aprire la sezione di "Aggiungi Operazione" della stazione
@@ -136,6 +139,7 @@ export default class Main extends React.Component{
   componentDidMount() {
     this._isMounted=true;
     this.retrieveStationInfo("")
+    this.setState(state => (state.stationInfo.hasUpdate  = false));
   }
 
   // Funzione che interroga la web api ottenendo tutte le stazioni attualmente sul database
@@ -154,7 +158,8 @@ export default class Main extends React.Component{
                 stations: response.data["data"]
               });
           }
-      })
+    })
+    this.setState(state => (state.stationInfo.hasUpdate  = true));
   }
 
   createStation = (state) => {
@@ -203,7 +208,7 @@ export default class Main extends React.Component{
                         this.state.stationInfo.open
                           ?<StationViewer close={this.closeStationInfo} stationId={this.state.stationInfo.stationId}/>
                           :<StationMap stations={this.state.stations}/>
-                      } 
+                      }
                     </Paper>
                   </Box>              
                 </Grid.Column>                 

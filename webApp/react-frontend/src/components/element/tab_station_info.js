@@ -29,7 +29,7 @@ export default class StationInfo extends React.Component{
                 from:today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate(),
                 to:today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate()
             }, // Attributo di stato che conserva il limite inferiore e superiore del filtro su stationXml
-            heightAboveSeaLevel:"", // altezza livello mare stazione
+            heightAboveSeaLevel:null, // altezza livello mare stazione
             maintenancePeriod:"", // Frequenza di manutenzione stazione
             stationType:"", // Tipologia stazione
             note:"", // Eventuali note relative alla stazione
@@ -80,6 +80,7 @@ export default class StationInfo extends React.Component{
     
 
     getStazione = () => {
+        console.log('api/Stazione/'+this.props.stationId);
         axios.get('api/Stazione/'+this.props.stationId)
         .then((response) => {
             console.log(response.data.item);

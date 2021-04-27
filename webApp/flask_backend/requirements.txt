@@ -1,4 +1,4 @@
-alembic==1.4.2
+lembic==1.4.2
 aniso8601==8.0.0
 asn1crypto==0.24.0
 automium==0.2.6

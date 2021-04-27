@@ -5,5 +5,5 @@ from decimal import Decimal
 
 class Memoria_Massa(db.Entity):
     componente = PrimaryKey('Componente', column='cod_componente')
-    dimensione = Optional(Decimal)  # dimensione memoria espressa in GByte
+    dimensione = Optional(int)  # dimensione memoria espressa in GByte
     tipologia = Optional(str, 150)

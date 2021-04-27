@@ -142,20 +142,25 @@ export default class StationViewer extends React.Component{
       super(props)
       this.state={
           stationOperations : [], // Attributo di stato circa tutte le operazioni svolte sulla stazione
-          stationInfo: null
+          stationInfo: null,
+          reload:true
       }
     }
 
     componentDidUpdate(prevProps,prevState) {
-      if (this.props.stationId !== prevProps.stationId) {
+      if (this.props.stationId !== prevProps.stationId || this.props.update) {
           this.getOperazioniStazione()
-          this.setState({state:this.state})  
       }
     }
 
     componentDidMount(){
         console.log("-------------------------------------------------");
         this.getOperazioniStazione()
+    }
+
+    // Funzione che forza il component a renderizzarsi di nuovo
+    forceReRender = () => {
+      this.setState({state:this.state})
     }
 
     getOperazioniStazione = () => {

@@ -16,7 +16,9 @@ from Controllers.StazioneSismicaController import *
 from Controllers.LogInController import *
 from Controllers.NrlController import *
 from Controllers.ComponenteController import *
-from Controllers.ComponenteGpsController import *
+from Controllers.Componenti.GpsController import *
+from Controllers.Componenti.AcquisitoreController import *
+from Controllers.Componenti.SensoreController import *
 from Model import Log_In, Operatore
 from connection import db
 from LoginManager import *
@@ -43,6 +45,15 @@ api.add_resource(GetComponente, '/api/Componente/<string:seriale>')
 """----------------------------------------------------------------------------"""
 """ROTTE MODELLO GPS"""
 api.add_resource(GetGps, '/api/Componente/Gps/<string:seriale>')
+
+"""----------------------------------------------------------------------------"""
+"""ROTTE MODELLO SENSORE"""
+api.add_resource(PostSensore, '/api/Componente/Sensore/<string:seriale>')
+
+"""----------------------------------------------------------------------------"""
+"""ROTTE MODELLO ACQUISITORE"""
+api.add_resource(PostAcquisitore, '/api/Componente/Acquisitore/<string:seriale>')
+
 
 """----------------------------------------------------------------------------"""
 """ROTTE MODELLO LOG_IN"""
