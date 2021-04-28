@@ -11,6 +11,7 @@ import ComponentCardInfo from './card_component.js';
 import {Grid} from 'semantic-ui-react';
 import DialogContent from '@material-ui/core/DialogContent';
 import 'semantic-ui-css/semantic.min.css'
+import AddSensor from './utils/add_sensor.js';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -34,7 +35,9 @@ export default function FullScreenDialog(props) {
 
   return (
     <div>
-      <Dialog fullScreen open={props.open} TransitionComponent={Transition} scroll="paper">
+      
+      <Dialog fullScreen open={props.open} TransitionComponent={Transition} scroll="paper" style={{zIndex:0}}>
+      <AddSensor open={false}/>
         <AppBar className={classes.appBar}>
           <Toolbar>
             <IconButton edge="start" color="inherit" onClick={() => {props.handleChange(false)}} aria-label="close">
@@ -46,39 +49,34 @@ export default function FullScreenDialog(props) {
           </Toolbar>
         </AppBar>
         <DialogContent dividers="paper">
+        
           <Grid padded>
             <Grid.Row columns={5}>
               <Grid.Column>
-                <ComponentCardInfo/>
+                <ComponentCardInfo nomeComponente="Sensori"  componentiInMagazzino={23}/>
               </Grid.Column>
               <Grid.Column>
-                <ComponentCardInfo/>
+                <ComponentCardInfo nomeComponente="Acquisitori"  componentiInMagazzino={22}/>
               </Grid.Column>
               <Grid.Column>
-                <ComponentCardInfo/>
+                <ComponentCardInfo nomeComponente="Batterie"  componentiInMagazzino={22}/>
               </Grid.Column>
               <Grid.Column>
-                <ComponentCardInfo/>
+                <ComponentCardInfo nomeComponente="Regolatori carica"  componentiInMagazzino={22}/>
               </Grid.Column>
               <Grid.Column>
-                <ComponentCardInfo/>
+                <ComponentCardInfo nomeComponente="Gps"  componentiInMagazzino={22}/>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={5}>
               <Grid.Column>
-                <ComponentCardInfo/>
+                <ComponentCardInfo nomeComponente="Hard Disk"  componentiInMagazzino={22}/>
               </Grid.Column>
               <Grid.Column>
-                <ComponentCardInfo/>
+                <ComponentCardInfo nomeComponente="Pannelli Solari"  componentiInMagazzino={22}/>
               </Grid.Column>
               <Grid.Column>
-                <ComponentCardInfo/>
-              </Grid.Column>
-              <Grid.Column>
-                <ComponentCardInfo/>
-              </Grid.Column>
-              <Grid.Column>
-                <ComponentCardInfo/>
+                <ComponentCardInfo nomeComponente="Cavi"  componentiInMagazzino={22}/>
               </Grid.Column>
             </Grid.Row>   
           </Grid>

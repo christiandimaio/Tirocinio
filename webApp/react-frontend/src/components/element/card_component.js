@@ -1,5 +1,6 @@
 
 //Componente per la visualizzazione delle informazioni stazione sotto forma di card 
+import { OmitProps } from 'antd/lib/transfer/renderListBody';
 import React from 'react';
 
 import { Button, Icon, Image } from 'semantic-ui-react'
@@ -46,16 +47,13 @@ const ComponentCard = (props) => (
 //Props :
 // classImagePath: immagine di default del componente
 //  
-export default class ComponentCardInfo extends React.Component {
+export default function ComponentCardInfo(props){
   
 
-  render(){
     return(
         <ComponentCard classImagePath="../../images/stations/default.png"
-                        className="Batterie"
-                        classShortInfo="Gestione batterie"
-                        classDescription="Area inserimento nuove batterie"
-                        classNumberElement="23"></ComponentCard>
-    );
-  }
+                        className= {props.nomeComponente}
+                        classShortInfo= {"Gestione "+props.nomeComponente}
+                        classNumberElement={props.componentiInMagazzino}/>
+    )
 }
