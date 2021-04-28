@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles,useTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -21,7 +21,10 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-
+import axios from 'axios';
+import Fab from '@material-ui/core/Fab';
+import Add from '@material-ui/icons/Add';
+import AddOperation from '../element/add_operation.js';
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -158,6 +161,21 @@ export default function OperazioniTab(props) {
   const [collapseAll, setCollapseAll] = React.useState(false); // Serve per gestire il collasso contemporaneo di tutte le righe della pagina
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [stationOperations, setStationOperations] = React.useState([]);
+  const [seeAddOperation, openAddOperation] = React.useState(false);
+
+  useEffect(() => {
+    
+    getOperazioniStazione()
+  }, [props.stationId]);
+
+  function getOperazioniStazione () {
+    axios.get('api/Stazione/'+props.stationId+'/Operazioni')
+    .then((response) => {
+        console.log(response.data["data"]);
+        setStationOperations(response.data["data"])
+    })
+  }
 
   const handleChange = (event) => {
     console.log(collapseAll)
@@ -175,75 +193,93 @@ export default function OperazioniTab(props) {
     setPage(0);
   };
 
+  
+
+
+  // Funzione duale di openAddOperation
+  const closeAddOperation = () => {
+    openAddOperation(false);
+    getOperazioniStazione();
+    props.forceRender("");
+  }
+
   return (
-    <Grid >
-            <Grid.Row columns={1}>
-              <Grid.Column floated="left">
-                <FormControlLabel
-                  control={<Switch checked={collapseAll} onChange={handleChange} />}
-                  label="Visualizza tabella estesa"
-                />
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row columns={1}>
-              
-              <Grid.Column width={16}>
-                <Paper style={{overflowY:"auto",overflowX:"auto"}}>
-                  <TableContainer component={Box} >
-                    <Table className={classes.table} size="small" aria-label="simple table">
-                      <TableHead>
-                        <TableRow>
-                          <TableCell align="center" size="small"></TableCell>
-                          <TableCell align="center" size="small">Seriale</TableCell>
-                          <TableCell align="center" size="small">Tipo Operazione</TableCell>
-                          <TableCell align="center" size="small">Operatore</TableCell>
-                          <TableCell align="center" size="small">Data Inizio Operazione</TableCell>
-                          <TableCell align="center" size="small">Data Fine Operazione</TableCell>
-                          
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {
-                          (
-                            rowsPerPage > 0
-                            ? props.stationOperations.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            : props.stationOperations
-                          ).map( (operation) => {
-                            
-                            const data_fine = operation["operazione"]["data_fine_operazione"]!==null ? new Date(operation["operazione"]["data_fine_operazione"]):"";
-                            const data_inizio = operation["operazione"]["data_inizio_operazione"]!==null ? new Date(operation["operazione"]["data_inizio_operazione"]):"" ;
-                            
-                            return(
-                              <Row operation={operation} collapseAll={collapseAll} startDate={data_inizio} endDate={data_fine}/>
-                            )
-                          })
-                        }
-                      </TableBody>
-                      <TableFooter>
-                        <TableRow>
-                          <TablePagination
-                            rowsPerPageOptions={[5, 10, 25, { label: 'Tutte', value: -1 }]}
-                            colSpan={3}
-                            count={props.stationOperations.length}
-                            rowsPerPage={rowsPerPage}
-                            page={page}
-                            labelRowsPerPage="Righe per pagina"
-                            SelectProps={{
-                              inputProps: { 'aria-label': 'Righe per pagina' },
-                              native: true,
-                            }}
-                            onChangePage={handleChangePage}
-                            onChangeRowsPerPage={handleChangeRowsPerPage}
-                            ActionsComponent={TablePaginationActions}
-                          />
-                        </TableRow>
-                      </TableFooter>
-                    </Table>
-                  </TableContainer>  
-                </Paper>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+    <Box display="flex" width="100%" height="100%" flexDirection="column">
+      <AddOperation open={seeAddOperation} handleClose={closeAddOperation} stationId={props.stationId}/>
+       <Fab variant="extended" color='primary' style={{width:"90%",margin:"10px auto 10px auto",minHeight:"5vh"}} onClick={() => openAddOperation(true)}>
+                <Add  />
+                Aggiungi Operazione
+            </Fab> 
+        <Grid >
+                <Grid.Row columns={1}>
+                  <Grid.Column floated="left">
+                    <FormControlLabel
+                      control={<Switch checked={collapseAll} onChange={handleChange} />}
+                      label="Visualizza tabella estesa"
+                    />
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row columns={1}>
+                  
+                  <Grid.Column width={16}>
+                    <Paper style={{overflowY:"auto",overflowX:"auto"}}>
+                      <TableContainer component={Box} >
+                        <Table className={classes.table} size="small" aria-label="simple table">
+                          <TableHead>
+                            <TableRow>
+                              <TableCell align="center" size="small"></TableCell>
+                              <TableCell align="center" size="small">Seriale</TableCell>
+                              <TableCell align="center" size="small">Tipo Operazione</TableCell>
+                              <TableCell align="center" size="small">Operatore</TableCell>
+                              <TableCell align="center" size="small">Data Inizio Operazione</TableCell>
+                              <TableCell align="center" size="small">Data Fine Operazione</TableCell>
+                              
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {
+                              (
+                                rowsPerPage > 0
+                                ? stationOperations.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                : stationOperations
+                              ).map( (operation) => {
+                                
+                                const data_fine = operation["operazione"]["data_fine_operazione"]!==null ? new Date(operation["operazione"]["data_fine_operazione"]):"";
+                                const data_inizio = operation["operazione"]["data_inizio_operazione"]!==null ? new Date(operation["operazione"]["data_inizio_operazione"]):"" ;
+                                
+                                return(
+                                  <Row operation={operation} collapseAll={collapseAll} startDate={data_inizio} endDate={data_fine}/>
+                                )
+                              })
+                            }
+                          </TableBody>
+                          <TableFooter>
+                            <TableRow>
+                              <TablePagination
+                                rowsPerPageOptions={[5, 10, 25, { label: 'Tutte', value: -1 }]}
+                                colSpan={3}
+                                count={stationOperations.length}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                labelRowsPerPage="Righe per pagina"
+                                SelectProps={{
+                                  inputProps: { 'aria-label': 'Righe per pagina' },
+                                  native: true,
+                                }}
+                                onChangePage={handleChangePage}
+                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                                ActionsComponent={TablePaginationActions}
+                              />
+                            </TableRow>
+                          </TableFooter>
+                        </Table>
+                      </TableContainer>  
+                    </Paper>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+          
+        </Box>
     
   );
 }

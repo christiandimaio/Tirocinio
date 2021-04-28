@@ -78,10 +78,6 @@ export default class Main extends React.Component{
       ...props,
       addStation:false, //Attributo per la gestione dell'inserimento di una nuova stazione
       stations:[], // Attributo che detiene tutte le stazioni da dover renderizzare
-      addOperation:{  // Attributo che gestisce l'aggiunta di una nuova operazione per la stazione
-        open:false,
-        stationId:""
-      },
       stationInfo:{ // Attributo che gestisce la visualizzazione delle informazioni della stazione
         open:false, // Booleano che mi permette di capire quando viene richiesta l'apertura della sezione "informazioni stazione"
         stationId:"", // Identificativo della stazione
@@ -97,28 +93,12 @@ export default class Main extends React.Component{
     this.closeStationInfo() // Necessario per forzare un rendering aggiuntivo del component con passaggio dei nuovi parametri
     this.setState(state => (state.stationInfo.open  = true));
     this.setState(state => (state.stationInfo.stationId  = id));
-    this.setState(state => (state.stationInfo.hasUpdate  = false));
   }
 
   // Funzione duale di openStationInfo
   closeStationInfo = () => {
     this.setState(state => (state.stationInfo.open  = false));
     this.setState(state => (state.stationInfo.stationId  = ""));
-    this.setState(state => (state.stationInfo.hasUpdate  = false));
-  }
-
-  // Funziona chiamata per aprire la sezione di "Aggiungi Operazione" della stazione
-  // Come parametro prende l'identificativo della stazione Ex. "IOCA"
-  openAddOperation = (id) => {
-    this.setState(state => (state.addOperation.open  = true));
-    this.setState(state => (state.addOperation.stationId  = id));
-  }
-
-  // Funzione duale di openAddOperation
-  closeAddOperation = () => {
-    this.setState(state => (state.addOperation.open  = false));
-    this.setState(state => (state.addOperation.stationId  = ""));
-    this.retrieveStationInfo("")
   }
 
   
@@ -133,13 +113,12 @@ export default class Main extends React.Component{
 
   // Funzione che forza il component a renderizzarsi di nuovo
   forceReRender = () => {
-    this.setState({state:this.state})
+    this.retrieveStationInfo("");
   }
 
   componentDidMount() {
     this._isMounted=true;
-    this.retrieveStationInfo("")
-    this.setState(state => (state.stationInfo.hasUpdate  = false));
+    this.retrieveStationInfo("");
   }
 
   // Funzione che interroga la web api ottenendo tutte le stazioni attualmente sul database
@@ -159,7 +138,7 @@ export default class Main extends React.Component{
               });
           }
     })
-    this.setState(state => (state.stationInfo.hasUpdate  = true));
+    
   }
 
   createStation = (state) => {
@@ -187,8 +166,7 @@ export default class Main extends React.Component{
                                         startDate:station["data_messa_funzione"],
                                         operationCount:station["numero_operazioni"],
                                         isActive:station["is_attiva"],
-                                        openStationInfo:this.openStationInfo,
-                                        openAddOperation:this.openAddOperation
+                                        openStationInfo:this.openStationInfo
                                       }}
                           />
                         </Paper>
@@ -196,7 +174,6 @@ export default class Main extends React.Component{
                       </React.Fragment>
                       )
                     }
-                    <AddOperation open={this.state.addOperation.open} handleClose={this.closeAddOperation} stationId={this.state.addOperation.stationId}/>
                     <AddNewStation callReRender={this.retrieveStationInfo}/>
                 </Grid.Column>
               </Grid>                            
@@ -206,7 +183,7 @@ export default class Main extends React.Component{
                     <Paper elevation={3} style={{flexGrow:1}}>
                       {
                         this.state.stationInfo.open
-                          ?<StationViewer close={this.closeStationInfo} stationId={this.state.stationInfo.stationId}/>
+                          ?<StationViewer forceRender={this.forceReRender} close={this.closeStationInfo} stationId={this.state.stationInfo.stationId}/>
                           :<StationMap stations={this.state.stations}/>
                       }
                     </Paper>

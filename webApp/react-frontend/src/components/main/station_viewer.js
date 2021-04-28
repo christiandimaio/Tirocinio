@@ -100,15 +100,12 @@ function ScrollableTabsButtonForce(props) {
         </AppBar>
         <TabPanel value={value} index={0}>
           <Box display="flex" flexGrow={1} height="68vh" style={{overflowY:"auto",overflowX:"hidden"}}> {/**/}
-            
-                  <StationInfo stationId={props.stationId}/>
+            <StationInfo stationId={props.stationId}/>
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1} >
           <Box display="flex" flexGrow={1} height="68vh" style={{overflowY:"auto",overflowX:"hidden"}}> 
-         
-            <OperazioniTab stationOperations = {props.stationOperations}/>  
-           
+            <OperazioniTab forceRender={props.forceRender} stationId={props.stationId}/>  
           </Box>           
         </TabPanel>
         <TabPanel value={value} index={2}>
@@ -147,44 +144,25 @@ export default class StationViewer extends React.Component{
       }
     }
 
-    componentDidUpdate(prevProps,prevState) {
-      if (this.props.stationId !== prevProps.stationId || this.props.update) {
-          this.getOperazioniStazione()
-      }
-    }
-
-    componentDidMount(){
-        console.log("-------------------------------------------------");
-        this.getOperazioniStazione()
-    }
 
     // Funzione che forza il component a renderizzarsi di nuovo
     forceReRender = () => {
       this.setState({state:this.state})
     }
-
-    getOperazioniStazione = () => {
-        axios.get('api/Stazione/'+this.props.stationId+'/Operazioni')
-        .then((response) => {
-            console.log(response.data["data"]);
-                this.setState({
-                  stationOperations: response.data["data"]
-                }); 
-        })
-    }
-
     
 
     render(){
         return(
-            <Box display="flex" width="100%" height="100%" flexDirection="column">             
+            <Box display="flex" width="100%" height="100%" flexDirection="column">           
               <Box display="flex" flexGrow={1}>
-                <ScrollableTabsButtonForce stationOperations = {this.state.stationOperations} stationId={this.props.stationId}/>
+                <ScrollableTabsButtonForce forceRender={this.props.forceRender} stationId={this.props.stationId}/>
               </Box>
+              
               <Fab variant="extended" style={{width:"5%",marginLeft:6,marginBottom:9}} onClick={() => this.props.close()}>
                 <ArrowBackIosIcon  />
                 Map
               </Fab>
+              
             </Box>
         );
     }

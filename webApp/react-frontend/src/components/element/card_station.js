@@ -93,9 +93,6 @@ export default class StationCard extends React.Component {
                     <Button basic color='blue' style={{margin:2}} onClick={() => {properties.openStationInfo(properties.stationId)}}>
                       <h4 style={{color:"#3f51b5"}}>Visualizza Info</h4> 
                     </Button>
-                    <Button basic color='blue' style={{margin:2}} onClick={() => {properties.openAddOperation(properties.stationId)}}>
-                      <h4 style={{color:"#3f51b5"}}>Aggiungi Operazione</h4> 
-                    </Button>
                   </Box>             
                   </ExpansionPanelDetails>
               </ExpansionPanel>
