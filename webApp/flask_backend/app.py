@@ -108,4 +108,4 @@ routes = [
 api.add_resource(GetNrlIndex, *routes)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=os.getenv('APP_DEBUG'), port=os.getenv('APP_PORT'))
