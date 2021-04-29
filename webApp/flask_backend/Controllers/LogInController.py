@@ -27,7 +27,7 @@ class Auth(Resource):
                 # Non lo faccio lavorare questo controllo perchè si dovrebbe implementare un
                 # meccanismo che dopo un timeout di inattività setti lo stato ad offline
                 if user.is_online:
-                    return jsonify(operationCode=200, message="Utente già loggato!")
+                    return jsonify(operationCode=200, message="Utente gia' loggato!")
                 if user.password == password:
                     user.remember_me = rememberMe
                     user.is_online = True

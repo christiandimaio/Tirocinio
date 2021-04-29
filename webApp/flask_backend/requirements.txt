@@ -1,4 +1,4 @@
-lembic==1.4.2
+numpy==1.18.2
 aniso8601==8.0.0
 asn1crypto==0.24.0
 automium==0.2.6
@@ -54,7 +54,6 @@ MarkupSafe==1.1.0
 matplotlib==3.2.1
 MyApplication==0.1.0
 netifaces==0.10.4
-numpy==1.18.2
 oauthlib==2.1.0
 obspy==1.2.1
 olefile==0.46

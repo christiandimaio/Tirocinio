@@ -30,7 +30,7 @@ class InsertOperazione(Resource):
                                             data_fine_operazione=request.json["data_fine_operazione"],
                                             tipo_operazione=request.json["tipo_operazione"],
                                             note_operazione=request.json["note"])
-                # Inserisco un componente solo sè il tipo di operazione lo prevede
+                # Inserisco un componente solo se il tipo di operazione lo prevede
                 if request.json["seriale_componente"] != "" and request.json["tipo_operazione"] != "Altro":
                     componente = Componente.select(lambda componente: componente.seriale == request.json["seriale_componente"])\
                                             .first()
@@ -39,5 +39,5 @@ class InsertOperazione(Resource):
                 return jsonify(operationCode=200)
             except Exception as ex:
                 rollback()
-                return jsonify(operationCode=500, message="OPS! Qualcosa è andato storto")
-        return jsonify(operationCode=500,message="OPS! Qualcosa è andato storto")
+                return jsonify(operationCode=500, message="OPS! Qualcosa e' andato storto")
+        return jsonify(operationCode=500,message="OPS! Qualcosa e' andato storto")

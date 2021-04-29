@@ -10,7 +10,7 @@ class NRL(db.Entity):
     sensori = Set('Sensore')
     acquisitori = Set('Acquisitore')
 
-    def getKeys(self) -> []:
+    def getKeys(self):
         keys=[]
         if self.livello_1 is not None:
             keys.append(self.livello_1)

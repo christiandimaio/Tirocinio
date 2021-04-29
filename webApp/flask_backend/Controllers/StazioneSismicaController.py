@@ -23,7 +23,7 @@ class PostStazioneSismica(Resource):
                 operatori = []
                 """
                     Creo una lista di operatori in modo di essere flessibile sul numero di responsabili
-                    che comunque è limitato a 4 dal frontend
+                    che comunque e' limitato a 4 dal frontend
                 """
                 if request.json["responsabile_1"]:
                     operatori.append(Operatore[request.json["responsabile_1"]])
@@ -166,7 +166,7 @@ class GetComponenteStazione(Resource):
                             and operazione.componente.seriale == seriale
                             and operazione.data_inizio_operazione == max_data))[-1]
         """
-            Sè l'operazione è di rimozione significa che il componente non è più presente in stazione 
+            Se' l'operazione e' di rimozione significa che il componente non e' più presente in stazione 
         """
         if operazione and operazione.tipo_operazione != "Rimozione":
             return jsonify(operationCode=200, item=operazione.componente.to_dict())
@@ -192,7 +192,7 @@ class GetSensoriStazione(Resource):
         sensori = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non è già presente all'interno dell'insieme dei sensori allora lo elaboro
+            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme dei sensori allora lo elaboro
             if _operazione.componente not in sensori:
                 # Mi calcolo per quel sensore quante operazioni di installazione sono state svolte in quella stazione
                 n_installazioni_sensore = count(operazione for operazione in Operazione
@@ -206,7 +206,7 @@ class GetSensoriStazione(Resource):
                                             and operazione.componente.seriale == _operazione.componente.seriale
                                             and operazione.tipo_operazione == "Rimozione")
 
-                # sè ho più installazioni che rimozioni significa che il sensore è presente, questo mi permette di verificare
+                # se' ho più installazioni che rimozioni significa che il sensore e' presente, questo mi permette di verificare
                 # anche il caso limite in cui uno stesso sensore sia rimosso ed installato più volte nella stessa stazione
                 if n_installazioni_sensore > n_rimozioni_sensore:
                     sensori.append(_operazione.componente)
@@ -224,7 +224,7 @@ class GetAcquisitoriStazione(Resource):
     @db_session
     def get(codice_stazione):
         #########
-        # Il procedimento è il medesimo della ricerca dei sensori
+        # Il procedimento e' il medesimo della ricerca dei sensori
         
         operazioni = select((operazione) for operazione in Operazione
                             if operazione.stazione_sismica.codice_stazione == codice_stazione
@@ -273,7 +273,7 @@ class GetBatterieStazione(Resource):
         batterie = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non è già presente all'interno dell'insieme delle batterie allora lo elaboro
+            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme delle batterie allora lo elaboro
             if _operazione.componente not in batterie:
                 n_installazioni_batteria = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
@@ -307,7 +307,7 @@ class GetRegolatoriCaricaStazione(Resource):
         regolatori_carica = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non è già presente all'interno dell'insieme delle batterie allora lo elaboro
+            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme delle batterie allora lo elaboro
             if _operazione.componente not in regolatori_carica:
                 n_installazioni = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
@@ -341,7 +341,7 @@ class GetGpsStazione(Resource):
         gps = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non è già presente all'interno dell'insieme delle batterie allora lo elaboro
+            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme delle batterie allora lo elaboro
             if _operazione.componente not in gps:
                 n_installazioni = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
@@ -375,7 +375,7 @@ class GetMemorieMassaStazione(Resource):
         memorie_massa = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non è già presente all'interno dell'insieme delle batterie allora lo elaboro
+            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme delle batterie allora lo elaboro
             if _operazione.componente not in memorie_massa:
                 n_installazioni = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
@@ -409,7 +409,7 @@ class GetPannelliSolariStazione(Resource):
         pannelli_solari = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non è già presente all'interno dell'insieme delle batterie allora lo elaboro
+            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme delle batterie allora lo elaboro
             if _operazione.componente not in pannelli_solari:
                 n_installazioni = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
@@ -443,7 +443,7 @@ class GetCaviStazione(Resource):
         cavi = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non è già presente all'interno dell'insieme delle batterie allora lo elaboro
+            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme delle batterie allora lo elaboro
             if _operazione.componente not in cavi:
                 n_installazioni = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
