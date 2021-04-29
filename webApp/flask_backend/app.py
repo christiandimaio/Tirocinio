@@ -5,20 +5,24 @@ from pony.flask import Pony
 
 sys.path.append('./myPackage/Utils/')
 sys.path.append('./myPackage/NrlWrap/')
+sys.path.append('./myPackage/NrlWrap/Convert/')
+sys.path.append('./myPackage/NrlWrap/StationXMLMaker/')
 sys.path.append('./Model/')
+sys.path.append('./Model/Componenti/')
 sys.path.append('./Controllers/')
+sys.path.append('./Controllers/Componenti')
 sys.path.append('./cfg/')
 
-from Controllers.CanaleController import *
-from Controllers.OperazioneController import *
-from Controllers.OperatoreController import *
-from Controllers.StazioneSismicaController import *
-from Controllers.LogInController import *
-from Controllers.NrlController import *
-from Controllers.ComponenteController import *
-from Controllers.Componenti.GpsController import *
-from Controllers.Componenti.AcquisitoreController import *
-from Controllers.Componenti.SensoreController import *
+from CanaleController import *
+from OperazioneController import *
+from OperatoreController import *
+from StazioneSismicaController import *
+from LogInController import *
+from NrlController import *
+from ComponenteController import *
+from GpsController import *
+from AcquisitoreController import *
+from SensoreController import *
 from Model import Log_In, Operatore
 from connection import db
 from LoginManager import *
