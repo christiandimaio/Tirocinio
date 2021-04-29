@@ -5,7 +5,7 @@ from filelock import FileLock
 from NRLWrap import NRLWrap
 import os
 import Utils
-from StationXMLMaker import NRLToStationXML
+from myPackage.NrlWrap.StationXMLMaker.StationXMLMaker import *
 import obspy
 from connection import db, db_session, commit
 from Model import Stazione_Sismica, Localizzazione
