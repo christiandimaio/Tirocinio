@@ -1,0 +1,9 @@
+{
+ "port":5000,
+ "log_file": "sesame.log",
+ "environment": "production",
+ "python":"usr/bin/python3",
+ "deamonize":true,
+ "max_pool_size": 100,
+ "min_instances": 100
+}
