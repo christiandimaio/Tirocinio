@@ -166,7 +166,7 @@ class GetComponenteStazione(Resource):
                             and operazione.componente.seriale == seriale
                             and operazione.data_inizio_operazione == max_data))[-1]
         """
-            Se' l'operazione e' di rimozione significa che il componente non e' più presente in stazione 
+            Se' l'operazione e' di rimozione significa che il componente non e' piu' presente in stazione 
         """
         if operazione and operazione.tipo_operazione != "Rimozione":
             return jsonify(operationCode=200, item=operazione.componente.to_dict())
@@ -206,8 +206,8 @@ class GetSensoriStazione(Resource):
                                             and operazione.componente.seriale == _operazione.componente.seriale
                                             and operazione.tipo_operazione == "Rimozione")
 
-                # se' ho più installazioni che rimozioni significa che il sensore e' presente, questo mi permette di verificare
-                # anche il caso limite in cui uno stesso sensore sia rimosso ed installato più volte nella stessa stazione
+                # se' ho piu' installazioni che rimozioni significa che il sensore e' presente, questo mi permette di verificare
+                # anche il caso limite in cui uno stesso sensore sia rimosso ed installato piu' volte nella stessa stazione
                 if n_installazioni_sensore > n_rimozioni_sensore:
                     sensori.append(_operazione.componente)
         if len(sensori) > 0:
