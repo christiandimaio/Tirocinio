@@ -192,7 +192,7 @@ class GetSensoriStazione(Resource):
         sensori = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme dei sensori allora lo elaboro
+            # se il componente relativo all'operazione non e' gia' presente all'interno dell'insieme dei sensori allora lo elaboro
             if _operazione.componente not in sensori:
                 # Mi calcolo per quel sensore quante operazioni di installazione sono state svolte in quella stazione
                 n_installazioni_sensore = count(operazione for operazione in Operazione
@@ -273,7 +273,7 @@ class GetBatterieStazione(Resource):
         batterie = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme delle batterie allora lo elaboro
+            # se il componente relativo all'operazione non e' gia' presente all'interno dell'insieme delle batterie allora lo elaboro
             if _operazione.componente not in batterie:
                 n_installazioni_batteria = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
@@ -307,7 +307,7 @@ class GetRegolatoriCaricaStazione(Resource):
         regolatori_carica = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme delle batterie allora lo elaboro
+            # se il componente relativo all'operazione non e' gia' presente all'interno dell'insieme delle batterie allora lo elaboro
             if _operazione.componente not in regolatori_carica:
                 n_installazioni = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
@@ -341,7 +341,7 @@ class GetGpsStazione(Resource):
         gps = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme delle batterie allora lo elaboro
+            # se il componente relativo all'operazione non e' gia' presente all'interno dell'insieme delle batterie allora lo elaboro
             if _operazione.componente not in gps:
                 n_installazioni = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
@@ -375,7 +375,7 @@ class GetMemorieMassaStazione(Resource):
         memorie_massa = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme delle batterie allora lo elaboro
+            # se il componente relativo all'operazione non e' gia' presente all'interno dell'insieme delle batterie allora lo elaboro
             if _operazione.componente not in memorie_massa:
                 n_installazioni = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
@@ -409,7 +409,7 @@ class GetPannelliSolariStazione(Resource):
         pannelli_solari = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme delle batterie allora lo elaboro
+            # se il componente relativo all'operazione non e' gia' presente all'interno dell'insieme delle batterie allora lo elaboro
             if _operazione.componente not in pannelli_solari:
                 n_installazioni = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
@@ -443,7 +443,7 @@ class GetCaviStazione(Resource):
         cavi = []
         #per ogni operazione
         for _operazione in operazioni:
-            # se il componente relativo all'operazione non e' già presente all'interno dell'insieme delle batterie allora lo elaboro
+            # se il componente relativo all'operazione non e' gia' presente all'interno dell'insieme delle batterie allora lo elaboro
             if _operazione.componente not in cavi:
                 n_installazioni = count(operazione for operazione in Operazione
                                                 if operazione.stazione_sismica.codice_stazione == codice_stazione
