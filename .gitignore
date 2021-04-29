@@ -1,10 +1,10 @@
 
 *.zip
-/webApp/flask_backend/res/response/dataloggers/
-/webApp/flask_backend/res/response/sensors/
-/webApp/flask_backend/venv/
-/web/app/react-frontend/node_modules/
+back-end/res/response/dataloggers/
+back-end/res/response/sensors/
+back-end/venv/
+front-end/node_modules/
 *.tmp
 *.pyc
-webApp/flask_backend/venv/bin/activate
-webApp/flask_backend/venv/bin/activate
+back-end/venv/
+back-end/.env
