@@ -44,7 +44,7 @@ class StationXMLMaker:
         '''
         Crea lo StationXml
         :param p_format: standard da utilizzare per il file di output
-        :param p_validate: booleno per indicare che il file è stato validato
+        :param p_validate: booleno per indicare che il file e' stato validato
         :param p_file_name: nome del file da utilizzare
         :return:
         '''
@@ -222,7 +222,7 @@ class NRLToStationXML(StationXMLMaker):
         :param p_latitude: latitudine canale
         :param p_longitude: longitudine canale
         :param p_elevation: altezza livello mare
-        :param p_depth: profondità dal livello del piano dove si trova la stazione
+        :param p_depth: profondita' dal livello del piano dove si trova la stazione
         :param p_azimuth: azimuth
         :param p_dip: inclinazione
         :param p_sample_rate: sample rate

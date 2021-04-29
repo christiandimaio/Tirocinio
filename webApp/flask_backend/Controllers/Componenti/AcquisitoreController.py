@@ -10,7 +10,7 @@ class PostAcquisitore(Resource):
     def post(seriale):
         acquisitore = Acquisitore.select(lambda acquisitore: acquisitore.componente.seriale == seriale).first()
         if acquisitore:
-            return jsonify(operationCode=500, message="Sensore già presente in magazzino o installato in una stazione")
+            return jsonify(operationCode=500, message="Sensore gia' presente in magazzino o installato in una stazione")
         try:
             componente = Componente(
                 seriale=seriale,
@@ -44,5 +44,5 @@ class PostAcquisitore(Resource):
             return jsonify(operationCode=200)
         except Exception as ex:
             rollback()
-            return jsonify(operationCode=500, message="OPS! Qualcosa è andato storto")
-        return jsonify(operationCode=500, message="OPS! Qualcosa è andato storto")
+            return jsonify(operationCode=500, message="OPS! Qualcosa e' andato storto")
+        return jsonify(operationCode=500, message="OPS! Qualcosa e' andato storto")

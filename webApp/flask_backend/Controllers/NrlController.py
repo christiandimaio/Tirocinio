@@ -28,7 +28,7 @@ class UpdateNrl(Resource):
                         200 = OK, UPDATED
         """
         try:
-            if nrl_update_lock.is_locked: #Se ho un lock allora informo che un aggiornamento è già in esecuzione
+            if nrl_update_lock.is_locked: #Se ho un lock allora informo che un aggiornamento e' gia' in esecuzione
                 return jsonify(result=201)
             """Istanzio un file di lock """
             nrl_update_lock.acquire()
