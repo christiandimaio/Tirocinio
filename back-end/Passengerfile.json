@@ -4,6 +4,6 @@
  "environment": "production",
  "python":"usr/bin/python3",
  "deamonize":true,
- "max_pool_size": 100,
- "min_instances": 100
+ "max_pool_size": 50,
+ "min_instances": 50
 }

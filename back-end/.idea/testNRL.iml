@@ -12,6 +12,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Model/Componenti" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cfg" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Controllers/Componenti" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Controllers" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="inheritedJdk" />
