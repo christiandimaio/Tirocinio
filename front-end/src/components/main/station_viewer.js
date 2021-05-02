@@ -104,7 +104,7 @@ function ScrollableTabsButtonForce(props) {
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1} >
-          <Box display="flex" flexGrow={1} height="68vh" style={{overflowY:"auto",overflowX:"hidden"}}> 
+          <Box display="flex" flexGrow={1} height="68vh" > 
             <OperazioniTab forceRender={props.forceRender} stationId={props.stationId}/>  
           </Box>           
         </TabPanel>

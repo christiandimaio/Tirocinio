@@ -12,8 +12,6 @@ class PostSensore(Resource):
     @staticmethod
     @db_session
     def post(seriale):
-        possible_to_install = False
-        installed = False
         sensore = Sensore.select(lambda sensore: sensore.componente.seriale == seriale).first()
         if sensore:
             return jsonify(operationCode=500, message="Sensore gia' presente in magazzino o installato in una stazione")

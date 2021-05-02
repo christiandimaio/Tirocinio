@@ -173,8 +173,8 @@ class GetStationXML(Resource):
                                            p_sensor=_canale.sensore.nrl.getKeys(),
                                            p_datalogger=_canale.acquisitore.nrl.getKeys()
                                            )
-                stationXML.make_xml(p_file_name="{0}.xml".format(_stazione.codice_stazione))
+                stationXML.make_xml(p_file_name="/tmp/{0}.xml".format(_stazione.codice_stazione))
             except Exception as ex:
                 print(ex)
                 return jsonify(operationCode=500, message="Server Error")
-        return send_file("{0}.xml".format(_stazione.codice_stazione), as_attachment=True, cache_timeout=0)
+        return send_file("/tmp/{0}.xml".format(_stazione.codice_stazione), as_attachment=True, cache_timeout=0)
