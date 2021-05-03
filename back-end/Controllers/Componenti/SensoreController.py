@@ -51,3 +51,19 @@ class PostSensore(Resource):
             rollback()
             return jsonify(operationCode=500, message="OPS! Qualcosa e' andato storto")
         return jsonify(operationCode=500, message="OPS! Qualcosa e' andato storto")
+
+class GetSensoriMagazzino(Resource):
+    @staticmethod
+    @db_session
+    def get():
+        sensori = Sensore.select()
+        _sensori = []
+        for sensore in sensori:
+            if sensore.componente.can_install():
+                _sensori.append(sensore)
+        if len(_sensori) > 0:
+            return jsonify(operationCode=200, items=[sensore.to_dict() for sensore in _sensori],
+                           info=[sensore.componente.to_dict(with_collections=True) for sensore in _sensori])
+        else:
+            return jsonify(operationCode=404, message="Not Found")
+        return jsonify(operationCode=500, message="Internal Error")

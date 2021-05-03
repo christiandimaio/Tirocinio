@@ -46,3 +46,19 @@ class PostAcquisitore(Resource):
             rollback()
             return jsonify(operationCode=500, message="OPS! Qualcosa e' andato storto")
         return jsonify(operationCode=500, message="OPS! Qualcosa e' andato storto")
+
+class GetAcquisitoriMagazzino(Resource):
+    @staticmethod
+    @db_session
+    def get():
+        acquisitori = Acquisitore.select()
+        _acquisitori = []
+        for acquisitore in acquisitori:
+            if acquisitore.componente.can_install():
+                _acquisitori.append(acquisitore)
+        if len(_acquisitori) > 0:
+            return jsonify(operationCode=200, items=[acquisitore.to_dict() for acquisitore in _acquisitori],
+                           info=[acquisitore.componente.to_dict(with_collections=True) for acquisitore in _acquisitori])
+        else:
+            return jsonify(operationCode=404, message="Not Found")
+        return jsonify(operationCode=500, message="Internal Error")

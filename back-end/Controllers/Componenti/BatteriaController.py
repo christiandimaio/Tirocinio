@@ -1,8 +1,9 @@
 import psycopg2
-from flask import request,jsonify
+from flask import request, jsonify
 from flask_restful import Resource
 from Model import Batteria
 from pony.orm import *
+
 
 class GetBatterieMagazzino(Resource):
     @staticmethod

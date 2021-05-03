@@ -44,10 +44,10 @@ export default function FullScreenDialog(props) {
     
     axios.get('api/Magazzino/Batterie')
       .then((response) => {
-        console.log(response.data["data"]);
-        if (response.data["data"]['operationCode'] === 200){
-          console.log(response.data["data"].items);
-          setBatterieCounter(response.data["data"].items.length);
+        console.log(response.data.operationCO);
+        if (response.data['operationCode'] === 200){
+          console.log(response.data.items);
+          setBatterieCounter(response.data.items.length);
         }
     })
   }
