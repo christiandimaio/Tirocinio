@@ -59,10 +59,10 @@ export default function OperazioniTab(props) {
     const [seeAddOperation, openAddOperation] = React.useState(false);
     const [openNote, setOpenNote] = React.useState(false);
     const [note,setNote] = React.useState("");
-  useEffect(() => {
-    
-    getOperazioniStazione()
-  }, [props.stationId]);
+  
+    useEffect(() => {  
+        getOperazioniStazione()
+    }, [props.stationId]);
 
   const handleOpenNote = (note) => {
     setOpenNote(true);

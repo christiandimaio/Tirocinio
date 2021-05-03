@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,6 +12,8 @@ import {Grid} from 'semantic-ui-react';
 import DialogContent from '@material-ui/core/DialogContent';
 import 'semantic-ui-css/semantic.min.css'
 import AddSensor from './utils/add_sensor.js';
+import axios from 'axios';
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -29,9 +31,26 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function FullScreenDialog(props) {
   const classes = useStyles();
-  
+  const [sensori,setSensoriCounter] = React.useState(0);
+  const [batterie,setBatterieCounter] = React.useState(0);
 
+  useEffect(() => {
+    if (props.open){
+      getMagazzino()
+    }
+  });
 
+  function getMagazzino(){
+    
+    axios.get('api/Magazzino/Batterie')
+      .then((response) => {
+        console.log(response.data["data"]);
+        if (response.data["data"]['operationCode'] === 200){
+          console.log(response.data["data"].items);
+          setBatterieCounter(response.data["data"].items.length);
+        }
+    })
+  }
 
   return (
     <div>
@@ -59,7 +78,7 @@ export default function FullScreenDialog(props) {
                 <ComponentCardInfo nomeComponente="Acquisitori"  componentiInMagazzino={22}/>
               </Grid.Column>
               <Grid.Column>
-                <ComponentCardInfo nomeComponente="Batterie"  componentiInMagazzino={22}/>
+                <ComponentCardInfo nomeComponente="Batterie"  componentiInMagazzino={batterie}/>
               </Grid.Column>
               <Grid.Column>
                 <ComponentCardInfo nomeComponente="Regolatori carica"  componentiInMagazzino={22}/>

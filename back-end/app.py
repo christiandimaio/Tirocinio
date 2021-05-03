@@ -21,6 +21,7 @@ from LogInController import *
 from NrlController import *
 from ComponenteController import *
 from GpsController import *
+from BatteriaController import *
 from AcquisitoreController import *
 from SensoreController import *
 from Model import Log_In, Operatore
@@ -49,8 +50,16 @@ api.add_resource(GetComponente, '/api/Componente/<string:seriale>')
 """----------------------------------------------------------------------------"""
 """ROTTE MODELLO GPS"""
 api.add_resource(GetGps, '/api/Componente/Gps/<string:seriale>')
+api.add_resource(GetGpsMagazzino, '/api/Magazzino/Gps')
+"""----------------------------------------------------------------------------"""
 
 """----------------------------------------------------------------------------"""
+"""ROTTE MODELLO Batteria"""
+api.add_resource(GetBatterieMagazzino, '/api/Magazzino/Batterie')
+
+"""----------------------------------------------------------------------------"""
+
+
 """ROTTE MODELLO SENSORE"""
 api.add_resource(PostSensore, '/api/Componente/Sensore/<string:seriale>')
 

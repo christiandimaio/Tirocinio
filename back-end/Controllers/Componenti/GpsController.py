@@ -22,3 +22,18 @@ class GetGps(Resource):
             return jsonify(operationCode=404,message="Not Found")
         return jsonify(operationCode=500,message="Internal Error")
 
+class GetGpsMagazzino(Resource):
+    @staticmethod
+    @db_session
+    def get():
+        gps_s = Gps.select()
+        _gps_s = []
+        for gps in gps_s:
+            if gps.componente.can_install():
+                _gps_s.append(gps)
+        if len(_gps_s) > 0:
+            return jsonify(operationCode=200, items=[gps.to_dict() for gps in _gps_s],
+                           info=[gps.componente.to_dict(with_collections=True) for gps in _gps_s])
+        else:
+            return jsonify(operationCode=404, message="Not Found")
+        return jsonify(operationCode=500, message="Internal Error")

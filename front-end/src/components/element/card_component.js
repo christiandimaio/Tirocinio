@@ -28,16 +28,9 @@ const ComponentCard = (props) => (
                   {props.classNumberElement}
                 </Grid.Column>
             </Grid.Row>
-            <Grid.Row>
-                <Grid.Column>
-                  <Icon name='setting' />
-                  {props.classNumberElement}
-                </Grid.Column>
-            </Grid.Row>
         </Grid>
         <Button floated='right'>
                 Aggiungi
-                <Icon name='add'  />
         </Button>
     </Card.Content>
   </Card>
