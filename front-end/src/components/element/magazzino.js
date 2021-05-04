@@ -33,6 +33,14 @@ export default function FullScreenDialog(props) {
   const classes = useStyles();
   const [sensori,setSensoriCounter] = React.useState(0);
   const [batterie,setBatterieCounter] = React.useState(0);
+  const [acquisitori,setAcquisitoriCounter] = React.useState(0);
+  const [regolatoriCarica,setRegolatoriCaricaCounter] = React.useState(0);
+  const [pannelliSolari,setPannelliSolariCounter] = React.useState(0);
+  const [cavi,setCaviCounter] = React.useState(0);
+  const [memorieMassa,setMemorieMassaCounter] = React.useState(0);
+  const [gps,setGpsCounter] = React.useState(0);
+
+  const[addSensorModalShowing,setModalSensor] = React.useState(false);
 
   useEffect(() => {
     if (props.open){
@@ -46,18 +54,93 @@ export default function FullScreenDialog(props) {
       .then((response) => {
         console.log(response.data.operationCO);
         if (response.data['operationCode'] === 200){
-          console.log(response.data.items);
+          console.log(response.data);
           setBatterieCounter(response.data.items.length);
+        }else{
+          setBatterieCounter(0);
+        }
+    })
+    axios.get('api/Magazzino/Sensori')
+      .then((response) => {
+        console.log(response.data.operationCO);
+        if (response.data['operationCode'] === 200){
+          console.log(response.data.items);
+          setSensoriCounter(response.data.items.length);
+        }else{
+          setSensoriCounter(0);
+        }
+    })
+    axios.get('api/Magazzino/Acquisitori')
+      .then((response) => {
+        console.log(response.data.operationCO);
+        if (response.data['operationCode'] === 200){
+          console.log(response.data.items);
+          setAcquisitoriCounter(response.data.items.length);
+        }else{
+          setAcquisitoriCounter(0);
+        }
+    })
+    axios.get('api/Magazzino/RegolatoriCarica')
+      .then((response) => {
+        console.log(response.data.operationCO);
+        if (response.data['operationCode'] === 200){
+          console.log(response.data.items);
+          setRegolatoriCaricaCounter(response.data.items.length);
+        }else{
+          setRegolatoriCaricaCounter(0);
+        }
+    })
+    axios.get('api/Magazzino/PannelliSolari')
+      .then((response) => {
+        console.log(response.data.operationCO);
+        if (response.data['operationCode'] === 200){
+          console.log(response.data.items);
+          setPannelliSolariCounter(response.data.items.length);
+        }else{
+          setPannelliSolariCounter(0);
+        }
+    })
+    axios.get('api/Magazzino/Cavi')
+      .then((response) => {
+        console.log(response.data.operationCO);
+        if (response.data['operationCode'] === 200){
+          console.log(response.data.items);
+          setCaviCounter(response.data.items.length);
+        }else{
+          setCaviCounter(0);
+        }
+    })
+    axios.get('api/Magazzino/MemorieMassa')
+      .then((response) => {
+        console.log(response.data.operationCO);
+        if (response.data['operationCode'] === 200){
+          console.log(response.data.items);
+          setMemorieMassaCounter(response.data.items.length);
+        }else{
+          setMemorieMassaCounter(0);
+        }
+    })
+    axios.get('api/Magazzino/Gps')
+      .then((response) => {
+        console.log(response.data.operationCO);
+        if (response.data['operationCode'] === 200){
+          console.log(response.data.items);
+          setGpsCounter(response.data.items.length);
+        }else{
+          setGpsCounter(0);
         }
     })
   }
 
+  function addSensore(){
+    setModalSensor(true)
+  }
   return (
     <div>
-      
+      <AddSensor open={addSensorModalShowing}/>
       <Dialog fullScreen open={props.open} TransitionComponent={Transition} scroll="paper" style={{zIndex:0}}>
-      <AddSensor open={false}/>
-        <AppBar className={classes.appBar}>
+
+        <AppBar className={classes.appBar}><AddSensor open={addSensorModalShowing}/>
           <Toolbar>
             <IconButton edge="start" color="inherit" onClick={() => {props.handleChange(false)}} aria-label="close">
               <CloseIcon />
@@ -68,34 +151,34 @@ export default function FullScreenDialog(props) {
           </Toolbar>
         </AppBar>
         <DialogContent dividers="paper">
-        
+          
           <Grid padded>
             <Grid.Row columns={5}>
               <Grid.Column>
-                <ComponentCardInfo nomeComponente="Sensori"  componentiInMagazzino={23}/>
+                <ComponentCardInfo nomeComponente="Sensori"  componentiInMagazzino={sensori} addComponent={addSensore}/>
               </Grid.Column>
               <Grid.Column>
-                <ComponentCardInfo nomeComponente="Acquisitori"  componentiInMagazzino={22}/>
+                <ComponentCardInfo nomeComponente="Acquisitori"  componentiInMagazzino={acquisitori}/>
               </Grid.Column>
               <Grid.Column>
                 <ComponentCardInfo nomeComponente="Batterie"  componentiInMagazzino={batterie}/>
               </Grid.Column>
               <Grid.Column>
-                <ComponentCardInfo nomeComponente="Regolatori carica"  componentiInMagazzino={22}/>
+                <ComponentCardInfo nomeComponente="Regolatori carica"  componentiInMagazzino={regolatoriCarica}/>
               </Grid.Column>
               <Grid.Column>
-                <ComponentCardInfo nomeComponente="Gps"  componentiInMagazzino={22}/>
+                <ComponentCardInfo nomeComponente="Gps"  componentiInMagazzino={gps}/>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={5}>
               <Grid.Column>
-                <ComponentCardInfo nomeComponente="Hard Disk"  componentiInMagazzino={22}/>
+                <ComponentCardInfo nomeComponente="Hard Disk"  componentiInMagazzino={memorieMassa}/>
               </Grid.Column>
               <Grid.Column>
-                <ComponentCardInfo nomeComponente="Pannelli Solari"  componentiInMagazzino={22}/>
+                <ComponentCardInfo nomeComponente="Pannelli Solari"  componentiInMagazzino={pannelliSolari}/>
               </Grid.Column>
               <Grid.Column>
-                <ComponentCardInfo nomeComponente="Cavi"  componentiInMagazzino={22}/>
+                <ComponentCardInfo nomeComponente="Cavi"  componentiInMagazzino={cavi}/>
               </Grid.Column>
             </Grid.Row>   
           </Grid>

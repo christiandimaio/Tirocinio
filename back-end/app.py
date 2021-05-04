@@ -23,6 +23,10 @@ from ComponenteController import *
 from GpsController import *
 from BatteriaController import *
 from AcquisitoreController import *
+from CavoController import *
+from MemoriaMassaController import *
+from PannelloSolareController import *
+from RegolatoreCaricaController import *
 from SensoreController import *
 from Model import Log_In, Operatore
 from connection import db
@@ -48,25 +52,41 @@ def load_user(user_id):
 api.add_resource(GetComponente, '/api/Componente/<string:seriale>')
 
 """----------------------------------------------------------------------------"""
-"""ROTTE MODELLO GPS"""
-api.add_resource(GetGps, '/api/Componente/Gps/<string:seriale>')
-api.add_resource(GetGpsMagazzino, '/api/Magazzino/Gps')
-"""----------------------------------------------------------------------------"""
+"""ROTTE MODELLO ACQUISITORE"""
+api.add_resource(PostAcquisitore, '/api/Componente/Acquisitore/<string:seriale>')
+api.add_resource(GetAcquisitoriMagazzino, '/api/Magazzino/Acquisitori')
 
 """----------------------------------------------------------------------------"""
 """ROTTE MODELLO Batteria"""
 api.add_resource(GetBatterieMagazzino, '/api/Magazzino/Batterie')
 
 """----------------------------------------------------------------------------"""
+"""ROTTE MODELLO Cavo"""
+api.add_resource(GetCaviMagazzino, '/api/Magazzino/Cavi')
 
+"""----------------------------------------------------------------------------"""
+"""ROTTE MODELLO GPS"""
+api.add_resource(GetGps, '/api/Componente/Gps/<string:seriale>')
+api.add_resource(GetGpsMagazzino, '/api/Magazzino/Gps')
+"""----------------------------------------------------------------------------"""
+
+"""----------------------------------------------------------------------------"""
+"""ROTTE MODELLO Memoria Massa"""
+api.add_resource(GetMemorieMassaMagazzino, '/api/Magazzino/MemorieMassa')
+
+"""----------------------------------------------------------------------------"""
+"""ROTTE MODELLO Pannello Solare"""
+api.add_resource(GetPannelliSolariMagazzino, '/api/Magazzino/PannelliSolari')
+
+"""----------------------------------------------------------------------------"""
+"""ROTTE MODELLO Regolatore Carica """
+api.add_resource(GetRegolatoriCaricaMagazzino, '/api/Magazzino/RegolatoriCarica')
+
+"""----------------------------------------------------------------------------"""
 
 """ROTTE MODELLO SENSORE"""
 api.add_resource(PostSensore, '/api/Componente/Sensore/<string:seriale>')
-
-"""----------------------------------------------------------------------------"""
-"""ROTTE MODELLO ACQUISITORE"""
-api.add_resource(PostAcquisitore, '/api/Componente/Acquisitore/<string:seriale>')
-
+api.add_resource(GetSensoriMagazzino, '/api/Magazzino/Sensori')
 
 """----------------------------------------------------------------------------"""
 """ROTTE MODELLO LOG_IN"""

@@ -164,7 +164,9 @@ class GetComponenteStazione(Resource):
         operazione = list(select((operazione) for operazione in Operazione
                             if operazione.stazione_sismica.codice_stazione == codice_stazione
                             and operazione.componente.seriale == seriale
-                            and operazione.data_inizio_operazione == max_data))[-1]
+                            and operazione.data_inizio_operazione == max_data))
+        operazione = operazione[-1] if len(operazione) > 0 else None
+
         """
             Se' l'operazione e' di rimozione significa che il componente non e' piu' presente in stazione 
         """

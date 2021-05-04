@@ -29,7 +29,8 @@ const ComponentCard = (props) => (
                 </Grid.Column>
             </Grid.Row>
         </Grid>
-        <Button floated='right'>
+        <Button onClick={() => {props.addComponent()}}
+          floated='right'>
                 Aggiungi
         </Button>
     </Card.Content>
@@ -47,6 +48,7 @@ export default function ComponentCardInfo(props){
         <ComponentCard classImagePath="../../images/stations/default.png"
                         className= {props.nomeComponente}
                         classShortInfo= {"Gestione "+props.nomeComponente}
-                        classNumberElement={props.componentiInMagazzino}/>
+                        classNumberElement={props.componentiInMagazzino}
+                        addComponent={props.addComponent} />
     )
 }

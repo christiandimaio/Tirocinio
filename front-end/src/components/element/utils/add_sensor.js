@@ -12,18 +12,34 @@ import MuiALert from '@material-ui/lab/Alert';
 import axios from 'axios';
 
 export default function AddSensor(props){
+        const [componenteBase,setComponenteBase] = React.useState({
+            produttore:"",
+            nome:""
+        });
 
+        const handleComponenteBaseChange = (prop) => (event) => {
+            setComponenteBase({ ...componenteBase, [prop]: event.target.value });
+        };
         // Per il render guardare JSX + Material UI + Semantic UI React + eventuali componenti custom
         return (
-            <>
-                <Modal   open={false}
-                          centered={false} closeOnDimmerClick={false} style={{zIndex:1}}>
+            <div style={{zIndex:1}}>
+                <Modal   open={props.open}
+                          centered={true} closeOnDimmerClick={false} style={{zIndex:1}}>
                     <Modal.Header>Aggiungi nuovo Sensore</Modal.Header>
-                    <Modal.Content scrolling>
+                    <Modal.Content scrolling >
                     
-                    <Modal.Description>
+                        <Modal.Description>
+                        <Grid style={{zIndex:1}}>
                         
-                    </Modal.Description>
+                            <Grid.Row columns={2}>
+                                <Grid.Column width={6}>
+                                    <TextField  id="produttoreSensore_textfield" label="Produttore" variant="outlined" 
+                                                    helperText={"Produttore del componente"} 
+                                                />
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+                        </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
                         <Button negative >
@@ -39,6 +55,6 @@ export default function AddSensor(props){
                     </Modal.Actions>
                     
                 </Modal>
-        </>
+        </div>
         )
 }
