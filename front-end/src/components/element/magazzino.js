@@ -140,7 +140,7 @@ export default function FullScreenDialog(props) {
       <AddSensor open={addSensorModalShowing}/>
       <Dialog fullScreen open={props.open} TransitionComponent={Transition} scroll="paper" style={{zIndex:0}}>
 
-        <AppBar className={classes.appBar}><AddSensor open={addSensorModalShowing}/>
+        <AppBar className={classes.appBar}>
           <Toolbar>
             <IconButton edge="start" color="inherit" onClick={() => {props.handleChange(false)}} aria-label="close">
               <CloseIcon />

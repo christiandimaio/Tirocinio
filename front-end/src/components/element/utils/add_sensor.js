@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Header, Icon, Modal,Button } from 'semantic-ui-react'
-import {TextField,Snackbar} from '@material-ui/core';
+import {TextField,Snackbar, DialogActions} from '@material-ui/core';
 import {Grid} from 'semantic-ui-react';
 import Selecter from './selecter';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,6 +10,9 @@ import { Divider } from 'semantic-ui-react'
 import DateTimePicker from './date_picker.js'
 import MuiALert from '@material-ui/lab/Alert';
 import axios from 'axios';
+import DialogContent from '@material-ui/core/DialogContent';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function AddSensor(props){
         const [componenteBase,setComponenteBase] = React.useState({
@@ -22,26 +25,36 @@ export default function AddSensor(props){
         };
         // Per il render guardare JSX + Material UI + Semantic UI React + eventuali componenti custom
         return (
-            <div style={{zIndex:1}}>
-                <Modal   open={props.open}
-                          centered={true} closeOnDimmerClick={false} style={{zIndex:1}}>
-                    <Modal.Header>Aggiungi nuovo Sensore</Modal.Header>
-                    <Modal.Content scrolling >
+           
+                <Dialog   open={props.open}
+                          centered={true} disableBackdropClick disableEscapeKeyDown  style={{zIndex:1}}>
+                    <DialogTitle>Aggiungi nuovo Sensore</DialogTitle>
+                    <DialogContent>
                     
                         <Modal.Description>
-                        <Grid style={{zIndex:1}}>
+                        <Grid style={{zIndex:1}} padded>
                         
-                            <Grid.Row columns={2}>
-                                <Grid.Column width={6}>
+                            <Grid.Row columns={3}>
+                                <Grid.Column >
                                     <TextField  id="produttoreSensore_textfield" label="Produttore" variant="outlined" 
-                                                    helperText={"Produttore del componente"} 
+                                                    helperText={"Produttore del componente"} style={{zIndex:2}}
+                                                />
+                                </Grid.Column>
+                                <Grid.Column >
+                                    <TextField  id="produttoreSensore_textfield" label="Produttore" variant="outlined" 
+                                                    helperText={"Produttore del componente"} style={{zIndex:2}}
+                                                />
+                                </Grid.Column>
+                                <Grid.Column >
+                                    <TextField  id="produttoreSensore_textfield" label="Produttore" variant="outlined" 
+                                                    helperText={"Produttore del componente"} style={{zIndex:2}}
                                                 />
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>
                         </Modal.Description>
-                    </Modal.Content>
-                    <Modal.Actions>
+                    </DialogContent>
+                    <DialogActions>
                         <Button negative >
                             Cancella
                         </Button>
@@ -52,9 +65,8 @@ export default function AddSensor(props){
                             icon='checkmark'
                             content='Salva'
                         />
-                    </Modal.Actions>
+                    </DialogActions>
                     
-                </Modal>
-        </div>
+                </Dialog>
         )
 }
